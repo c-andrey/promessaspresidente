@@ -56,10 +56,18 @@ def executar(args) -> dict:
     # Trabalho do dia = pendentes de execuções anteriores (ainda válidos) + novos com candidata.
     limite_pendente = (date.today() - timedelta(days=cfg["dias_validade_pendente"])).isoformat()
     trabalho = [p for p in pendentes if p["doc"]["data"] >= limite_pendente]
+    noticias = 0
     for d in novos:
         c = candidatas(d, promessas, cfg["max_promessas_por_documento"])
-        if c:
-            trabalho.append({"doc": d, "candidatas": c})
+        if not c:
+            continue
+        if not d.get("oficial"):
+            noticias += 1
+            if noticias > cfg.get("max_noticias_por_execucao", 60):
+                continue
+        trabalho.append({"doc": d, "candidatas": c})
+    # Oficiais primeiro: se a cota acabar, o que sobra para amanhã são as notícias.
+    trabalho.sort(key=lambda item: not item["doc"].get("oficial"))
     vistos.update(d["id"] for d in novos)
 
     stats = {"coleta": relatorio_coleta, "novos": len(novos), "para_ia": len(trabalho),
@@ -85,6 +93,8 @@ def executar(args) -> dict:
             stats["provedores"][res.provedor] = stats["provedores"].get(res.provedor, 0) + 1
             for av in res.dados["avaliacoes"]:
                 p = por_id[av["promessa_id"]]
+                if not doc.get("oficial") and av["relevante"]:
+                    regras.registrar_imprensa(p, doc, av)
                 decisao = regras.decidir(av, p, doc, cfg["regras"], presidente)
                 stats[decisao] += 1
                 if decisao == regras.AUTO:

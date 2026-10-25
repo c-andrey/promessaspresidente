@@ -13,11 +13,17 @@
   </div>
   <ul class="legenda">
     {% for s in placar %}
-    <li><button type="button" class="filtro-status" data-status="{{ s.status }}" aria-pressed="false">
+    <li><button type="button" class="filtro-status" data-status="{{ s.status }}" aria-pressed="false" title="{{ descricoes[s.status] }}">
       <span class="ponto st-{{ s.status }}"></span><strong>{{ s.n }}</strong> {{ s.rotulo }}
     </button></li>
     {% endfor %}
   </ul>
+  <dl class="significados">
+    {% for s in placar %}
+    <div><dt><span class="ponto st-{{ s.status }}"></span>{{ s.rotulo }}</dt><dd>{{ descricoes[s.status] }}</dd></div>
+    {% endfor %}
+  </dl>
+  <p class="nota-legenda">Clique num status para filtrar a lista. <a href="metodologia.html">Como decidimos cada status</a></p>
 </section>
 
 {% if recentes %}

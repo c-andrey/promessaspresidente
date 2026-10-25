@@ -116,3 +116,15 @@ blockquote.pequeno { font-size: 15px; padding: 10px 14px; }
   .topo nav a { margin-left: 14px; }
   .placar { padding: 14px; }
 }
+
+.referencias { list-style: none; padding: 0; margin: 0; }
+.referencias li { padding: 12px 0; border-bottom: 1px solid var(--borda); }
+.referencias li p { margin: 0 0 4px; }
+
+.significados {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 20px;
+  margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--borda);
+}
+.significados dt { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.significados dd { margin: 4px 0 0; color: var(--suave); font-size: 13px; line-height: 1.45; }
+.nota-legenda { margin: 14px 0 0; font-size: 13px; color: var(--suave); }

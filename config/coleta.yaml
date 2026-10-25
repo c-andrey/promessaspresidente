@@ -18,6 +18,18 @@ coletores:
     url: https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/RSS
     oficial: false                  # notícia não prova cumprimento: nunca aplica status sozinha
 
+  noticias:
+    ativo: true
+    oficial: false                  # notícia é contexto: alimenta "Na imprensa" e, no máximo, a fila
+    janela_busca_dias: 3
+    buscas:                         # Google Notícias (RSS, agrega todos os jornais)
+      - '"Flávio Bolsonaro"'
+      - '"governo federal" anuncia'
+    feeds:
+      - { nome: G1 Política, url: "https://g1.globo.com/rss/g1/politica/" }
+      - { nome: Agência Brasil, url: "https://agenciabrasil.ebc.com.br/rss/politica/feed.xml" }
+      - { nome: Poder360, url: "https://www.poder360.com.br/feed/" }
+
   dou:
     # Desligado: o in.gov.br bloqueia IP estrangeiro e, mesmo pela VPS (São Paulo), o CDN
     # devolve 502 com frequência (testado em 25/10/2026). Leis, decretos e MPs já vêm do
@@ -40,7 +52,10 @@ coletores:
 dias_primeira_coleta: 3
 
 # Máximo de documentos enviados à IA por execução. O excedente fica pendente para o dia seguinte.
+# Documentos oficiais vão primeiro; notícias entram depois, até max_noticias_por_execucao
+# (as que passarem do teto são descartadas, não ficam pendentes).
 max_documentos_por_execucao: 150
+max_noticias_por_execucao: 60
 
 # Máximo de promessas candidatas avaliadas junto com cada documento.
 max_promessas_por_documento: 5

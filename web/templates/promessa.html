@@ -14,6 +14,21 @@
       <a href="{{ p.fonte.url }}" rel="noopener">documento oficial</a></p>
   </section>
 
+  {% if p.referencias %}
+  <section>
+    <h2>Na campanha</h2>
+    <p class="fonte">Reportagens em que o candidato ou a campanha falaram desta proposta.</p>
+    <ul class="referencias">
+      {% for r in p.referencias %}
+      <li>
+        <p>{{ r.o_que_disse }}</p>
+        <p class="fonte">{{ r.veiculo }} · <a href="{{ r.url }}" rel="noopener">{{ r.titulo }}</a> · {{ r.data|data_br }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
   <section>
     <h2>Histórico</h2>
     {% if p.historico %}
@@ -34,5 +49,20 @@
     <p class="vazio">Nenhuma ação do governo relacionada a esta promessa foi encontrada até agora.</p>
     {% endif %}
   </section>
+
+  {% if p.imprensa %}
+  <section>
+    <h2>Na imprensa</h2>
+    <p class="fonte">Notícias relacionadas encontradas automaticamente. Servem de contexto e não mudam o status sozinhas.</p>
+    <ul class="referencias">
+      {% for n in p.imprensa %}
+      <li>
+        <p><a href="{{ n.url }}" rel="noopener">{{ n.titulo }}</a></p>
+        <p class="fonte">{{ n.fonte }} · {{ n.data|data_br }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 </article>
 {% endblock %}

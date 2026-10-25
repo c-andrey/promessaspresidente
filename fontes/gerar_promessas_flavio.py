@@ -14,6 +14,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TEXTO = RAIZ / "fontes" / "plano-flavio-bolsonaro-2026.txt"
 SAIDA = RAIZ / "data" / "promessas.json"
+# Reportagens da campanha confirmadas por fontes/buscar_referencias.py (opcional)
+REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
 URL_TSE = "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726"
 
 # (id, categoria, título, página, trecho literal, prazo, palavras-chave)
@@ -411,6 +413,7 @@ def main():
             "palavras_chave": sorted(set(k.lower() for k in kws)),
             "status": "nao_iniciada",
             "atualizado_em": None,
+            "referencias": [],
             "historico": [],
         })
     if faltando:
@@ -422,8 +425,13 @@ def main():
         antigos = {p["id"]: p for p in json.loads(SAIDA.read_text(encoding="utf-8"))}
         for p in promessas:
             if p["id"] in antigos:
-                for campo in ("status", "atualizado_em", "historico"):
-                    p[campo] = antigos[p["id"]][campo]
+                for campo in ("status", "atualizado_em", "historico", "imprensa"):
+                    if campo in antigos[p["id"]]:
+                        p[campo] = antigos[p["id"]][campo]
+
+    referencias = json.loads(REFERENCIAS.read_text(encoding="utf-8")) if REFERENCIAS.exists() else {}
+    for p in promessas:
+        p["referencias"] = referencias.get(p["id"], [])
 
     SAIDA.write_text(json.dumps(promessas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{len(promessas)} promessas gravadas em {SAIDA.relative_to(RAIZ)} (todos os trechos conferidos)")

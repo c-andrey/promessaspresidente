@@ -5,7 +5,7 @@ Cada coletor recebe a data inicial e devolve uma lista de documentos no formato:
 """
 import logging
 
-from . import camara, dou, legislacao, planalto
+from . import camara, dou, legislacao, noticias, planalto
 
 log = logging.getLogger(__name__)
 
@@ -14,6 +14,7 @@ COLETORES = {
     "camara": camara.coletar,
     "planalto_noticias": planalto.coletar,
     "dou": dou.coletar,
+    "noticias": noticias.coletar,
 }
 
 

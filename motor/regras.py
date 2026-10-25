@@ -49,6 +49,19 @@ def aplicar_status(promessa: dict, novo: str, doc: dict, av: dict, provedor: str
     promessa["atualizado_em"] = armazem.hoje()
 
 
+MAX_IMPRENSA = 15
+
+
+def registrar_imprensa(promessa: dict, doc: dict, av: dict) -> None:
+    """Notícia relacionada vira referência "Na imprensa" (mais recentes primeiro, sem repetir)."""
+    lista = promessa.setdefault("imprensa", [])
+    if any(n["url"] == doc["url"] for n in lista):
+        return
+    lista.append({k: doc.get(k) for k in ("fonte", "titulo", "url", "data")} | {"resumo": av["justificativa"]})
+    lista.sort(key=lambda n: n["data"] or "", reverse=True)
+    del lista[MAX_IMPRENSA:]
+
+
 def item_fila(av: dict, promessa: dict, doc: dict, provedor: str) -> dict:
     chave = hashlib.sha1(f"{promessa['id']}|{doc['id']}".encode()).hexdigest()[:10]
     return {

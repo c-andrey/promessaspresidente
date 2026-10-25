@@ -26,6 +26,14 @@ ROTULOS = {
     "abandonada": "Abandonada",
 }
 
+DESCRICOES = {
+    "nao_iniciada": "Nenhum ato do governo encontrado até agora.",
+    "em_andamento": "Houve um passo concreto: projeto enviado ao Congresso, decreto parcial ou programa em estruturação.",
+    "parcial": "Parte do que foi prometido já está em vigor.",
+    "cumprida": "A medida está em vigor: lei sancionada, decreto publicado ou programa funcionando.",
+    "abandonada": "O governo desistiu, vetou, retirou a proposta ou agiu no sentido contrário.",
+}
+
 
 def data_br(iso):
     if not iso:
@@ -51,7 +59,7 @@ def main():
     env = Environment(loader=FileSystemLoader(SITE / "templates"),
                       autoescape=select_autoescape(["html"]))
     env.filters["data_br"] = data_br
-    env.globals.update(rotulos=ROTULOS, presidente=presidente,
+    env.globals.update(rotulos=ROTULOS, descricoes=DESCRICOES, presidente=presidente,
                        atualizado=data_br(execucao.get("executado_em")) or "ainda não sincronizado")
 
     # Esvazia em vez de apagar a pasta: em produção ela é um volume montado.

@@ -22,7 +22,7 @@ log = logging.getLogger("agendador")
 
 HORA_SYNC = os.environ.get("HORA_SYNC", "07:00")
 # Campos que vêm do plano de governo: o repositório manda. Status e histórico: o volume manda.
-CAMPOS_DO_PLANO = ("titulo", "categoria", "prazo", "fonte", "palavras_chave")
+CAMPOS_DO_PLANO = ("titulo", "categoria", "prazo", "fonte", "palavras_chave", "referencias")
 
 
 def semear() -> None:
