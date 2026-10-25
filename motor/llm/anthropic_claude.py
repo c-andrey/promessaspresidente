@@ -7,7 +7,9 @@ import os
 
 import anthropic
 
-from .erros import CotaEsgotada, ErroAutenticacao, ErroTemporario, RespostaInvalida
+from . import limites
+from .erros import (CotaEsgotada, ErroAutenticacao, ErroTemporario, LimiteTemporario,
+                    RespostaInvalida, Sobrecarga)
 
 
 class ProvedorAnthropic:
@@ -16,9 +18,14 @@ class ProvedorAnthropic:
         self.modelo = cfg["modelo"]
         self.chave_env = cfg.get("chave_env", "ANTHROPIC_API_KEY")
         self.limite_diario = cfg.get("limite_diario")
+        self.rpm = cfg.get("rpm")
+        self.tpm = cfg.get("tpm")
         self.intervalo = cfg.get("intervalo_segundos", 0)
         self.esforco = cfg.get("esforco", "low")
         self.max_tokens = cfg.get("max_tokens", 8000)
+        self.tokens_usados = 0
+        self.pausa_sugerida = 0.0
+        self.cota_acabou = False
         self._cliente = None
 
     def disponivel(self) -> bool:
@@ -48,7 +55,8 @@ class ProvedorAnthropic:
         except anthropic.PermissionDeniedError as e:
             raise ErroAutenticacao(str(e)) from e
         except anthropic.RateLimitError as e:
-            raise ErroTemporario(str(e)) from e
+            espera = limites.segundos(e.response.headers.get("retry-after")) or 30
+            raise LimiteTemporario(str(e), espera) from e
         except anthropic.BadRequestError as e:
             # Saldo insuficiente chega como 400; tratamos como cota.
             if "credit" in str(e).lower() or "billing" in str(e).lower():
@@ -56,7 +64,7 @@ class ProvedorAnthropic:
             raise RespostaInvalida(str(e)) from e
         except anthropic.APIStatusError as e:
             if e.status_code >= 500:
-                raise ErroTemporario(str(e)) from e
+                raise Sobrecarga(f"HTTP {e.status_code}") from e
             raise RespostaInvalida(str(e)) from e
         except anthropic.APIConnectionError as e:
             raise ErroTemporario(str(e)) from e
@@ -65,4 +73,5 @@ class ProvedorAnthropic:
             raise RespostaInvalida(f"recusa: {resp.stop_details}")
         if resp.stop_reason == "max_tokens":
             raise RespostaInvalida("resposta truncada (max_tokens)")
+        self.tokens_usados = resp.usage.input_tokens + resp.usage.output_tokens
         return next((b.text for b in resp.content if b.type == "text"), "")

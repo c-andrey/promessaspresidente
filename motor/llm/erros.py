@@ -3,7 +3,19 @@ class ErroProvedor(Exception):
 
 
 class CotaEsgotada(ErroProvedor):
-    """429/402 ou limite de uso: provedor fora pelo resto do dia."""
+    """Cota do DIA acabou (429 diário, 402, limite_diario): provedor fora até amanhã."""
+
+
+class LimiteTemporario(ErroProvedor):
+    """Limite por minuto (429 com espera curta): vale esperar `espera` segundos e tentar de novo."""
+
+    def __init__(self, msg: str, espera: float):
+        super().__init__(msg)
+        self.espera = espera
+
+
+class Sobrecarga(ErroProvedor):
+    """Provedor sobrecarregado (503/502/500/504): pausa alguns minutos e segue para o próximo."""
 
 
 class ErroAutenticacao(ErroProvedor):
@@ -11,7 +23,7 @@ class ErroAutenticacao(ErroProvedor):
 
 
 class ErroTemporario(ErroProvedor):
-    """5xx, timeout, rede: vale tentar de novo."""
+    """Timeout ou rede: vale uma nova tentativa."""
 
 
 class RespostaInvalida(ErroProvedor):

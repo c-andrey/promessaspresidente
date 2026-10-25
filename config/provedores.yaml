@@ -1,80 +1,115 @@
 # Cadeia de provedores de IA.
 #
-# A ordem da lista é a ordem de tentativa. Quando um provedor estoura a cota
-# (HTTP 429/402, limite diário configurado) ou falha seguidamente, ele é marcado
-# como esgotado no dia e a cadeia passa para o próximo.
+# A ordem da lista é a ordem de tentativa. Um provedor só entra se `ativo: true` E a
+# variável de ambiente da chave estiver definida (sem chave = pulado em silêncio).
 #
-# Um provedor só entra na cadeia se `ativo: true` E a variável de ambiente da
-# chave estiver definida. Sem chave = pulado silenciosamente.
+# Limites (planos gratuitos mudam sem aviso; valores abaixo ficam ABAIXO do publicado):
+#   rpm            requisições por minuto (ritmo preventivo)
+#   tpm            tokens por minuto (ritmo preventivo; Groq é o mais apertado)
+#   limite_diario  chamadas/dia antes de considerar a cota do dia gasta
+# Além disso a cadeia lê os cabeçalhos/erros de cada resposta:
+#   429 por minuto → espera e repete · 429 do dia → fora até amanhã ·
+#   503 sobrecarga → pausa 5 min e segue para o próximo.
 #
-# Campos:
-#   tipo                openai (qualquer API compatível com /chat/completions) | anthropic
-#   base_url            aceita ${VARIAVEL} do ambiente
-#   modelo              nomes de modelos gratuitos mudam com frequência — confira no painel do provedor
-#   chave_env           variável de ambiente com a chave (null = sem chave, ex.: Ollama local)
-#   limite_diario       chamadas/dia antes de considerar esgotado (preventivo, abaixo da cota real)
-#   intervalo_segundos  pausa mínima entre chamadas (limites por minuto dos planos grátis)
-#   modo_json           envia response_format=json_object (desliga sozinho se o provedor recusar)
+# Outros campos: tipo (openai | anthropic), base_url (aceita ${VAR}), modelo, chave_env,
+#   modo_json (response_format json_object), max_tokens_saida, timeout_segundos.
+# Confira os limites reais nos painéis: aistudio.google.com/rate-limit, console.groq.com/settings/limits.
 
 provedores:
-  - nome: github-models
+  # Groq: 1000 req/dia e 8000 tokens/min POR MODELO (cabeçalhos x-ratelimit-*, 25/10/2026).
+  # Três modelos = três cotas com a mesma chave.
+  - nome: groq-gpt-oss-120b
     tipo: openai
     ativo: true
-    base_url: https://models.github.ai/inference
-    modelo: openai/gpt-4.1-mini
-    chave_env: GITHUB_MODELS_TOKEN   # token do GitHub com permissão "Models: read" (secret GH_MODELS_TOKEN)
-    limite_diario: 140
-    intervalo_segundos: 5
+    base_url: https://api.groq.com/openai/v1
+    modelo: openai/gpt-oss-120b
+    chave_env: GROQ_API_KEY          # console.groq.com
+    rpm: 20
+    tpm: 7000
+    limite_diario: 900
+
+  - nome: groq-qwen
+    tipo: openai
+    ativo: true
+    base_url: https://api.groq.com/openai/v1
+    modelo: qwen/qwen3.8-27b
+    chave_env: GROQ_API_KEY
+    rpm: 20
+    tpm: 7000
+    limite_diario: 900
+
+  # Gemini: cota por modelo. O Flash estourou com ~16 chamadas/dia no teste; o Lite aguenta bem mais.
+  # (gemini-2.5-flash já não aceita contas novas; testado em 25/10/2026)
+  - nome: gemini-lite
+    tipo: openai
+    ativo: true
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    modelo: gemini-flash-lite-latest
+    chave_env: GEMINI_API_KEY        # aistudio.google.com
+    rpm: 12
+    limite_diario: 450
 
   - nome: gemini
     tipo: openai
     ativo: true
     base_url: https://generativelanguage.googleapis.com/v1beta/openai
-    modelo: gemini-2.5-flash
-    chave_env: GEMINI_API_KEY        # aistudio.google.com
-    limite_diario: 200
-    intervalo_segundos: 7
+    modelo: gemini-3.5-flash
+    chave_env: GEMINI_API_KEY
+    rpm: 8
+    limite_diario: 18
 
-  - nome: groq
+  # GitHub Models (modelos "low"): 15 req/min, 150 req/dia, 8000 tokens de entrada por pedido.
+  - nome: github-models
+    tipo: openai
+    ativo: true
+    base_url: https://models.github.ai/inference
+    modelo: openai/gpt-4.1-mini
+    chave_env: GITHUB_MODELS_TOKEN   # token fine-grained com "Models: read" (secret GH_MODELS_TOKEN)
+    rpm: 10
+    limite_diario: 140
+
+  - nome: groq-gpt-oss-20b
     tipo: openai
     ativo: true
     base_url: https://api.groq.com/openai/v1
-    modelo: llama-3.3-70b-versatile
-    chave_env: GROQ_API_KEY          # console.groq.com
-    limite_diario: 500
-    intervalo_segundos: 3
+    modelo: openai/gpt-oss-20b
+    chave_env: GROQ_API_KEY
+    rpm: 20
+    tpm: 7000
+    limite_diario: 900
 
   - nome: mistral
     tipo: openai
     ativo: true
     base_url: https://api.mistral.ai/v1
     modelo: mistral-small-latest
-    chave_env: MISTRAL_API_KEY       # console.mistral.ai (plano Experiment)
+    chave_env: MISTRAL_API_KEY       # console.mistral.ai (plano Experiment, ~1 req/s)
+    rpm: 30
     limite_diario: 300
-    intervalo_segundos: 2
 
   - nome: cloudflare
     tipo: openai
     ativo: true
     base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
     modelo: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
-    chave_env: CLOUDFLARE_API_TOKEN  # dash.cloudflare.com → Workers AI
+    chave_env: CLOUDFLARE_API_TOKEN  # dash.cloudflare.com → Workers AI (10 mil "neurons"/dia)
+    rpm: 20
     limite_diario: 100
-    intervalo_segundos: 2
     modo_json: false
 
+  # OpenRouter :free: 20 req/min e 50 req/dia (1000/dia depois de comprar US$ 10 em créditos).
   - nome: openrouter
     tipo: openai
     ativo: true
     base_url: https://openrouter.ai/api/v1
     modelo: meta-llama/llama-3.3-70b-instruct:free
-    chave_env: OPENROUTER_API_KEY    # openrouter.ai (modelos com sufixo :free)
+    chave_env: OPENROUTER_API_KEY
+    rpm: 15
     limite_diario: 45
-    intervalo_segundos: 4
 
   - nome: ollama-local
     tipo: openai
-    ativo: false                     # ligue se rodar o pipeline na VPS com Ollama instalado
+    ativo: false                     # ligue se rodar com Ollama na mesma máquina
     base_url: http://localhost:11434/v1
     modelo: qwen2.5:7b
     chave_env: null
