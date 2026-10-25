@@ -15,6 +15,7 @@ Etapas do "buscar":
      espera revisão humana. Nada entra no site sem "aprovar".
 """
 import argparse
+import copy
 import logging
 import re
 import sys
@@ -53,10 +54,16 @@ BUSCAS = [
 CONTEXTOS = ["entrevista", "debate", "sabatina", "discurso", "rede_social", "propaganda_eleitoral", "outro"]
 
 
+PALAVRAS_VAZIAS = {"o", "a", "os", "as", "de", "do", "da", "dos", "das", "para", "e", "em", "no", "na",
+                   "nos", "nas", "um", "uma", "com", "por", "ao", "aos", "sobre"}
+
+
 def slug(texto: str) -> str:
+    """"Retomar o benefício fiscal para eventos culturais" → "retomar-beneficio-fiscal-eventos-culturais"."""
     t = unicodedata.normalize("NFKD", texto.lower())
     t = "".join(ch for ch in t if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")[:60].rstrip("-")
+    palavras = [w for w in re.split(r"[^a-z0-9]+", t) if w and w not in PALAVRAS_VAZIAS]
+    return "-".join(palavras[:6])
 
 
 # --- 2. extração ------------------------------------------------------------------
@@ -71,7 +78,17 @@ Para cada promessa:
 - titulo: verbo no infinitivo + ação concreta (ex.: "Criar o programa X para Y");
 - contexto: onde foi dita ({", ".join(CONTEXTOS)});
 - o_que_disse: uma frase neutra resumindo o que ele disse;
-- palavras_chave: 3 a 6 termos que apareceriam numa lei, decreto ou notícia sobre o cumprimento."""
+- palavras_chave: 3 a 6 termos ESPECÍFICOS que apareceriam numa lei, decreto ou notícia sobre o cumprimento
+  (nomes de programas, siglas, expressões de 2+ palavras como "escala 6x1"). Nunca termos genéricos
+  sozinhos ("lei", "imposto", "reajuste", "economia", "governo")."""
+
+def com_categorias(schema: dict, categorias: list[str]) -> dict:
+    """Cópia do schema com "categoria" restrita às categorias do site."""
+    s = copy.deepcopy(schema)
+    itens = next(iter(s["properties"].values()))["items"]
+    itens["properties"]["categoria"] = {"type": "string", "enum": categorias}
+    return s
+
 
 SCHEMA_EXTRACAO = {
     "type": "object",
@@ -124,12 +141,13 @@ def _coletar() -> list[dict]:
 
 def _extrair(cadeia, docs, plano) -> list[dict]:
     catalogo = "\n".join(f"{p['id']}: {p['titulo']}" for p in plano)
-    categorias = ", ".join(sorted({p["categoria"] for p in plano}))
+    categorias = sorted({p["categoria"] for p in plano})
+    schema = com_categorias(SCHEMA_EXTRACAO, categorias)
     ids = {p["id"] for p in plano}
     achadas = []
     for i in range(0, len(docs), LOTE_EXTRACAO):
         lote = docs[i:i + LOTE_EXTRACAO]
-        usuario = (f"CATEGORIAS: {categorias}\n\nPROMESSAS DO PLANO:\n{catalogo}\n\n"
+        usuario = (f"CATEGORIAS: {', '.join(categorias)}\n\nPROMESSAS DO PLANO:\n{catalogo}\n\n"
                    f"REPORTAGENS:\n{lista_numerada(lote)}")
 
         def validar(d, total=len(lote)):
@@ -137,7 +155,7 @@ def _extrair(cadeia, docs, plano) -> list[dict]:
                 raise RespostaInvalida("índice fora do lote")
 
         try:
-            r = cadeia.completar_json(SISTEMA_EXTRACAO, usuario, SCHEMA_EXTRACAO, validar=validar)
+            r = cadeia.completar_json(SISTEMA_EXTRACAO, usuario, schema, validar=validar)
         except SemProvedorDisponivel:
             log.warning("Provedores esgotados na extração (lote %d); seguindo com o que já foi extraído", i // LOTE_EXTRACAO + 1)
             break
@@ -165,9 +183,10 @@ def _reforcar_plano(achadas) -> int:
     return novas
 
 
-def _consolidar(cadeia, novas, conhecidas: dict[str, str]) -> list[dict]:
+def _consolidar(cadeia, novas, conhecidas: dict[str, str], categorias: list[str]) -> list[dict]:
     """Agrupa a mesma promessa vinda de várias reportagens; liga a candidatas já conhecidas."""
     lista_conhecidas = "\n".join(f"{k}: {v}" for k, v in conhecidas.items()) or "(nenhuma)"
+    schema = com_categorias(SCHEMA_CONSOLIDACAO, categorias)
     grupos = []
     for i in range(0, len(novas), LOTE_CONSOLIDACAO):
         lote = novas[i:i + LOTE_CONSOLIDACAO]
@@ -179,8 +198,8 @@ def _consolidar(cadeia, novas, conhecidas: dict[str, str]) -> list[dict]:
 
         try:
             r = cadeia.completar_json(SISTEMA_CONSOLIDACAO,
-                                      f"JÁ CONHECIDAS:\n{lista_conhecidas}\n\nPROMESSAS:\n{itens}",
-                                      SCHEMA_CONSOLIDACAO, validar=validar)
+                                      f"CATEGORIAS: {', '.join(categorias)}\n\nJÁ CONHECIDAS:\n{lista_conhecidas}\n\nPROMESSAS:\n{itens}",
+                                      schema, validar=validar)
             usados = set()
             for g in r.dados["grupos"]:
                 membros = [lote[j] for j in dict.fromkeys(g["indices"]) if j not in usados]
@@ -214,7 +233,7 @@ def cmd_buscar(_args):
              len(do_plano), _reforcar_plano(do_plano), len(fora))
 
     conhecidas = {k: v["titulo"] for d in (candidatas, aprovadas, rejeitadas) for k, v in d.items()}
-    for g in _consolidar(cadeia, fora, conhecidas):
+    for g in _consolidar(cadeia, fora, conhecidas, sorted({p["categoria"] for p in plano})):
         fontes = list({m["fonte"]["url"]: m["fonte"] for m in g["membros"]}.values())
         alvo_id = g["id_conhecida"] if g["id_conhecida"] in conhecidas else slug(g["titulo"])
         if alvo_id in rejeitadas:
