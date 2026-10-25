@@ -58,15 +58,7 @@ provedores:
     rpm: 8
     limite_diario: 18
 
-  # GitHub Models (modelos "low"): 15 req/min, 150 req/dia, 8000 tokens de entrada por pedido.
-  - nome: github-models
-    tipo: openai
-    ativo: true
-    base_url: https://models.github.ai/inference
-    modelo: openai/gpt-4.1-mini
-    chave_env: GITHUB_MODELS_TOKEN   # token fine-grained com "Models: read" (secret GH_MODELS_TOKEN)
-    rpm: 10
-    limite_diario: 140
+  # (GitHub Models foi desativado pelo GitHub em 30/07/2026: models.github.ai só responde "OK".)
 
   - nome: groq-gpt-oss-20b
     tipo: openai

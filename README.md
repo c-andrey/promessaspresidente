@@ -30,7 +30,7 @@ coletores (legislação federal via Senado, Câmara, Planalto; DOU opcional)
 filtro por palavra-chave (sem IA, custo zero)
         │  só documentos com promessa candidata
         ▼
-cadeia de IA: github-models → gemini → groq → mistral → cloudflare → openrouter → [ollama] → [claude-haiku]
+cadeia de IA: groq (3 modelos) → gemini (lite, flash) → mistral → cloudflare → openrouter → [ollama] → [claude-haiku]
         │  JSON validado contra schema
         ▼
 regras: nao_iniciada → em_andamento (oficial, confiança ≥ 0.85, pós-posse) = automático
@@ -83,7 +83,6 @@ Chaves de IA, todas opcionais (quem não tiver chave é pulado):
 
 | Secret | Onde conseguir (plano gratuito) |
 |---|---|
-| `GH_MODELS_TOKEN` | github.com/settings/tokens → fine-grained, permissão **Models: read** |
 | `GEMINI_API_KEY` | aistudio.google.com |
 | `GROQ_API_KEY` | console.groq.com |
 | `MISTRAL_API_KEY` | console.mistral.ai (plano Experiment) |

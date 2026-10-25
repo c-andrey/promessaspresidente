@@ -1,6 +1,6 @@
 """Provedor genérico para qualquer API compatível com /chat/completions.
 
-Cobre GitHub Models, Gemini, Groq, Mistral, Cloudflare Workers AI, OpenRouter e
+Cobre Gemini, Groq, Mistral, Cloudflare Workers AI, OpenRouter e
 Ollama: muda só base_url, modelo, chave e limites na configuração.
 """
 import json
@@ -81,7 +81,7 @@ class ProvedorOpenAI:
         if r.status_code == 402:
             raise CotaEsgotada(msg)
         if r.status_code in (401, 403):
-            # GitHub Models devolve 403 quando a cota diária acaba.
+            # Alguns provedores devolvem 403 (e não 429) quando a cota diária acaba.
             if re.search(r"rate|quota|limit", r.text, re.I):
                 raise CotaEsgotada(msg)
             raise ErroAutenticacao(msg)
