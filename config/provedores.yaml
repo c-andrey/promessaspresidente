@@ -1,0 +1,91 @@
+# Cadeia de provedores de IA.
+#
+# A ordem da lista é a ordem de tentativa. Quando um provedor estoura a cota
+# (HTTP 429/402, limite diário configurado) ou falha seguidamente, ele é marcado
+# como esgotado no dia e a cadeia passa para o próximo.
+#
+# Um provedor só entra na cadeia se `ativo: true` E a variável de ambiente da
+# chave estiver definida. Sem chave = pulado silenciosamente.
+#
+# Campos:
+#   tipo                openai (qualquer API compatível com /chat/completions) | anthropic
+#   base_url            aceita ${VARIAVEL} do ambiente
+#   modelo              nomes de modelos gratuitos mudam com frequência — confira no painel do provedor
+#   chave_env           variável de ambiente com a chave (null = sem chave, ex.: Ollama local)
+#   limite_diario       chamadas/dia antes de considerar esgotado (preventivo, abaixo da cota real)
+#   intervalo_segundos  pausa mínima entre chamadas (limites por minuto dos planos grátis)
+#   modo_json           envia response_format=json_object (desliga sozinho se o provedor recusar)
+
+provedores:
+  - nome: github-models
+    tipo: openai
+    ativo: true
+    base_url: https://models.github.ai/inference
+    modelo: openai/gpt-4.1-mini
+    chave_env: GITHUB_TOKEN          # no Actions vem de graça (permissions: models: read)
+    limite_diario: 140
+    intervalo_segundos: 5
+
+  - nome: gemini
+    tipo: openai
+    ativo: true
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    modelo: gemini-2.5-flash
+    chave_env: GEMINI_API_KEY        # aistudio.google.com
+    limite_diario: 200
+    intervalo_segundos: 7
+
+  - nome: groq
+    tipo: openai
+    ativo: true
+    base_url: https://api.groq.com/openai/v1
+    modelo: llama-3.3-70b-versatile
+    chave_env: GROQ_API_KEY          # console.groq.com
+    limite_diario: 500
+    intervalo_segundos: 3
+
+  - nome: mistral
+    tipo: openai
+    ativo: true
+    base_url: https://api.mistral.ai/v1
+    modelo: mistral-small-latest
+    chave_env: MISTRAL_API_KEY       # console.mistral.ai (plano Experiment)
+    limite_diario: 300
+    intervalo_segundos: 2
+
+  - nome: cloudflare
+    tipo: openai
+    ativo: true
+    base_url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1
+    modelo: "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+    chave_env: CLOUDFLARE_API_TOKEN  # dash.cloudflare.com → Workers AI
+    limite_diario: 100
+    intervalo_segundos: 2
+    modo_json: false
+
+  - nome: openrouter
+    tipo: openai
+    ativo: true
+    base_url: https://openrouter.ai/api/v1
+    modelo: meta-llama/llama-3.3-70b-instruct:free
+    chave_env: OPENROUTER_API_KEY    # openrouter.ai (modelos com sufixo :free)
+    limite_diario: 45
+    intervalo_segundos: 4
+
+  - nome: ollama-local
+    tipo: openai
+    ativo: false                     # ligue se rodar o pipeline na VPS com Ollama instalado
+    base_url: http://localhost:11434/v1
+    modelo: qwen2.5:7b
+    chave_env: null
+    limite_diario: 10000
+    timeout_segundos: 300
+
+  # Último da fila, pago. Para ligar: ativo: true + secret ANTHROPIC_API_KEY.
+  - nome: claude-haiku
+    tipo: anthropic
+    ativo: false
+    modelo: claude-haiku-5-5
+    chave_env: ANTHROPIC_API_KEY
+    limite_diario: 1000
+    esforco: low

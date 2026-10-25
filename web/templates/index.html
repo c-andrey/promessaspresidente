@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block titulo %}Cumpriu? · Promessas de {{ presidente.nome }}{% endblock %}
+{% block conteudo %}
+<section class="capa">
+  <p class="sobretitulo">Mandato {{ presidente.mandato_inicio.year }}–{{ presidente.mandato_fim.year }}</p>
+  <h1>O que {{ presidente.nome }} prometeu, e o que já fez</h1>
+  <p class="lead">{{ total }} compromissos tirados do plano de governo registrado no TSE. Cada mudança de status tem um documento oficial como prova.</p>
+</section>
+
+<section class="placar" aria-label="Placar geral">
+  <div class="barra" role="img" aria-label="{% for s in placar %}{{ s.rotulo }}: {{ s.n }}{% if not loop.last %}, {% endif %}{% endfor %}">
+    {% for s in placar if s.n %}<span class="seg st-{{ s.status }}" style="flex-grow: {{ s.n }}"></span>{% endfor %}
+  </div>
+  <ul class="legenda">
+    {% for s in placar %}
+    <li><button type="button" class="filtro-status" data-status="{{ s.status }}" aria-pressed="false">
+      <span class="ponto st-{{ s.status }}"></span><strong>{{ s.n }}</strong> {{ s.rotulo }}
+    </button></li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if recentes %}
+<section class="recentes">
+  <h2>Últimas movimentações</h2>
+  <ol>
+    {% for r in recentes %}
+    <li><time>{{ r.evento.data|data_br }}</time>
+      <a href="promessa/{{ r.promessa.id }}.html">{{ r.promessa.titulo }}</a>
+      <span class="selo st-{{ r.evento.para }}">{{ rotulos[r.evento.para] }}</span></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+<section class="lista">
+  <div class="controles">
+    <input type="search" id="busca" placeholder="Buscar promessa…" aria-label="Buscar promessa">
+    <select id="categoria" aria-label="Filtrar por tema">
+      <option value="">Todos os temas</option>
+      {% for c in categorias %}<option>{{ c }}</option>{% endfor %}
+    </select>
+  </div>
+  <p id="contador" class="contador"></p>
+  <ul class="cartoes">
+    {% for p in promessas %}
+    <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}">
+      <a href="promessa/{{ p.id }}.html">
+        <span class="selo st-{{ p.status }}">{{ rotulos[p.status] }}</span>
+        <h3>{{ p.titulo }}</h3>
+        <p class="meta">{{ p.categoria }}{% if p.prazo %} · prazo {{ p.prazo|data_br }}{% endif %}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<script>
+(() => {
+  const cartoes = [...document.querySelectorAll('.cartao')];
+  const busca = document.getElementById('busca');
+  const categoria = document.getElementById('categoria');
+  const botoes = [...document.querySelectorAll('.filtro-status')];
+  const contador = document.getElementById('contador');
+  let status = '';
+  const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  function filtrar() {
+    const q = norm(busca.value.trim());
+    let n = 0;
+    for (const c of cartoes) {
+      const ok = (!status || c.dataset.status === status)
+        && (!categoria.value || c.dataset.categoria === categoria.value)
+        && (!q || norm(c.dataset.texto).includes(q));
+      c.hidden = !ok;
+      if (ok) n++;
+    }
+    contador.textContent = n === cartoes.length ? `${n} promessas` : `${n} de ${cartoes.length} promessas`;
+  }
+  botoes.forEach(b => b.addEventListener('click', () => {
+    status = status === b.dataset.status ? '' : b.dataset.status;
+    botoes.forEach(x => x.setAttribute('aria-pressed', x.dataset.status === status));
+    filtrar();
+  }));
+  busca.addEventListener('input', filtrar);
+  categoria.addEventListener('change', filtrar);
+  filtrar();
+})();
+</script>
+{% endblock %}

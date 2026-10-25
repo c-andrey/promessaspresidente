@@ -1,0 +1,41 @@
+name: SSH para a VPS
+description: Grava a chave, fixa a chave do host e testa a conexão (com novas tentativas).
+
+inputs:
+  host: { required: true }
+  user: { required: true }
+  key: { required: true }
+  port: { required: false, default: "22" }
+  host_key:
+    description: Chave pública do host (não é segredo). Trocou a VPS → ssh-keyscan -t ed25519 <host>
+    required: false
+    default: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJgvJ2QRDoH0CC76vCr6vFkUbs03MvNycU8buc3zSe+3
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        VPS_HOST: ${{ inputs.host }}
+        VPS_USER: ${{ inputs.user }}
+        VPS_PORT: ${{ inputs.port }}
+        VPS_SSH_KEY: ${{ inputs.key }}
+        VPS_HOST_KEY: ${{ inputs.host_key }}
+      run: |
+        [ -n "$VPS_HOST" ] && [ -n "$VPS_USER" ] || { echo "::error::secrets VPS_HOST/VPS_USER vazios"; exit 1; }
+        mkdir -p ~/.ssh
+        printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keygen -y -f ~/.ssh/id_ed25519 >/dev/null 2>&1 \
+          || { echo "::error::VPS_SSH_KEY não é uma chave privada válida (cole o arquivo inteiro, com BEGIN/END e quebra de linha final)"; exit 1; }
+        HOST_ENTRY=$([ "${VPS_PORT:-22}" = 22 ] && echo "$VPS_HOST" || echo "[$VPS_HOST]:$VPS_PORT")
+        echo "$HOST_ENTRY $VPS_HOST_KEY" >> ~/.ssh/known_hosts
+        # bots enchem o MaxStartups do sshd: conexões caem na hora às vezes
+        printf 'Host vps\n  HostName %s\n  User %s\n  Port %s\n  BatchMode yes\n  ConnectTimeout 20\n  ConnectionAttempts 4\n  ServerAliveInterval 30\n' \
+          "$VPS_HOST" "$VPS_USER" "${VPS_PORT:-22}" >> ~/.ssh/config
+        for i in 1 2 3 4 5 6; do
+          ssh vps true && { echo "SSH ok"; exit 0; }
+          echo "SSH falhou (tentativa $i/6), nova tentativa em 15 s"; sleep 15
+        done
+        echo "::error::SSH recusado para $VPS_USER@$VPS_HOST (chave fora do authorized_keys ou rede fora)"
+        exit 1

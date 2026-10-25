@@ -1,0 +1,16 @@
+# Quem o site acompanha. Trocar de presidente = trocar este arquivo + data/promessas.json.
+nome: Flávio Bolsonaro
+partido: PL
+mandato_inicio: 2027-01-01
+mandato_fim: 2030-12-31
+
+# Enquanto o TSE não proclamar o resultado, o site mostra um aviso no topo.
+resultado_confirmado: false
+
+plano_de_governo:
+  titulo: "Diretrizes do Plano de Governo Flávio Bolsonaro 2027-2030"
+  url_tse: https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726
+  arquivo_local: fontes/plano-flavio-bolsonaro-2026.pdf
+  # Cópia obtida de espelho (planodegoverno2026.com.br): o TSE bloqueia acesso de fora do Brasil.
+  # Confira baixando do TSE: sha256sum deve bater com o valor abaixo.
+  sha256: 7d1d95075e11e3c4113e8dcd502438049a34f5147a84cb0f746bf59046e477a4

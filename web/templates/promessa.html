@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}{{ p.titulo }} · Cumpriu?{% endblock %}
+{% block conteudo %}
+<p class="voltar"><a href="../index.html">← Todas as promessas</a></p>
+<article class="promessa">
+  <span class="selo grande st-{{ p.status }}">{{ rotulos[p.status] }}</span>
+  <h1>{{ p.titulo }}</h1>
+  <p class="meta">{{ p.categoria }}{% if p.prazo %} · prazo prometido: {{ p.prazo|data_br }}{% endif %}{% if p.atualizado_em %} · atualizado em {{ p.atualizado_em|data_br }}{% endif %}</p>
+
+  <section>
+    <h2>O que foi prometido</h2>
+    <blockquote>“{{ p.fonte.trecho }}”</blockquote>
+    <p class="fonte">Plano de governo registrado no TSE, página {{ p.fonte.pagina }} ·
+      <a href="{{ p.fonte.url }}" rel="noopener">documento oficial</a></p>
+  </section>
+
+  <section>
+    <h2>Histórico</h2>
+    {% if p.historico %}
+    <ol class="linha-tempo">
+      {% for h in p.historico|reverse %}
+      <li>
+        <time>{{ h.data|data_br }}</time>
+        <p><span class="selo st-{{ h.de }}">{{ rotulos[h.de] }}</span> → <span class="selo st-{{ h.para }}">{{ rotulos[h.para] }}</span></p>
+        <p>{{ h.justificativa }}</p>
+        {% if h.evidencia %}<blockquote class="pequeno">“{{ h.evidencia }}”</blockquote>{% endif %}
+        <p class="fonte">{{ h.documento.fonte }} · <a href="{{ h.documento.url }}" rel="noopener">{{ h.documento.titulo }}</a> ({{ h.documento.data|data_br }})
+          · {{ "revisado por pessoa" if h.origem == "revisao" else "classificação automática" }}</p>
+        {% if h.nota %}<p class="nota">Nota da revisão: {{ h.nota }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p class="vazio">Nenhuma ação do governo relacionada a esta promessa foi encontrada até agora.</p>
+    {% endif %}
+  </section>
+</article>
+{% endblock %}

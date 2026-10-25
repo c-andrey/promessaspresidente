@@ -1,0 +1,55 @@
+# Fontes coletadas todo dia. Cada coletor falha de forma independente:
+# se uma fonte cair, as outras seguem.
+
+coletores:
+  legislacao:
+    ativo: true                     # leis, LCs, decretos, MPs e emendas já publicados (API do Senado)
+    tipos: [LEI, LCP, DEC, MPV, EMC]
+    dias_retroativos: 15            # a indexação do Senado atrasa alguns dias
+    oficial: true
+
+  camara:
+    ativo: true
+    autor: Poder Executivo          # projetos, MPs e mensagens (sanção/veto) enviados pelo Executivo
+    oficial: true
+
+  planalto_noticias:
+    ativo: true
+    url: https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/RSS
+    oficial: false                  # notícia não prova cumprimento: nunca aplica status sozinha
+
+  dou:
+    # Desligado: o in.gov.br bloqueia IP estrangeiro e, mesmo pela VPS (São Paulo), o CDN
+    # devolve 502 com frequência (testado em 25/10/2026). Leis, decretos e MPs já vêm do
+    # coletor "legislacao"; o DOU acrescentaria portarias. Para ligar: ativo: true — o
+    # workflow já abre o túnel SSH pela VPS e define DOU_PROXY.
+    ativo: false
+    proxy_env: DOU_PROXY
+    secoes: [do1]
+    tipos_ato:                      # filtro por tipo para não afogar no volume do DOU
+      - Lei
+      - Lei Complementar
+      - Medida Provisória
+      - Decreto
+      - Emenda Constitucional
+      - Mensagem
+      - Portaria Interministerial
+    oficial: true
+
+# Na primeira execução (sem estado salvo), coleta a partir de N dias atrás.
+dias_primeira_coleta: 3
+
+# Máximo de documentos enviados à IA por execução. O excedente fica pendente para o dia seguinte.
+max_documentos_por_execucao: 150
+
+# Máximo de promessas candidatas avaliadas junto com cada documento.
+max_promessas_por_documento: 5
+
+# Pendentes mais velhos que isso são descartados.
+dias_validade_pendente: 14
+
+regras:
+  # nao_iniciada → em_andamento é aplicado automaticamente acima desta confiança, se a fonte for oficial.
+  confianca_auto: 0.85
+  # Abaixo disto a sugestão é descartada; acima vai para a fila de revisão.
+  confianca_fila: 0.5

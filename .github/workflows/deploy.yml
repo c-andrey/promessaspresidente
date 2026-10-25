@@ -1,0 +1,86 @@
+name: Deploy
+
+# Push na main (ou chamado pelo sync.yml depois de commitar os dados) →
+# testes → gera o site → rsync para /srv/promessaspresidente → docker compose up → health check.
+# Secrets (mesmos nomes dos outros projetos da VPS): VPS_HOST, VPS_USER, VPS_SSH_KEY, VPS_PORT (opcional).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  APP_DIR: /srv/promessaspresidente
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - run: python web/build.py
+
+  deploy:
+    needs: testes
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-promessas
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main   # chamado pelo sync: pega o commit de dados que ele acabou de fazer
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Gerar site
+        run: |
+          python web/build.py
+          mkdir -p pacote
+          cp -r dist deploy/compose.yaml deploy/compose.proxy.yaml deploy/nginx pacote/
+
+      - uses: ./.github/actions/ssh-vps
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          user: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || '22' }}
+
+      - name: Sync para a VPS
+        run: |
+          ssh vps "mkdir -p '$APP_DIR'"
+          rsync -az --delete --no-owner --no-group -e ssh pacote/ "vps:$APP_DIR/"
+
+      - name: docker compose up
+        run: |
+          ssh vps "APP_DIR='$APP_DIR' bash -s" <<'EOF'
+          set -euo pipefail
+          cd "$APP_DIR"
+          if docker network inspect "${PROXY_NETWORK:-edge}" >/dev/null 2>&1; then
+            export COMPOSE_FILE=compose.yaml:compose.proxy.yaml
+            echo "==> rede ${PROXY_NETWORK:-edge} encontrada: site ligado ao edge-proxy (alias promessas)"
+          else
+            echo "AVISO: rede ${PROXY_NETWORK:-edge} não existe; site só em 127.0.0.1:3200"
+          fi
+          docker compose up -d --remove-orphans </dev/null
+          # nginx relê a config sem derrubar (conf.d é volume)
+          docker compose exec -T web nginx -s reload </dev/null || true
+          for i in $(seq 1 15); do
+            curl -fsS http://127.0.0.1:3200/saude >/dev/null && break
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:3200/saude
+          curl -fsS -o /dev/null -w "index.html → %{http_code}\n" http://127.0.0.1:3200/
+          EOF

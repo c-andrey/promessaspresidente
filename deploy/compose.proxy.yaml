@@ -1,0 +1,13 @@
+# Liga o nginx à rede do edge-proxy (Caddy) com o alias "promessas": http://promessas:80
+# O deploy ativa este override sozinho quando a rede "edge" existe na VPS.
+services:
+  web:
+    networks:
+      default:
+      proxy:
+        aliases: [promessas]
+
+networks:
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:-edge}

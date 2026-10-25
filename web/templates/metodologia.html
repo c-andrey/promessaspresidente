@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titulo %}Metodologia · Cumpriu?{% endblock %}
+{% block conteudo %}
+<article class="texto">
+  <h1>Como funciona</h1>
+
+  <h2>De onde vêm as promessas</h2>
+  <p>Do plano de governo que {{ presidente.nome }} registrou no Tribunal Superior Eleitoral (“{{ presidente.plano_de_governo.titulo }}”).
+    Separamos os compromissos concretos e verificáveis. Cada promessa mostra o trecho literal e a página do documento.
+    Frases genéricas, sem ação concreta (“vamos valorizar”, “vamos fortalecer” sem nenhuma meta), ficaram de fora.</p>
+
+  <h2>Como acompanhamos</h2>
+  <p>Todos os dias, um processo automático lê:</p>
+  <ul>
+    <li>proposições enviadas pelo Poder Executivo à Câmara dos Deputados (projetos, PECs, medidas provisórias, sanções e vetos);</li>
+    <li>leis, decretos, medidas provisórias e emendas constitucionais já publicados (base de legislação federal do Senado);</li>
+    <li>notícias oficiais do Palácio do Planalto, que servem só como pista e nunca mudam um status sozinhas.</li>
+  </ul>
+  <p>Um filtro por palavras-chave cruza cada documento com as promessas. Os possíveis casos vão para modelos de inteligência artificial,
+    que sugerem se o documento muda o andamento de alguma promessa e apontam o trecho que justifica isso.</p>
+
+  <h2>Quem decide o status</h2>
+  <ul>
+    <li><strong>Em andamento</strong> pode ser aplicado automaticamente, mas só com documento oficial, depois da posse, e quando a IA tem alta confiança.</li>
+    <li><strong>Parcialmente cumprida</strong>, <strong>Cumprida</strong> e <strong>Abandonada</strong> sempre passam por revisão humana antes de aparecer aqui.</li>
+  </ul>
+  <p>Cada mudança fica registrada com a data, o documento oficial, o trecho usado como evidência e a informação sobre quem decidiu (automático ou revisão humana).
+    Todo o histórico fica versionado num repositório público.</p>
+
+  <h2>O que significa cada status</h2>
+  <dl>
+    <dt><span class="selo st-nao_iniciada">{{ rotulos.nao_iniciada }}</span></dt><dd>Nenhum ato do governo encontrado.</dd>
+    <dt><span class="selo st-em_andamento">{{ rotulos.em_andamento }}</span></dt><dd>Houve um passo concreto: projeto enviado, decreto parcial, programa em estruturação.</dd>
+    <dt><span class="selo st-parcial">{{ rotulos.parcial }}</span></dt><dd>Parte do que foi prometido já está em vigor.</dd>
+    <dt><span class="selo st-cumprida">{{ rotulos.cumprida }}</span></dt><dd>A medida está em vigor: lei sancionada, decreto publicado ou programa funcionando.</dd>
+    <dt><span class="selo st-abandonada">{{ rotulos.abandonada }}</span></dt><dd>O governo desistiu, vetou, retirou a proposta ou agiu no sentido contrário.</dd>
+  </dl>
+
+  <h2>Limitações</h2>
+  <p>Promessas que dependem do Congresso podem ficar paradas mesmo com o governo empenhado. Metas macroeconômicas (como crescimento do PIB) são avaliadas com dados oficiais do IBGE e do Tesouro, e não por atos publicados.
+    Encontrou um erro? Toda correção é registrada publicamente no histórico.</p>
+</article>
+{% endblock %}

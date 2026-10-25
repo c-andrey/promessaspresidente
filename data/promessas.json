@@ -1,0 +1,2388 @@
+[
+  {
+    "id": "faccoes-narcoterroristas",
+    "titulo": "Declarar PCC, CV e milícias organizações narcoterroristas",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 13,
+      "trecho": "PCC, CV, milícias e todas as outras facções serão declaradas como organizações narcoterroristas."
+    },
+    "palavras_chave": [
+      "facção criminosa",
+      "facções criminosas",
+      "lei antiterrorismo",
+      "narcoterror",
+      "organização terrorista",
+      "organizações terroristas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "maioridade-penal-16",
+    "titulo": "Reduzir a maioridade penal de 18 para 16 anos",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 13,
+      "trecho": "vai apoiar e sancionar a redução da maioridade penal de 18 para 16 anos"
+    },
+    "palavras_chave": [
+      "imputabilidade penal",
+      "inimputabilidade",
+      "maioridade penal"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "sistema-nacional-fronteira",
+    "titulo": "Criar o Sistema Nacional de Fronteira com tropa de elite das Forças Armadas",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 13,
+      "trecho": "Vamos criar o Sistema Nacional de Fronteira, uma tropa de elite do Exército, da Marinha e"
+    },
+    "palavras_chave": [
+      "controle de fronteiras",
+      "faixa de fronteira",
+      "fronteiras",
+      "sistema nacional de fronteira"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "cinco-presidios-treva",
+    "titulo": "Construir 5 presídios federais de segurança máxima (complexo TREVA)",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 14,
+      "trecho": "O Brasil terá 5 novos presídios de segurança máxima no modelo adotado por El Salvador."
+    },
+    "palavras_chave": [
+      "penitenciária federal",
+      "presídio federal",
+      "presídios federais",
+      "segurança máxima",
+      "sistema penitenciário federal"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "meio-milhao-vagas-prisionais",
+    "titulo": "Criar meio milhão de vagas prisionais em 4 anos e zerar o déficit carcerário",
+    "categoria": "Segurança",
+    "prazo": "2030-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 14,
+      "trecho": "vamos criar meio milhão de novas vagas no sistema prisional em 4 anos e zerar o déficit carcerário"
+    },
+    "palavras_chave": [
+      "déficit carcerário",
+      "fundo penitenciário",
+      "funpen",
+      "sistema prisional",
+      "vagas prisionais"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "castracao-quimica",
+    "titulo": "Aprovar castração química para estupradores e abusadores de crianças",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 14,
+      "trecho": "aprovar e implementar a castração química de criminosos que abusam de mulheres e crianças"
+    },
+    "palavras_chave": [
+      "castração química"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "tornozeleira-agressores",
+    "titulo": "Monitorar com tornozeleira agressores de mulheres com medida protetiva",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 14,
+      "trecho": "serão monitorados pelas autoridades com o uso de tornozeleiras eletrônicas"
+    },
+    "palavras_chave": [
+      "medida protetiva",
+      "medidas protetivas",
+      "monitoramento eletrônico",
+      "tornozeleira"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "feminicidio-pena-integral",
+    "titulo": "Obrigar assassinos e agressores de mulheres a cumprir pena integral",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 14,
+      "trecho": "obrigar assassinos e agressores de mulheres a cumprir integralmente suas penas"
+    },
+    "palavras_chave": [
+      "cumprimento integral",
+      "feminicídio",
+      "maria da penha",
+      "violência contra a mulher"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "portos-aeroportos-tropas",
+    "titulo": "Ocupar portos e aeroportos com tropas da Marinha e Aeronáutica",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 15,
+      "trecho": "vamos usar tropas especiais da Marinha e da Aeronáutica para ocupar e monitorar, de forma permanente, os portos e aeroportos brasileiros."
+    },
+    "palavras_chave": [
+      "garantia da lei e da ordem",
+      "glo",
+      "porto de santos",
+      "portos e aeroportos",
+      "tráfico internacional"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "dobrar-investimento-seguranca",
+    "titulo": "Dobrar o investimento federal em segurança pública ao longo do mandato",
+    "categoria": "Segurança",
+    "prazo": "2030-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 15,
+      "trecho": "vai dobrar os investimentos federais em segurança pública ao longo do mandato"
+    },
+    "palavras_chave": [
+      "fnsp",
+      "fundo nacional de segurança pública",
+      "investimentos em segurança pública",
+      "orçamento da segurança pública"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "muralha-brasileira",
+    "titulo": "Implantar a Muralha Brasileira: reconhecimento facial e 1 milhão de câmeras",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 15,
+      "trecho": "Vamos implantar o Muralha Brasileira - um sistema nacional de reconhecimento facial integrado a bancos de dados criminais"
+    },
+    "palavras_chave": [
+      "câmeras de segurança",
+      "muralha brasileira",
+      "reconhecimento facial",
+      "videomonitoramento"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "auxilio-familias-vitimas",
+    "titulo": "Redirecionar recursos de famílias de presos para famílias de vítimas",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 15,
+      "trecho": "Os recursos hoje direcionados às famílias de detentos serão redirecionados às famílias das vítimas"
+    },
+    "palavras_chave": [
+      "auxílio reclusão",
+      "auxílio-reclusão",
+      "famílias das vítimas",
+      "vítimas de crimes"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fim-progressao-hediondos",
+    "titulo": "Acabar com a progressão de regime para crimes hediondos",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 15,
+      "trecho": "vai usar toda a sua força para acabar com a progressão de regime de quem comete crimes hediondos"
+    },
+    "palavras_chave": [
+      "crime hediondo",
+      "crimes hediondos",
+      "lei de execução penal",
+      "progressão de regime"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "celular-pena-quadruplicada",
+    "titulo": "Quadruplicar a pena inicial de furto e receptação de celular",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 16,
+      "trecho": "Quem furta ou revende um aparelho fruto de crime vai ter a pena inicial quadruplicada"
+    },
+    "palavras_chave": [
+      "aparelhos celulares",
+      "celulares roubados",
+      "furto de celular",
+      "receptação",
+      "roubo de celular"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "central-da-mulher",
+    "titulo": "Abrir Centrais da Mulher em todo o Brasil, com unidades itinerantes",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 17,
+      "trecho": "Vamos abrir essas centrais em todo o Brasil, em parceria com estados e municípios"
+    },
+    "palavras_chave": [
+      "atendimento à mulher",
+      "casa da mulher brasileira",
+      "central da mulher"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "app-claria",
+    "titulo": "Lançar o aplicativo Central da Mulher com a assistente virtual ClarIA",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 18,
+      "trecho": "A ClarIA estará ao lado da mulher em cada passo."
+    },
+    "palavras_chave": [
+      "aplicativo central da mulher",
+      "assistente virtual",
+      "claria"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "bonus-internet",
+    "titulo": "Garantir pacotes de internet gratuitos, com prioridade para mulheres",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 24,
+      "trecho": "Vamos garantir pacotes de conexão para que nenhum brasileiro deixe de estudar"
+    },
+    "palavras_chave": [
+      "bônus de internet",
+      "inclusão digital",
+      "pacotes de conexão",
+      "pacotes de internet",
+      "wi-fi brasil"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "denuncia-integrada",
+    "titulo": "Integrar Ligue 180 e canais de denúncia com avaliação nacional de risco",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 18,
+      "trecho": "reunindo o Ligue 180, as delegacias online, o botão de"
+    },
+    "palavras_chave": [
+      "avaliação de risco",
+      "canais de denúncia",
+      "ligue 180",
+      "violência doméstica"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "ganha-ganha",
+    "titulo": "Criar o Ganha, Ganha: pontos por boas atitudes viram juros menores e cashback",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 19,
+      "trecho": "Com o Ganha, Ganha, atitudes como concluir cursos de capacitação, trabalhar de forma regular, poupar e pagar as contas em dia passarão a gerar pontuação positiva."
+    },
+    "palavras_chave": [
+      "caixa pra elas",
+      "cashback",
+      "ganha ganha",
+      "ganha, ganha",
+      "ganha-ganha"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "escola-brasil-por-elas",
+    "titulo": "Criar a Escola Brasil por Elas, programa gratuito de capacitação feminina",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 20,
+      "trecho": "A Escola Brasil por Elas será o maior programa gratuito de capacitação feminina da América Latina"
+    },
+    "palavras_chave": [
+      "brasil por elas",
+      "capacitação feminina",
+      "escola brasil por elas",
+      "qualificação de mulheres"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "voucher-creche",
+    "titulo": "Voucher-creche na rede privada onde faltar vaga pública",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 21,
+      "trecho": "a família receberá um voucher-creche para acesso à rede privada credenciada até a vaga pública surgir"
+    },
+    "palavras_chave": [
+      "educação infantil",
+      "vagas em creche",
+      "voucher creche",
+      "voucher-creche"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "rede-nacional-cuidado",
+    "titulo": "Estruturar a Rede Nacional de Cuidado (centros-dia e atendimento domiciliar)",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 21,
+      "trecho": "Também estruturaremos uma Rede Nacional de Cuidado, ampliando o apoio a idosos e pessoas com deficiência"
+    },
+    "palavras_chave": [
+      "centro-dia",
+      "centros-dia",
+      "política nacional de cuidados",
+      "rede nacional de cuidado"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "unidades-moveis-saude-mulher",
+    "titulo": "Unidades Móveis de Saúde da Mulher (ônibus, caminhões e barcos)",
+    "categoria": "Mulheres",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 21,
+      "trecho": "E teremos Unidades Móveis de Saúde da Mulher, ônibus ou caminhões adaptados que percorrerão o país"
+    },
+    "palavras_chave": [
+      "carretas da mulher",
+      "saúde da mulher",
+      "unidades móveis"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "servicos-100-digitais",
+    "titulo": "Digitalizar 100% dos serviços federais e criar identidade digital única",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 25,
+      "trecho": "Vamos digitalizar 100% dos serviços públicos do Governo Federal passíveis de digitalização"
+    },
+    "palavras_chave": [
+      "gov.br",
+      "governo digital",
+      "identidade digital",
+      "serviços digitais",
+      "transformação digital"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "prontuario-eletronico-unico",
+    "titulo": "Prontuário eletrônico único vinculado ao CPF, público e privado",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 26,
+      "trecho": "Vamos implantar o prontuário eletrônico único, vinculado ao CPF e integrado ao Gov.br, interoperável entre as redes pública e privada"
+    },
+    "palavras_chave": [
+      "conecte sus",
+      "prontuário eletrônico",
+      "rede nacional de dados em saúde",
+      "rnds",
+      "saúde digital"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "ia-agendamento-sus",
+    "titulo": "Usar IA para agendar consultas e exames do SUS na primeira vaga",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 26,
+      "trecho": "usar inteligência artificial para agilizar o agendamento de consultas e exames"
+    },
+    "palavras_chave": [
+      "agendamento de consultas",
+      "fila do sus",
+      "filas de espera",
+      "regulação de consultas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "inss-sem-fila",
+    "titulo": "Zerar a fila do INSS com digitalização e gestão profissional",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 26,
+      "trecho": "Vamos investir em tecnologia e digitalizar os processos do INSS, dando continuidade ao caminho do Meu INSS, e profissionalizar a gestão do órgão."
+    },
+    "palavras_chave": [
+      "análise de benefícios",
+      "fila do inss",
+      "inss",
+      "meu inss",
+      "requerimentos do inss"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "liberdade-economica-nacional",
+    "titulo": "Levar a Lei de Liberdade Econômica a todos estados e municípios",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 27,
+      "trecho": "Vamos fazer o bom exemplo da liberdade econômica alcançar todo o país, em cada estado e município"
+    },
+    "palavras_chave": [
+      "abertura de empresas",
+      "baixo risco",
+      "liberdade econômica",
+      "redesim"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "revogaco-regulatorio",
+    "titulo": "Promover um amplo revogaço regulatório",
+    "categoria": "Serviços e Estado digital",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 27,
+      "trecho": "Vamos promover um amplo revogaço regulatório, revisando normas obsoletas e racionalizando procedimentos"
+    },
+    "palavras_chave": [
+      "desburocratização",
+      "revisão normativa",
+      "revogaço",
+      "revogação de normas",
+      "simplificação regulatória"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "rastreabilidade-cadeias",
+    "titulo": "Rastreabilidade completa das cadeias produtivas num só sistema",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 28,
+      "trecho": "Vamos instituir a rastreabilidade completa das cadeias produtivas"
+    },
+    "palavras_chave": [
+      "cadastro ambiental rural",
+      "guia de trânsito animal",
+      "identificação animal",
+      "rastreabilidade"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "revisar-reforma-tributaria",
+    "titulo": "Revisar a reforma tributária e reduzir a alíquota do IVA",
+    "categoria": "Custo de vida e impostos",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 30,
+      "trecho": "Vamos promover a revisão e o redimensionamento da reforma tributária em curso"
+    },
+    "palavras_chave": [
+      "alíquota de referência",
+      "cbs",
+      "ibs",
+      "imposto seletivo",
+      "lei complementar nº 214",
+      "reforma tributária",
+      "split payment"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reduzir-cde",
+    "titulo": "Simplificar a conta de luz e reduzir gradualmente a CDE",
+    "categoria": "Custo de vida e impostos",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 31,
+      "trecho": "promover a redução gradual da CDE e das fontes incentivadas, mantida a tarifa social para quem mais precisa dela"
+    },
+    "palavras_chave": [
+      "cde",
+      "conta de desenvolvimento energético",
+      "encargos setoriais",
+      "subsídios cruzados",
+      "tarifa de energia",
+      "tarifa social"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reduzir-impostos-energia-combustiveis",
+    "titulo": "Reduzir impostos sobre energia elétrica e combustíveis",
+    "categoria": "Custo de vida e impostos",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 31,
+      "trecho": "Vamos reduzir impostos sobre energia elétrica e combustíveis"
+    },
+    "palavras_chave": [
+      "cide",
+      "combustíveis",
+      "energia elétrica",
+      "gasolina",
+      "pis/cofins",
+      "óleo diesel"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "proibir-bets-programas-sociais",
+    "titulo": "Proibir uso de dinheiro de programas sociais em apostas online",
+    "categoria": "Custo de vida e impostos",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 33,
+      "trecho": "Vamos proibir o uso dos recursos dos programas sociais para apostas"
+    },
+    "palavras_chave": [
+      "apostas de quota fixa",
+      "apostas online",
+      "bets"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "metodo-fonico",
+    "titulo": "Priorizar o método fônico na alfabetização",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "Vamos priorizar o método fônico, que é o de melhor resultado comprovado pela ciência"
+    },
+    "palavras_chave": [
+      "alfabetização",
+      "compromisso nacional criança alfabetizada",
+      "método fônico",
+      "política nacional de alfabetização"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "programa-acolher",
+    "titulo": "Criar o Programa Acolher: aluno remunerado para dar reforço a colegas",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "vamos criar o Programa Acolher: um aluno com bom desempenho é remunerado para dar reforço aos colegas que precisam"
+    },
+    "palavras_chave": [
+      "monitoria",
+      "programa acolher",
+      "reforço escolar",
+      "tutoria entre alunos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "repasses-por-resultado",
+    "titulo": "Vincular repasses da educação a metas de aprendizagem",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "o financiamento seguirá o orçamento por resultados, com repasses vinculados a metas de aprendizagem"
+    },
+    "palavras_chave": [
+      "financiamento por resultados",
+      "fundeb",
+      "metas de aprendizagem",
+      "vaar"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "escolas-civico-militares",
+    "titulo": "Ampliar as escolas cívico-militares",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "Vamos ampliar as Escolas Cívico-Militares"
+    },
+    "palavras_chave": [
+      "civico militar",
+      "cívico-militar",
+      "cívico-militares",
+      "pecim"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "altas-habilidades",
+    "titulo": "Tirar do papel a política nacional para alunos com altas habilidades",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "a política nacional que trata do tema é lei mas segue sem implementação, e nós vamos tirá-la do papel"
+    },
+    "palavras_chave": [
+      "altas habilidades",
+      "superdotação"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "escola-nas-ferias",
+    "titulo": "Manter escolas abertas nas férias com o Escola nas Férias",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 35,
+      "trecho": "Manteremos as escolas abertas nas férias com o Escola"
+    },
+    "palavras_chave": [
+      "escola nas férias",
+      "férias escolares"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "voucher-educacional",
+    "titulo": "Voucher educacional onde faltar vaga na rede pública",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 36,
+      "trecho": "onde faltar vaga na rede pública, a família receberá um voucher educacional para matricular o filho em outra escola"
+    },
+    "palavras_chave": [
+      "bolsas em escolas privadas",
+      "vale educação",
+      "vale-educação",
+      "voucher educacional"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "ensino-tecnico-medio",
+    "titulo": "Ampliar o ensino técnico no ensino médio com o setor produtivo",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 36,
+      "trecho": "Vamos ampliar a oferta de educação técnica para os alunos do ensino médio"
+    },
+    "palavras_chave": [
+      "educação profissional",
+      "educação técnica",
+      "ensino médio técnico",
+      "ensino técnico",
+      "itinerário formativo"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "politica-formacao-talentos",
+    "titulo": "Criar a Política Nacional de Formação de Talentos",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 36,
+      "trecho": "criar a Política Nacional de Formação de Talentos"
+    },
+    "palavras_chave": [
+      "formação de talentos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "ensino-superior-mcti",
+    "titulo": "Transferir o ensino superior do MEC para o Ministério da Ciência e Tecnologia",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 36,
+      "trecho": "No ensino superior, vamos transferir a governança para o Ministério da Ciência, Tecnologia e Inovações"
+    },
+    "palavras_chave": [
+      "capes",
+      "cnpq",
+      "ensino superior",
+      "ministério da ciência, tecnologia e inovação",
+      "secretaria de educação superior"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "emprestimo-contingente-renda",
+    "titulo": "Trocar o Fies pelo Empréstimo Contingente à Renda",
+    "categoria": "Educação",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 37,
+      "trecho": "vamos adotar o Empréstimo Contingente à Renda: o estudante só começa a pagar quando estiver empregado e ganhando"
+    },
+    "palavras_chave": [
+      "empréstimo contingente",
+      "fies",
+      "financiamento estudantil"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "corrigir-tabela-sus",
+    "titulo": "Garantir correção efetiva da tabela SUS",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 37,
+      "trecho": "Vamos garantir as condições para que seja possível a correção efetiva da tabela SUS."
+    },
+    "palavras_chave": [
+      "procedimentos do sus",
+      "remuneração de procedimentos",
+      "santas casas",
+      "tabela do sus",
+      "tabela sus"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "programa-atendimento-idosos",
+    "titulo": "Criar o Programa de Atendimento aos Idosos",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 37,
+      "trecho": "criar o Programa de Atendimento aos Idosos"
+    },
+    "palavras_chave": [
+      "programa de atendimento aos idosos",
+      "saúde da pessoa idosa"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "rede-privada-horarios-ociosos",
+    "titulo": "Contratar exames e serviços da rede privada em horários ociosos",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 37,
+      "trecho": "vamos contratar serviços e exames na rede privada nos horários ociosos"
+    },
+    "palavras_chave": [
+      "agora tem especialistas",
+      "contratação de serviços privados",
+      "horários ociosos",
+      "rede privada"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "hospitais-universitarios-ebserh",
+    "titulo": "Modernizar os hospitais universitários federais (EBSERH)",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 38,
+      "trecho": "fortalecer a Rede Nacional de Hospitais Inteligentes (EBSERH), modernizando os hospitais universitários federais"
+    },
+    "palavras_chave": [
+      "ebserh",
+      "hospitais inteligentes",
+      "hospitais universitários"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "remedio-em-casa",
+    "titulo": "Entregar remédios em casa a idosos, pessoas com deficiência e doentes crônicos",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 38,
+      "trecho": "um sistema de entrega de remédio em domicílio"
+    },
+    "palavras_chave": [
+      "entrega de medicamentos",
+      "farmácia popular",
+      "medicamentos em domicílio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "casa-segura-envelhecer",
+    "titulo": "Criar o Casa Segura para Envelhecer e app de companhia para idosos",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 39,
+      "trecho": "vamos oferecer o programa Casa Segura para Envelhecer, com subsídio à acessibilidade domiciliar para famílias de menor renda"
+    },
+    "palavras_chave": [
+      "acessibilidade domiciliar",
+      "casa segura para envelhecer",
+      "instituições de longa permanência"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "centros-tea",
+    "titulo": "Implantar Centros de Referência em Transtorno do Espectro Autista",
+    "categoria": "Saúde",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 39,
+      "trecho": "a implantação de Centros de Referência em Transtorno do Espectro Autista"
+    },
+    "palavras_chave": [
+      "autismo",
+      "espectro autista",
+      "tea"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "escola-de-campeoes",
+    "titulo": "Criar o Programa Escola de Campeões (esporte competitivo nas escolas)",
+    "categoria": "Esporte e cultura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 40,
+      "trecho": "Vamos criar o Programa Escola de Campeões"
+    },
+    "palavras_chave": [
+      "escola de campeões",
+      "esporte escolar",
+      "jogos escolares"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "categoria-feminina-esporte",
+    "titulo": "Restringir a categoria feminina do esporte a atletas do sexo feminino",
+    "categoria": "Esporte e cultura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 41,
+      "trecho": "Vamos assegurar que a categoria feminina, da base ao alto rendimento, seja disputada por atletas do sexo feminino"
+    },
+    "palavras_chave": [
+      "atletas trans",
+      "atletas transgênero",
+      "categoria feminina",
+      "sexo biológico"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "manter-programas-sociais",
+    "titulo": "Manter os programas sociais existentes",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 42,
+      "trecho": "vamos manter os programas sociais existentes, com aperfeiçoamento da gestão, correção de distorções e combate às fraudes"
+    },
+    "palavras_chave": [
+      "benefício de prestação continuada",
+      "bolsa família",
+      "cadastro único",
+      "cadúnico",
+      "programas sociais"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "retorno-imediato-beneficio",
+    "titulo": "Retorno imediato e sem fila ao benefício após o seguro-desemprego",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 43,
+      "trecho": "garantiremos o retorno imediato e sem fila ao benefício após o seguro-desemprego"
+    },
+    "palavras_chave": [
+      "bolsa família",
+      "regra de proteção",
+      "retorno garantido",
+      "seguro-desemprego"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reduzir-custo-trabalho",
+    "titulo": "Reduzir gradualmente o custo do trabalho formal",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 43,
+      "trecho": "Vamos reduzir gradualmente o custo do trabalho, sem retirar direitos"
+    },
+    "palavras_chave": [
+      "contribuição previdenciária patronal",
+      "custo do trabalho",
+      "desoneração da folha",
+      "encargos trabalhistas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "contrato-primeiro-emprego",
+    "titulo": "Contrato de primeiro emprego (18 a 24 anos) com menor custo",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 43,
+      "trecho": "vamos criar um contrato de"
+    },
+    "palavras_chave": [
+      "carteira verde e amarela",
+      "contrato de trabalho para jovens",
+      "jovem aprendiz",
+      "primeiro emprego"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "contrato-50-mais",
+    "titulo": "Contrato mais atrativo para desempregados com 50 anos ou mais",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 44,
+      "trecho": "vamos criar um contrato mais atrativo para a contratação de pessoas com 50 anos ou mais desempregadas há pelo menos 12 meses"
+    },
+    "palavras_chave": [
+      "50 anos ou mais",
+      "trabalhador maduro",
+      "trabalhadores mais velhos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "negociado-sobre-legislado",
+    "titulo": "Defender o negociado sobre o legislado",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 44,
+      "trecho": "Por isso defendemos o negociado sobre o legislado"
+    },
+    "palavras_chave": [
+      "acordo coletivo",
+      "convenção coletiva",
+      "jornada flexível",
+      "negociado sobre o legislado"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "banco-nacional-vagas",
+    "titulo": "Banco nacional de vagas conectado ao RH das empresas",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 44,
+      "trecho": "com um banco nacional de vagas conectado ao RH das empresas"
+    },
+    "palavras_chave": [
+      "banco nacional de vagas",
+      "intermediação de mão de obra",
+      "sine",
+      "vagas de emprego"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "minha-primeira-empresa",
+    "titulo": "Criar o Minha Primeira Empresa (Sistema S + crédito da CAIXA)",
+    "categoria": "Trabalho e renda",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 45,
+      "trecho": "vamos criar o Minha Primeira Empresa"
+    },
+    "palavras_chave": [
+      "empreendedorismo",
+      "microempreendedor",
+      "minha primeira empresa",
+      "sebrae",
+      "sistema s"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "casa-verde-amarela",
+    "titulo": "Retomar o Casa Verde e Amarela com meta de 2,5 milhões de moradias",
+    "categoria": "Moradia e saneamento",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 47,
+      "trecho": "Vamos retomar o Casa Verde e Amarela, com meta de 2,5 milhões de residências e a menor taxa de juros possível no financiamento."
+    },
+    "palavras_chave": [
+      "casa verde e amarela",
+      "habitação de interesse social",
+      "minha casa minha vida",
+      "minha casa, minha vida",
+      "unidades habitacionais"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "retomar-territorios-faccoes",
+    "titulo": "Retomar as áreas hoje sob domínio de facções",
+    "categoria": "Segurança",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 47,
+      "trecho": "vamos retomar as áreas hoje sob domínio de facções"
+    },
+    "palavras_chave": [
+      "comunidades dominadas",
+      "domínio territorial",
+      "retomada de territórios"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "saneamento-2033",
+    "titulo": "Universalizar água e esgoto até 2033 (Marco do Saneamento)",
+    "categoria": "Moradia e saneamento",
+    "prazo": "2033-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 47,
+      "trecho": "acelerar as concessões e parcerias para universalizar o acesso à água tratada e ao esgoto"
+    },
+    "palavras_chave": [
+      "esgotamento sanitário",
+      "marco legal do saneamento",
+      "saneamento básico",
+      "universalização",
+      "água tratada"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "nenhuma-escola-sem-agua-2030",
+    "titulo": "Nenhuma escola sem água até 2030",
+    "categoria": "Moradia e saneamento",
+    "prazo": "2030-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 47,
+      "trecho": "nenhuma escola sem água até 2030"
+    },
+    "palavras_chave": [
+      "abastecimento de água nas escolas",
+      "escolas sem água",
+      "água nas escolas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "lixao-zero",
+    "titulo": "Acabar com os lixões a céu aberto (Lixão Zero)",
+    "categoria": "Moradia e saneamento",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 47,
+      "trecho": "a meta do Programa Lixão Zero, acabando com os lixões a"
+    },
+    "palavras_chave": [
+      "aterros sanitários",
+      "lixão zero",
+      "lixões",
+      "resíduos sólidos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "crescimento-4-porcento",
+    "titulo": "Crescimento sustentado de 4% ao ano",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 49,
+      "trecho": "Nossa meta é dobrar esse ritmo e alcançar um crescimento sustentado de 4% ao ano ao longo da próxima década"
+    },
+    "palavras_chave": [
+      "crescimento econômico",
+      "pib",
+      "produto interno bruto"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "licenca-por-decurso-prazo",
+    "titulo": "Licença ambiental concedida se o órgão não decidir no prazo",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 50,
+      "trecho": "Se não decidir nem se manifestar dentro desse prazo, a licença deve ser concedida"
+    },
+    "palavras_chave": [
+      "aprovação tácita",
+      "decurso de prazo",
+      "lei geral do licenciamento",
+      "licenciamento ambiental",
+      "licença ambiental"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "estabilidade-regras-20-anos",
+    "titulo": "Estabilidade de regras de até 20 anos para grandes projetos",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 50,
+      "trecho": "criaremos mecanismos de estabilidade das regras de até 20 anos"
+    },
+    "palavras_chave": [
+      "contratos de longo prazo",
+      "estabilidade regulatória",
+      "segurança jurídica"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "autonomia-terras-indigenas",
+    "titulo": "Autonomia de indígenas e quilombolas para atividades produtivas em suas terras",
+    "categoria": "Meio ambiente",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 50,
+      "trecho": "Será conferida autonomia aos povos indígenas e quilombolas para decidir sobre atividades produtivas em suas terras"
+    },
+    "palavras_chave": [
+      "atividades produtivas",
+      "mineração em terras indígenas",
+      "quilombolas",
+      "terra indígena",
+      "terras indígenas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "r900-bilhoes-infraestrutura",
+    "titulo": "Investir R$ 900 bilhões em infraestrutura em quatro anos",
+    "categoria": "Infraestrutura",
+    "prazo": "2030-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 51,
+      "trecho": "Vamos investir R$ 900 bilhões em quatro anos em rodovias, hidrovias, portos, aeroportos e ferrovias."
+    },
+    "palavras_chave": [
+      "bndes",
+      "concessões",
+      "infraestrutura",
+      "leilão",
+      "parcerias público-privadas",
+      "ppp"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fundo-imoveis-uniao",
+    "titulo": "Fundo de infraestrutura lastreado em imóveis da União",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 50,
+      "trecho": "fundo lastreado na securitização de ativos e imóveis da"
+    },
+    "palavras_chave": [
+      "fundo de investimento",
+      "imóveis da união",
+      "secretaria do patrimônio da união",
+      "securitização"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "corredores-logisticos",
+    "titulo": "Criar os Corredores Logísticos Inteligentes",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 51,
+      "trecho": "Criaremos os Corredores Logísticos Inteligentes de integração nacional"
+    },
+    "palavras_chave": [
+      "corredor logístico",
+      "corredores logísticos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "ferrograo",
+    "titulo": "Destravar a Ferrogrão",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 51,
+      "trecho": "vamos destravar a Ferrogrão"
+    },
+    "palavras_chave": [
+      "ef-170",
+      "ferrogrão"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "trem-do-nordeste",
+    "titulo": "Trem do Nordeste: 1.400 km ligando sete capitais",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 60,
+      "trecho": "Vamos viabilizar o Trem do Nordeste, 1.400 km de trilhos interligando Salvador, Aracaju, Maceió, Recife, João Pessoa, Natal e Fortaleza"
+    },
+    "palavras_chave": [
+      "transporte ferroviário de passageiros",
+      "trem de passageiros",
+      "trem do nordeste"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "transnordestina",
+    "titulo": "Concluir a Transnordestina e estendê-la à Paraíba e ao RN",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 51,
+      "trecho": "concluir a Transnordestina e ampliar o seu escopo para que a Paraíba e o Rio Grande do Norte sejam contemplados"
+    },
+    "palavras_chave": [
+      "transnordestina"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "hidrovia-tapajos",
+    "titulo": "Destravar a Hidrovia do Tapajós",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 51,
+      "trecho": "como a Hidrovia do Tapajós"
+    },
+    "palavras_chave": [
+      "hidrovia do tapajós",
+      "hidrovias",
+      "tapajós"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "obras-hidricas-nordeste",
+    "titulo": "Concluir ramais da transposição e obras hídricas do Nordeste",
+    "categoria": "Infraestrutura",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 52,
+      "trecho": "Iremos concluir, iniciar, executar estruturas como o Ramal do Apodi, o Ramal do Salgado, a Adutora do Seridó"
+    },
+    "palavras_chave": [
+      "adutora do seridó",
+      "canal do sertão",
+      "canal do xingó",
+      "eixão das águas",
+      "ramal do apodi",
+      "ramal do piancó",
+      "ramal do salgado",
+      "transposição do rio são francisco"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fracking",
+    "titulo": "Permitir a exploração de gás não convencional (fracking)",
+    "categoria": "Energia",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 52,
+      "trecho": "permitir a exploração do gás não convencional (fracking)"
+    },
+    "palavras_chave": [
+      "fracking",
+      "fraturamento hidráulico",
+      "gás não convencional"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "armazenamento-energia",
+    "titulo": "Programa de armazenamento de energia com baterias de grande porte",
+    "categoria": "Energia",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 53,
+      "trecho": "implantar um programa de armazenamento de energia, com baterias"
+    },
+    "palavras_chave": [
+      "armazenamento de energia",
+      "baterias",
+      "leilão de reserva de capacidade"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "polo-data-centers",
+    "titulo": "Transformar o país em polo global de data centers sustentáveis",
+    "categoria": "Energia",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 53,
+      "trecho": "transformar o país em polo global de data centers sustentáveis"
+    },
+    "palavras_chave": [
+      "data center",
+      "data centers",
+      "datacenter",
+      "redata"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "renovabio-exterior",
+    "titulo": "Ampliar o RenovaBio para vender créditos de carbono ao exterior",
+    "categoria": "Energia",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 53,
+      "trecho": "Vamos fortalecer e ampliar o Programa Renovabio para o exterior"
+    },
+    "palavras_chave": [
+      "biogás",
+      "biometano",
+      "cbios",
+      "combustível do futuro",
+      "renovabio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "seguro-rural",
+    "titulo": "Ampliar o Seguro Rural",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 54,
+      "trecho": "Vamos ampliar o Seguro Rural"
+    },
+    "palavras_chave": [
+      "psr",
+      "seguro rural",
+      "subvenção ao prêmio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "armazenagem-safras",
+    "titulo": "Ampliar a capacidade de armazenamento das safras",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 54,
+      "trecho": "Vamos ampliar a capacidade de armazenamento das safras"
+    },
+    "palavras_chave": [
+      "armazenagem",
+      "armazéns",
+      "capacidade estática",
+      "silos"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fertilizantes-nacionais",
+    "titulo": "Apoiar a produção nacional de fertilizantes (potássio e fosfato)",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 54,
+      "trecho": "Vamos apoiar a produção nacional de fertilizantes, aproveitando as reservas de minerais que o país possui"
+    },
+    "palavras_chave": [
+      "fertilizantes",
+      "fosfato",
+      "plano nacional de fertilizantes",
+      "potássio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "titulacao-rural",
+    "titulo": "Retomar ritmo de titulação e regularização fundiária rural",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 54,
+      "trecho": "Vamos retomar esse ritmo e promover ampla regularização e titulação do pequeno proprietário rural"
+    },
+    "palavras_chave": [
+      "incra",
+      "regularização fundiária",
+      "titulação",
+      "títulos de propriedade"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "outorgas-irrigacao",
+    "titulo": "Simplificar outorgas e ampliar a área irrigada (Matopiba e semiárido)",
+    "categoria": "Agronegócio",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 54,
+      "trecho": "Na irrigação, vamos ampliar significativamente a área irrigada do país"
+    },
+    "palavras_chave": [
+      "baixio de irecê",
+      "irrigação",
+      "matopiba",
+      "outorga",
+      "água de reuso"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "saf-2027",
+    "titulo": "Implementar as metas de combustível sustentável de aviação a partir de 2027",
+    "categoria": "Energia",
+    "prazo": "2027-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 55,
+      "trecho": "Vamos implementar as metas do combustível sustentável de aviação previstas em lei a partir de 2027"
+    },
+    "palavras_chave": [
+      "combustível sustentável de aviação",
+      "probioqav",
+      "saf"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "estrategia-nacional-ia",
+    "titulo": "Estratégia Nacional de IA para micro, pequenas e médias empresas",
+    "categoria": "Tecnologia",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 56,
+      "trecho": "A Estratégia Nacional de Inteligência Artificial vai difundir a IA para as micro, pequenas e médias empresas em larga escala"
+    },
+    "palavras_chave": [
+      "estratégia nacional de inteligência artificial",
+      "inteligência artificial",
+      "plano brasileiro de inteligência artificial"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "mercado-carbono",
+    "titulo": "Consolidar o mercado regulado de carbono",
+    "categoria": "Meio ambiente",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 57,
+      "trecho": "vamos consolidar o mercado regulado de carbono com segurança jurídica"
+    },
+    "palavras_chave": [
+      "créditos de carbono",
+      "mercado regulado de carbono",
+      "sbce",
+      "sistema brasileiro de comércio de emissões"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "desmatamento-ilegal-zero-2029",
+    "titulo": "Zerar o desmatamento ilegal até 2029",
+    "categoria": "Meio ambiente",
+    "prazo": "2029-12-31",
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 58,
+      "trecho": "Teremos a meta de zerar o desmatamento ilegal até 2029"
+    },
+    "palavras_chave": [
+      "crimes ambientais",
+      "desmatamento",
+      "deter",
+      "prodes",
+      "queimadas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "eliminar-superposicao-ibama-funai-icmbio",
+    "titulo": "Eliminar superposições entre Ibama, Funai e ICMBio",
+    "categoria": "Meio ambiente",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 59,
+      "trecho": "Vamos eliminar superposições entre Ibama, Funai e ICMBio"
+    },
+    "palavras_chave": [
+      "funai",
+      "ibama",
+      "icmbio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "transparencia-ongs",
+    "titulo": "Exigir transparência de ONGs com recursos internacionais",
+    "categoria": "Meio ambiente",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 59,
+      "trecho": "exigir transparência de financiadores e de projetos das ONGs que recebem recursos internacionais"
+    },
+    "palavras_chave": [
+      "ongs",
+      "organizações da sociedade civil",
+      "organizações não governamentais",
+      "recursos estrangeiros"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reaproximacao-eua-argentina-israel",
+    "titulo": "Reverter o afastamento com Argentina, EUA e Israel",
+    "categoria": "Relações exteriores",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 62,
+      "trecho": "Nos últimos anos, as relações com países como Argentina, Estados Unidos e Israel foram levadas ao limite do rompimento."
+    },
+    "palavras_chave": [
+      "acordo comercial",
+      "argentina",
+      "embaixador",
+      "estados unidos",
+      "israel"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "adesao-ocde",
+    "titulo": "Retomar o cronograma de adesão à OCDE",
+    "categoria": "Relações exteriores",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 63,
+      "trecho": "O passo mais urgente é retomar o cronograma interrompido de adesão à OCDE"
+    },
+    "palavras_chave": [
+      "acessão",
+      "ocde",
+      "organização para a cooperação e desenvolvimento econômico"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fim-iof-cambio",
+    "titulo": "Fim gradual do IOF sobre câmbio",
+    "categoria": "Custo de vida e impostos",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 63,
+      "trecho": "incluindo o fim gradual do IOF sobre o câmbio"
+    },
+    "palavras_chave": [
+      "imposto sobre operações financeiras",
+      "iof",
+      "operações de câmbio"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "stf-fim-foro-originario",
+    "titulo": "Acabar com as competências criminais originárias do STF",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 65,
+      "trecho": "Fim das competências criminais originárias do STF"
+    },
+    "palavras_chave": [
+      "competência originária",
+      "competências criminais",
+      "foro por prerrogativa",
+      "foro privilegiado"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "limitar-decisoes-monocraticas",
+    "titulo": "Limitar decisões monocráticas do STF",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 65,
+      "trecho": "Limitação das decisões monocráticas do STF"
+    },
+    "palavras_chave": [
+      "decisão monocrática",
+      "decisões monocráticas"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "quarentena-ministros-stf",
+    "titulo": "Quarentena de 1 ano para ministros de Estado serem indicados ao STF",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 65,
+      "trecho": "Quarentena de 1 ano para que Ministros de Estado possam ser indicados ao STF."
+    },
+    "palavras_chave": [
+      "indicação ao stf",
+      "indicação ao supremo",
+      "quarentena"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fim-reeleicao",
+    "titulo": "Acabar com a reeleição para Presidente da República",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 66,
+      "trecho": "E propomos o fim da reeleição para o cargo de Presidente da República."
+    },
+    "palavras_chave": [
+      "fim da reeleição",
+      "mandato de cinco anos",
+      "reeleição"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "tesouraco-censura",
+    "titulo": "Acabar com estruturas de \"Ministério da Verdade\" e revogar atos contra críticos",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 66,
+      "trecho": "acabar com qualquer estrutura estatal que funcione como um “Ministério da Verdade\", encarregada de vigiar, rotular ou punir o que as pessoas dizem"
+    },
+    "palavras_chave": [
+      "censura",
+      "desinformação",
+      "liberdade de expressão",
+      "procuradoria nacional da união de defesa da democracia",
+      "regulação das redes"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "emendas-transparencia",
+    "titulo": "Mais transparência e rastreabilidade nas emendas parlamentares",
+    "categoria": "Instituições",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 69,
+      "trecho": "daremos mais transparência, controle e rastreabilidade às emendas parlamentares"
+    },
+    "palavras_chave": [
+      "emendas de bancada",
+      "emendas parlamentares",
+      "emendas pix",
+      "transferências especiais"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "cortar-10-ministerios",
+    "titulo": "Cortar no mínimo 10 ministérios",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 69,
+      "trecho": "Isso inclui o corte de no mínimo 10 ministérios"
+    },
+    "palavras_chave": [
+      "extingue o ministério",
+      "ministérios",
+      "organização básica da presidência",
+      "organização dos órgãos da presidência",
+      "transforma o ministério"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reduzir-cargos-comissionados",
+    "titulo": "Reduzir cargos comissionados e despesas administrativas",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 69,
+      "trecho": "a redução de cargos comissionados e de despesas administrativas"
+    },
+    "palavras_chave": [
+      "cargos comissionados",
+      "cargos em comissão",
+      "funções comissionadas",
+      "funções de confiança"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "combater-supersalarios",
+    "titulo": "Combater penduricalhos e supersalários",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 69,
+      "trecho": "o combate aos penduricalhos e supersalários"
+    },
+    "palavras_chave": [
+      "extrateto",
+      "penduricalhos",
+      "supersalários",
+      "teto remuneratório"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "reforma-administrativa",
+    "titulo": "Dar continuidade à reforma administrativa",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 69,
+      "trecho": "Daremos continuidade à reforma administrativa que já colocamos em discussão"
+    },
+    "palavras_chave": [
+      "carreiras do serviço público",
+      "estabilidade do servidor",
+      "pec 32",
+      "reforma administrativa"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "fortalecer-lei-estatais",
+    "titulo": "Fortalecer a Lei das Estatais e profissionalizar indicações",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 70,
+      "trecho": "Tentaram enfraquecê-la; nós vamos fortalecê-la."
+    },
+    "palavras_chave": [
+      "13.303",
+      "conselho de administração",
+      "lei das estatais",
+      "lei nº 13.303"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "blindar-fundos-pensao",
+    "titulo": "Blindar fundos de pensão das estatais de indicação política",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 70,
+      "trecho": "Vamos blindar os fundos de pensão das estatais da indicação política"
+    },
+    "palavras_chave": [
+      "funcef",
+      "fundos de pensão",
+      "petros",
+      "postalis",
+      "previ"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "retomar-desestatizacao",
+    "titulo": "Retomar o Programa Nacional de Desestatização, caso a caso",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 70,
+      "trecho": "vamos retomar o Programa Nacional de Desestatização com critério"
+    },
+    "palavras_chave": [
+      "conselho do programa de parcerias de investimentos",
+      "desestatização",
+      "privatização",
+      "programa nacional de desestatização"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "nova-regra-fiscal",
+    "titulo": "Apresentar nova regra fiscal focada em reduzir a dívida",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 71,
+      "trecho": "Apresentaremos uma reformulação nas atuais regras fiscais"
+    },
+    "palavras_chave": [
+      "arcabouço fiscal",
+      "lei complementar nº 200",
+      "limite de despesas",
+      "regime fiscal sustentável",
+      "regra fiscal"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "superavit-primario",
+    "titulo": "Entregar superávits primários",
+    "categoria": "Economia e contas públicas",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 71,
+      "trecho": "entregando superávits primários"
+    },
+    "palavras_chave": [
+      "lei de diretrizes orçamentárias",
+      "meta fiscal",
+      "resultado primário",
+      "superávit primário"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "pacote-antifraude-inss",
+    "titulo": "Reeditar pacote antifraude na Previdência (moldes da MP 871/2019)",
+    "categoria": "Previdência",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 72,
+      "trecho": "Reeditaremos um pacote antifraude na Previdência, nos moldes do que fizemos em 2019"
+    },
+    "palavras_chave": [
+      "antifraude",
+      "descontos associativos",
+      "fraudes no inss",
+      "revisão de benefícios"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  },
+  {
+    "id": "governanca-consignado-inss",
+    "titulo": "Mudar a governança do consignado do INSS com dupla checagem",
+    "categoria": "Previdência",
+    "prazo": null,
+    "fonte": {
+      "tipo": "plano_de_governo_tse",
+      "url": "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726",
+      "pagina": 72,
+      "trecho": "Vamos mudar a governança do consignado para que a fraude não se repita"
+    },
+    "palavras_chave": [
+      "consignado",
+      "crédito consignado",
+      "empréstimo consignado"
+    ],
+    "status": "nao_iniciada",
+    "atualizado_em": null,
+    "historico": []
+  }
+]

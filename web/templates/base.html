@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Cumpriu?{% endblock %}</title>
+  <meta name="description" content="Acompanhamento diário das promessas do plano de governo de {{ presidente.nome }}, com fonte oficial para cada mudança.">
+  <link rel="stylesheet" href="{{ raiz }}static/estilo.css">
+</head>
+<body>
+  {% if not presidente.resultado_confirmado %}
+  <div class="aviso">Resultado oficial do 2º turno ainda não proclamado pelo TSE. Acompanhamento em modo preliminar.</div>
+  {% endif %}
+  <header class="topo">
+    <div class="largura">
+      <a class="marca" href="{{ raiz }}index.html">Cumpriu<span>?</span></a>
+      <nav>
+        <a href="{{ raiz }}index.html">Promessas</a>
+        <a href="{{ raiz }}metodologia.html">Metodologia</a>
+      </nav>
+    </div>
+  </header>
+  <main class="largura">
+    {% block conteudo %}{% endblock %}
+  </main>
+  <footer class="largura rodape">
+    Atualizado em {{ atualizado }} · Fontes: plano de governo registrado no TSE, legislação federal, Câmara dos Deputados e Planalto ·
+    <a href="{{ raiz }}dados.json">dados abertos (JSON)</a>
+  </footer>
+</body>
+</html>

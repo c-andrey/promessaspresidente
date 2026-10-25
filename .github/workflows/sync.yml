@@ -1,0 +1,76 @@
+name: Sync diário
+
+# Todo dia: coleta → filtro → cadeia de IAs gratuitas → regras → commit em data/ → deploy na VPS.
+# O runner abre um túnel SOCKS pela VPS (São Paulo) para fontes que bloqueiam IP estrangeiro (DOU).
+# Secrets: VPS_* (iguais ao deploy) + chaves de IA opcionais (README). Quem não tiver chave é pulado.
+
+on:
+  schedule:
+    - cron: "0 10 * * *"   # 07:00 em Brasília
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: "Coletar desde (AAAA-MM-DD, opcional)"
+        required: false
+
+permissions:
+  contents: write   # commitar data/
+  models: read      # GitHub Models grátis via GITHUB_TOKEN
+
+concurrency:
+  group: sync-promessas
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - uses: ./.github/actions/ssh-vps
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          user: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || '22' }}
+
+      - name: Túnel SOCKS pela VPS
+        run: |
+          ssh -f -N -o ExitOnForwardFailure=yes -D 1080 vps
+          echo "DOU_PROXY=socks5://127.0.0.1:1080" >> "$GITHUB_ENV"
+
+      - name: Coletar e classificar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DESDE: ${{ inputs.desde }}
+        run: python -m motor.main ${DESDE:+--desde "$DESDE"}
+
+      - name: Commitar dados
+        run: |
+          git config user.name "promessas-bot"
+          git config user.email "promessas-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Sem mudanças."
+          else
+            git commit -m "sync: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+  deploy:
+    needs: sync
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
