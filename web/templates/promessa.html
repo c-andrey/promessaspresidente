@@ -9,14 +9,22 @@
 
   <section>
     <h2>O que foi prometido</h2>
+    {% if p.origem == "declaracao" %}
+    <p class="origem origem-declaracao">Declaração de campanha · não consta no plano de governo registrado no TSE</p>
+    <blockquote>{{ p.fonte.trecho }}</blockquote>
+    <p class="fonte">Dito em {{ contextos.get(p.fonte.contexto, "declaração pública") }} · {{ p.fonte.veiculo }} ·
+      <a href="{{ p.fonte.url }}" rel="noopener">{{ p.fonte.titulo }}</a> ({{ p.fonte.data|data_br }})</p>
+    {% else %}
+    <p class="origem origem-plano_tse">Plano oficial (TSE)</p>
     <blockquote>“{{ p.fonte.trecho }}”</blockquote>
     <p class="fonte">Plano de governo registrado no TSE, página {{ p.fonte.pagina }} ·
       <a href="{{ p.fonte.url }}" rel="noopener">documento oficial</a></p>
+    {% endif %}
   </section>
 
   {% if p.referencias %}
   <section>
-    <h2>Na campanha</h2>
+    <h2>{{ "Outras fontes" if p.origem == "declaracao" else "Na campanha" }}</h2>
     <p class="fonte">Reportagens em que o candidato ou a campanha falaram desta proposta.</p>
     <ul class="referencias">
       {% for r in p.referencias %}

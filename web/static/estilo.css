@@ -128,3 +128,7 @@ blockquote.pequeno { font-size: 15px; padding: 10px 14px; }
 .significados dt { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 6px; }
 .significados dd { margin: 4px 0 0; color: var(--suave); font-size: 13px; line-height: 1.45; }
 .nota-legenda { margin: 14px 0 0; font-size: 13px; color: var(--suave); }
+
+.origem { display: inline-block; margin: 8px 0 0; font-size: 12px; font-weight: 600; letter-spacing: .2px; }
+.origem-plano_tse { color: var(--suave); }
+.origem-declaracao { color: var(--parcial); }

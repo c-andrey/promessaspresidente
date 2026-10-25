@@ -1,6 +1,7 @@
 [
   {
     "id": "faccoes-narcoterroristas",
+    "origem": "plano_tse",
     "titulo": "Declarar PCC, CV e milícias organizações narcoterroristas",
     "categoria": "Segurança",
     "prazo": null,
@@ -21,6 +22,13 @@
     "status": "nao_iniciada",
     "atualizado_em": null,
     "referencias": [
+      {
+        "titulo": "Flávio Bolsonaro promete criar Casa da Mulher Brasileira; programa opera desde 2013",
+        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPdnNhTWlHdFhkX3JYR3UxcGE3cDdiNGlmZlJkV29BallHRTZvS2hvMnVKaGRTelp0MjdKX1hrSEEwNFpJWHpNbG5HTHBHd0ltMTBGajI4ZkZoRExsYWROZGtuckQzZzBlYzJQQUZsRkVTY2hMbkVOT3oxVWxON0hEMHppUDQ4SnJrMVlJdTN1QXBVdnUzTkJoWUd4N1QyMDl2b1RjQTVaaW1qdVA2ckR6WmNfQm1mUQ?oc=5",
+        "data": "2026-10-24",
+        "veiculo": "MundoBA",
+        "o_que_disse": "Flávio Bolsonaro prometeu declarar facções criminosas como organizações narcoterroristas."
+      },
       {
         "veiculo": "Valor Econômico",
         "titulo": "Flávio Bolsonaro diz que declarará organizações criminosas e milícias como terroristas caso seja eleito",
@@ -47,6 +55,7 @@
   },
   {
     "id": "maioridade-penal-16",
+    "origem": "plano_tse",
     "titulo": "Reduzir a maioridade penal de 18 para 16 anos",
     "categoria": "Segurança",
     "prazo": null,
@@ -91,12 +100,20 @@
         "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQWU9zdmZ2SmFNbUpvbFBUbjRpcnJGXzF2d05LNllFNVJmaUF3dlBFYXdXd2w4VVY2VFJYWUhmNlo5bXp1NG5CRjVNdzFZQk5HNUJpSklXY3ZsR3pDMURid1gzRi03MlAzLW9iZml5RjZDaDBuWm4yaF9IQ3Z1MDdXYVFjN0ZEWXoxNlN0cnZSS0UzX1ZkVVRRUlg2VUhDdXlYVk9Vb1h4R1g2VldmdVpfWEViVzVFbzNDRDBlY3lDVk1ONk8xZlJnaUtSOVQxNEJ2TXM0NnRXckJpWWhhN1FJQXBKTFNSQW_SAfYBQVVfeXFMTTBQRUJxOXRZQkNGdFJxaEVidUl1NEZFYlBSLVVCMlpsaVBEeTZSc3VReldqX2VCai1ab1BGMC1WcFF1ZmM5WjJNQUpXMm5NdC1EZzR2S1V1MTB3VnhXS3N0WVE0eU4xZmF4bjdKVU1FQ2xxb2F4a0ZQUzJEejdDbVEweFQ5QVphSlFxTkNxdkdFelUyQzVRR2RRUFlrRlB1bkZWSWpkVklZY2RmNXNLei1ZR01qOVpqZjBLaGw3d2stcU9jTEVWaVRiaGNNYVlPMDRKOE90TjVHaDBOZVZ6X05QclBlVHVoNTVhdUlKeXY3ZVVWcXdR?oc=5",
         "data": "2026-10-14",
         "o_que_disse": "Quer incluir a redução da maioridade penal para 16 anos na PEC da Segurança Pública."
+      },
+      {
+        "titulo": "Corte salarial e demissão de grávida: o histórico de Flávio Bolsonaro contra os trabalhadores",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTW1uRkFzdklwczFYVFdRQnp3bEJqckpTT3pYdVJyUWNZdzZJaUZLN0d4eDJTTTNPcm1FWHE2SkRDT1Rqc0V6VDJHNUpKZGw1aTRpam1LOTNsZ1cwQlVwMW1TOGJsUEhFRXVnS0tUREFwc0EyWlhFQWlURHE4bTR3eEFkSFNBWVFyTUpTOGJpNjU1WXZJc0IyTms4bEk2ckJaa1Jz0gGrAUFVX3lxTE5tbzhqMXZBeFV6MGN5RzZwTmQ5ZTYwOHpGMllNWEMwaDhMTjlONDkzbUIxbzVBNDIxNTdLT20tUHZybEVILVhFWHV3enh6V0g3cDFLTjl5UVo1MXJ5ZG03T3dSUEVxbzF5SnE0UTh1alQybWlrZHFWaFZ1eUxJOHhFRlFjak15WmtIN09IZk1IaDlHSnRoMHUzMWxwMjZ0NHh3LTdpbEk3VGVkTQ?oc=5",
+        "data": "2026-10-09",
+        "veiculo": "Partido dos Trabalhadores",
+        "o_que_disse": "Flávio Bolsonaro defendeu a redução da maioridade penal."
       }
     ],
     "historico": []
   },
   {
     "id": "sistema-nacional-fronteira",
+    "origem": "plano_tse",
     "titulo": "Criar o Sistema Nacional de Fronteira com tropa de elite das Forças Armadas",
     "categoria": "Segurança",
     "prazo": null,
@@ -134,6 +151,7 @@
   },
   {
     "id": "cinco-presidios-treva",
+    "origem": "plano_tse",
     "titulo": "Construir 5 presídios federais de segurança máxima (complexo TREVA)",
     "categoria": "Segurança",
     "prazo": null,
@@ -193,6 +211,7 @@
   },
   {
     "id": "meio-milhao-vagas-prisionais",
+    "origem": "plano_tse",
     "titulo": "Criar meio milhão de vagas prisionais em 4 anos e zerar o déficit carcerário",
     "categoria": "Segurança",
     "prazo": "2030-12-31",
@@ -211,11 +230,20 @@
     ],
     "status": "nao_iniciada",
     "atualizado_em": null,
-    "referencias": [],
+    "referencias": [
+      {
+        "titulo": "Flávio diz que 'El Salvador é pouco' e promete 'meio milhão de vagas em presídio' e castração química para abusadores",
+        "url": "https://news.google.com/rss/articles/CBMilAJBVV95cUxPMTNZTml5akdla212UXY2VFhXNEtabG1MeTNxMU8xLUZjU3hXeS1TcUxULTlGMnNxWkpEcV9fMURwU1lhYndpSEUzMUJ5RE1GdEkwLVJ3MzUzTGpGSW1zSFY4UlVINWREbWFtanAtSGwtbDFzVXNtNlhweVBtZFJBXzFDVXhDb2JibEROaTBxc0ItVEM0VEtmN0hYY25hblBDUGpqdWJkbDhwbG1kYmlKRkhEdHNSTUlFcFAwUHE1U1hKSDlqUVN5RUdXWWUyQWJEWWpUSk45Tk1hbXJYQ2Y1RGVNSmpsQU85UDY0V3pnNDBtWEtRdkhPaGhqOWpNOC1wcGpyZlQ3RmppVWRnbFpjTldXXzLSAaMCQVVfeXFMUG9WY1llVE1ZLWstaHBpQndfaHRycGZ5Wm1hRGxFT0lRb0ttR0plZk1VLS1fN3FsYnlOTXhYMjk2RUtmZG5OZnlLY3hfNGlGNTVLZGJGQXVQQVdQbG5UMDJyR1dRT3hac2RsZl96aXhmNEdQb2VyOUk4UnFfSHVlckpRS1h3a0QzRFRTdEFYYUVOQmU2V1IwNU5MNm81bW1XNVpMa053bVJ5NWdwVWswanM4UEtRWjdJTldlQ1o5X0tyVVpkeHRBVV9pRWRUU3Q5SlpDMThzejg4dHRnak5Va2tNODB1UVJMUlFCSlhCV2tKaDFHZWhsd3ZjRWw2SjluTms0ektkaGVIa2JWWVg4a1JWblZMdGt3Mmc5RjdaYkxfckVJ?oc=5",
+        "data": "2026-10-13",
+        "veiculo": "O GLOBO",
+        "o_que_disse": "Prometeu criar meio milhão de vagas em presídios."
+      }
+    ],
     "historico": []
   },
   {
     "id": "castracao-quimica",
+    "origem": "plano_tse",
     "titulo": "Aprovar castração química para estupradores e abusadores de crianças",
     "categoria": "Segurança",
     "prazo": null,
@@ -232,6 +260,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Confira as propostas dos presidenciáveis para a educação",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQVHlweFRpTklBaWZVajB1eGdRNUNCTkQ3UEVVS1kzV2RHZUVWUFdOb2JPWktIcWJlcm0zQ2VJcDZ3MXFlZGc3VUNvQWZReV8xdXdSWF9IU2JKUERuaUpsNExrMEtoM3NiTXNkR2ZiN2Jac2NCVWlrV2VCNEM4eTlOVUs4dEZfUy1yZHlvQXpuUHA5bEVYRGp5NjdKRGxyWXVYZ1lkUENodmhDQ0JwZUNNejBtS3BzYXhQdjB3WjZJM1pScjRXODlnNw?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Agência Brasil",
+        "o_que_disse": "Prometeu castração química para abusadores."
+      },
+      {
         "veiculo": "Band",
         "titulo": "Flávio promete mudar Constituição por castração química e idade penal",
         "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQVjhuX3VNa1NQV3VTS2RWalRwM0xReVVVMjFHaXdfbm5wbjlhNmNwM3J0X3Z6NFZqdVB3UFJFTXpLN2FDVlVJSHJka2NLbnlLcHk2WFJDbXF1OV9ock5icjhkTll6aUFFQng3WXlCZ19CT2czTk5jWnNWMXhiWlpMRUFLbG9MeTJVNWdXY0tLVHBmTHphVE9rb3g3YlRIMXVkYzFhRTZoNkVRY0RocUlwR0JJRXJIUm8?oc=5",
@@ -246,11 +281,25 @@
         "o_que_disse": "Flávio Bolsonaro prometeu a implementação da castração química."
       },
       {
+        "titulo": "Podemos anuncia apoio a Flávio Bolsonaro no segundo turno",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxORkctZmEyVlhXTUoxUzNZakhJUjZvZVY0VlNaejBqNjVlc2NMN1VIT3dybmwtUnVfOEhfeGVacFZDV1NpU2VINDdESGtYTVFlOGVGOFZFVXVPV05mbW9obE13TG4tQ195MEpyUlBXYkU0RFI5QXRVQ0JuYWFodkswVUdVb0NuUlFra29ETUdRZkExOFEzWHc?oc=5",
+        "data": "2026-10-08",
+        "veiculo": "VEJA",
+        "o_que_disse": "Flávio Bolsonaro defendeu a aprovação da castração química para estupradores e abusadores de crianças."
+      },
+      {
         "veiculo": "Instagram",
         "titulo": "ELEIÇÕES 2026 | Flávio Bolsonaro afirma que, se eleito, vai reduzir maioridade penal e aprovar castração química para estupradores ⁣ ⁣ 📲 Acompanhe esta e outras notícias sobre as eleições em estadao.com.br.",
         "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9xdE5mU1Bhb2drcjVWLUZROHhRTFVZc0FwNUIxeUgtN0Z2MWt3b1NjcTZXSHoybVBBMy05R0wydjk1Um40UUJ1cC1XMXpHWGMzT0NKdXBR?oc=5",
         "data": "2026-10-06",
         "o_que_disse": "Flávio Bolsonaro afirmou que, se eleito, vai aprovar a castração química para estupradores."
+      },
+      {
+        "titulo": "Flávio Bolsonaro fala em castração química para estupradores e proteção às mulheres em evento em Chapecó",
+        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOcTh2bHVmcVJHcTlHOXhCbUtHbjZKdHZWR09INmtOZzl2Sk5NdEFnbDRRdXFNcThUckVFN0lIRVZnd0hLWDhkZ010akxhOG9oUUt5ekt6bVNFRnNGcnZIZmpWZk9pYXE4dkJGcU9ReWNVYmd2ektHZlpvOVdqajY3LVBQMnBmT3kzNlpvc3loaEx6dndLNjk5TG16ZUgxSllCUW1pVThheURhME1xZDV1U19jOGZJNVlwVVUxYXlvZ1R4eWprbzR3M1I5MFV4OHJBRUE?oc=5",
+        "data": "2026-09-19",
+        "veiculo": "ND Mais",
+        "o_que_disse": "Defendeu a aprovação da castração química para estupradores e abusadores de crianças em evento."
       },
       {
         "veiculo": "Congresso em Foco",
@@ -271,6 +320,7 @@
   },
   {
     "id": "tornozeleira-agressores",
+    "origem": "plano_tse",
     "titulo": "Monitorar com tornozeleira agressores de mulheres com medida protetiva",
     "categoria": "Segurança",
     "prazo": null,
@@ -301,6 +351,7 @@
   },
   {
     "id": "feminicidio-pena-integral",
+    "origem": "plano_tse",
     "titulo": "Obrigar assassinos e agressores de mulheres a cumprir pena integral",
     "categoria": "Segurança",
     "prazo": null,
@@ -323,6 +374,7 @@
   },
   {
     "id": "portos-aeroportos-tropas",
+    "origem": "plano_tse",
     "titulo": "Ocupar portos e aeroportos com tropas da Marinha e Aeronáutica",
     "categoria": "Segurança",
     "prazo": null,
@@ -346,6 +398,7 @@
   },
   {
     "id": "dobrar-investimento-seguranca",
+    "origem": "plano_tse",
     "titulo": "Dobrar o investimento federal em segurança pública ao longo do mandato",
     "categoria": "Segurança",
     "prazo": "2030-12-31",
@@ -364,6 +417,13 @@
     "status": "nao_iniciada",
     "atualizado_em": null,
     "referencias": [
+      {
+        "titulo": "Flávio Bolsonaro propõe enxugar Estado e endurecer ações de segurança",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPcGRvRFBDcC1hdVFiUEpwUGF0cm1vNDgxZEU0OGRBamZpUDBybGdJQ1pZc2EtS3JMUHZlOEpMU29UUWdFYy03ai1sUGNLOHc2bDJIaWU3OWFMUF9fbkhyc3JXZUpuWXNHMm56UlJmX1FLUzA1MTRMTHEweUhtTEV3TllUQ0I5STZ4V3Jac1pUNXZhMkdpcWtUeGhSWXNaZGlidm5KamdHVFdHV3NrR3ZEQ3JIVF9LVHctN2hPVTBfOWMzTkl0OGc?oc=5",
+        "data": "2026-09-18",
+        "veiculo": "Agência Brasil",
+        "o_que_disse": "O candidato prometeu endurecer as ações de segurança pública, alinhando-se com a proposta de dobrar investimentos e aumentar a repressão."
+      },
       {
         "veiculo": "Exame",
         "titulo": "'Vamos ultrapassar investimento de 1% do PIB em segurança', diz vice de Flávio",
@@ -390,6 +450,7 @@
   },
   {
     "id": "muralha-brasileira",
+    "origem": "plano_tse",
     "titulo": "Implantar a Muralha Brasileira: reconhecimento facial e 1 milhão de câmeras",
     "categoria": "Segurança",
     "prazo": null,
@@ -409,6 +470,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "\"Smart Brasil\": Flávio promete programa de monitoramento utilizado em SP",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNZG1Ic0RyRkFTNUViTjR5X3BxdlluOEMxakV2TUxuanZ2b1YyemhIcEY2b0Zpb3FMZGJoTl9Cay1mRTRkcV8wZGZtb2lXTTZidFg2bTJ3dGdKQ2VVcFNVeDNHRzdITlJsSUdoZktUbXVyRE5QWmh4ZHpsWDRTcHN5ZHFfdXJndGZlZUpNSkd4NUtmM3I0elpxa1lwLXE0ajBDbGphU21KeVI1Zw?oc=5",
+        "data": "2026-10-19",
+        "veiculo": "Metrópoles",
+        "o_que_disse": "Flávio Bolsonaro prometeu implantar o programa Smart Brasil de monitoramento com mais de 1 milhão de câmeras."
+      },
+      {
         "veiculo": "G1",
         "titulo": "Flávio Bolsonaro propõe presídios inspirados em El Salvador e sistema nacional de reconhecimento facial para reduzir crimes",
         "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQTzNULThMV2ZYdjU1Vmk1RTFzeGdoNUVPX3NpVUxlNEV0dHN2LXBUVW5ZU2FzR2hOSHZUdGpvY3JvbWJ0ank2TWhZRmJrMnlfVUx2UUE3QUxvUWViNVhpVEZWRkZLYnhVbTVncWhpQVE3dVc1RThOcHNBQkJIRTRmOGNINVkwNmlmVEpyRmNsNTU2WGRtdHkydGRHdVRvei1SQXU3ajFTYTJKNUotQlNUbzNlZXlFV0s4M2ZGdDVlNVhscVpzUElBZ3B6ZGsydGV4NU5GZnNqTERVYzZKdXZldE9ESng2SndSNC0xNHdpTUJscTJXdng2Wllyb9IBigJBVV95cUxPc2pYQXNuQ0NyWUF0Rm5sZmJ6U2NHeGgtTHFjZmg1VF8tdDdveEtLa19wS3ROLXFPMGpyOEJ5SHFIN1dJOVdWQ0Zvb1l3dWRTd1o3cC1QLTg5RXFTNFI1VGZsczdKbmN4SXpkYTFQRU1mTFVlSlJ2UGdBSXJueGwzcGVnRktHRnNiLUc3aGVCUjFsb1hReG0tcE9xdk8wODlhZUtjSFJSZGlxZHVpR2RhSGVSRmptd2MwQWxUYlZyYkl6VEFTNnJOMVVtNTA3c3haWGlqT0Z4YlZSOVFSdUNreUVrbnlUTkNrOTVySFE1ZTd5SjFHa19yUExpbzVJVzhpM2czbTI4VFVPUQ?oc=5",
@@ -420,6 +488,7 @@
   },
   {
     "id": "auxilio-familias-vitimas",
+    "origem": "plano_tse",
     "titulo": "Redirecionar recursos de famílias de presos para famílias de vítimas",
     "categoria": "Segurança",
     "prazo": null,
@@ -478,6 +547,7 @@
   },
   {
     "id": "fim-progressao-hediondos",
+    "origem": "plano_tse",
     "titulo": "Acabar com a progressão de regime para crimes hediondos",
     "categoria": "Segurança",
     "prazo": null,
@@ -500,6 +570,7 @@
   },
   {
     "id": "celular-pena-quadruplicada",
+    "origem": "plano_tse",
     "titulo": "Quadruplicar a pena inicial de furto e receptação de celular",
     "categoria": "Segurança",
     "prazo": null,
@@ -520,6 +591,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Flávio Bolsonaro reúne apoiadores na Paulista em manifestação e fala que o país está 'sem presidente'",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQM1ctNnE3UzhWSnZSZFBYSlYwekFIYUlabVRGd1FjZDJQSWhrSTZOd0NOT3ZBcC16ZElscEhRR0FPYUFRbGZjaWM2enpzUFJ3T2VRYVRFckhCcGIydHBmU2VZbUJEVnhWNEYzb01zY3RCOGZ1YmlxN0dpYS1TenlKcTR3UC0yRGFJWXV0ajZSSmhvRTVlRmZUZ3lfTm5FS0ExTHBtOXlPeEg3NTByeTRqWG43dVBsOHZMdlZlbw?oc=5",
+        "data": "2026-10-18",
+        "veiculo": "Folha de S.Paulo",
+        "o_que_disse": "Defendeu a aplicação de pena de pelo menos 8 anos de prisão para ladrões de celulares."
+      },
+      {
         "veiculo": "Revista Oeste",
         "titulo": "Flávio promete endurecer punição para furto de celular",
         "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOeGVoa2I3X0xidkhaU0EyM3R6SlBhNXgyNmdBSGEzXzZ3TVRlY29VNm03RGtfS3hLNkgxMGdDT0lzOWpJaGs5YnlUMEdhU0pQN2g2WjBOVmRIM0pGMzhXU1kxQlQ4Z0pHQjNrTWdWNEZlOUdheTAydDhtY29aMGp2TU1wd0s4aE15MjZLZFJlNDFxRjA?oc=5",
@@ -538,6 +616,7 @@
   },
   {
     "id": "central-da-mulher",
+    "origem": "plano_tse",
     "titulo": "Abrir Centrais da Mulher em todo o Brasil, com unidades itinerantes",
     "categoria": "Mulheres",
     "prazo": null,
@@ -554,11 +633,20 @@
     ],
     "status": "nao_iniciada",
     "atualizado_em": null,
-    "referencias": [],
+    "referencias": [
+      {
+        "titulo": "Flávio Bolsonaro promete criar a Casa da Mulher Brasileira, que já existe",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSmRDekxhZExoT2xIWWJrSzJtRWZSdmJ0ek10aW5wOHhXRUhscTJLSVhBYzJodmYwa1Z3dFhnNEUtNENGbzRTY1hHN3phWHUyOS10R2taRFZTSU5TRHU2X2g0THZLVHRfdmRuVy1ZZ21JT25XNGdrX2V2azdfSmhUZmFwdTV6RUtNWnpGVHdNaS03a0ZJMk1lUE1KZU1YOXF2LUFhbjhLcW53V3pGc3BHR3QxNWI?oc=5",
+        "data": "2026-10-24",
+        "veiculo": "CartaCapital",
+        "o_que_disse": "Flávio Bolsonaro prometeu a criação de 'Casas da Mulher Brasileira' (Centrais da Mulher) em todo o país, embora a estrutura já exista em algumas regiões."
+      }
+    ],
     "historico": []
   },
   {
     "id": "app-claria",
+    "origem": "plano_tse",
     "titulo": "Lançar o aplicativo Central da Mulher com a assistente virtual ClarIA",
     "categoria": "Mulheres",
     "prazo": null,
@@ -609,6 +697,7 @@
   },
   {
     "id": "bonus-internet",
+    "origem": "plano_tse",
     "titulo": "Garantir pacotes de internet gratuitos, com prioridade para mulheres",
     "categoria": "Mulheres",
     "prazo": null,
@@ -647,6 +736,7 @@
   },
   {
     "id": "denuncia-integrada",
+    "origem": "plano_tse",
     "titulo": "Integrar Ligue 180 e canais de denúncia com avaliação nacional de risco",
     "categoria": "Mulheres",
     "prazo": null,
@@ -669,6 +759,7 @@
   },
   {
     "id": "ganha-ganha",
+    "origem": "plano_tse",
     "titulo": "Criar o Ganha, Ganha: pontos por boas atitudes viram juros menores e cashback",
     "categoria": "Mulheres",
     "prazo": null,
@@ -687,11 +778,20 @@
     ],
     "status": "nao_iniciada",
     "atualizado_em": null,
-    "referencias": [],
+    "referencias": [
+      {
+        "titulo": "\"ViraPix\": Flávio Bolsonaro promete programa de cashback em contas",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPMDQ3T1ZtcENtUGZDblc4SWlCaGZMY1F1eGY3dlpRZ1BLbDZ4WV9VV2hEMWduS1dnbC0zRHQtQ0lYYlpxVW0xT0NlMlpfZnB6MUdGS1ltVmR5bG5tUXVRYmsybVdZbURQdU1tUWtjYS1ld1pmaXhGR1ZmTW05c3pVVUI0R1RNekhRUUphZzZOZlUxWU44dk8zNXlUenNLaXNySGxBMGVtSThFWjQ0UGZDRmZiX1o?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Congresso em Foco",
+        "o_que_disse": "Flávio Bolsonaro prometeu o programa 'ViraPix', que oferece cashback e benefícios financeiros em contas bancárias, similar ao programa 'Ganha, Ganha' do plano."
+      }
+    ],
     "historico": []
   },
   {
     "id": "escola-brasil-por-elas",
+    "origem": "plano_tse",
     "titulo": "Criar a Escola Brasil por Elas, programa gratuito de capacitação feminina",
     "categoria": "Mulheres",
     "prazo": null,
@@ -714,6 +814,7 @@
   },
   {
     "id": "voucher-creche",
+    "origem": "plano_tse",
     "titulo": "Voucher-creche na rede privada onde faltar vaga pública",
     "categoria": "Mulheres",
     "prazo": null,
@@ -751,6 +852,7 @@
   },
   {
     "id": "rede-nacional-cuidado",
+    "origem": "plano_tse",
     "titulo": "Estruturar a Rede Nacional de Cuidado (centros-dia e atendimento domiciliar)",
     "categoria": "Mulheres",
     "prazo": null,
@@ -788,6 +890,7 @@
   },
   {
     "id": "unidades-moveis-saude-mulher",
+    "origem": "plano_tse",
     "titulo": "Unidades Móveis de Saúde da Mulher (ônibus, caminhões e barcos)",
     "categoria": "Mulheres",
     "prazo": null,
@@ -809,6 +912,7 @@
   },
   {
     "id": "servicos-100-digitais",
+    "origem": "plano_tse",
     "titulo": "Digitalizar 100% dos serviços federais e criar identidade digital única",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -840,6 +944,7 @@
   },
   {
     "id": "prontuario-eletronico-unico",
+    "origem": "plano_tse",
     "titulo": "Prontuário eletrônico único vinculado ao CPF, público e privado",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -872,12 +977,20 @@
         "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNcnE4LUhYcXhxbHJzaHYyYXhLcUpNZ0lqcnJxTFJfam1JOVdqTjgxLVMwUUV2MnI5SzVZX1dLbFZPd0NxelBYM3psWWpISVluRVFOSUtWblBnTkNJTmF0cllyVVZzZllmb2pqOUVDd0ppM1BIZmkydTZGR3hidkRCVG0zU2ZPbVZBZjJCZU1xa0Rld0JEcENBeUxzV2F0TGllZTBqZk9RaU9BS0NIQ25VQWR6R1ZrYU9LYnFyZUl3QTNmUU1DRHlMaktvR1E5Nlc5a0E?oc=5",
         "data": "2026-10-19",
         "o_que_disse": "Promete implantar prontuário eletrônico único, vinculado ao CPF e integrado ao Gov.br, interoperável entre redes pública e privada."
+      },
+      {
+        "titulo": "Flávio Bolsonaro diz que não irá mais para debate da TV Globo",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTWtPakpNWGFGTmxNU09TSGJYWlB1M0tPamdLU0c1TldLYU5RSXlJbnoyemFIX3lOSTczWHMwVkxHTHp0d2VRUGNwX0tfa2ROeXRJd1VEZEVsak5KTERvakwtdy1ocklON2k4Z29HcHp5d2tUeENjM01GWmJLN0ZRQzhrZ2J3ZGhuZ1dvZEQxdmZ6c2UtUEhleUVwSEVnamFUbXc?oc=5",
+        "data": "2026-10-01",
+        "veiculo": "CNN Brasil",
+        "o_que_disse": "Flávio Bolsonaro prometeu criar um prontuário eletrônico único no SUS."
       }
     ],
     "historico": []
   },
   {
     "id": "ia-agendamento-sus",
+    "origem": "plano_tse",
     "titulo": "Usar IA para agendar consultas e exames do SUS na primeira vaga",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -929,6 +1042,7 @@
   },
   {
     "id": "inss-sem-fila",
+    "origem": "plano_tse",
     "titulo": "Zerar a fila do INSS com digitalização e gestão profissional",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -952,6 +1066,7 @@
   },
   {
     "id": "liberdade-economica-nacional",
+    "origem": "plano_tse",
     "titulo": "Levar a Lei de Liberdade Econômica a todos estados e municípios",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -996,6 +1111,7 @@
   },
   {
     "id": "revogaco-regulatorio",
+    "origem": "plano_tse",
     "titulo": "Promover um amplo revogaço regulatório",
     "categoria": "Serviços e Estado digital",
     "prazo": null,
@@ -1023,6 +1139,27 @@
         "o_que_disse": "A campanha de Flávio Bolsonaro apresentou a proposta da Lei de Liberdade Econômica 2.0."
       },
       {
+        "titulo": "Flávio Bolsonaro promete revogar mais de mil atos normativos no primeiro dia de governo",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNeGtGZEVSeFJmWjlTYndzeU1qNXhmWDdZc3FtTWZ2cXM3TURpcl9DaHRkSlJ4MUNSR3c2b3NfU1Z2VWpnM2RsSFVsVXI2ZWx6ZHhLbzNHWXBQbmFMcmRsdEdFZ2dseGFPcUl5UVZtZXBRcnA3aW1YSVY1S2lVa2J3aUV5RWZhckVtVXpiX1hwTi0tSDd4NG91d0E2M3N6RXNKR3lNZTVqVEpNVDZoMHFYeXhaS21OVjNidy1PTXBoQVo?oc=5",
+        "data": "2026-10-13",
+        "veiculo": "VEJA",
+        "o_que_disse": "O candidato prometeu realizar um 'revogaço' revogando mais de mil atos normativos no primeiro dia de seu governo."
+      },
+      {
+        "titulo": "Flávio prevê \"revogaço\" e Lei da Liberdade Econômica 2.0 em janeiro",
+        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNVFA2ZnljNXVHdDl2R0FySVVYNEV0c2R3QUh6X29LWGRhYlpFREpXMjRkMU8xcGxkS1FRcTc3NnMyUWlfZDFQcDRObzB3amNiYV9LWE5Ub3pfd2lNczFMMWRtT0owRlZDanBYQU1kV0ctVnc3dnVnTjdtRFlGeUFySlJEa2xlZEdBOVYzTmlwa2I2SFJiSFRtODI3dFhwNGFyT25CSlpCeGZkN3prdDh1NzVhTzRKVTBmdzdVTUJtUVBqQ2M?oc=5",
+        "data": "2026-10-07",
+        "veiculo": "CNN Brasil",
+        "o_que_disse": "Flávio Bolsonaro afirmou que realizará um revogaço e implementará a Lei da Liberdade Econômica 2.0 em janeiro."
+      },
+      {
+        "titulo": "Flávio Bolsonaro promete cortar mil atos normativos no primeiro dia",
+        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdkZMaGRBeGJUYk1jcnFWMGd5bDZkaVFoVlpRRDBvSTN2V1RSRzJJVWRCUGdkM3UxcUZ6RjVJU0tjSlVDR1Y2UGtJQmVDdDRWTVJad051TjlGRzRtWjFiRnpHQzJ5MFRUX2pJS1ExdVp5S2pvZGxTQUxvbERHTi02cmlSX3JaUTZRQkFCS29kRWg0WVVRWXFnbXRCUXNfSlpoTVo4emFaVmFkS3c?oc=5",
+        "data": "2026-09-19",
+        "veiculo": "Agora Litoral",
+        "o_que_disse": "Vou revogar mil atos normativos e medidas logo no primeiro dia."
+      },
+      {
         "veiculo": "Folha de S.Paulo",
         "titulo": "Equipe de Flávio Bolsonaro prepara desregulamentação de setores da economia, diz Sachsida",
         "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOOHJWWFlfTDJLTmh5SkRQLWRtNloyQTFzU1lKRVRucVUybEROUFZ3Y1UxcF9qcnRCV1NhUS11bkJJeENld01vVWVxa081RkNjdWs4RTZQR0ZRX0ctUHFFNFhCNnJRZGFRUFo4RXA0REpHVzJYZko2STU2NUg2SGd3T09DWFBaZXdTLTM2ZVBXSDNFVDdlMTBaVnotdnQ5LVFuVWJhNlMxVW42THpmLUhNZ1V1cmZqekstVWJSWUg5Zk04YXNTTW5fODU0X3luMExPeDVoQXdQNA?oc=5",
@@ -1041,6 +1178,7 @@
   },
   {
     "id": "rastreabilidade-cadeias",
+    "origem": "plano_tse",
     "titulo": "Rastreabilidade completa das cadeias produtivas num só sistema",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -1063,6 +1201,7 @@
   },
   {
     "id": "revisar-reforma-tributaria",
+    "origem": "plano_tse",
     "titulo": "Revisar a reforma tributária e reduzir a alíquota do IVA",
     "categoria": "Custo de vida e impostos",
     "prazo": null,
@@ -1084,6 +1223,13 @@
     "status": "nao_iniciada",
     "atualizado_em": null,
     "referencias": [
+      {
+        "titulo": "Se eleito, Flávio Bolsonaro pretende rever reforma tributária",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNaWJSWUdDVVl5dElwTHAtUXp2WVBDNE1JalpCTUg5bEdrSlZHekJQQXREb2M0RFV5Y0tZdG5iYXVwdGVxWVRYTkZxeXFHOXlleVRzbkhseEs0UE9PX2hGYXp4RlR0RExnQUFZRWs1QWNlWDY2UjFkb3owQjliNDhNTURSc2VmZUF3QjgxeFc3S0xfdmRTZm9tdS1Ta0pEbnNU0gGmAUFVX3lxTFBaTXM2OTdLOVVvTWFfVGttNlE0b3JLUENWcUdCdV9uSUNYS1dESnNrV3NJeEtzNERRSmNwdGMxS2htOXZMX1JweHQxWEE2a1l5QTBvdEdBSkRCVFg3REJJQV9uRkNFQ3d1VFZyRGt2WUhDMEpDMmxrUUtuMmpCenBjQTNNbThUS1VETFhheU5zNjcxNU1oa1hPalBobWdEWjZuMDBMNnc?oc=5",
+        "data": "2026-10-14",
+        "veiculo": "InfoMoney",
+        "o_que_disse": "Flávio Bolsonaro afirmou que pretende rever a reforma tributária se for eleito."
+      },
       {
         "veiculo": "CNN Brasil",
         "titulo": "Campanha de Flávio quer “pausar” reforma tributária e fazer revisão",
@@ -1110,6 +1256,7 @@
   },
   {
     "id": "reduzir-cde",
+    "origem": "plano_tse",
     "titulo": "Simplificar a conta de luz e reduzir gradualmente a CDE",
     "categoria": "Custo de vida e impostos",
     "prazo": null,
@@ -1149,6 +1296,7 @@
   },
   {
     "id": "reduzir-impostos-energia-combustiveis",
+    "origem": "plano_tse",
     "titulo": "Reduzir impostos sobre energia elétrica e combustíveis",
     "categoria": "Custo de vida e impostos",
     "prazo": null,
@@ -1173,6 +1321,7 @@
   },
   {
     "id": "proibir-bets-programas-sociais",
+    "origem": "plano_tse",
     "titulo": "Proibir uso de dinheiro de programas sociais em apostas online",
     "categoria": "Custo de vida e impostos",
     "prazo": null,
@@ -1194,6 +1343,7 @@
   },
   {
     "id": "metodo-fonico",
+    "origem": "plano_tse",
     "titulo": "Priorizar o método fônico na alfabetização",
     "categoria": "Educação",
     "prazo": null,
@@ -1211,11 +1361,20 @@
     ],
     "status": "nao_iniciada",
     "atualizado_em": null,
-    "referencias": [],
+    "referencias": [
+      {
+        "titulo": "Flávio Bolsonaro promete avanço na educação em temas que Jair esvaziou; Lula quer mais bolsas",
+        "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNNnpwUFNWODNUUDAxalEza0Nfd3kydmdON2hZRklJZzkzQVJOa3B3VjBHU0ZXZy1QOHpGVVZBVmVjY0NMWF9pRW01YzJpNjhucmVpNjBPTW54ajRhZ2JFeGxRTkRfOVlHeldIYzRKOVpLblRwTkl6eDVaTTVnTkhnSmdsT2VSZS1xTC1hRmlZZks2THZScnZncGgyRzhDUnU0VTlTZlNFVWNFVFNEOXlBLS1Mb18zYW5PYnhodTJTRGlpWjgydDhLdkI5UHF3SzhkdWJaWVk3aUZjTGdQemc?oc=5",
+        "data": "2026-10-22",
+        "veiculo": "Folha de S.Paulo",
+        "o_que_disse": "O candidato prometeu avançar na educação, especificamente priorizando o método fônico para a alfabetização, tema que seu pai havia esvaziado."
+      }
+    ],
     "historico": []
   },
   {
     "id": "programa-acolher",
+    "origem": "plano_tse",
     "titulo": "Criar o Programa Acolher: aluno remunerado para dar reforço a colegas",
     "categoria": "Educação",
     "prazo": null,
@@ -1267,6 +1426,7 @@
   },
   {
     "id": "repasses-por-resultado",
+    "origem": "plano_tse",
     "titulo": "Vincular repasses da educação a metas de aprendizagem",
     "categoria": "Educação",
     "prazo": null,
@@ -1297,6 +1457,7 @@
   },
   {
     "id": "escolas-civico-militares",
+    "origem": "plano_tse",
     "titulo": "Ampliar as escolas cívico-militares",
     "categoria": "Educação",
     "prazo": null,
@@ -1334,6 +1495,7 @@
   },
   {
     "id": "altas-habilidades",
+    "origem": "plano_tse",
     "titulo": "Tirar do papel a política nacional para alunos com altas habilidades",
     "categoria": "Educação",
     "prazo": null,
@@ -1354,6 +1516,7 @@
   },
   {
     "id": "escola-nas-ferias",
+    "origem": "plano_tse",
     "titulo": "Manter escolas abertas nas férias com o Escola nas Férias",
     "categoria": "Educação",
     "prazo": null,
@@ -1374,6 +1537,7 @@
   },
   {
     "id": "voucher-educacional",
+    "origem": "plano_tse",
     "titulo": "Voucher educacional onde faltar vaga na rede pública",
     "categoria": "Educação",
     "prazo": null,
@@ -1396,6 +1560,7 @@
   },
   {
     "id": "ensino-tecnico-medio",
+    "origem": "plano_tse",
     "titulo": "Ampliar o ensino técnico no ensino médio com o setor produtivo",
     "categoria": "Educação",
     "prazo": null,
@@ -1419,6 +1584,7 @@
   },
   {
     "id": "politica-formacao-talentos",
+    "origem": "plano_tse",
     "titulo": "Criar a Política Nacional de Formação de Talentos",
     "categoria": "Educação",
     "prazo": null,
@@ -1438,6 +1604,7 @@
   },
   {
     "id": "ensino-superior-mcti",
+    "origem": "plano_tse",
     "titulo": "Transferir o ensino superior do MEC para o Ministério da Ciência e Tecnologia",
     "categoria": "Educação",
     "prazo": null,
@@ -1497,6 +1664,7 @@
   },
   {
     "id": "emprestimo-contingente-renda",
+    "origem": "plano_tse",
     "titulo": "Trocar o Fies pelo Empréstimo Contingente à Renda",
     "categoria": "Educação",
     "prazo": null,
@@ -1554,6 +1722,7 @@
   },
   {
     "id": "corrigir-tabela-sus",
+    "origem": "plano_tse",
     "titulo": "Garantir correção efetiva da tabela SUS",
     "categoria": "Saúde",
     "prazo": null,
@@ -1577,6 +1746,7 @@
   },
   {
     "id": "programa-atendimento-idosos",
+    "origem": "plano_tse",
     "titulo": "Criar o Programa de Atendimento aos Idosos",
     "categoria": "Saúde",
     "prazo": null,
@@ -1597,6 +1767,7 @@
   },
   {
     "id": "rede-privada-horarios-ociosos",
+    "origem": "plano_tse",
     "titulo": "Contratar exames e serviços da rede privada em horários ociosos",
     "categoria": "Saúde",
     "prazo": null,
@@ -1619,6 +1790,7 @@
   },
   {
     "id": "hospitais-universitarios-ebserh",
+    "origem": "plano_tse",
     "titulo": "Modernizar os hospitais universitários federais (EBSERH)",
     "categoria": "Saúde",
     "prazo": null,
@@ -1648,6 +1820,7 @@
   },
   {
     "id": "remedio-em-casa",
+    "origem": "plano_tse",
     "titulo": "Entregar remédios em casa a idosos, pessoas com deficiência e doentes crônicos",
     "categoria": "Saúde",
     "prazo": null,
@@ -1669,6 +1842,7 @@
   },
   {
     "id": "casa-segura-envelhecer",
+    "origem": "plano_tse",
     "titulo": "Criar o Casa Segura para Envelhecer e app de companhia para idosos",
     "categoria": "Saúde",
     "prazo": null,
@@ -1698,6 +1872,7 @@
   },
   {
     "id": "centros-tea",
+    "origem": "plano_tse",
     "titulo": "Implantar Centros de Referência em Transtorno do Espectro Autista",
     "categoria": "Saúde",
     "prazo": null,
@@ -1716,6 +1891,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Flávio, o Collor de 2026: promessa de salvação que resgata fantasma de desastre econômico",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNllkdkJXNS10bjg5TkhlODBlTEFkaVFNRnE4aHZoRVdVaFhENmJYSGpuaEVXeEwxMk9ncko3a2dxdjFwWVVhbkpkYzVmMjdWWC1ldUVsaTdMajRzNXl3cWYtcGJqd29VQjhuWmNaSzJxbmR4clVOOWx5ZzVSbFVEVzdkN25GemdEeHQ3V0xncVg4MEZjWFExRDd4RHpXNWd6d1BMM3JPRGx3STRZSklr?oc=5",
+        "data": "2026-10-21",
+        "veiculo": "Fundação Perseu Abramo",
+        "o_que_disse": "Flávio prometeu na TV uma rede de atendimento para crianças com espectro autista."
+      },
+      {
         "veiculo": "Folha de S.Paulo",
         "titulo": "Na TV, Flávio promete rede para crianças com espectro autista, e Lula o associa a milícias",
         "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOZG9aTDg0X2tXVmtURDhxVUZLemduZWdDQndidHZEeExka293TF8wWHo5MW9mOFI4ekFWcUZrNGZ4cGpoZW5pODU4RGwyMXVKNS1xd2hnaWJpLTFLWGVHMmNZQkdvTFd0bEdWTTQwWUYwbFZfSGxDR2FvVVJEXzBXdDRTTjZxZHVBbFFrRWhTQjRreEFyRE1nTDN6WlV1d2tEY0JoYWdvOFoyblVOM2FFcE1td29vREt0RE5YbWlFNlRCOGRla0xySjdpMkdOdjFUZVVhNg?oc=5",
@@ -1727,6 +1909,7 @@
   },
   {
     "id": "escola-de-campeoes",
+    "origem": "plano_tse",
     "titulo": "Criar o Programa Escola de Campeões (esporte competitivo nas escolas)",
     "categoria": "Esporte e cultura",
     "prazo": null,
@@ -1748,6 +1931,7 @@
   },
   {
     "id": "categoria-feminina-esporte",
+    "origem": "plano_tse",
     "titulo": "Restringir a categoria feminina do esporte a atletas do sexo feminino",
     "categoria": "Esporte e cultura",
     "prazo": null,
@@ -1770,6 +1954,7 @@
   },
   {
     "id": "manter-programas-sociais",
+    "origem": "plano_tse",
     "titulo": "Manter os programas sociais existentes",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1790,11 +1975,25 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Proposta de Flávio Bolsonaro ameaça demarcação de 286 terras indígenas",
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNR200a3o5cHlkNmhhal9LcGk4cXBzaEM2T3VfTlYzZFBjSVltZ3d6RXdtZ3pqQkR5dTFGMUJvMnFMeXZ6a0VjVmNNQzZUanpaeTJ2MlltcXYzclREdFZ4SkNZalpVSlhzeGpHSEVoMWhpWFJGZzUtcVNETzBuV0QzWXF5VGFUSUVZS09kckZPOWtUTEF0d2Z5VA?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Alma Preta Jornalismo",
+        "o_que_disse": "Afirmou que vai manter os programas sociais."
+      },
+      {
         "veiculo": "O GLOBO",
         "titulo": "Flávio afirma que 'ninguém vai tocar' em programas sociais como o Bolsa Família, mas não explica ajuste",
         "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPakJfdWFOTUg0ZHZsS2RvamU4ak4tQW5wdGZfcTZ5YzVYbnB1QVpwel85QUp0VHUtUE9DMDBNMDU1WWx1STBQV0pKNVJLYWo5NjdBaVdkRHRLbHVKWm5LNnB3TlhuMUl5aG1BY3lXSC1ZcVZONTg1ekE1LVhrMXNFemR1X284SGFybnBaQWZSaEUtcHVqejNLNm1UN3ByclJBQ1I5RmRGWW1KZ0Y5SGVhV1JvNG1LVS0wY01FSG1hQ3FtZHZ0QnlxZlFTYWVVUFpfTEhxSUIwMWFTMmRGei1UZkxQNklJZ1RHdWtMUWtXaFNsTUpiSExtV002dkNTZDJjWXdV0gGSAkFVX3lxTE5DanYybjBuM25mRkVoU3AtQkZDeG9pNWF2RkJ3Q253Zl9VWkFWZm42MjVsSU9zTWxwQm42Z1MtUEFVdDRkaDlfdlVUdi1kWF9OYnhra2hYQ0FiYllJamFJMmVOVkZxemhTUnVKY2tYVmRvMkRCMm1hT01VQXFDZGxucWxOUFJBWUI5S1dWbFlDcG1BRGhyWGpQWlJyRThPZTdFbnNPM3Vla0JaZGlycWlPSUVkWVRCVTU1cWlHYjNlS000U1dpYV96bEhqZm1vTFZBM2NLbkxrOWVIZUYzT0ZNaWNWaXZXY3hoendWbUlaMVBBd0dfTTZ6RXVsNXAyQjBLZ3JkRTY4MDhvNzV5MVVISEE?oc=5",
         "data": "2026-10-11",
         "o_que_disse": "Flávio Bolsonaro afirmou que ninguém vai tocar em programas sociais como o Bolsa Família."
+      },
+      {
+        "titulo": "Flávio promete manter Bolsa Família: “Bolsonaro triplicou”",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPY3lrM1JCT1VFM3FnS0hUSUJWTk1NRTBIWUE0aWNCamQ4M0xuWGZqd1JrTXg1Q0ZtY3ZyVlBXNWhIZE9NRm16TXRaNUpQd0RsU01zTDZJREF1VDVCT1ZNN1hkLTlDNjlWbklvMjNGTlVraFMtQmR5TGNRRERyQWhDUi1OdERsYjVMZk5jc0dmenA0dDdGTTBqQTRrSWRXaFAtYU9tOTFKaw?oc=5",
+        "data": "2026-10-11",
+        "veiculo": "Poder360",
+        "o_que_disse": "Flávio prometeu manter o Bolsa Família."
       },
       {
         "veiculo": "Poder360",
@@ -1811,6 +2010,13 @@
         "o_que_disse": "Flávio Bolsonaro declarou no horário eleitoral que vai manter os programas sociais."
       },
       {
+        "titulo": "Flávio Bolsonaro diz que vai manter programas sociais criados por Lula",
+        "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPT1Y4d0ZpeWF0UkVoRDVPM0tvajNsamFXQ3dOSDRNSjA5dlNRdVJ4emRqM3ZXQzNQNXJ5WWhDQ0htcURlVEpXTnpNRnJUd3dkN2xYY2pmdkFWYjNsS05PU3NHbjd4dzNBeVN3MVFuZmVjZTB5T3o4bk5TcUVRdnFiYUtMRDZUbHYtblFUelFQc0RoS3RPcEN0dUtZcHFxc2o2YkhLV2dpZ2J5OWJNbDZ0eFJGTkFlOWloWm41QlVFS1lRZEhwYWRhckZrOWtWdm9TQzB0QU1MVGNjTUlKclBTTHVR0gHwAUFVX3lxTE90MlN2NDMxYjNnMzJnMk05WlJwaTJTMHdJckNVYzg4WUlXcS1oVi1ubXpySHF0cFBiM0NjSmIwSTBneFQ0ZFVQWXZnSFdyTU1wQWV3Xy1XQ1FSbm5JZ2lvdFNYZ0hXdGlEdi1UN1Q0aldwV2Q3TnV0ZHgzekN2dHUtaDhISURNTjdwUmwxcEVhTzhxa2ZsUFhHRGpud1hRS183UlB1dTVwLVZBVTZjTGNyTlU5SnJOR0F2bXhRaHVYdDZfenBvVHZzSkN1Um9DRlJLLV9xLXVxT192LU9nbnJDNTdFT0hXOFR4RDN3MDlyag?oc=5",
+        "data": "2026-10-09",
+        "veiculo": "G1",
+        "o_que_disse": "Flávio Bolsonaro afirmou que vai manter os programas sociais criados por Lula."
+      },
+      {
         "veiculo": "Estadão",
         "titulo": "Lula diz que Flávio vai cortar programas sociais e senador reage prometendo aumentar bolsa família",
         "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxORVIwWFl6U1NKMmp1bGZFNnhjYVpNa1RCU1N2LTlfQ2ZOQ195ay1uaDZXTGt4RXRFYWZzalJpUGo1REVWUjVqal85WHVwSG1DclJwX3Rib0xvcmJ2WVpsVnI5R2Utc2tGR1kwYTMyajdiVlhoZmpjUmZWaTB0b0piUTBvUHNKTFl6elduVWF5ckVXUG5LZ0JiQ0h0NGVMOFVNYmVmZEEtNHJSYy11UVJTUWZ6V085c2thbWxpNllKX093aHNaMlpWVzh4RlFibDZKRGhYZmtR0gHbAUFVX3lxTFA3ZkVKVGtFMWdsWENRVkZhdWZxTlFVeHctUHkwUlNwYWpPWlNnZE02LU93cHBQd2VETjFPVzJLa1VYUGQwU2g4RGZQbGZwbWdta3ZsUlBMTEtmQUlGT25MZW1TZnhEbHh3M2k4Mjc1R1NSRlZHODdmMERqTTJmc1JzSnQ0VWhMOUNfekpJbXpiZzY0MVBWWXpXWVpZUERFOGtqV1BDbDE0aW51SHZYM1RvejNfT3NWcFVqRUV3NDZENElDaXlQa3NkeXRoUmtoN3Y5MGxWanFBTENkTQ?oc=5",
@@ -1822,6 +2028,7 @@
   },
   {
     "id": "retorno-imediato-beneficio",
+    "origem": "plano_tse",
     "titulo": "Retorno imediato e sem fila ao benefício após o seguro-desemprego",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1844,6 +2051,7 @@
   },
   {
     "id": "reduzir-custo-trabalho",
+    "origem": "plano_tse",
     "titulo": "Reduzir gradualmente o custo do trabalho formal",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1888,6 +2096,7 @@
   },
   {
     "id": "contrato-primeiro-emprego",
+    "origem": "plano_tse",
     "titulo": "Contrato de primeiro emprego (18 a 24 anos) com menor custo",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1910,6 +2119,7 @@
   },
   {
     "id": "contrato-50-mais",
+    "origem": "plano_tse",
     "titulo": "Contrato mais atrativo para desempregados com 50 anos ou mais",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1939,6 +2149,7 @@
   },
   {
     "id": "negociado-sobre-legislado",
+    "origem": "plano_tse",
     "titulo": "Defender o negociado sobre o legislado",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1961,6 +2172,7 @@
   },
   {
     "id": "banco-nacional-vagas",
+    "origem": "plano_tse",
     "titulo": "Banco nacional de vagas conectado ao RH das empresas",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -1991,6 +2203,7 @@
   },
   {
     "id": "minha-primeira-empresa",
+    "origem": "plano_tse",
     "titulo": "Criar o Minha Primeira Empresa (Sistema S + crédito da CAIXA)",
     "categoria": "Trabalho e renda",
     "prazo": null,
@@ -2014,6 +2227,7 @@
   },
   {
     "id": "casa-verde-amarela",
+    "origem": "plano_tse",
     "titulo": "Retomar o Casa Verde e Amarela com meta de 2,5 milhões de moradias",
     "categoria": "Moradia e saneamento",
     "prazo": null,
@@ -2045,6 +2259,7 @@
   },
   {
     "id": "retomar-territorios-faccoes",
+    "origem": "plano_tse",
     "titulo": "Retomar as áreas hoje sob domínio de facções",
     "categoria": "Segurança",
     "prazo": null,
@@ -2066,6 +2281,7 @@
   },
   {
     "id": "saneamento-2033",
+    "origem": "plano_tse",
     "titulo": "Universalizar água e esgoto até 2033 (Marco do Saneamento)",
     "categoria": "Moradia e saneamento",
     "prazo": "2033-12-31",
@@ -2089,6 +2305,7 @@
   },
   {
     "id": "nenhuma-escola-sem-agua-2030",
+    "origem": "plano_tse",
     "titulo": "Nenhuma escola sem água até 2030",
     "categoria": "Moradia e saneamento",
     "prazo": "2030-12-31",
@@ -2110,6 +2327,7 @@
   },
   {
     "id": "lixao-zero",
+    "origem": "plano_tse",
     "titulo": "Acabar com os lixões a céu aberto (Lixão Zero)",
     "categoria": "Moradia e saneamento",
     "prazo": null,
@@ -2132,6 +2350,7 @@
   },
   {
     "id": "crescimento-4-porcento",
+    "origem": "plano_tse",
     "titulo": "Crescimento sustentado de 4% ao ano",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -2153,6 +2372,7 @@
   },
   {
     "id": "licenca-por-decurso-prazo",
+    "origem": "plano_tse",
     "titulo": "Licença ambiental concedida se o órgão não decidir no prazo",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2180,6 +2400,13 @@
         "o_que_disse": "Flávio Bolsonaro prometeu acabar com entraves ambientais."
       },
       {
+        "titulo": "Em ato no Pará, Flávio Bolsonaro promete que vai acabar com “entraves ambientais”",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbE83amRTbWxmUm9SMldWRDcxZ2pDRlFSWWZmYnUybVZjQUF3dlNPbk83ZkdMY2NWVHZRc0VKMXZfdzJ1MGdWbzhnd3NtVWMxZjhjV1Y4SThmakdLbm5EclBHQ1FWc2JPMkVvb2hpWEdEYVBRNGp2QnBjVmNMMDRwWmxiYnM1ZmE3TjlSb1hNNjVIdkw5RG9JeFA3dmliUmZFYS1sUUU3V3lneFBx?oc=5",
+        "data": "2026-10-19",
+        "veiculo": "((o))eco | Jornalismo Ambiental",
+        "o_que_disse": "Em ato no Pará, Flávio Bolsonaro prometeu acabar com os 'entraves ambientais' que, segundo ele, travam o desenvolvimento econômico."
+      },
+      {
         "veiculo": "O Liberal",
         "titulo": "Flávio Bolsonaro defende licenciamento ambiental ‘sem ideologia’ durante visita a Belém",
         "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTWtYOUYxVHFUTDBjVUZ3LXNlTmo5SWl0eFFHTzVjWFhHdzZWZU16WjczRXJadG5WbmRZbkcyeW5xbGJXRzlZTEF5TzR0T1F1NUhDNUpWc192S1U3TjkzY0NYTjRCVGNTYmswWEJhaG9nQ3JWUy1CU01TWmNZZFdrTW4yZzJIdGlLSUVDVGk3cGRqREo3cXk2dGhUNVVFelFFUWQtbzFGc1VZTmlDU0hyQkdwS0pybTlSLVpVdGhCbXloY0NXblFDeg?oc=5",
@@ -2198,6 +2425,7 @@
   },
   {
     "id": "estabilidade-regras-20-anos",
+    "origem": "plano_tse",
     "titulo": "Estabilidade de regras de até 20 anos para grandes projetos",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2219,6 +2447,7 @@
   },
   {
     "id": "autonomia-terras-indigenas",
+    "origem": "plano_tse",
     "titulo": "Autonomia de indígenas e quilombolas para atividades produtivas em suas terras",
     "categoria": "Meio ambiente",
     "prazo": null,
@@ -2257,6 +2486,7 @@
   },
   {
     "id": "r900-bilhoes-infraestrutura",
+    "origem": "plano_tse",
     "titulo": "Investir R$ 900 bilhões em infraestrutura em quatro anos",
     "categoria": "Infraestrutura",
     "prazo": "2030-12-31",
@@ -2281,6 +2511,7 @@
   },
   {
     "id": "fundo-imoveis-uniao",
+    "origem": "plano_tse",
     "titulo": "Fundo de infraestrutura lastreado em imóveis da União",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2303,6 +2534,7 @@
   },
   {
     "id": "corredores-logisticos",
+    "origem": "plano_tse",
     "titulo": "Criar os Corredores Logísticos Inteligentes",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2323,6 +2555,7 @@
   },
   {
     "id": "ferrograo",
+    "origem": "plano_tse",
     "titulo": "Destravar a Ferrogrão",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2343,6 +2576,7 @@
   },
   {
     "id": "trem-do-nordeste",
+    "origem": "plano_tse",
     "titulo": "Trem do Nordeste: 1.400 km ligando sete capitais",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2393,6 +2627,7 @@
   },
   {
     "id": "transnordestina",
+    "origem": "plano_tse",
     "titulo": "Concluir a Transnordestina e estendê-la à Paraíba e ao RN",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2434,6 +2669,7 @@
   },
   {
     "id": "hidrovia-tapajos",
+    "origem": "plano_tse",
     "titulo": "Destravar a Hidrovia do Tapajós",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2463,6 +2699,7 @@
   },
   {
     "id": "obras-hidricas-nordeste",
+    "origem": "plano_tse",
     "titulo": "Concluir ramais da transposição e obras hídricas do Nordeste",
     "categoria": "Infraestrutura",
     "prazo": null,
@@ -2489,6 +2726,7 @@
   },
   {
     "id": "fracking",
+    "origem": "plano_tse",
     "titulo": "Permitir a exploração de gás não convencional (fracking)",
     "categoria": "Energia",
     "prazo": null,
@@ -2539,6 +2777,7 @@
   },
   {
     "id": "armazenamento-energia",
+    "origem": "plano_tse",
     "titulo": "Programa de armazenamento de energia com baterias de grande porte",
     "categoria": "Energia",
     "prazo": null,
@@ -2560,6 +2799,7 @@
   },
   {
     "id": "polo-data-centers",
+    "origem": "plano_tse",
     "titulo": "Transformar o país em polo global de data centers sustentáveis",
     "categoria": "Energia",
     "prazo": null,
@@ -2611,6 +2851,7 @@
   },
   {
     "id": "renovabio-exterior",
+    "origem": "plano_tse",
     "titulo": "Ampliar o RenovaBio para vender créditos de carbono ao exterior",
     "categoria": "Energia",
     "prazo": null,
@@ -2634,6 +2875,7 @@
   },
   {
     "id": "seguro-rural",
+    "origem": "plano_tse",
     "titulo": "Ampliar o Seguro Rural",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -2663,6 +2905,7 @@
   },
   {
     "id": "armazenagem-safras",
+    "origem": "plano_tse",
     "titulo": "Ampliar a capacidade de armazenamento das safras",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -2693,6 +2936,7 @@
   },
   {
     "id": "fertilizantes-nacionais",
+    "origem": "plano_tse",
     "titulo": "Apoiar a produção nacional de fertilizantes (potássio e fosfato)",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -2715,6 +2959,7 @@
   },
   {
     "id": "titulacao-rural",
+    "origem": "plano_tse",
     "titulo": "Retomar ritmo de titulação e regularização fundiária rural",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -2755,6 +3000,20 @@
         "o_que_disse": "O candidato propôs a ampliação da regularização fundiária no Pará."
       },
       {
+        "titulo": "Perigo: Flávio promete ‘liberou geral’ ambiental após Lula alcançar recorde contra o desmatamento",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQTFpxOVI1dmxCWEVnN2RzNGNyQVRxWHE1NXd3eVhObVlQYjhuVmxwTElZNEpBWTRLRGpHMWwwVzAzNmg0ZThSZ203VU4ycTNFMG1oeU1UWTVVWDgzQlAwV2Z4cVMxamx1cDRIMURzTXBDcHFuWnBrQXhGZkpJSEJWV1ZIQl9fZmFKX1RfVmVlUUR2OGpEc1puN1ZqQXFid1hNX0tYX3huclpMNXVqcTJRWTVVNNIBuwFBVV95cUxPc2tyUVBNa3Fva3ZlZ3Y2OFRpZW8tU0xvUTNRdmVUbFZVdmlDU1JuLXhmcm9ScWpRcHY3ZFRtT1Fma3dBZnh2RWphSFA5VHA3Y2ZUSUZjTUxWenVWYkJiTVdKQ2dDMHQ3VHA0Y0puQzJrUktSSUZINV9MQUoxNmlEamF5ZU5NTXM3UGdQQkNXOXZLVXdxSDdseGhCLXRObENUYnNxczAzNGljTnhTbzZ3dEFYenBISWRvTGJj?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Partido dos Trabalhadores",
+        "o_que_disse": "Flávio Bolsonaro prometeu regularizar terras no Pará e rever restrições ambientais."
+      },
+      {
+        "titulo": "No Pará, Flávio diz que vai acabar com ‘entraves ambientais ideológicos’ e fazer regularização fundiária",
+        "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxQSjNxMl9IRmg3UkdWTTZXTnQ1NDM3NWFVX2I3bnZwOGdTTEJXUzJ6NjVqZ3dYb1JzZ09YWFp1RXJfUVN3WEI0TmNBajBPaTJxOWpzX0pGaVpId0RuX25lYm5XcUcxUEU4WURtVmFoQ2FRSVNlQ01teWQ5Tnp0ZW1TaDBiR1hldkdxZExqb3F0UEJ6YUZ3SXUxYWdqVGh5OHZDd1dfTWdKQmNsOXNMVFlRYkdRbWhBN1BQNU1LcU1rYVVSejZWYm1kYjdpUzRtN2V0TVhtVEdzRnNIUGVKem9nOU0wckVHS0pWdGcwVWZvSExxXzB5UmlaTWdKY9IBigJBVV95cUxQdW16c0lpOENTMGF4ODV6QXRrS1ZNblV0enVTbnFhOHFSTnpwc0tKaE9fS1BxMXVEQ3M3ZE96aGFZeTEtM3BFS0hzcGtIWm9LNW5HQ3BVNnBFUGJ4dHJQZldmcWh6Uy1QSUg0R3N6TmNfYVB5Vmc5b1h5bk5TTXYzdlhQSEFHeW1ZcjdEQ1FWWDdmcF9oYkF5d2tjWkpkTG1kZWhwVDFfTG90YUVqeFpac2NEb3ZyYTBxdzI4NUFzOGlmU0VrR2l3bi0yWnQxVmNLM2ctelFzR1lzeXVURTUyeVNyY3lmNEtFdm5RTDZVdnJuRjRFR1NIaGFhMG02bnlIVjNDMmNqN2M1Zw?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Valor Econômico",
+        "o_que_disse": "No Pará, Flávio Bolsonaro prometeu realizar a regularização fundiária rural."
+      },
+      {
         "veiculo": "O GLOBO",
         "titulo": "Flávio Bolsonaro diz que vai ampliar regularização de terras e que produtor do Pará poderá fazer 'o que quiser' na propriedade",
         "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPQjdBOHdYMk5ybWJlVjdmNEJETHF3MmJzb0hER1h4NndDemh1dDU4Y2gtSTZaenFWcENjRXdmYUlHM3ZPQ05lRlJyU2w3QlJ2b2hVMGpiRXlCajE3b0ZDVFB5anBGdzYtSXZyalp1OU9ENHY1cUY3Y0UwWUpPVzdfa2hqYkNmeVlaejJjdzBjMjJSSXllWE94OTExVE9lODFuVllRX2ZjbVBkUUJzUFE4NVhmdl8xTnJlREJKZWwwOW9HWF9yRUlrNWhicVhGdkMyVl9DYkoyNVF4YnRObHltMmRhcmFoMjFocXhLX051OWR6Zmx0VndLREcwUnBNeDRGZXg3RmplbjJYT2hvaTE2TGFVRG5rOFM4RWx3TmppMVRVSXfSAbICQVVfeXFMTUF0TG5ZdTJRMHJQUk1DLU5pSVBqdVlsNzJjclVpZUJPWVBRR1Q4bmpHWE5jc0xoeDNlelNrRUxEMXhnSzR1bDJwZVNKY3FkMHJzMERnU0syMlBIbWg1TTM5d3ZFV1Q3RWtDbXAwQWR4UkxZWE9BYUdCNmREdE5fZ0tUSVkxaVpqUEdjZnNWdkw1VVZXd3d4UExMNTl0ZU5VZ2tNT3dxTnBvdTVXVUdYRGJWRnowcUFzdXRlUFp6Z0cybktGdzRNeE9laGFmUkY2bGVNU0lTeUtZZWo2R09LV08zRU1yRG41SS1zVUVKSndRV0dFSENyLVIxNExjSWFhQ3ZyWHdBVTZPc09ZNHdwV2d0amZELWp0X0RtZ1R2WUI3MGw4S2Vjdnh0SW8xQzBZakR3?oc=5",
@@ -2773,6 +3032,7 @@
   },
   {
     "id": "outorgas-irrigacao",
+    "origem": "plano_tse",
     "titulo": "Simplificar outorgas e ampliar a área irrigada (Matopiba e semiárido)",
     "categoria": "Agronegócio",
     "prazo": null,
@@ -2821,6 +3081,13 @@
         "o_que_disse": "Flávio Bolsonaro propôs ampliar a irrigação em região afetada pela seca de rios."
       },
       {
+        "titulo": "Flávio Bolsonaro diz que vai retomar benefício fiscal a eventos criado na pandemia e criticado por desvios",
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNaVh5MVFKS2lJN2swMnZRSF81Nk5wa2pzWTVNMEE2WnFyWENyZ3pjTGJHc3NOTzQ4SVlqZUNPLXYyYUhOVFF2X2NMVUNPZEZreldMTzdTaVNQRXNHbEtsLWs1OXVuejFtRlpxZC04Nmt3REFiQklLeE5HbFczbzljVWlqaTdoTTZQdlhRbFpiMWEyeUJNMlFERS1faWMwd0sxS3NrMlUtaXBMZG96dVdpcnBVZW5RZ25qNlF6T0RDTkpXM01SNTI0eTd0VERyU3ZEY0Ffenc1Vy1lTGhzZ3BrMjlhVHlndnd5SjB4LUU2OWUtUzl6N0Nv?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Folha de S.Paulo",
+        "o_que_disse": "Flávio Bolsonaro prometeu ampliar a irrigação no cerrado."
+      },
+      {
         "veiculo": "Portal 98 FM Natal",
         "titulo": "Em Natal, Flávio Bolsonaro defende programa de irrigação para o RN e o Nordeste",
         "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTnRyNEc1SFZCcXZGZW1pU3hOX1lqSFItY19WV2VncEhaSmdOVTU5QTMzRzZzQS1mTGxKQXVtbW5iWlBQWDNDUXdFRjlwY3ZmVy00WDJQZGpyQ3BFLUZ4YXBEUnZ3R0k3YU1hNjhrd2Fua1JsUkd1Z08wZl9VRHJlT2tRU1hyQWhnT09yZzAzVDVLaFlsZnJGNWpZV2RmNVktdDhMU0ZReUs3T0VkS28tVlF4Mmg4bGs3TXhJMU0tTkozbHM?oc=5",
@@ -2832,6 +3099,7 @@
   },
   {
     "id": "saf-2027",
+    "origem": "plano_tse",
     "titulo": "Implementar as metas de combustível sustentável de aviação a partir de 2027",
     "categoria": "Energia",
     "prazo": "2027-12-31",
@@ -2853,6 +3121,7 @@
   },
   {
     "id": "estrategia-nacional-ia",
+    "origem": "plano_tse",
     "titulo": "Estratégia Nacional de IA para micro, pequenas e médias empresas",
     "categoria": "Tecnologia",
     "prazo": null,
@@ -2874,6 +3143,7 @@
   },
   {
     "id": "mercado-carbono",
+    "origem": "plano_tse",
     "titulo": "Consolidar o mercado regulado de carbono",
     "categoria": "Meio ambiente",
     "prazo": null,
@@ -2904,6 +3174,7 @@
   },
   {
     "id": "desmatamento-ilegal-zero-2029",
+    "origem": "plano_tse",
     "titulo": "Zerar o desmatamento ilegal até 2029",
     "categoria": "Meio ambiente",
     "prazo": "2029-12-31",
@@ -2931,17 +3202,32 @@
         "o_que_disse": "Afirma que vai zerar o desmatamento ilegal."
       },
       {
+        "titulo": "Debate da Globo: quem ganhou e quem perdeu no último confronto entre Lula e Flávio Bolsonaro?",
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1lMU9TLW1PTXEtYnhuUmVRaXRfYlg3Ml9OSUpKWEZhWUhqWHhQejczd0syT29saE9PV2t3LUdFMXVMdFNKNEI1QzBsdWw4VU93V3E3Y0E2dHhFRF8tSHY0dm9Iaw?oc=5",
+        "data": "2026-10-24",
+        "veiculo": "BBC",
+        "o_que_disse": "Vou zerar o desmatamento ilegal e eliminar travas ideológicas dos órgãos ambientais."
+      },
+      {
         "veiculo": "Observatório do Clima",
         "titulo": "Flávio tentou legalizar desmate; agora promete zerá-lo",
         "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE54QkppdkZUcTVCek9qU1JRaWhOU29ydENGMHA1NDJEaVZ6WWc3SV93elJRMHRGT29vaDhjck5WM0xXMmZTU2w4WWFBUTh1SGJlbms2VjhReVd1R1V0RDFNX2RXLW5WcEtQUG1PNWxMbEhzelJlODZOeUJlclY?oc=5",
         "data": "2026-10-13",
         "o_que_disse": "Promete zerar o desmatamento ilegal."
+      },
+      {
+        "titulo": "Proposta de Flávio Bolsonaro ameaça aposentadorias e pode reduzir renda de idosos",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPN05zazZXTVJFTnE5SEFfaUZhQXljeWMzOEp4bWhNWlFYQllaS3RWT0RCYWhSb0N4TmN2RURWMEttUE9wb0VpbFkyQXZ1cEFvTWhCaUZ5dEpLWVo5d2hudEJxUTVTdDVVNldfX1RZM2JBN0c4QkZSU0QyblY4ZkJtbUNIdGcyNV81dkdLNGJKODlwS1hsZkZjMUdFUEd0bDR6T1loY19GT01zQQ?oc=5",
+        "data": "2026-10-09",
+        "veiculo": "Fundação Perseu Abramo",
+        "o_que_disse": "Prometeu zerar o desmatamento ilegal."
       }
     ],
     "historico": []
   },
   {
     "id": "eliminar-superposicao-ibama-funai-icmbio",
+    "origem": "plano_tse",
     "titulo": "Eliminar superposições entre Ibama, Funai e ICMBio",
     "categoria": "Meio ambiente",
     "prazo": null,
@@ -2978,6 +3264,7 @@
   },
   {
     "id": "transparencia-ongs",
+    "origem": "plano_tse",
     "titulo": "Exigir transparência de ONGs com recursos internacionais",
     "categoria": "Meio ambiente",
     "prazo": null,
@@ -3000,6 +3287,7 @@
   },
   {
     "id": "reaproximacao-eua-argentina-israel",
+    "origem": "plano_tse",
     "titulo": "Reverter o afastamento com Argentina, EUA e Israel",
     "categoria": "Relações exteriores",
     "prazo": null,
@@ -3020,17 +3308,32 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Flávio Bolsonaro promete aderir a projeto de Trump que prevê entrada de soldados dos EUA em territórios latino-americanos",
+        "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNaXhPY1dDcFo1ZTBtVlhCaVVDMDZidEVrVFBYdVN1VFg3MzBUdURQbDA4bkNOMjdlVWpvZW5zTmEyRE9Wemt2d2VVcGhuckxVTHJ5eHZfUVh1V3BHVVo3WXEwOHdoZ2JsZ2I5X29DekhDWG5CTTRQMGt3X1JkaXNVVUE3bjZyaTJ2TDJ1RFZZY1ZyY205SEYtTThXV1pQM3dtWi0zbVZ1VGpKQU5DQUxyR1ZWTTdURVVLU2xELVpmNHhNZHpKbDlmai1yX2FTdkxuSWJaUmRRU1F4cTNzTEtDSWtkZ21DZG13ckFaX1ZWVUl1bGV5QTJfRg?oc=5",
+        "data": "2026-10-16",
+        "veiculo": "Brasil de Fato",
+        "o_que_disse": "Flávio Bolsonaro prometeu aderir a um projeto do presidente Trump que prevê a entrada de soldados dos EUA em territórios latino-americanos para combate ao crime."
+      },
+      {
         "veiculo": "Agência Brasil",
         "titulo": "Lula defende Sul Global; Flávio quer proximidade com EUA e Israel",
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOT0ZvTXIteXBBOEZBNUctVkptUWlnNEhPN0R0cG9OV0x4aV9vcGFtdjI2aTh1Z3FyS1VIdms0d1NNQjVBSTRzTEhQSW5kTWoxQUNyYi1sdTZkOERCZXlpekhfa2hpSzdkdzRtZzBRd2FfR1VuRnhUT2htMnhxSE4xdWhDVGN0Q2JkZktkVTdLTFlvQzgwN2JYUnVTSVBsRFdpamZzRF91QzhIYUtsTzdSVmNyNmRXanRfS0VWb3pvTk9OUGtjT2c?oc=5",
         "data": "2026-10-13",
         "o_que_disse": "A reportagem destaca que Flávio Bolsonaro busca proximidade com os Estados Unidos e Israel."
+      },
+      {
+        "titulo": "O que Flávio Bolsonaro prometeu a Trump caso seja eleito sobre Pix, Mercosul e redes sociais",
+        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xNTNrR3I2TlZLRUdrT0ozaE5SMEw4ZHdDdHE1RDNSaDRlQzg3aHI0VGVEaS1FZzJVODFmam84MXhxTWRsWGtRb3ZMZURLQkJ0djJ5c3B6VEhpSzJpVUY3UUNB?oc=5",
+        "data": "2026-07-02",
+        "veiculo": "BBC",
+        "o_que_disse": "Flávio Bolsonaro prometeu a Trump mudanças no funcionamento do Pix, na relação com o Mercosul e na regulação de redes sociais caso seja eleito."
       }
     ],
     "historico": []
   },
   {
     "id": "adesao-ocde",
+    "origem": "plano_tse",
     "titulo": "Retomar o cronograma de adesão à OCDE",
     "categoria": "Relações exteriores",
     "prazo": null,
@@ -3052,6 +3355,7 @@
   },
   {
     "id": "fim-iof-cambio",
+    "origem": "plano_tse",
     "titulo": "Fim gradual do IOF sobre câmbio",
     "categoria": "Custo de vida e impostos",
     "prazo": null,
@@ -3073,6 +3377,7 @@
   },
   {
     "id": "stf-fim-foro-originario",
+    "origem": "plano_tse",
     "titulo": "Acabar com as competências criminais originárias do STF",
     "categoria": "Instituições",
     "prazo": null,
@@ -3092,6 +3397,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Flávio Bolsonaro detalha mudanças constitucionais que pretende defender",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZERpWUFtQzNNWWhHYUFoNU40WFBSblN6SXA2d0ViYndNTmpUbzBHTXFNbWlkQm9taHE0VzNYT1h3U0doc25UTVl6NXNHenNBZmdnazc5dTUzQzEyaFhtVUREOUlxcWJlQVl4cDM1X2Y3ZFpoNHlLQzhnamlkMUt4QkNPbGFnSDhVZHBIMTVmZW1UZE1hckVXc1FadVFTV2NNNl8xa1RlZ3R0aUk0UHRyWTBEY0IxdEZjVER3UF9DcmtqeUMxSzZnMk1XQVhWc0Vocmt4bjRYcEVHenfSAeoBQVVfeXFMUHNETHQxWVlYS0dreGNBTkROOHhzTldFRmNkVE13UVRfdUxuQTJscnAzNTEzb194aDZHeDI2SWZDMGF0akJtME9mTGZLdkthSFF4ekFsYU83TzFSVnlhalRtTTFyRnRkYWJGbzZYVGx6WXZKbnlmbFdONmRjQlR2Um9JWFZvVC01TUNmSVloVkc4QkxrUWFfTGN6SWIwQndzR2FrNjQwejNxZ2JuY1pQd2V3ZnhjVzJ6bkdpYjhOVWdvQjl0TzlsR0w2NVpQUnlscmJFbS0tcnJTUVJ1cl94LXRXRFF1Zm1YVTVB?oc=5",
+        "data": "2026-10-07",
+        "veiculo": "CBN",
+        "o_que_disse": "O candidato afirmou que defenderá a alteração da Constituição para remover as competências criminais originárias do Supremo Tribunal Federal."
+      },
+      {
         "veiculo": "Congresso em Foco",
         "titulo": "Flávio propõe tirar processos criminais e reduzir competências do STF",
         "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOREVMUVloSHc0TzY3ZzFYMDVYQWNTekFhT3dBeE54UjRGOWpiRG13LUhGSERwbHRkeWVQY1drbTNnSE5zTlBBTlZ3OGVYMWtIREZoZ0RDMi0zRzI4em9qZFVxcWJfd2JDeWpGbnkwRGRnTVd5VmR3NEQ0SEdYRzZNbjdjMFR0VkpveGJpVy0zdmZVTkhnRHFXdGN4bFdHVDJYU05mYVpoQXBnWjRzYjg1RkU1Z3F4WHNiRlhv?oc=5",
@@ -3103,6 +3415,7 @@
   },
   {
     "id": "limitar-decisoes-monocraticas",
+    "origem": "plano_tse",
     "titulo": "Limitar decisões monocráticas do STF",
     "categoria": "Instituições",
     "prazo": null,
@@ -3120,6 +3433,13 @@
     "atualizado_em": null,
     "referencias": [
       {
+        "titulo": "Flávio Bolsonaro detalha mudanças constitucionais que pretende defender",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQZERpWUFtQzNNWWhHYUFoNU40WFBSblN6SXA2d0ViYndNTmpUbzBHTXFNbWlkQm9taHE0VzNYT1h3U0doc25UTVl6NXNHenNBZmdnazc5dTUzQzEyaFhtVUREOUlxcWJlQVl4cDM1X2Y3ZFpoNHlLQzhnamlkMUt4QkNPbGFnSDhVZHBIMTVmZW1UZE1hckVXc1FadVFTV2NNNl8xa1RlZ3R0aUk0UHRyWTBEY0IxdEZjVER3UF9DcmtqeUMxSzZnMk1XQVhWc0Vocmt4bjRYcEVHenfSAeoBQVVfeXFMUHNETHQxWVlYS0dreGNBTkROOHhzTldFRmNkVE13UVRfdUxuQTJscnAzNTEzb194aDZHeDI2SWZDMGF0akJtME9mTGZLdkthSFF4ekFsYU83TzFSVnlhalRtTTFyRnRkYWJGbzZYVGx6WXZKbnlmbFdONmRjQlR2Um9JWFZvVC01TUNmSVloVkc4QkxrUWFfTGN6SWIwQndzR2FrNjQwejNxZ2JuY1pQd2V3ZnhjVzJ6bkdpYjhOVWdvQjl0TzlsR0w2NVpQUnlscmJFbS0tcnJTUVJ1cl94LXRXRFF1Zm1YVTVB?oc=5",
+        "data": "2026-10-07",
+        "veiculo": "CBN",
+        "o_que_disse": "Flávio Bolsonaro mencionou a intenção de limitar o uso de decisões monocráticas por ministros do Supremo Tribunal Federal."
+      },
+      {
         "veiculo": "Gazeta do Povo",
         "titulo": "Flávio propõe limitar decisões monocráticas do STF e mudar regras para indicação de ministros",
         "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPb2xxLWY3dE9BYjNqa1ZtdkhhRGRVcUpMNWEzY21MSTFEUjNjOFZDU3hUUGxMVzY2X0ZXN1d2XzVTdl9VU1gwbUdWdWRhQU42RVRKXzFfak1BU3hIRWUybDJqX3ZhUHBvSVpYQmk5UXZqdjlEZG4tWUFxNERMSXpMU3ZSeERHSzFLU181ZVlHMVRPWmhYcHpuenVhcmxDcmZuTC1CWXAwdXhsZkc2QXJnSlV2Z2RfMjZZMVB6OVhWMzc1bkI0Z2xKSQ?oc=5",
@@ -3131,6 +3451,7 @@
   },
   {
     "id": "quarentena-ministros-stf",
+    "origem": "plano_tse",
     "titulo": "Quarentena de 1 ano para ministros de Estado serem indicados ao STF",
     "categoria": "Instituições",
     "prazo": null,
@@ -3188,6 +3509,7 @@
   },
   {
     "id": "fim-reeleicao",
+    "origem": "plano_tse",
     "titulo": "Acabar com a reeleição para Presidente da República",
     "categoria": "Instituições",
     "prazo": null,
@@ -3205,6 +3527,13 @@
     "status": "nao_iniciada",
     "atualizado_em": null,
     "referencias": [
+      {
+        "titulo": "Se eleito, Flávio Bolsonaro teria que superar obstáculos constitucionais para rever o fim da escala 6×1",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPT2cxTm5QY0VJUkFEVlgwSEtBUEpnRm9FWFc1R1FZbWwxaFNEN2xTdHU0eks0aGF1QjRfWVFfS0dScVdWaHhvd3NUNzRDUXNwODRFaXM0VnFlSmpvY1kwTWIwUEFnOUVLaUpWRXR0VkhjWWUxcUR1OVktTUdlYnpweVJNcDZnN3NDeW0zNzFVcjRyWmtLeWhwaVFha0JFQ096OGxzNlRWSW9PeDlEWHdMaVhLenZtUkxQeHd1WWlIVUtYQzJoc0VQeVdTdlFUdw?oc=5",
+        "data": "2026-10-21",
+        "veiculo": "JOTA Info",
+        "o_que_disse": "O candidato defendeu o fim da reeleição para o cargo de presidente da República aplicando-se inclusive ao seu próprio mandato."
+      },
       {
         "veiculo": "Agência Brasil",
         "titulo": "Em sabatina, Flávio nega tentativa de golpe e defende fim da reeleição",
@@ -3239,12 +3568,27 @@
         "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQY1VpNjlXRzlrakpvWGtxeExFYnZTY1h2Uzdpd2RWSmJwdEhnb1lwV25yOG15dTJ1UXNVS1BBZGhZM2J3X2FPWHZLVDdlRl9Uc2s4QzlYRGhWcVo0eFhEckhuSGs4Vlc3TllvcUZCWVNaMGlzcURYOVY2VzJTRjFDZy1FMA?oc=5",
         "data": "2026-10-08",
         "o_que_disse": "O candidato Flávio Bolsonaro defendeu o fim da reeleição para o cargo de presidente."
+      },
+      {
+        "titulo": "Corte de R$ 200 bilhões prometido por Flávio Bolsonaro acende alerta para o Farmácia Popular",
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNcXBEbGttcmpjQ0FTaHptZjU3TDJJcTFyYm9uY2JjSUxtcWJnMXE5RDh1cVl3VUNVYWJDUy0zb2ktUlQ5bDhkcWhVbDJTZUZWaE5kdU1fV09teFdnc1VsT0lOS3c2V2RpdlR4amI5amFpX1puUFJpelFkbHhwekdjM0pTeGRzRVpKeFdSaUk4WEtDbzVNalhqMks3LXkwLW5IVUZBQ0RkWUo1NG1pamE5cVlGeTRjTWM?oc=5",
+        "data": "2026-10-08",
+        "veiculo": "Fundação Perseu Abramo",
+        "o_que_disse": "Prometeu propor PEC para acabar com a reeleição para presidente."
+      },
+      {
+        "titulo": "Flávio Bolsonaro diz que fim da reeleição já vai valer para ele",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQRWJJb2l3aVpCajFNRXlCSjRrMTdfM01BLTV3UUMzemZhVXM1YmstWUk3OTBvRTV0eFFXSEFCMDNNT19CdE1GTE0zMkNKdWFZQjdRY2FzcHlnTVZzdE1QdWlFaFJUMlNqNnlkZk03cERvVlJ1WFpPdG9Pb01nYnB3WWV5TUtLTUdWZllNVkk0c3dncXRGY0lrYU5uUzZjZlJGalBUNEozNmhIcFhCcF9hT1lmSnN3ZGJGYkpNVXJzZU1NX1BfVVRFb3FYNEpiSVBs0gHfAUFVX3lxTE9KYzQ3MlBMaGt4eG1VbzhNTnY5ZWppckV6NmJEU0lIR3MwWVBoQWc2ZzhWdTNfNUUzbU9Db1hkZjJPRkEzUlZsVno2aV9veWJ1NFFSblVOR19xSHAtYnJuU0pMUE1aM0E2SU0yci00cGZSNGtWeEtjTDZaaklwSTZKOVRUOFp1N0ZXMk82Sm4ySlhEMEVmRDk5RGFCTHM4MmpkRzlBdlFmY3Rob01OX3AtRFFOZzJlNFF3bnZjNUpUT013NERLT082dDNLS3o2SmRVbjVwMGdPd0FjeWdhcmM?oc=5",
+        "data": "2026-10-08",
+        "veiculo": "CBN",
+        "o_que_disse": "Flávio Bolsonaro declarou que o fim da reeleição já vai valer para ele."
       }
     ],
     "historico": []
   },
   {
     "id": "tesouraco-censura",
+    "origem": "plano_tse",
     "titulo": "Acabar com estruturas de \"Ministério da Verdade\" e revogar atos contra críticos",
     "categoria": "Instituições",
     "prazo": null,
@@ -3276,6 +3620,7 @@
   },
   {
     "id": "emendas-transparencia",
+    "origem": "plano_tse",
     "titulo": "Mais transparência e rastreabilidade nas emendas parlamentares",
     "categoria": "Instituições",
     "prazo": null,
@@ -3298,6 +3643,7 @@
   },
   {
     "id": "cortar-10-ministerios",
+    "origem": "plano_tse",
     "titulo": "Cortar no mínimo 10 ministérios",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3316,11 +3662,27 @@
     ],
     "status": "nao_iniciada",
     "atualizado_em": null,
-    "referencias": [],
+    "referencias": [
+      {
+        "titulo": "DECISÃO 2026: Flávio Bolsonaro promete cortar gastos públicos em live com Gusttavo Lima e Nikolas Ferreira na véspera da eleição",
+        "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNUjMtWEpQOUVIMmRDbkFVclY3TjE3YTh2SlJGMjlVMjh4YjFpdjFuLXJFa3BHNXFuUUVLaUVmWW5nSnFsM2tjV3dhY0hEX1ZlWmYtSnRKWHVHZklOaktMaEhWYTdHOGsxVzNKSFEwOFRGM0xjUm9FR0VsM2xGemR0enZENmJQc2p1dDU0bnZPMEFXbFROMFhEWm9pVzdCYzhLUTJCTVNzYnFOaUJuSjlobGU4OW9IM05CMjdGRGhOZmF6V1ExclROVWFFT0c0SUEybHh4OE10QmZTVTZLQjlqT2dqUnA3SnVxUERRbDJDWl92UDNmekswQzdnTDA0UQ?oc=5",
+        "data": "2026-10-25",
+        "veiculo": "Times Brasil | CNBC",
+        "o_que_disse": "Em live com Gusttavo Lima e Nikolas Ferreira, Flávio Bolsonaro prometeu cortar gastos públicos, o que inclui a redução do número de ministérios."
+      },
+      {
+        "titulo": "Flávio Bolsonaro propõe enxugar Estado e endurecer ações de segurança",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPcGRvRFBDcC1hdVFiUEpwUGF0cm1vNDgxZEU0OGRBamZpUDBybGdJQ1pZc2EtS3JMUHZlOEpMU29UUWdFYy03ai1sUGNLOHc2bDJIaWU3OWFMUF9fbkhyc3JXZUpuWXNHMm56UlJmX1FLUzA1MTRMTHEweUhtTEV3TllUQ0I5STZ4V3Jac1pUNXZhMkdpcWtUeGhSWXNaZGlidm5KamdHVFdHV3NrR3ZEQ3JIVF9LVHctN2hPVTBfOWMzTkl0OGc?oc=5",
+        "data": "2026-09-18",
+        "veiculo": "Agência Brasil",
+        "o_que_disse": "Flávio Bolsonaro propôs um enxugamento do Estado, incluindo a redução do número de ministérios e cargos comissionados."
+      }
+    ],
     "historico": []
   },
   {
     "id": "reduzir-cargos-comissionados",
+    "origem": "plano_tse",
     "titulo": "Reduzir cargos comissionados e despesas administrativas",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3352,12 +3714,20 @@
         "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOVWVJdFA2aFVFV2Z2QzhUMUFILV9BcGc2YlF5RU9maTNRbGFBaTJvcUx1T0dLTm5JTUduYWZENVN0VTBKSmpTV0l2elo5R2tjYnhhZ2p1RXhWejlZY2FiQ2JrVUVCVHpFbENXbDVQcTR3WThudTVTcGViZVJISTZnNlI3cFpuR0Nuc29kSjN0VUpMYXBHbU9ZMHNPS0JVT3JJSkhJYnltckhORjExV216dUl5c19wZW9XendOMmZZRmRpZWs?oc=5",
         "data": "2026-09-27",
         "o_que_disse": "Ele afirmou que pretende reduzir cargos comissionados e despesas administrativas."
+      },
+      {
+        "titulo": "Em 1º discurso de campanha, Flávio Bolsonaro promete ‘tesouraço’, homenageia Jair e critica Lula: ‘Caloteiro da esperança’",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMkFRbDZncmVRM21lcUdSVFNnVzQzdGtCOUg2TktVX0s2VTFVYUlraFRjMU13U1Z6c0JqQWk2NGtIQXVDQjZmeVhfd0JaQTdkOGZBeTVHQXRpempnaWNwQ2NSOG9CQ0lBbHZwOFRHbUNOSThQWGMzQUQwUVlpNFdTZ1ZLZVppOHlvVS1qUUJLYjlkRDhqTmtVV2lyNFM2YUNwTVNSTHVWcUhJeTlxV3pSaVJhUTNYTlF5U21QNGtKRGU2Z9IB0AFBVV95cUxQQTMtbnIxM1pZWGlBRUh6WklGQ3JkeF8wck9aTWhLc0EwSm52UFhFZDdkcFk5TmtpczVna1dESDFEMUM4NkVHVGprV1FYZ1JuT1VCTERXQ2l2MTZfbnJrRDZYOGJvVGZLTXRNUERZUzZPaURHRTVRX0pRZGtmeXJDdktYaExiRFJURHRGdUlJUjRYclF2WUhXRUpjd3R1cV8tTE1XMVRlLXg3elJ6Z0dkYS1WNGhVeWZBY3Vfb2Q1WnNFNVBtZ1VHcldnWTNsLWpq?oc=5",
+        "data": "2026-08-16",
+        "veiculo": "G1",
+        "o_que_disse": "No primeiro discurso de campanha, Flávio Bolsonaro prometeu um 'tesouraço' para cortar gastos públicos e reduzir a máquina estatal."
       }
     ],
     "historico": []
   },
   {
     "id": "combater-supersalarios",
+    "origem": "plano_tse",
     "titulo": "Combater penduricalhos e supersalários",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3395,6 +3765,7 @@
   },
   {
     "id": "reforma-administrativa",
+    "origem": "plano_tse",
     "titulo": "Dar continuidade à reforma administrativa",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3439,6 +3810,7 @@
   },
   {
     "id": "fortalecer-lei-estatais",
+    "origem": "plano_tse",
     "titulo": "Fortalecer a Lei das Estatais e profissionalizar indicações",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3461,6 +3833,7 @@
   },
   {
     "id": "blindar-fundos-pensao",
+    "origem": "plano_tse",
     "titulo": "Blindar fundos de pensão das estatais de indicação política",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3484,6 +3857,7 @@
   },
   {
     "id": "retomar-desestatizacao",
+    "origem": "plano_tse",
     "titulo": "Retomar o Programa Nacional de Desestatização, caso a caso",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3542,6 +3916,7 @@
   },
   {
     "id": "nova-regra-fiscal",
+    "origem": "plano_tse",
     "titulo": "Apresentar nova regra fiscal focada em reduzir a dívida",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3573,6 +3948,7 @@
   },
   {
     "id": "superavit-primario",
+    "origem": "plano_tse",
     "titulo": "Entregar superávits primários",
     "categoria": "Economia e contas públicas",
     "prazo": null,
@@ -3595,6 +3971,7 @@
   },
   {
     "id": "pacote-antifraude-inss",
+    "origem": "plano_tse",
     "titulo": "Reeditar pacote antifraude na Previdência (moldes da MP 871/2019)",
     "categoria": "Previdência",
     "prazo": null,
@@ -3617,6 +3994,7 @@
   },
   {
     "id": "governanca-consignado-inss",
+    "origem": "plano_tse",
     "titulo": "Mudar a governança do consignado do INSS com dupla checagem",
     "categoria": "Previdência",
     "prazo": null,

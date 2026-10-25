@@ -1,20 +1,17 @@
-"""Referências de campanha para as promessas (imprensa, entrevistas, debates).
+"""Referências de campanha para as promessas do plano (imprensa, entrevistas, debates).
 
-Duas tarefas, rodadas sob demanda (não fazem parte do sync diário):
+Rodado sob demanda (não faz parte do sync diário):
 
-  python fontes/buscar_referencias.py referencias   # reportagens em que o candidato fez/repetiu cada promessa
-  python fontes/buscar_referencias.py candidatas    # promessas ditas em público que NÃO estão no plano
+  python fontes/buscar_referencias.py    # reportagens em que o candidato fez/repetiu cada promessa
+
+Promessas ditas em público que NÃO estão no plano: fontes/declaracoes.py.
 
 Busca no Google Notícias (RSS) no período de campanha e usa a cadeia de IAs
 (config/provedores.yaml) para separar o que é o candidato prometendo do que é só
 cobertura do tema. Resultados:
   data/referencias_campanha.json  → entra em promessas.json pelo gerar_promessas_flavio.py
-  data/promessas_candidatas.json  → revisão humana antes de virar promessa
 """
-import hashlib
-import json
 import logging
-import re
 import sys
 import time
 from pathlib import Path
@@ -34,20 +31,8 @@ log = logging.getLogger("referencias")
 CANDIDATO = "Flávio Bolsonaro"
 PERIODO = ("2026-06-01", "2026-10-25")  # pré-campanha, campanha e 2º turno
 REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
-CANDIDATAS = RAIZ / "data" / "promessas_candidatas.json"
 URL = "https://news.google.com/rss/search?q={q}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
 MAX_POR_PROMESSA = 5
-
-BUSCAS_CANDIDATAS = [
-    f'"{CANDIDATO}" promete',
-    f'"{CANDIDATO}" "se eleito"',
-    f'"{CANDIDATO}" proposta',
-    f'"{CANDIDATO}" debate',
-    f'"{CANDIDATO}" entrevista promete',
-    'Flávio "vou acabar com"',
-    'Flávio "no meu governo"',
-    f'"{CANDIDATO}" sabatina',
-]
 
 
 def buscar(c, consulta: str) -> list[dict]:
@@ -130,80 +115,7 @@ def referencias():
              com, len(feitas) - com, len(promessas) - len(feitas))
 
 
-# --- 2. promessas fora do plano -------------------------------------------------
-
-SISTEMA_CAND = f"""Você identifica promessas de campanha de forma apartidária.
-Recebe uma lista numerada de reportagens da campanha de {CANDIDATO} e a lista de promessas que JÁ estão no plano de governo (id: título).
-Extraia apenas promessas CONCRETAS e VERIFICÁVEIS feitas pelo próprio candidato (não por aliados, assessores ou adversários):
-uma ação de governo específica ("vou criar X", "vou acabar com Y", "vou reduzir Z para W").
-Ignore frases genéricas ("vamos melhorar a saúde"), críticas e opiniões.
-Para cada uma, diga se corresponde a uma promessa já existente (id_existente) ou se é nova (id_existente vazio).
-"titulo" no estilo: verbo no infinitivo + ação concreta (ex.: "Criar o programa X para Y")."""
-
-SCHEMA_CAND = {
-    "type": "object",
-    "properties": {"promessas": {"type": "array", "items": {
-        "type": "object",
-        "properties": {
-            "titulo": {"type": "string"}, "categoria": {"type": "string"},
-            "id_existente": {"type": "string"}, "indice": {"type": "integer"},
-            "o_que_disse": {"type": "string"}},
-        "required": ["titulo", "categoria", "id_existente", "indice", "o_que_disse"],
-        "additionalProperties": False}}},
-    "required": ["promessas"], "additionalProperties": False,
-}
-
-
-def candidatas():
-    promessas = armazem.ler_json(armazem.SEMENTE, [])
-    catalogo = "\n".join(f"{p['id']}: {p['titulo']}" for p in promessas)
-    ids = {p["id"] for p in promessas}
-    categorias = sorted({p["categoria"] for p in promessas})
-    cadeia = Cadeia.da_config()
-    docs, vistos = [], set()
-    with cliente() as c:
-        for b in BUSCAS_CANDIDATAS:
-            for d in buscar(c, b):
-                if d["titulo"].lower() not in vistos:
-                    vistos.add(d["titulo"].lower())
-                    docs.append(d)
-    log.info("%d reportagens encontradas", len(docs))
-
-    achadas = []
-    for i in range(0, len(docs), 25):
-        lote = docs[i:i + 25]
-        usuario = (f"CATEGORIAS POSSÍVEIS: {', '.join(categorias)}\n\nPROMESSAS JÁ NO PLANO:\n{catalogo}\n\n"
-                   f"REPORTAGENS:\n{lista_numerada(lote)}")
-        try:
-            r = cadeia.completar_json(SISTEMA_CAND, usuario, SCHEMA_CAND)
-        except SemProvedorDisponivel:
-            log.warning("Provedores esgotados no lote %d", i // 25)
-            break
-        for x in r.dados["promessas"]:
-            if not 0 <= x["indice"] < len(lote):
-                continue
-            d = lote[x["indice"]]
-            achadas.append({**{k: x[k] for k in ("titulo", "categoria", "o_que_disse")},
-                            "id_existente": x["id_existente"] if x["id_existente"] in ids else "",
-                            "fonte": {"veiculo": d["fonte"], "titulo": d["titulo"], "url": d["url"], "data": d["data"]}})
-        log.info("lote %d: %d promessas (%s)", i // 25 + 1, len(r.dados["promessas"]), r.provedor)
-    cadeia.uso.salvar()
-
-    novas = [a for a in achadas if not a["id_existente"]]
-    for a in novas:
-        a["id"] = re.sub(r"[^a-z0-9]+", "-", armazem_slug(a["titulo"]))[:50].strip("-")
-    armazem.gravar_json(CANDIDATAS, {"novas": novas, "reforcam_existentes": [a for a in achadas if a["id_existente"]]})
-    log.info("Candidatas: %d novas, %d reforçam promessas existentes → %s",
-             len(novas), len(achadas) - len(novas), CANDIDATAS.relative_to(RAIZ))
-
-
-def armazem_slug(texto: str) -> str:
-    import unicodedata
-    t = unicodedata.normalize("NFKD", texto.lower())
-    return "".join(ch for ch in t if not unicodedata.combining(ch))
-
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
-    {"referencias": referencias, "candidatas": candidatas}[sys.argv[1] if len(sys.argv) > 1 else "referencias"]()
+    referencias()

@@ -5,8 +5,14 @@
   <h1>Como funciona</h1>
 
   <h2>De onde vêm as promessas</h2>
-  <p>Do plano de governo que {{ presidente.nome }} registrou no Tribunal Superior Eleitoral (“{{ presidente.plano_de_governo.titulo }}”).
-    Separamos os compromissos concretos e verificáveis. Cada promessa mostra o trecho literal e a página do documento.
+  <p>Há duas origens, sempre identificadas em cada promessa:</p>
+  <ul>
+    <li><strong>Plano oficial (TSE)</strong>: compromissos do documento que o candidato registrou na Justiça Eleitoral. É a fonte formal.</li>
+    <li><strong>Declaração de campanha</strong>: promessas feitas em entrevistas, debates, sabatinas e discursos que não estão no plano.
+      Só entram depois de revisão humana, com a reportagem de origem e quantas fontes confirmam.</li>
+  </ul>
+  <p>No plano que {{ presidente.nome }} registrou no Tribunal Superior Eleitoral (“{{ presidente.plano_de_governo.titulo }}”),
+    separamos os compromissos concretos e verificáveis. Cada promessa mostra o trecho literal e a página do documento.
     Frases genéricas, sem ação concreta (“vamos valorizar”, “vamos fortalecer” sem nenhuma meta), ficaram de fora.</p>
   <p>Em "Na campanha", cada promessa lista reportagens em que o próprio candidato ou a campanha falaram daquela proposta
     durante a eleição. A seleção é feita por inteligência artificial, que descarta matérias que só tratam do tema, críticas de adversários e análises.</p>

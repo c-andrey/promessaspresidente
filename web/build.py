@@ -2,7 +2,6 @@
 
 Uso: python web/build.py
 """
-import json
 import os
 import shutil
 import sys
@@ -34,6 +33,10 @@ DESCRICOES = {
     "abandonada": "O governo desistiu, vetou, retirou a proposta ou agiu no sentido contrário.",
 }
 
+ORIGENS = {"plano_tse": "Plano oficial (TSE)", "declaracao": "Declaração de campanha"}
+CONTEXTOS = {"entrevista": "entrevista", "debate": "debate", "sabatina": "sabatina", "discurso": "discurso",
+             "rede_social": "rede social", "propaganda_eleitoral": "propaganda eleitoral", "outro": "declaração pública"}
+
 
 def data_br(iso):
     if not iso:
@@ -52,6 +55,7 @@ def main():
                "pct": round(100 * contagem.get(s, 0) / max(len(promessas), 1), 1)}
               for s in armazem.STATUS]
     categorias = sorted({p["categoria"] for p in promessas})
+    n_plano = sum(1 for p in promessas if p.get("origem", "plano_tse") == "plano_tse")
     recentes = sorted(
         ({"promessa": p, "evento": h} for p in promessas for h in p["historico"]),
         key=lambda x: x["evento"]["data"], reverse=True)[:8]
@@ -59,7 +63,7 @@ def main():
     env = Environment(loader=FileSystemLoader(SITE / "templates"),
                       autoescape=select_autoescape(["html"]))
     env.filters["data_br"] = data_br
-    env.globals.update(rotulos=ROTULOS, descricoes=DESCRICOES, presidente=presidente,
+    env.globals.update(rotulos=ROTULOS, descricoes=DESCRICOES, origens=ORIGENS, contextos=CONTEXTOS, presidente=presidente,
                        atualizado=data_br(execucao.get("executado_em")) or "ainda não sincronizado")
 
     # Esvazia em vez de apagar a pasta: em produção ela é um volume montado.
@@ -73,11 +77,11 @@ def main():
         (DIST / caminho).write_text(env.get_template(template).render(**ctx), encoding="utf-8")
 
     gravar("index.html", "index.html", promessas=promessas, placar=placar,
-           categorias=categorias, total=len(promessas), recentes=recentes, raiz="")
+           categorias=categorias, total=len(promessas), recentes=recentes, raiz="",
+           n_plano=n_plano, n_declaracoes=len(promessas) - n_plano)
     gravar("metodologia.html", "metodologia.html", raiz="")
     for p in promessas:
         gravar(f"promessa/{p['id']}.html", "promessa.html", p=p, raiz="../")
-    (DIST / "dados.json").write_text(json.dumps(promessas, ensure_ascii=False), encoding="utf-8")
     print(f"Site gerado em {DIST}/ ({len(promessas)} promessas)")
 
 

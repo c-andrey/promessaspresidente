@@ -4,7 +4,7 @@
 <section class="capa">
   <p class="sobretitulo">Mandato {{ presidente.mandato_inicio.year }}–{{ presidente.mandato_fim.year }}</p>
   <h1>O que {{ presidente.nome }} prometeu, e o que já fez</h1>
-  <p class="lead">{{ total }} compromissos tirados do plano de governo registrado no TSE. Cada mudança de status tem um documento oficial como prova.</p>
+  <p class="lead">{{ total }} compromissos: {{ n_plano }} do plano de governo registrado no TSE{% if n_declaracoes %} e {{ n_declaracoes }} feitos em entrevistas, debates e discursos{% endif %}. Cada mudança de status tem um documento oficial como prova.</p>
 </section>
 
 <section class="placar" aria-label="Placar geral">
@@ -46,15 +46,20 @@
       <option value="">Todos os temas</option>
       {% for c in categorias %}<option>{{ c }}</option>{% endfor %}
     </select>
+    <select id="origem" aria-label="Filtrar por origem">
+      <option value="">Todas as origens</option>
+      {% for k, v in origens.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}
+    </select>
   </div>
   <p id="contador" class="contador"></p>
   <ul class="cartoes">
     {% for p in promessas %}
-    <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}">
+    <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-origem="{{ p.origem or 'plano_tse' }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}">
       <a href="promessa/{{ p.id }}.html">
         <span class="selo st-{{ p.status }}">{{ rotulos[p.status] }}</span>
         <h3>{{ p.titulo }}</h3>
         <p class="meta">{{ p.categoria }}{% if p.prazo %} · prazo {{ p.prazo|data_br }}{% endif %}</p>
+        <p class="origem origem-{{ p.origem or 'plano_tse' }}">{{ origens[p.origem or 'plano_tse'] }}</p>
       </a>
     </li>
     {% endfor %}
@@ -66,6 +71,7 @@
   const cartoes = [...document.querySelectorAll('.cartao')];
   const busca = document.getElementById('busca');
   const categoria = document.getElementById('categoria');
+  const origem = document.getElementById('origem');
   const botoes = [...document.querySelectorAll('.filtro-status')];
   const contador = document.getElementById('contador');
   let status = '';
@@ -76,6 +82,7 @@
     for (const c of cartoes) {
       const ok = (!status || c.dataset.status === status)
         && (!categoria.value || c.dataset.categoria === categoria.value)
+        && (!origem.value || c.dataset.origem === origem.value)
         && (!q || norm(c.dataset.texto).includes(q));
       c.hidden = !ok;
       if (ok) n++;
@@ -89,6 +96,7 @@
   }));
   busca.addEventListener('input', filtrar);
   categoria.addEventListener('change', filtrar);
+  origem.addEventListener('change', filtrar);
   filtrar();
 })();
 </script>

@@ -2,9 +2,24 @@
 
 Acompanhamento diário das promessas do plano de governo do presidente, com um documento oficial como prova de cada mudança de status.
 
-- **Promessas**: 114 compromissos extraídos do plano de governo de Flávio Bolsonaro registrado no TSE (`data/promessas.json`). Cada um tem a página e o trecho literal do PDF.
+- **Promessas**, com duas origens sempre separadas:
+  - **Plano oficial (TSE)**: 114 compromissos do plano registrado no TSE, com página e trecho literal conferidos no PDF.
+  - **Declarações de campanha**: promessas feitas em entrevistas, debates, sabatinas e discursos que não estão no plano. Só entram depois de aprovação humana.
+  - Cada promessa do plano também lista reportagens em que o candidato falou dela ("Na campanha").
 - **Tudo em docker compose** na VPS (`/srv/promessaspresidente`): o serviço `sync` roda o pipeline todo dia às 07:00 (coleta → filtro → IA com fallback → regras) e gera o site; o `web` (nginx) serve o site. Público em **http://187.77.254.161:8081** via edge-proxy.
-- **Auditoria**: cada promessa guarda o próprio histórico (data, documento oficial, trecho, quem decidiu), publicado no site e em `dados.json`. O volume de dados tem backup diário no GitHub (`backup.yml`).
+- **Auditoria**: cada promessa guarda o próprio histórico (data, documento oficial, trecho, quem decidiu), publicado no site. Os dados brutos ficam só no volume da VPS (uso interno). O volume de dados tem backup diário no GitHub (`backup.yml`).
+
+## Promessas: plano oficial × declarações
+
+| Comando | O que faz |
+|---|---|
+| `python fontes/gerar_promessas_flavio.py` | monta `data/promessas.json`: plano do TSE (trechos conferidos no PDF) + declarações aprovadas + referências |
+| `python fontes/buscar_referencias.py` | para cada promessa do plano, acha reportagens da campanha em que ele falou dela → `data/referencias_campanha.json` |
+| `python fontes/declaracoes.py buscar` | Google Notícias (debates, sabatinas, entrevistas, "promete"…) → IA extrai promessas ditas por ele → consolida repetidas → `data/promessas_candidatas.json` |
+| `python fontes/declaracoes.py listar` | candidatas pendentes, mais citadas primeiro |
+| `python fontes/declaracoes.py aprovar ID…` / `rejeitar ID…` | revisão humana; aprovadas vão para `data/promessas_declaracoes.json` |
+
+Depois de aprovar, rode o `gerar_promessas_flavio.py` e faça push: o `sync` da VPS copia as promessas novas para o volume, mantendo status e histórico das existentes. Esses scripts rodam sob demanda (usam a cota das IAs) e não fazem parte do sync diário.
 
 ## Como funciona
 
@@ -114,8 +129,8 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
 ```
 config/        provedores.yaml (cadeia de IA), coleta.yaml (fontes e regras), presidente.yaml
-data/          promessas.json = semente (em produção o estado vive no volume "dados")
-fontes/        PDF do plano, texto extraído e o script que gera promessas.json
+data/          promessas.json (semente; em produção o estado vive no volume "dados"), referências, declarações
+fontes/        PDF do plano + scripts: gerar_promessas_flavio, buscar_referencias, declaracoes
 motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar, agendador
 web/           build.py + templates + CSS do site estático
 deploy/nginx/  config do nginx

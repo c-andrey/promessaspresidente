@@ -16,6 +16,8 @@ TEXTO = RAIZ / "fontes" / "plano-flavio-bolsonaro-2026.txt"
 SAIDA = RAIZ / "data" / "promessas.json"
 # Reportagens da campanha confirmadas por fontes/buscar_referencias.py (opcional)
 REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
+# Promessas ditas em entrevistas/debates e aprovadas em fontes/declaracoes.py (fora do plano)
+DECLARACOES = RAIZ / "data" / "promessas_declaracoes.json"
 URL_TSE = "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726"
 
 # (id, categoria, título, página, trecho literal, prazo, palavras-chave)
@@ -406,6 +408,7 @@ def main():
             faltando.append(pid)
         promessas.append({
             "id": pid,
+            "origem": "plano_tse",
             "titulo": titulo,
             "categoria": cat,
             "prazo": prazo,
@@ -420,6 +423,25 @@ def main():
         print("Trechos não encontrados no PDF:", *faltando, sep="\n  ")
         sys.exit(1)
 
+    for d in json.loads(DECLARACOES.read_text(encoding="utf-8")) if DECLARACOES.exists() else []:
+        assert d["id"] not in ids, f"id de declaração repete o plano: {d['id']}"
+        principal, *outras = d["fontes"]
+        promessas.append({
+            "id": d["id"],
+            "origem": "declaracao",
+            "titulo": d["titulo"],
+            "categoria": d["categoria"],
+            "prazo": None,
+            "fonte": {"tipo": "declaracao", "contexto": d["contexto"], "url": principal["url"],
+                      "veiculo": principal["veiculo"], "titulo": principal["titulo"],
+                      "data": principal["data"], "trecho": d["o_que_disse"]},
+            "palavras_chave": d["palavras_chave"],
+            "status": "nao_iniciada",
+            "atualizado_em": None,
+            "referencias": [f | {"o_que_disse": d["o_que_disse"]} for f in outras],
+            "historico": [],
+        })
+
     # Preserva status/histórico já registrados se o arquivo existir.
     if SAIDA.exists():
         antigos = {p["id"]: p for p in json.loads(SAIDA.read_text(encoding="utf-8"))}
@@ -431,10 +453,13 @@ def main():
 
     referencias = json.loads(REFERENCIAS.read_text(encoding="utf-8")) if REFERENCIAS.exists() else {}
     for p in promessas:
-        p["referencias"] = referencias.get(p["id"], [])
+        if p["origem"] == "plano_tse":
+            p["referencias"] = referencias.get(p["id"], [])
 
     SAIDA.write_text(json.dumps(promessas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{len(promessas)} promessas gravadas em {SAIDA.relative_to(RAIZ)} (todos os trechos conferidos)")
+    plano = sum(1 for p in promessas if p["origem"] == "plano_tse")
+    print(f"{len(promessas)} promessas gravadas em {SAIDA.relative_to(RAIZ)}: "
+          f"{plano} do plano (trechos conferidos no PDF) + {len(promessas) - plano} declarações aprovadas")
 
 
 if __name__ == "__main__":
