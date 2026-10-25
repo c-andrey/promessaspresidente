@@ -3,6 +3,7 @@
 Uso: python web/build.py
 """
 import json
+import os
 import shutil
 import sys
 from collections import Counter
@@ -15,7 +16,7 @@ sys.path.insert(0, str(RAIZ))
 from motor import armazem  # noqa: E402
 
 SITE = RAIZ / "web"
-DIST = RAIZ / "dist"
+DIST = Path(os.environ.get("SITE_DIR", RAIZ / "dist"))
 
 ROTULOS = {
     "nao_iniciada": "Não iniciada",
@@ -53,9 +54,11 @@ def main():
     env.globals.update(rotulos=ROTULOS, presidente=presidente,
                        atualizado=data_br(execucao.get("executado_em")) or "ainda não sincronizado")
 
-    if DIST.exists():
-        shutil.rmtree(DIST)
-    (DIST / "promessa").mkdir(parents=True)
+    # Esvazia em vez de apagar a pasta: em produção ela é um volume montado.
+    DIST.mkdir(parents=True, exist_ok=True)
+    for item in DIST.iterdir():
+        shutil.rmtree(item) if item.is_dir() else item.unlink()
+    (DIST / "promessa").mkdir()
     shutil.copytree(SITE / "static", DIST / "static")
 
     def gravar(caminho, template, **ctx):
@@ -67,7 +70,7 @@ def main():
     for p in promessas:
         gravar(f"promessa/{p['id']}.html", "promessa.html", p=p, raiz="../")
     (DIST / "dados.json").write_text(json.dumps(promessas, ensure_ascii=False), encoding="utf-8")
-    print(f"Site gerado em {DIST.relative_to(RAIZ)}/ ({len(promessas)} promessas)")
+    print(f"Site gerado em {DIST}/ ({len(promessas)} promessas)")
 
 
 if __name__ == "__main__":

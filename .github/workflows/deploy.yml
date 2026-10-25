@@ -1,15 +1,21 @@
 name: Deploy
 
-# Push na main (ou chamado pelo sync.yml depois de commitar os dados) →
-# testes → gera o site → rsync para /srv/promessaspresidente → docker compose up → health check.
-# Secrets (mesmos nomes dos outros projetos da VPS): VPS_HOST, VPS_USER, VPS_SSH_KEY, VPS_PORT (opcional).
+# Push na main → testes → rsync do repositório para /srv/promessaspresidente → .env a partir dos secrets
+# → docker compose up --build → health check. O sync diário roda DENTRO do contêiner "sync" (motor/agendador.py).
+# Secrets da VPS (mesmos nomes dos outros projetos): VPS_HOST, VPS_USER, VPS_SSH_KEY, VPS_PORT (opcional).
+# Secrets de IA (todos opcionais): GH_MODELS_TOKEN, GEMINI_API_KEY, GROQ_API_KEY, MISTRAL_API_KEY,
+#   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, OPENROUTER_API_KEY, ANTHROPIC_API_KEY.
+# Variable opcional: HORA_SYNC (padrão 07:00, horário de Brasília).
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
-  workflow_call:
+
+concurrency:
+  group: deploy-promessas
+  cancel-in-progress: false
 
 env:
   APP_DIR: /srv/promessaspresidente
@@ -25,31 +31,22 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: pytest -q
-      - run: python web/build.py
+      - name: Build da imagem + smoke da stack
+        run: |
+          docker compose up -d --build
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3200/index.html >/dev/null 2>&1 && break; sleep 2; done
+          curl -fsS http://127.0.0.1:3200/saude
+          curl -fsS -o /dev/null http://127.0.0.1:3200/index.html
+          curl -fsS -o /dev/null http://127.0.0.1:3200/promessa/fim-reeleicao.html
+          docker compose logs sync | tail -20
+          docker compose down -v
 
   deploy:
     needs: testes
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    concurrency:
-      group: deploy-promessas
-      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: main   # chamado pelo sync: pega o commit de dados que ele acabou de fazer
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-      - run: pip install -r requirements.txt
-
-      - name: Gerar site
-        run: |
-          python web/build.py
-          mkdir -p pacote
-          cp -r dist deploy/compose.yaml deploy/compose.proxy.yaml deploy/nginx pacote/
 
       - uses: ./.github/actions/ssh-vps
         with:
@@ -58,29 +55,68 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT || '22' }}
 
-      - name: Sync para a VPS
+      - name: Montar .env
+        env:
+          GITHUB_MODELS_TOKEN: ${{ secrets.GH_MODELS_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          HORA_SYNC: ${{ vars.HORA_SYNC || '07:00' }}
+        run: |
+          umask 077
+          : > .env
+          for k in GITHUB_MODELS_TOKEN GEMINI_API_KEY GROQ_API_KEY MISTRAL_API_KEY CLOUDFLARE_ACCOUNT_ID \
+                   CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY HORA_SYNC; do
+            v="${!k}"
+            [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env && echo "  $k definido"
+          done
+          true
+
+      - name: Sync do código
         run: |
           ssh vps "mkdir -p '$APP_DIR'"
-          rsync -az --delete --no-owner --no-group -e ssh pacote/ "vps:$APP_DIR/"
+          rsync -az --delete --no-owner --no-group -e ssh \
+            --exclude '.git' --exclude '.venv' --exclude 'dist' --exclude 'tests' \
+            --exclude 'data/estado' --exclude 'data/documentos' \
+            ./ "vps:$APP_DIR/"
 
       - name: docker compose up
         run: |
           ssh vps "APP_DIR='$APP_DIR' bash -s" <<'EOF'
           set -euo pipefail
           cd "$APP_DIR"
+          chmod 600 .env
           if docker network inspect "${PROXY_NETWORK:-edge}" >/dev/null 2>&1; then
             export COMPOSE_FILE=compose.yaml:compose.proxy.yaml
-            echo "==> rede ${PROXY_NETWORK:-edge} encontrada: site ligado ao edge-proxy (alias promessas)"
+            echo "==> rede ${PROXY_NETWORK:-edge} encontrada: web ligado ao edge-proxy (alias promessas)"
           else
             echo "AVISO: rede ${PROXY_NETWORK:-edge} não existe; site só em 127.0.0.1:3200"
           fi
-          docker compose up -d --remove-orphans </dev/null
-          # nginx relê a config sem derrubar (conf.d é volume)
+          docker compose up -d --build --remove-orphans </dev/null
           docker compose exec -T web nginx -s reload </dev/null || true
-          for i in $(seq 1 15); do
-            curl -fsS http://127.0.0.1:3200/saude >/dev/null && break
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:3200/index.html >/dev/null 2>&1 && break
             sleep 2
           done
+          docker compose ps </dev/null
           curl -fsS http://127.0.0.1:3200/saude
-          curl -fsS -o /dev/null -w "index.html → %{http_code}\n" http://127.0.0.1:3200/
+          curl -fsS -o /dev/null -w "index.html → %{http_code}\n" http://127.0.0.1:3200/index.html
+          docker compose logs --tail 15 sync </dev/null
+          docker image prune -f >/dev/null
           EOF
+
+      - name: Smoke check público
+        continue-on-error: true   # falha aqui = edge-proxy ainda não roteia a porta
+        run: |
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://${{ secrets.VPS_HOST }}:8081/" || true)
+            echo "tentativa $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 5
+          done
+          echo "::warning::porta 8081 não respondeu 200: confira conf/sites/promessas.caddy no edge-proxy"
+          exit 1

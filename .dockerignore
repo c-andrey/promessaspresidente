@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+.pytest_cache
+**/__pycache__
+dist
+.env
+tests
+fontes/*.pdf
+fontes/*.txt
+data/estado
+data/documentos
+data/fila_revisao.json

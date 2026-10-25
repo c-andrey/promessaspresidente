@@ -22,7 +22,7 @@ provedores:
     ativo: true
     base_url: https://models.github.ai/inference
     modelo: openai/gpt-4.1-mini
-    chave_env: GITHUB_TOKEN          # no Actions vem de graça (permissions: models: read)
+    chave_env: GITHUB_MODELS_TOKEN   # token do GitHub com permissão "Models: read" (secret GH_MODELS_TOKEN)
     limite_diario: 140
     intervalo_segundos: 5
 

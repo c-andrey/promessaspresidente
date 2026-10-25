@@ -21,8 +21,8 @@ coletores:
   dou:
     # Desligado: o in.gov.br bloqueia IP estrangeiro e, mesmo pela VPS (São Paulo), o CDN
     # devolve 502 com frequência (testado em 25/10/2026). Leis, decretos e MPs já vêm do
-    # coletor "legislacao"; o DOU acrescentaria portarias. Para ligar: ativo: true — o
-    # workflow já abre o túnel SSH pela VPS e define DOU_PROXY.
+    # coletor "legislacao"; o DOU acrescentaria portarias. Para ligar: ativo: true (o sync
+    # já roda na VPS, no Brasil). DOU_PROXY só é preciso rodando fora do Brasil.
     ativo: false
     proxy_env: DOU_PROXY
     secoes: [do1]

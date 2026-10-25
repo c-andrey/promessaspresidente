@@ -1,0 +1,43 @@
+name: Backup dos dados (fora da VPS)
+
+# Todo dia: tar do volume "dados" (promessas, histórico, fila, estado) → artifact do GitHub por 90 dias.
+# Restaurar: docker compose stop sync && docker run --rm -v promessaspresidente_dados:/dados -v "$PWD":/b \
+#   alpine sh -c 'rm -rf /dados/* && tar xzf /b/dados-AAAA-MM-DD.tgz -C /dados' && docker compose start sync
+
+on:
+  schedule:
+    - cron: "30 12 * * *"   # 09:30 em Brasília, depois do sync das 07:00
+  workflow_dispatch:
+
+concurrency:
+  group: backup-promessas
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: ./.github/actions/ssh-vps
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          user: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || '22' }}
+
+      - name: Snapshot do volume
+        run: |
+          set -euo pipefail
+          STAMP=$(date -u +%Y-%m-%d)
+          echo "STAMP=$STAMP" >> "$GITHUB_ENV"
+          ssh vps "docker run --rm -v promessaspresidente_dados:/dados:ro alpine tar czf - -C /dados ." > "dados-$STAMP.tgz"
+          tar tzf "dados-$STAMP.tgz" | grep -q '^./promessas.json$'
+          tar xzf "dados-$STAMP.tgz" ./promessas.json -O | python3 -c "import json,sys; p=json.load(sys.stdin); assert len(p) > 0; print(len(p), 'promessas no backup')"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dados-${{ env.STAMP }}
+          path: dados-${{ env.STAMP }}.tgz
+          retention-days: 90
+          compression-level: 0

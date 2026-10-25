@@ -1,0 +1,48 @@
+# Promessas do presidente — stack completa (VPS: /srv/promessaspresidente). Deploy só pelo Actions.
+#   sync: roda o pipeline todo dia em HORA_SYNC e gera o site no volume "site"
+#   web:  nginx servindo o volume "site" (127.0.0.1:3200; público pelo edge-proxy)
+#
+#   docker compose up -d --build
+#   docker compose logs -f sync
+#   docker compose exec sync python -m motor.agendador --agora   # sync na hora
+#   docker compose exec sync python -m motor.revisar             # fila de revisão
+name: promessaspresidente
+
+services:
+  sync:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - path: .env          # chaves de IA (o deploy escreve a partir dos secrets)
+        required: false
+    environment:
+      HORA_SYNC: ${HORA_SYNC:-07:00}
+    volumes:
+      - dados:/dados        # promessas, histórico, fila, estado — fazer backup (backup.yml)
+      - site:/site
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  web:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on: [sync]
+    ports:
+      - "127.0.0.1:3200:80"
+    volumes:
+      - site:/usr/share/nginx/html:ro
+      # pasta inteira (não arquivo): o rsync troca o inode dos arquivos
+      - ./deploy/nginx:/etc/nginx/conf.d:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/saude"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  dados:
+  site:

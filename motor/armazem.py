@@ -1,9 +1,11 @@
-"""Leitura e escrita dos arquivos JSON/YAML do repositório.
+"""Leitura e escrita dos arquivos JSON/YAML do projeto.
 
-Todo o estado do projeto vive em data/ e é versionado no git: cada mudança de
-status vira um commit, e o histórico do repositório é a trilha de auditoria.
+Todo o estado vive em DADOS_DIR (padrão: data/ do repositório). Em produção é o
+volume Docker do serviço sync; o data/promessas.json do repositório vira a
+semente (ver motor/agendador.py). Cada promessa guarda o próprio histórico.
 """
 import json
+import os
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -11,7 +13,8 @@ import yaml
 
 RAIZ = Path(__file__).resolve().parent.parent
 CONFIG = RAIZ / "config"
-DADOS = RAIZ / "data"
+SEMENTE = RAIZ / "data" / "promessas.json"
+DADOS = Path(os.environ.get("DADOS_DIR", RAIZ / "data"))
 ESTADO = DADOS / "estado"
 
 PROMESSAS = DADOS / "promessas.json"

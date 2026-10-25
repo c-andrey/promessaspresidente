@@ -3,13 +3,13 @@
 Acompanhamento diário das promessas do plano de governo do presidente, com um documento oficial como prova de cada mudança de status.
 
 - **Promessas**: 114 compromissos extraídos do plano de governo de Flávio Bolsonaro registrado no TSE (`data/promessas.json`). Cada um tem a página e o trecho literal do PDF.
-- **Sync diário**: GitHub Actions coleta legislação federal, Câmara e Planalto → filtro por palavra-chave → IA (cadeia de provedores gratuitos com fallback) → regras → commit em `data/` → deploy do site na VPS (`/srv/promessaspresidente`, nginx atrás do edge-proxy).
-- **Auditoria**: todo o estado é JSON versionado. O `git log data/promessas.json` é o histórico público.
+- **Tudo em docker compose** na VPS (`/srv/promessaspresidente`): o serviço `sync` roda o pipeline todo dia às 07:00 (coleta → filtro → IA com fallback → regras) e gera o site; o `web` (nginx) serve o site. Público em **http://187.77.254.161:8081** via edge-proxy.
+- **Auditoria**: cada promessa guarda o próprio histórico (data, documento oficial, trecho, quem decidiu), publicado no site e em `dados.json`. O volume de dados tem backup diário no GitHub (`backup.yml`).
 
 ## Como funciona
 
 ```
-coletores (legislação federal via Senado, Câmara, Planalto; DOU opcional via túnel na VPS)
+coletores (legislação federal via Senado, Câmara, Planalto; DOU opcional)
         │  ~dezenas de documentos/dia
         ▼
 filtro por palavra-chave (sem IA, custo zero)
@@ -22,24 +22,35 @@ regras: nao_iniciada → em_andamento (oficial, confiança ≥ 0.85, pós-posse)
         todo o resto (parcial, cumprida, abandonada) = fila de revisão humana
 ```
 
-Quando um provedor devolve 429/402 ou passa do `limite_diario`, ele fica marcado como esgotado no dia (`data/estado/uso_llm.json`) e a cadeia segue para o próximo. Se todos esgotarem, os documentos que sobraram ficam em `data/estado/pendentes.json` e são processados no dia seguinte.
+Quando um provedor devolve 429/402 ou passa do `limite_diario`, ele fica marcado como esgotado no dia (`estado/uso_llm.json`) e a cadeia segue para o próximo. Se todos esgotarem, os documentos que sobraram ficam em `estado/pendentes.json` e são processados no dia seguinte.
 
-## Deploy (GitHub Actions + VPS)
+## Deploy (docker compose + GitHub Actions)
+
+```
+compose.yaml
+  sync  (build .)        motor/agendador.py: semeia promessas, gera site, sync diário em HORA_SYNC
+    └─ volumes: dados (/dados: promessas, histórico, fila, estado) · site (/site: HTML gerado)
+  web   (nginx)          serve o volume site em 127.0.0.1:3200
+compose.proxy.yaml       liga o web à rede "edge" com alias "promessas" (o deploy liga sozinho)
+```
 
 | Workflow | Quando | O que faz |
 |---|---|---|
-| `deploy.yml` | push na `main`, manual, ou chamado pelo sync | testes → `web/build.py` → rsync de `dist/` + `deploy/` para `/srv/promessaspresidente` → `docker compose up` (nginx em `127.0.0.1:3200`, alias `promessas` na rede `edge`) |
-| `sync.yml` | todo dia 07:00 (Brasília) e manual | túnel SOCKS pela VPS → `motor.main` → commit em `data/` → chama o `deploy.yml` |
+| `deploy.yml` | push na `main` ou manual | testes + smoke da stack no runner → rsync do repo para `/srv/promessaspresidente` → `.env` a partir dos secrets → `docker compose up -d --build` → health check |
+| `backup.yml` | todo dia 09:30 (Brasília) | tar do volume `promessaspresidente_dados` → artifact por 90 dias |
 
-Na VPS, nada é editado à mão: o diretório é sempre reescrito pelo rsync do deploy.
+Na VPS, nada é editado à mão: o código é sempre reescrito pelo rsync do deploy. Os dados ficam no volume, que o deploy não toca. Quando o repositório ganha ou corrige promessas (`data/promessas.json`), o `sync` copia as novas e atualiza os textos ao subir, preservando status e histórico.
 
-**Endereço público**: o edge-proxy (repo `edge-proxy`) precisa de um `conf/sites/promessas.caddy`. Com domínio:
+**Endereço**: `http://187.77.254.161:8081`, pelo edge-proxy (`conf/sites/promessas.caddy`). Com domínio, troque lá `http://:8081` por `dominio.com.br` e o Caddy emite o HTTPS.
 
-```caddy
-meudominio.com.br {
-	encode zstd gzip
-	reverse_proxy promessas:80
-}
+**Operação na VPS** (comandos, não edição de arquivos):
+
+```bash
+cd /srv/promessaspresidente
+docker compose logs -f sync
+docker compose exec sync python -m motor.agendador --agora     # sync na hora
+docker compose exec sync python -m motor.revisar               # fila de revisão
+docker compose exec sync python -m motor.revisar aprovar <id>
 ```
 
 ## Configurar
@@ -57,7 +68,7 @@ Chaves de IA, todas opcionais (quem não tiver chave é pulado):
 
 | Secret | Onde conseguir (plano gratuito) |
 |---|---|
-| *(nenhum)* | GitHub Models já funciona com o `GITHUB_TOKEN` do Actions |
+| `GH_MODELS_TOKEN` | github.com/settings/tokens → fine-grained, permissão **Models: read** |
 | `GEMINI_API_KEY` | aistudio.google.com |
 | `GROQ_API_KEY` | console.groq.com |
 | `MISTRAL_API_KEY` | console.mistral.ai (plano Experiment) |
@@ -65,11 +76,11 @@ Chaves de IA, todas opcionais (quem não tiver chave é pulado):
 | `OPENROUTER_API_KEY` | openrouter.ai (modelos `:free`) |
 | `ANTHROPIC_API_KEY` | só quando ligar o Haiku (pago) |
 
-Depois, rode uma vez **Actions → Sync diário → Run workflow**.
+Depois, rode **Actions → Deploy → Run workflow** (ou faça um push). Para mudar o horário do sync, crie a Variable `HORA_SYNC` (ex.: `06:30`).
 
 ### Ligar o Claude Haiku no fim da cadeia
 
-Em `config/provedores.yaml`, no bloco `claude-haiku`, troque `ativo: false` por `ativo: true` e cadastre o secret `ANTHROPIC_API_KEY`. Ele continua sendo o último da fila, então só é chamado quando todos os gratuitos esgotarem.
+Em `config/provedores.yaml`, no bloco `claude-haiku`, troque `ativo: false` por `ativo: true`, cadastre o secret `ANTHROPIC_API_KEY` e faça push (o deploy reescreve o `.env`). Ele continua sendo o último da fila, então só é chamado quando todos os gratuitos esgotarem.
 
 ### Adicionar outro provedor
 
@@ -78,6 +89,7 @@ Qualquer API compatível com `/chat/completions` entra só pela configuração: 
 ## Rodar localmente
 
 ```bash
+docker compose up -d --build                          # stack completa em http://127.0.0.1:3200
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m motor.main --sem-ia --dry-run      # só coleta e filtra
 .venv/bin/python -m motor.main                         # execução completa
@@ -92,8 +104,8 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ## Fontes e limitações
 
 - **Legislação federal**: leis, LCs, decretos, MPs e emendas vêm da API de dados abertos do Senado (estável, acessível de qualquer lugar). A indexação atrasa alguns dias, por isso a consulta volta 15 dias.
-- **DOU (desligado)**: o `in.gov.br` recusa IP estrangeiro e, mesmo pela VPS em São Paulo, o CDN dele devolveu 502 na maioria das tentativas (testado em 25/10/2026). O sync já abre um túnel SOCKS pela VPS (`DOU_PROXY`); para usar, ligue `dou.ativo` em `config/coleta.yaml`. Alternativa mais estável: INLABS (cadastro gratuito).
-- **Falha de uma fonte** não perde dados: cada coletor guarda a última data coletada com sucesso (`data/estado/ultima_execucao.json`) e recoleta o período perdido na próxima execução.
+- **DOU (desligado)**: o `in.gov.br` recusa IP estrangeiro e, mesmo da VPS em São Paulo, o CDN dele devolveu 502 na maioria das tentativas (testado em 25/10/2026). Como o `sync` já roda no Brasil, basta ligar `dou.ativo` em `config/coleta.yaml` para testar de novo (`DOU_PROXY` só é preciso fora do Brasil). Alternativa mais estável: INLABS (cadastro gratuito).
+- **Falha de uma fonte** não perde dados: cada coletor guarda a última data coletada com sucesso (`estado/ultima_execucao.json` no volume de dados) e recoleta o período perdido na próxima execução.
 - **Plano de governo**: o PDF em `fontes/` veio de um espelho (planodegoverno2026.com.br), porque o TSE também bloqueia IPs de fora. Antes de publicar, baixe do TSE pelo link em `config/presidente.yaml` e confira o `sha256`.
 - **Antes da posse** (até 31/12/2026), nada é aplicado automaticamente: tudo que a IA achar vai para a fila.
 - `config/presidente.yaml` → `resultado_confirmado: false` mostra um aviso no topo do site. Mude para `true` quando o TSE proclamar o resultado.
@@ -102,11 +114,12 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
 ```
 config/        provedores.yaml (cadeia de IA), coleta.yaml (fontes e regras), presidente.yaml
-data/          promessas.json, fila_revisao.json, documentos/AAAA-MM-DD.json, estado/
+data/          promessas.json = semente (em produção o estado vive no volume "dados")
 fontes/        PDF do plano, texto extraído e o script que gera promessas.json
-motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar
+motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar, agendador
 web/           build.py + templates + CSS do site estático
-deploy/        compose do nginx na VPS + override da rede edge + config do nginx
-.github/       workflows deploy.yml e sync.yml, action ssh-vps
+deploy/nginx/  config do nginx
+compose.yaml   serviços sync + web · compose.proxy.yaml: rede edge · Dockerfile
+.github/       workflows deploy.yml e backup.yml, action ssh-vps
 tests/
 ```
