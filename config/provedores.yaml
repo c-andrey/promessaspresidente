@@ -60,6 +60,17 @@ provedores:
 
   # (GitHub Models foi desativado pelo GitHub em 30/07/2026: models.github.ai só responde "OK".)
 
+  # NVIDIA NIM: grátis com a conta de desenvolvedor (build.nvidia.com, chave "nvapi-…"),
+  # ~40 req/min por modelo e sem teto diário publicado. Nome do modelo a confirmar no 1º teste.
+  - nome: nvidia
+    tipo: openai
+    ativo: true
+    base_url: https://integrate.api.nvidia.com/v1
+    modelo: meta/llama-3.3-70b-instruct
+    chave_env: NVIDIA_API_KEY
+    rpm: 30
+    limite_diario: 1000
+
   - nome: groq-gpt-oss-20b
     tipo: openai
     ativo: true
