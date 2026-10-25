@@ -31,7 +31,13 @@ services:
     ports:
       - "127.0.0.1:3200:80"
     volumes:
-      - site:/usr/share/nginx/html:ro
+      # nocopy: sem isso o Docker copia a página padrão do nginx para o volume vazio
+      - type: volume
+        source: site
+        target: /usr/share/nginx/html
+        read_only: true
+        volume:
+          nocopy: true
       # pasta inteira (não arquivo): o rsync troca o inode dos arquivos
       - ./deploy/nginx:/etc/nginx/conf.d:ro
     healthcheck:
