@@ -14,6 +14,10 @@
     <blockquote>{{ p.fonte.trecho }}</blockquote>
     <p class="fonte">Dito em {{ contextos.get(p.fonte.contexto, "declaração pública") }} · {{ p.fonte.veiculo }} ·
       <a href="{{ p.fonte.url }}" rel="noopener">{{ p.fonte.titulo }}</a> ({{ p.fonte.data|data_br }})</p>
+    {% if p.fonte.veiculos %}
+    <p class="fonte">Confirmada por {{ p.fonte.veiculos }} veículo{{ "s" if p.fonte.veiculos > 1 }} de imprensa ·
+      {{ "publicada automaticamente (3 ou mais veículos)" if p.fonte.aprovacao == "automatica" else "revisada por pessoa" }}</p>
+    {% endif %}
     {% else %}
     <p class="origem origem-plano_tse">Plano oficial (TSE)</p>
     <blockquote>“{{ p.fonte.trecho }}”</blockquote>

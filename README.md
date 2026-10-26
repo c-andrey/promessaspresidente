@@ -18,17 +18,27 @@ Acompanhamento diário das promessas do presidente eleito em 2026, **Lula (PT)**
    `declaracoes_rejeitadas.json` na pasta do anterior e rode `fontes/gerar_promessas.py`.
 4. Push. Na VPS o `sync` percebe o nome novo, move os dados do anterior para `arquivo/` dentro do volume e recomeça.
 
-## Promessas: plano oficial × declarações
+## Promessas: plano oficial × declarações (automático, todo dia)
 
-| Comando | O que faz |
-|---|---|
-| `python fontes/gerar_promessas.py` | monta `data/promessas.json`: plano do TSE (trechos conferidos no PDF) + declarações aprovadas + referências |
-| `python fontes/buscar_referencias.py` | para cada promessa do plano, acha reportagens da campanha em que ele falou dela → `data/referencias_campanha.json` |
-| `python fontes/declaracoes.py buscar` | Google Notícias (debates, sabatinas, entrevistas, "promete"…) → IA extrai promessas ditas por ele → consolida repetidas → `data/promessas_candidatas.json` |
-| `python fontes/declaracoes.py listar` | candidatas pendentes, mais citadas primeiro |
-| `python fontes/declaracoes.py aprovar ID…` / `rejeitar ID…` | revisão humana; aprovadas vão para `data/promessas_declaracoes.json` |
+Além dos atos oficiais, o sync diário (`motor/campanha.py`, configurado em `config/campanha.yaml`) pesquisa o que o presidente **disse** que ia fazer:
 
-Depois de aprovar, rode o `gerar_promessas.py` e faça push: o `sync` da VPS copia as promessas novas para o volume, mantendo status e histórico das existentes. Esses scripts rodam sob demanda (usam a cota das IAs) e não fazem parte do sync diário.
+| Frente | Todo dia | Resultado |
+|---|---|---|
+| **Declarações** | buscas no Google Notícias dos últimos 2 dias ("promete", "se reeleito", debate, entrevista… + ~38 temas) → filtro de manchetes com cara de promessa (sem IA) → IA extrai só o que ele mesmo disse → consolida repetidas | o que repete o plano vira referência; o resto vira candidata. **Confirmada por 3+ veículos diferentes → publicada sozinha**; as outras esperam revisão |
+| **Referências** | rodízio de 30 promessas/dia: busca falas novas dele sobre cada uma desde a última verificação | seção "Na campanha" de cada promessa |
+
+A campanha tem teto próprio de chamadas de IA por dia (`max_chamadas_ia_por_dia`): o acompanhamento dos atos oficiais roda antes e tem prioridade na cota.
+
+```bash
+# na VPS (comandos, não edição de arquivos)
+docker compose exec sync python -m motor.campanha listar            # candidatas pendentes
+docker compose exec sync python -m motor.campanha aprovar ID [ID…]
+docker compose exec sync python -m motor.campanha rejeitar ID [ID…]
+docker compose exec sync python -m motor.campanha buscar --amplo    # pesquisa grande (450 buscas: temas × veículos × janelas)
+docker compose exec sync python -m motor.campanha referencias --todas
+```
+
+Rodando localmente (sem `DADOS_DIR`), os mesmos comandos gravam em `data/` do repositório, que vira **semente**: no deploy, o `sync` mescla esses arquivos ao volume sem apagar nada (decisões tomadas no volume prevalecem). `python fontes/gerar_promessas.py` monta `data/promessas.json` com o plano do TSE (trechos conferidos no PDF) + declarações aprovadas + referências.
 
 ## Como funciona
 
@@ -139,10 +149,10 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 config/        provedores.yaml (cadeia de IA), coleta.yaml (fontes e regras), presidente.yaml
 data/          promessas.json (semente; em produção o estado vive no volume "dados"), referências, declarações
-fontes/        scripts gerar_promessas, buscar_referencias, declaracoes
+fontes/        gerar_promessas.py (plano do TSE → data/promessas.json)
   lula/        plano.pdf, plano.txt e promessas.py do presidente atual
   flavio-bolsonaro/  arquivo: o site acompanhou o Flávio antes do resultado do 2º turno
-motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar, agendador
+motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar, campanha, agendador
 web/           build.py + templates + CSS do site estático
 deploy/nginx/  config do nginx
 compose.yaml   serviços sync + web · compose.proxy.yaml: rede edge · Dockerfile

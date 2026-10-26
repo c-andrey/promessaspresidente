@@ -15,14 +15,15 @@ from datetime import date, datetime, timedelta
 
 from web import build
 
-from . import armazem
+from . import armazem, campanha
 from . import main as pipeline
 
 log = logging.getLogger("agendador")
 
 HORA_SYNC = os.environ.get("HORA_SYNC", "07:00")
 # Campos que vêm do plano de governo: o repositório manda. Status e histórico: o volume manda.
-CAMPOS_DO_PLANO = ("origem", "titulo", "categoria", "prazo", "fonte", "palavras_chave", "referencias")
+# (referências e declarações não entram aqui: motor/campanha.py mescla sem apagar o que o volume já tem)
+CAMPOS_DO_PLANO = ("origem", "titulo", "categoria", "prazo", "fonte", "palavras_chave")
 
 
 def trocar_presidente_se_preciso() -> None:
@@ -38,8 +39,10 @@ def trocar_presidente_se_preciso() -> None:
     if armazem.PROMESSAS.exists() and armazem.SEMENTE.resolve() != armazem.PROMESSAS.resolve():
         destino = armazem.ARQUIVO / f"{(registrado or 'anterior').lower().replace(' ', '-')}-{armazem.hoje()}"
         destino.mkdir(parents=True, exist_ok=True)
+        # caminhos da campanha calculados agora, a partir do armazém (não os fixados na importação)
+        da_campanha = [armazem.DADOS / a.name for a in campanha.ARQUIVOS] + [armazem.ESTADO / campanha.ESTADO.name]
         for caminho in (armazem.PROMESSAS, armazem.FILA, armazem.VISTOS, armazem.PENDENTES,
-                        armazem.EXECUCAO, armazem.ESTADO / "rejeitados.json"):
+                        armazem.EXECUCAO, armazem.ESTADO / "rejeitados.json", *da_campanha):
             if caminho.exists():
                 caminho.rename(destino / caminho.name)
         log.warning("Presidente mudou (%s → %s): dados anteriores arquivados em %s",
@@ -92,6 +95,10 @@ def sincronizar() -> None:
         log.info("Sync concluído: %s", stats)
     except Exception:  # noqa: BLE001 — o serviço não pode morrer por um dia ruim
         log.exception("Sync falhou; tenta de novo no próximo horário")
+    try:  # depois do oficial: referências e declarações usam o que sobrou da cota
+        log.info("Campanha: %s", campanha.sincronizar())
+    except Exception:  # noqa: BLE001
+        log.exception("Campanha falhou; tenta de novo no próximo horário")
     build.main()
 
 
@@ -104,6 +111,8 @@ def main():
 
     trocar_presidente_se_preciso()
     semear()
+    campanha.mesclar_semente()
+    campanha.aplicar_no_volume()
     if args.agora:
         sincronizar()
         return

@@ -1,0 +1,102 @@
+# O que o presidente disse que ia fazer, fora do plano do TSE (imprensa, entrevistas, debates, discursos).
+# Roda todo dia dentro do sync (motor/campanha.py), depois do acompanhamento dos atos oficiais.
+# "{nome}" é trocado por nome_busca de config/presidente.yaml.
+
+ativo: true
+
+# Período da campanha: usado quando uma promessa ainda nunca foi pesquisada e no --amplo.
+periodo_campanha: ["2026-06-01", "2026-10-25"]
+
+# Sync diário
+janela_diaria_dias: 2              # declarações: busca nas notícias dos últimos N dias
+referencias_por_dia: 30            # rodízio: quantas promessas têm as referências atualizadas por dia
+max_chamadas_ia_por_dia: 60        # teto da campanha (o acompanhamento oficial tem prioridade na cota)
+
+# Declarações confirmadas por pelo menos N veículos diferentes são publicadas sozinhas;
+# as demais esperam revisão (python -m motor.campanha listar / aprovar / rejeitar).
+aprovacao_automatica_min_veiculos: 3
+
+max_referencias_por_promessa: 8
+
+buscas:
+  - '"{nome}" promete'
+  - '"{nome}" "vai criar"'
+  - '"{nome}" "vamos acabar"'
+  - '"{nome}" "se reeleito"'
+  - '"{nome}" "se eleito"'
+  - '"{nome}" propõe'
+  - '"{nome}" garante que vai'
+  - '"{nome}" "primeiro dia" governo'
+  - '"{nome}" debate'
+  - '"{nome}" sabatina'
+  - '"{nome}" entrevista'
+  - '"{nome}" discurso'
+  - '"{nome}" podcast'
+  - '"{nome}" live'
+  - '"{nome}" horário eleitoral'
+  - '"{nome}" carta compromisso'
+
+temas:                              # vira '"{nome}" promete <tema>'
+  - saúde
+  - SUS
+  - educação
+  - universidades
+  - segurança pública
+  - crime organizado
+  - emprego
+  - salário mínimo
+  - imposto de renda
+  - impostos
+  - Bolsa Família
+  - aposentados
+  - INSS
+  - moradia
+  - transporte
+  - energia
+  - conta de luz
+  - combustíveis
+  - agronegócio
+  - agricultura familiar
+  - meio ambiente
+  - Amazônia
+  - mulheres
+  - jovens
+  - escala 6x1
+  - juros
+  - dívidas
+  - alimentos
+  - indústria
+  - tecnologia
+  - Nordeste
+  - cultura
+  - esporte
+  - servidores públicos
+  - obras
+  - internet
+  - aplicativos
+  - pequenas empresas
+
+# Só na pesquisa grande (python -m motor.campanha buscar --amplo): buscas × temas × veículos × janelas.
+veiculos:
+  - g1.globo.com
+  - folha.uol.com.br
+  - estadao.com.br
+  - oglobo.globo.com
+  - noticias.uol.com.br
+  - cnnbrasil.com.br
+  - poder360.com.br
+  - valor.globo.com
+  - agenciabrasil.ebc.com.br
+  - bbc.com
+  - metropoles.com
+  - correiobraziliense.com.br
+  - cartacapital.com.br
+  - gazetadopovo.com.br
+  - band.uol.com.br
+  - r7.com
+janelas_amplo:
+  - ["2026-06-01", "2026-07-15"]
+  - ["2026-07-16", "2026-08-31"]
+  - ["2026-09-01", "2026-09-30"]
+  - ["2026-10-01", "2026-10-12"]
+  - ["2026-10-13", "2026-10-25"]

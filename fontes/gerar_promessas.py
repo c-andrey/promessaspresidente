@@ -6,8 +6,9 @@ Fontes, por presidente, em fontes/<pasta>/:
 
 Cada promessa do plano carrega a página e um trecho literal do PDF: o script confere se
 todo trecho existe no texto extraído e aborta se não existir. Também junta:
-  data/referencias_campanha.json   reportagens da campanha (fontes/buscar_referencias.py)
-  data/promessas_declaracoes.json  declarações aprovadas fora do plano (fontes/declaracoes.py)
+  data/referencias_campanha.json   reportagens em que ele falou de cada promessa (motor/campanha.py)
+  data/promessas_declaracoes.json  declarações aprovadas fora do plano (motor/campanha.py)
+Na VPS isso é semente: o sync diário continua alimentando esses arquivos no volume.
 
 Uso: python fontes/gerar_promessas.py
 """
@@ -21,6 +22,9 @@ from pathlib import Path
 import yaml
 
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ))
+from motor.campanha import promessa_de_declaracao  # noqa: E402
+
 SAIDA = RAIZ / "data" / "promessas.json"
 REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
 DECLARACOES = RAIZ / "data" / "promessas_declaracoes.json"
@@ -77,22 +81,7 @@ def main():
 
     for d in json.loads(DECLARACOES.read_text(encoding="utf-8")) if DECLARACOES.exists() else []:
         assert d["id"] not in ids, f"id de declaração repete o plano: {d['id']}"
-        principal, *outras = d["fontes"]
-        promessas.append({
-            "id": d["id"],
-            "origem": "declaracao",
-            "titulo": d["titulo"],
-            "categoria": d["categoria"],
-            "prazo": None,
-            "fonte": {"tipo": "declaracao", "contexto": d["contexto"], "url": principal["url"],
-                      "veiculo": principal["veiculo"], "titulo": principal["titulo"],
-                      "data": principal["data"], "trecho": d["o_que_disse"]},
-            "palavras_chave": d["palavras_chave"],
-            "status": "nao_iniciada",
-            "atualizado_em": None,
-            "referencias": [f | {"o_que_disse": d["o_que_disse"]} for f in outras],
-            "historico": [],
-        })
+        promessas.append(promessa_de_declaracao(d))
 
     # Preserva status/histórico/imprensa já registrados (mesmo presidente, mesmo id).
     if SAIDA.exists():

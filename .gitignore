@@ -4,3 +4,6 @@ __pycache__/
 .pytest_cache/
 dist/
 .env
+data/estado/
+data/documentos/
+data/arquivo/

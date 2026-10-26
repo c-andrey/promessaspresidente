@@ -1,4 +1,4 @@
-from motor import agendador, armazem
+from motor import agendador, armazem, campanha
 
 
 def test_troca_de_presidente_arquiva_volume_e_recomeca(tmp_path, monkeypatch):
@@ -9,6 +9,8 @@ def test_troca_de_presidente_arquiva_volume_e_recomeca(tmp_path, monkeypatch):
                         "PRESIDENTE_ATUAL": estado / "presidente.json", "ARQUIVO": tmp_path / "arquivo",
                         "SEMENTE": tmp_path / "semente.json"}.items():
         monkeypatch.setattr(armazem, nome, valor)
+    # arquivos de campanha no volume temporário também são arquivados (e os do repositório, não)
+    armazem.gravar_json(tmp_path / campanha.REFERENCIAS.name, {"p": []})
     configurado = {"nome": "Lula"}
     monkeypatch.setattr(armazem, "ler_yaml", lambda nome: configurado)
 
@@ -22,6 +24,7 @@ def test_troca_de_presidente_arquiva_volume_e_recomeca(tmp_path, monkeypatch):
     arquivado = next((tmp_path / "arquivo").iterdir())
     assert arquivado.name.startswith("anterior-")
     assert armazem.ler_json(arquivado / "promessas.json", [])[0]["id"] == "antiga"
+    assert (arquivado / campanha.REFERENCIAS.name).exists()
     assert armazem.ler_json(armazem.PRESIDENTE_ATUAL, {})["nome"] == "Lula"
 
     # mesmo presidente: não mexe em nada
