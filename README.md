@@ -18,6 +18,22 @@ Acompanhamento diário das promessas do presidente eleito em 2026, **Lula (PT)**
    `declaracoes_rejeitadas.json` na pasta do anterior e rode `fontes/gerar_promessas.py`.
 4. Push. Na VPS o `sync` percebe o nome novo, move os dados do anterior para `arquivo/` dentro do volume e recomeça.
 
+## Apuração (IA + conferência por código, tudo grátis)
+
+Nenhuma afirmação tirada de notícia é aceita só pela manchete (`motor/apuracao.py`):
+
+1. o link do Google Notícias é resolvido para a **URL real da matéria** e o texto completo é baixado;
+2. uma IA verificadora — de **outro provedor** (outra empresa) sempre que houver um disponível — dá o veredito e copia o **trecho literal** que o sustenta;
+3. **código, não IA**, confere se esse trecho existe palavra por palavra no texto baixado: citação inventada é descartada.
+
+Onde entra: declarações só são publicadas sozinhas com 3+ veículos **e** citação conferida; referências que a matéria inteira não sustenta são descartadas; sugestões de status vindas de notícias chegam à fila já apuradas; e o "em andamento" automático dos atos oficiais exige **dois provedores de empresas diferentes concordando** (divergência → fila).
+
+## Acompanhamento por promessa nas notícias (todo dia)
+
+`motor/execucao.py`: rodízio de 30 promessas/dia (todas em ~5 dias) — busca se o governo fez algo relacionado a cada uma. Matérias relacionadas viram links **"Na imprensa"** (URL real); indício de mudança de status passa pela apuração e vai para a fila. Notícia nunca muda status sozinha. `python -m motor.execucao --todas` passa por todas de uma vez.
+
+Frequência do sync: Variable `INTERVALO_SYNC_DIAS` (1 = todo dia, 2 = a cada 48 h) e `HORA_SYNC`.
+
 ## Promessas: plano oficial × declarações (automático, todo dia)
 
 Além dos atos oficiais, o sync diário (`motor/campanha.py`, configurado em `config/campanha.yaml`) pesquisa o que o presidente **disse** que ia fazer:

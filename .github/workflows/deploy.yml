@@ -69,11 +69,12 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           HORA_SYNC: ${{ vars.HORA_SYNC || '07:00' }}
+          INTERVALO_SYNC_DIAS: ${{ vars.INTERVALO_SYNC_DIAS || '1' }}
         run: |
           umask 077
           : > .env
           for k in NVIDIA_API_KEY GEMINI_API_KEY GROQ_API_KEY MISTRAL_API_KEY CLOUDFLARE_ACCOUNT_ID \
-                   CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY HORA_SYNC; do
+                   CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY HORA_SYNC INTERVALO_SYNC_DIAS; do
             v="${!k}"
             [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env && echo "  $k definido"
           done

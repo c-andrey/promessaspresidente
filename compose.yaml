@@ -17,6 +17,7 @@ services:
         required: false
     environment:
       HORA_SYNC: ${HORA_SYNC:-07:00}
+      INTERVALO_SYNC_DIAS: ${INTERVALO_SYNC_DIAS:-1}   # 1 = todo dia; 2 = a cada 48 h
     volumes:
       - dados:/dados        # promessas, histórico, fila, estado — fazer backup (backup.yml)
       - site:/site

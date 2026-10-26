@@ -74,3 +74,26 @@ def test_sem_provedor_deixa_pendente(dados_tmp, monkeypatch):
     stats = main.executar(args())
     assert stats["classificados"] == 0 and stats["pendentes"] == 2
     assert len(armazem.ler_json(armazem.PENDENTES, [])) == 2
+
+
+class ProvedorQueMudaDeIdeia(ProvedorFalso):
+    """1ª leitura: em andamento; segunda opinião: sem mudança → tem que ir para a fila."""
+    def __init__(self):
+        self.chamadas = 0
+
+    def completar(self, sistema, usuario, schema):
+        self.chamadas += 1
+        status = "em_andamento" if self.chamadas == 1 else "sem_mudanca"
+        return json.dumps({"avaliacoes": [{
+            "promessa_id": "fim-escala-6x1", "relevante": True, "status_sugerido": status,
+            "confianca": 0.95, "evidencia": "acaba com a escala 6x1", "justificativa": "teste"}]})
+
+
+def test_divergencia_na_segunda_opiniao_vai_para_fila(dados_tmp, monkeypatch):
+    monkeypatch.setattr(main, "coletar_tudo", lambda desde, ate, cfg: ([dict(DOCS[0])], {"camara": 1}))
+    monkeypatch.setattr(main.Cadeia, "da_config",
+                        classmethod(lambda cls: Cadeia([ProvedorQueMudaDeIdeia()], RegistroUso(caminho=None))))
+    stats = main.executar(args())
+    assert stats["automatico"] == 0 and stats["fila"] == 1
+    item = armazem.ler_json(armazem.FILA, [])[0]
+    assert item["segunda_opiniao"]["concorda"] is False and item["segunda_opiniao"]["status"] == "sem_mudanca"

@@ -22,8 +22,8 @@ coletores:
     ativo: true
     oficial: false                  # notícia é contexto: alimenta "Na imprensa" e, no máximo, a fila
     janela_busca_dias: 3
-    buscas:                         # Google Notícias (RSS, agrega todos os jornais)
-      - '"Flávio Bolsonaro"'
+    buscas:                         # Google Notícias (RSS, agrega todos os jornais); {nome} = nome_busca
+      - '"{nome}"'
       - '"governo federal" anuncia'
     feeds:
       - { nome: G1 Política, url: "https://g1.globo.com/rss/g1/politica/" }
@@ -68,3 +68,13 @@ regras:
   confianca_auto: 0.85
   # Abaixo disto a sugestão é descartada; acima vai para a fila de revisão.
   confianca_fila: 0.5
+
+# Acompanhamento por promessa nas notícias (motor/execucao.py): rodízio diário que busca se o
+# governo fez algo relacionado a cada promessa. Matérias relacionadas → "Na imprensa" (link real);
+# indício de mudança de status → apuração (texto inteiro, citação literal, outro provedor) → fila.
+acompanhamento_noticias:
+  ativo: true
+  promessas_por_dia: 30
+  max_noticias_por_promessa: 10
+  max_chamadas_ia_por_dia: 60
+  buscar_desde: "2026-06-01"        # primeira verificação de cada promessa olha desde aqui

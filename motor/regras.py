@@ -49,6 +49,7 @@ def aplicar_status(promessa: dict, novo: str, doc: dict, av: dict, provedor: str
         "provedor": provedor,
         "origem": origem,
         **({"nota": nota} if nota else {}),
+        **{k: av[k] for k in ("segunda_opiniao", "apuracao") if av.get(k)},
     })
     promessa["status"] = novo
     promessa["atualizado_em"] = armazem.hoje()
@@ -81,4 +82,5 @@ def item_fila(av: dict, promessa: dict, doc: dict, provedor: str) -> dict:
         "documento": resumo_documento(doc) | {"oficial": doc.get("oficial", False)},
         "provedor": provedor,
         "criado_em": armazem.hoje(),
+        **{k: av[k] for k in ("segunda_opiniao", "apuracao") if av.get(k)},
     }

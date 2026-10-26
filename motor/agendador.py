@@ -15,12 +15,14 @@ from datetime import date, datetime, timedelta
 
 from web import build
 
-from . import armazem, campanha
+from . import armazem, campanha, execucao
 from . import main as pipeline
 
 log = logging.getLogger("agendador")
 
 HORA_SYNC = os.environ.get("HORA_SYNC", "07:00")
+# 1 = todo dia; 2 = a cada 48 h (no mesmo horário)
+INTERVALO_DIAS = max(1, int(os.environ.get("INTERVALO_SYNC_DIAS", "1")))
 # Campos que vêm do plano de governo: o repositório manda. Status e histórico: o volume manda.
 # (referências e declarações não entram aqui: motor/campanha.py mescla sem apagar o que o volume já tem)
 CAMPOS_DO_PLANO = ("origem", "titulo", "categoria", "prazo", "fonte", "palavras_chave")
@@ -40,7 +42,8 @@ def trocar_presidente_se_preciso() -> None:
         destino = armazem.ARQUIVO / f"{(registrado or 'anterior').lower().replace(' ', '-')}-{armazem.hoje()}"
         destino.mkdir(parents=True, exist_ok=True)
         # caminhos da campanha calculados agora, a partir do armazém (não os fixados na importação)
-        da_campanha = [armazem.DADOS / a.name for a in campanha.ARQUIVOS] + [armazem.ESTADO / campanha.ESTADO.name]
+        da_campanha = ([armazem.DADOS / a.name for a in campanha.ARQUIVOS]
+                       + [armazem.ESTADO / campanha.ESTADO.name, armazem.ESTADO / execucao.ESTADO.name])
         for caminho in (armazem.PROMESSAS, armazem.FILA, armazem.VISTOS, armazem.PENDENTES,
                         armazem.EXECUCAO, armazem.ESTADO / "rejeitados.json", *da_campanha):
             if caminho.exists():
@@ -77,11 +80,12 @@ def semear() -> None:
         log.info("Promessas sincronizadas com o repositório: %d novas, %d campos atualizados", novas, mudou)
 
 
-def rodou_hoje() -> bool:
+def sync_em_dia() -> bool:
+    """Já rodou dentro do intervalo (hoje, ou ontem quando o intervalo é de 2 dias)?"""
     executado = armazem.ler_json(armazem.EXECUCAO, {}).get("executado_em")
     if not executado:
         return False
-    return datetime.fromisoformat(executado).astimezone().date() == date.today()
+    return (date.today() - datetime.fromisoformat(executado).astimezone().date()).days < INTERVALO_DIAS
 
 
 def horario_de_hoje() -> datetime:
@@ -95,7 +99,11 @@ def sincronizar() -> None:
         log.info("Sync concluído: %s", stats)
     except Exception:  # noqa: BLE001 — o serviço não pode morrer por um dia ruim
         log.exception("Sync falhou; tenta de novo no próximo horário")
-    try:  # depois do oficial: referências e declarações usam o que sobrou da cota
+    try:  # cumprimento de cada promessa nas notícias (rodízio), com apuração
+        log.info("Acompanhamento por notícias: %s", execucao.sincronizar())
+    except Exception:  # noqa: BLE001
+        log.exception("Acompanhamento por notícias falhou; tenta de novo no próximo horário")
+    try:  # depois: referências e declarações usam o que sobrou da cota
         log.info("Campanha: %s", campanha.sincronizar())
     except Exception:  # noqa: BLE001
         log.exception("Campanha falhou; tenta de novo no próximo horário")
@@ -118,7 +126,7 @@ def main():
         return
 
     build.main()
-    if not rodou_hoje() and datetime.now() >= horario_de_hoje():
+    if not sync_em_dia() and datetime.now() >= horario_de_hoje():
         sincronizar()
     while True:
         alvo = horario_de_hoje()
@@ -126,6 +134,9 @@ def main():
             alvo += timedelta(days=1)
         log.info("Próximo sync: %s", alvo.isoformat(timespec="minutes"))
         time.sleep(max(1, (alvo - datetime.now()).total_seconds()))
+        if sync_em_dia():  # intervalo de 2 dias: pula o dia do meio
+            log.info("Intervalo de %d dias: sync de hoje pulado", INTERVALO_DIAS)
+            continue
         sincronizar()
 
 

@@ -18,6 +18,17 @@ from .llm import Cadeia, SemProvedorDisponivel
 log = logging.getLogger("motor")
 
 
+def segunda_opiniao(cadeia, presidente, doc, promessa, av, provedor) -> dict:
+    """Reclassifica o documento só com esta promessa, preferindo outro provedor (outra empresa)."""
+    try:
+        r = classificar(cadeia, presidente, doc, [promessa], evitar=(provedor,))
+    except SemProvedorDisponivel:
+        return {"concorda": False, "motivo": "sem segundo provedor disponível"}
+    a2 = next((a for a in r.dados["avaliacoes"] if a["promessa_id"] == promessa["id"]), None)
+    concorda = bool(a2 and a2["relevante"] and a2["status_sugerido"] == av["status_sugerido"])
+    return {"concorda": concorda, "provedor": r.provedor, "status": a2["status_sugerido"] if a2 else None}
+
+
 def periodo(args, cfg, execucao: dict) -> tuple[dict[str, str], str]:
     """Data inicial de cada coletor: a última coleta bem-sucedida dele.
 
@@ -96,6 +107,13 @@ def executar(args) -> dict:
                 if not doc.get("oficial") and av["relevante"]:
                     regras.registrar_imprensa(p, doc, av)
                 decisao = regras.decidir(av, p, doc, cfg["regras"], presidente)
+                if decisao == regras.AUTO:
+                    # segunda opinião, de outro provedor: só aplica sozinho se os dois concordarem
+                    av["segunda_opiniao"] = segunda_opiniao(cadeia, presidente, doc, p, av, res.provedor)
+                    if not av["segunda_opiniao"]["concorda"]:
+                        decisao = regras.FILA
+                        log.info("DIVERGÊNCIA %s: %s diz %s → fila", p["id"],
+                                 av["segunda_opiniao"].get("provedor"), av["segunda_opiniao"].get("status"))
                 stats[decisao] += 1
                 if decisao == regras.AUTO:
                     regras.aplicar_status(p, av["status_sugerido"], doc, av, res.provedor, regras.AUTO)

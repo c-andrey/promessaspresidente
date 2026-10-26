@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from urllib.parse import quote_plus
 
+from .. import armazem
 from .http import cliente
 
 GOOGLE_NEWS = "https://news.google.com/rss/search?q={q}+when:{dias}d&hl=pt-BR&gl=BR&ceid=BR:pt-419"
@@ -59,7 +60,9 @@ def _itens(c, url: str, nome_fonte: str, desde: str, ate: str) -> list[dict]:
 
 def coletar(desde: str, ate: str, cfg: dict) -> list[dict]:
     dias = cfg.get("janela_busca_dias", 3)
-    alvos = [(GOOGLE_NEWS.format(q=quote_plus(b), dias=dias), "Google Notícias") for b in cfg.get("buscas", [])]
+    presidente = armazem.ler_yaml("presidente.yaml")["nome_busca"]
+    alvos = [(GOOGLE_NEWS.format(q=quote_plus(b.format(nome=presidente)), dias=dias), "Google Notícias")
+             for b in cfg.get("buscas", [])]
     alvos += [(f["url"], f["nome"]) for f in cfg.get("feeds", [])]
     vistos, docs = set(), []
     with cliente() as c:

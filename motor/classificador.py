@@ -75,7 +75,7 @@ def montar_usuario(doc: dict, promessas: list[dict]) -> str:
     )
 
 
-def classificar(cadeia: Cadeia, presidente: dict, doc: dict, promessas: list[dict]) -> Resultado:
+def classificar(cadeia: Cadeia, presidente: dict, doc: dict, promessas: list[dict], evitar=()) -> Resultado:
     ids = {p["id"] for p in promessas}
 
     def validar(dados):
@@ -86,4 +86,4 @@ def classificar(cadeia: Cadeia, presidente: dict, doc: dict, promessas: list[dic
                 raise RespostaInvalida(f"confiança fora de 0..1: {a['confianca']}")
 
     return cadeia.completar_json(montar_sistema(presidente), montar_usuario(doc, promessas),
-                                 SCHEMA, validar=validar)
+                                 SCHEMA, validar=validar, evitar=evitar)

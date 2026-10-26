@@ -23,7 +23,14 @@ def volume(tmp_path, monkeypatch):
     monkeypatch.setattr(armazem, "SEMENTE", tmp_path / "semente" / "promessas.json")
     monkeypatch.setattr(armazem, "DADOS", tmp_path)
     monkeypatch.setattr(campanha.time, "sleep", lambda s: None)
+    monkeypatch.setattr(campanha.apuracao, "resolver_url", lambda c, url: url)
     return tmp_path
+
+
+def apuracao_fixa(status):
+    return lambda *a, **k: {"status": status, "confirmacoes": int(status == "apurada"), "lidas": 1,
+                            "trechos": [{"url": "u0", "veiculo": "G1", "trecho": "vou zerar a fila do INSS"}]
+                            if status == "apurada" else []}
 
 
 def doc(titulo, veiculo, url):
@@ -66,7 +73,8 @@ def test_teto_de_chamadas():
         c.completar_json()
 
 
-def test_declaracao_com_3_veiculos_e_publicada_sozinha(volume, monkeypatch):
+def test_declaracao_com_3_veiculos_e_citacao_conferida_e_publicada_sozinha(volume, monkeypatch):
+    monkeypatch.setattr(campanha.apuracao, "apurar", apuracao_fixa("apurada"))
     # títulos diferentes: a mesma manchete republicada (agência) é deduplicada e conta uma vez só
     docs = [doc(f"Lula promete zerar fila do INSS ({v})", v, f"u{i}") for i, v in enumerate(["G1", "Folha", "Estadão"])]
     monkeypatch.setattr(campanha, "buscar", lambda c, q, p: docs)
@@ -80,6 +88,16 @@ def test_declaracao_com_3_veiculos_e_publicada_sozinha(volume, monkeypatch):
     publicada = next(p for p in armazem.ler_json(armazem.PROMESSAS, []) if p["origem"] == "declaracao")
     assert publicada["fonte"]["veiculos"] == 3 and publicada["fonte"]["aprovacao"] == "automatica"
     assert len(publicada["referencias"]) == 2
+
+
+def test_3_veiculos_sem_citacao_conferida_espera_revisao(volume, monkeypatch):
+    monkeypatch.setattr(campanha.apuracao, "apurar", apuracao_fixa("nao_confirmada"))
+    docs = [doc(f"Lula promete zerar fila do INSS ({v})", v, f"u{i}") for i, v in enumerate(["G1", "Folha", "Estadão"])]
+    monkeypatch.setattr(campanha, "buscar", lambda c, q, p: docs)
+    cadeia = Cadeia([IAFalsa()], RegistroUso(caminho=None))
+    r = campanha.buscar_declaracoes(cadeia, CFG, PRESIDENTE, PLANO, ("2026-10-20", "2026-10-25"))
+    assert r["aprovadas_automaticamente"] == 0 and r["pendentes"] == 1
+    assert armazem.ler_json(campanha.CANDIDATAS, [])[0]["apuracao"]["status"] == "nao_confirmada"
 
 
 def test_declaracao_com_1_veiculo_espera_revisao(volume, monkeypatch):

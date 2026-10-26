@@ -43,6 +43,11 @@ class Resultado:
     provedor: str
 
 
+def familia(nome: str) -> str:
+    """Empresa por trás do provedor: "groq-gpt-oss-120b" → "groq", "gemini-lite" → "gemini"."""
+    return nome.split("-")[0]
+
+
 class RegistroUso:
     """Contagem diária de chamadas por provedor, persistida entre execuções."""
 
@@ -166,13 +171,17 @@ class Cadeia:
     # --- chamada ----------------------------------------------------------------------
 
     def completar_json(self, sistema: str, usuario: str, schema: dict,
-                       validar=None) -> Resultado:
+                       validar=None, evitar=()) -> Resultado:
+        """evitar: provedores (ou famílias, ex. "groq") que só entram se nenhum outro responder —
+        é assim que sai a segunda opinião de outra empresa."""
         estimativa = estimar_tokens(sistema, usuario, json.dumps(schema))
+        evitar = {familia(e) for e in evitar}
         for _ in range(ESPERAS_GLOBAIS + 1):
             tentados = set()
             while True:
-                candidatos = [p for p in self.provedores if p.nome not in tentados
-                              and self._utilizavel(p) and not self._livre_em(p)]
+                livres = [p for p in self.provedores if p.nome not in tentados
+                          and self._utilizavel(p) and not self._livre_em(p)]
+                candidatos = [p for p in livres if familia(p.nome) not in evitar] or livres
                 if not candidatos:
                     break
                 # Rodízio: na ordem da config, o primeiro que pode chamar já (ou quase);

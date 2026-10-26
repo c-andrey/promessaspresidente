@@ -12,6 +12,7 @@ Duas frentes, rodadas todo dia pelo sync (agendador) e também à mão:
   python -m motor.campanha buscar [--amplo]         # declarações (--amplo: pesquisa grande)
   python -m motor.campanha referencias [--todas]    # referências (--todas: período inteiro)
   python -m motor.campanha listar                   # candidatas pendentes, mais citadas primeiro
+  python -m motor.campanha resolver-links           # links do Google Notícias → URL real da matéria
   python -m motor.campanha aprovar ID [ID...]
   python -m motor.campanha rejeitar ID [ID...]
 
@@ -27,7 +28,7 @@ import unicodedata
 from datetime import date, timedelta
 from urllib.parse import quote_plus
 
-from . import armazem
+from . import apuracao, armazem
 from .coletores.http import cliente
 from .coletores.noticias import _itens
 from .llm import Cadeia, SemProvedorDisponivel
@@ -190,9 +191,21 @@ def atualizar_referencias(cadeia, cfg, presidente, promessas, estado, quantas: i
                 except SemProvedorDisponivel as e:
                     log.warning("Referências: parei em %d/%d (%s)", n - 1, len(fila), e)
                     break
-                achadas = [{"veiculo": docs[x["indice"]]["fonte"], "titulo": docs[x["indice"]]["titulo"],
-                            "url": docs[x["indice"]]["url"], "data": docs[x["indice"]]["data"],
-                            "o_que_disse": x["o_que_disse"]} for x in r.dados["confirmadas"]]
+                achadas = []
+                for x in r.dados["confirmadas"]:
+                    d = docs[x["indice"]]
+                    ref = {"veiculo": d["fonte"], "titulo": d["titulo"], "url": d["url"], "data": d["data"],
+                           "o_que_disse": x["o_que_disse"]}
+                    ref["apuracao"] = apuracao.apurar(
+                        cadeia, c, f"{nome} prometeu, defendeu ou detalhou esta proposta: {p['titulo']}",
+                        [ref], p["palavras_chave"] + [nome], evitar=(r.provedor,), max_leituras=1)
+                    if ref["apuracao"]["status"] in ("nao_confirmada", "contradita"):
+                        continue  # a reportagem inteira não sustenta: fora
+                    if ref["apuracao"]["trechos"]:
+                        ref["url"] = ref["apuracao"]["trechos"][0]["url"]
+                    else:
+                        ref["url"] = apuracao.resolver_url(c, ref["url"])
+                    achadas.append(ref)
                 novas += juntar_referencias(refs.setdefault(p["id"], []), achadas, cfg["max_referencias_por_promessa"])
             verificadas[p["id"]] = hoje
             feitas += 1
@@ -357,13 +370,25 @@ def buscar_declaracoes(cadeia, cfg, presidente, plano, periodo, amplo=False) -> 
         }
         novas_candidatas += 1
 
-    # Aprovação automática: confirmada por N veículos diferentes.
+    # Aprovação automática: N veículos diferentes E apuração com citação literal no texto da matéria.
     minimo = cfg["aprovacao_automatica_min_veiculos"]
-    automaticas = [c for c in candidatas.values() if veiculos_distintos(c["fontes"]) >= minimo]
+    automaticas = []
+    with cliente() as c_http:
+        for c in [c for c in candidatas.values() if veiculos_distintos(c["fontes"]) >= minimo]:
+            if c.get("apuracao", {}).get("status") != "apurada":
+                try:
+                    c["apuracao"] = apuracao.apurar(cadeia, c_http, f"{nome} prometeu: {c['titulo']}",
+                                                    c["fontes"], c["palavras_chave"] + [nome])
+                except SemProvedorDisponivel:
+                    break
+            if c["apuracao"]["status"] == "apurada":
+                resolver_fontes(c_http, c)
+                automaticas.append(c)
     for c in automaticas:
         del candidatas[c["id"]]
         aprovadas[c["id"]] = c | {"status": "aprovada", "aprovacao": "automatica", "aprovada_em": armazem.hoje()}
-        log.info("Declaração aprovada automaticamente (%d veículos): %s", veiculos_distintos(c["fontes"]), c["titulo"])
+        log.info("Declaração aprovada automaticamente (%d veículos, citação conferida): %s",
+                 veiculos_distintos(c["fontes"]), c["titulo"])
 
     armazem.gravar_json(CANDIDATAS, sorted(candidatas.values(), key=lambda c: -veiculos_distintos(c["fontes"])))
     armazem.gravar_json(APROVADAS, list(aprovadas.values()))
@@ -372,6 +397,43 @@ def buscar_declaracoes(cadeia, cfg, presidente, plano, periodo, amplo=False) -> 
               "pendentes": len(candidatas)}
     log.info("Declarações: %s", resumo)
     return resumo
+
+
+# --- links reais ---------------------------------------------------------------------------
+
+def resolver_fontes(c, declaracao: dict) -> None:
+    for f in declaracao["fontes"]:
+        f["url"] = apuracao.resolver_url(c, f["url"])
+
+
+def resolver_links_pendentes(limite: int | None = None) -> int:
+    """Troca links news.google.com pela URL real da matéria em referências, declarações e "Na imprensa"."""
+    feitos = 0
+    with cliente() as c:
+        def resolver(item):
+            nonlocal feitos
+            if (limite is None or feitos < limite) and "news.google.com" in item.get("url", ""):
+                item["url"] = apuracao.resolver_url(c, item["url"])
+                feitos += 1
+                time.sleep(0.5)
+
+        refs = armazem.ler_json(REFERENCIAS, {})
+        for lista in refs.values():
+            for r in lista:
+                resolver(r)
+        armazem.gravar_json(REFERENCIAS, refs)
+        aprovadas = armazem.ler_json(APROVADAS, [])
+        for d in aprovadas:
+            for f in d["fontes"]:
+                resolver(f)
+        armazem.gravar_json(APROVADAS, aprovadas)
+        promessas = armazem.ler_json(armazem.PROMESSAS, [])
+        for p in promessas:
+            for n in p.get("imprensa", []):
+                resolver(n)
+        armazem.gravar_json(armazem.PROMESSAS, promessas)
+    log.info("Links resolvidos para a URL real: %d", feitos)
+    return feitos
 
 
 # --- aplicar no volume ------------------------------------------------------------------
@@ -461,6 +523,7 @@ def sincronizar() -> dict:
     base.uso.salvar()
     armazem.gravar_json(ESTADO, estado)
     aplicar_no_volume()
+    resumo["links_resolvidos"] = resolver_links_pendentes(cfg.get("links_resolvidos_por_dia", 300))
     return resumo
 
 
@@ -475,6 +538,9 @@ def _mover(ids, destino, status):
             print(f"não está entre as candidatas: {i}")
             continue
         candidatas.remove(c)
+        if status == "aprovada":
+            with cliente() as c_http:
+                resolver_fontes(c_http, c)
         alvo.append(c | {"status": status, "aprovacao": "manual", "aprovada_em": armazem.hoje()})
         print(f"{status}: {i}")
     armazem.gravar_json(CANDIDATAS, candidatas)
@@ -491,6 +557,7 @@ def main():
     r = sub.add_parser("referencias")
     r.add_argument("--todas", action="store_true", help="todas as promessas, período de campanha inteiro")
     sub.add_parser("listar")
+    sub.add_parser("resolver-links", help="troca links do Google Notícias pela URL real da matéria")
     for nome in ("aprovar", "rejeitar"):
         sub.add_parser(nome).add_argument("ids", nargs="+")
     args = ap.parse_args()
@@ -513,6 +580,9 @@ def main():
                                   periodo_inteiro=args.todas)
             armazem.gravar_json(ESTADO, estado)
         base.uso.salvar()
+        aplicar_no_volume()
+    elif args.cmd == "resolver-links":
+        resolver_links_pendentes()
         aplicar_no_volume()
     elif args.cmd == "listar":
         for c in armazem.ler_json(CANDIDATAS, []):
