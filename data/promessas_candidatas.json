@@ -1,0 +1,828 @@
+[
+  {
+    "id": "garantir-transporte-gratuito-finais-semana-envio",
+    "titulo": "Garantir transporte gratuito aos finais de semana com envio de PEC",
+    "categoria": "Infraestrutura",
+    "contexto": "discurso",
+    "o_que_disse": "Lula disse que vai enviar ao Congresso uma PEC para garantir transporte público gratuito aos finais de semana utilizando recursos de emendas parlamentares.",
+    "palavras_chave": [
+      "emendas obrigatórias",
+      "emendas parlamentares",
+      "escala 6x1",
+      "finais de semana",
+      "fins de semana",
+      "passe livre",
+      "pec",
+      "pec transporte",
+      "tarifa zero",
+      "transporte coletivo"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete enviar PEC que garante transporte gratuito aos finais de semana após aprovação do fim da 6x1",
+        "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOcDZCSmVsc1EtcU02NTJlVTRSekJqanRLX29sUDJINUFIdW1qalNSbGJfSThVQ09GX3EzUUNPTnVndDBnNzVjN1pLMEhHa1dPVk5uam4teTdaQl9TaWtEbGZNa2pNWC0xUTlRbVl4SHpSNEJ2MXJwb2g0MG9ZUzE5ZFFsVXhITW5FSndHWDdsa240TTVEM2gya2lEMWgtdnZsX3Q0MnAtdi02UEVfLXdHYXVGVW81NnU5NC1DZzVyQ2hHazVLX1JSWElYZ1JiMUlKQkFnMW9PcFZoX3Y1YmR0WjNEYndqSVFLbDV3?oc=5",
+        "data": "2026-10-15",
+        "veiculo": "Folha de S.Paulo"
+      },
+      {
+        "titulo": "Lula propõe tarifa zero via emendas na reta final da campanha",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQYXhmM3FnNElTcjFOLXo4QnpYUHVHRE04NWZ3NUxBUWlEc2hTQTc5aVRrVjlzRTV5R3lZTjBnN2MzVFdZNjlwcGRPRHJZQl8weWZXTlV0UGNjRDdpSzJsVHVad0ZzaFpkaVpGdGJFT3dPRVV4czQtSldUUGIwUkV3ZTNQWmRjMk1hRXlqTWdaV2lsN2FjU0pmLUY5b1IzeVNHcnNFWEFkd2owcElBbExxUG1sT2RmR213RTU5ajlDV3Z4cEV5TS1GQ2ZaRTFXUXfSAd4BQVVfeXFMTlBSelYyZzlMcktvUnZQV0hPNk5oWGRkOVUyUlBxUUpUcmswWjBlRlFSU1lKT3BKNm0zamMxYUg0S2puYlRTVzI1eEVYcUxsOFp5ZkRPNDVaeWYtcXNNcHE3X2lJOVg3eUhsUVE4NUhFUmgzc3U4UTFvMjN3VXkzMDBKSjE1cVVOWkNwWUYwbEtjUlFfQjhzMVdhUXRtcG1iQVotaS1wRmZCZWRzSzZoTGdkYV9ZQkVEQkNSRlZKcE9XaGppODhLSDI0ekdnUjNqSjJqQW1oeGNwSE05Wk5n?oc=5",
+        "data": "2026-10-21",
+        "veiculo": "O GLOBO"
+      },
+      {
+        "titulo": "PEC da tarifa zero no transporte vai para o Congresso nesta quarta-feira (21), anuncia Lula",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1sWjR4RWdNcGRSQUxoT2ZjaHNhYmJXekw1d1N1UEpUUWpyMS0wTlF3TFF6eXBCbGtvdzB0N0FBZjh1WTZ3SXVHQWxSaWQ2RnljaWw5WElVUGJqZ3pISHA3QlVMMnZVZ3RkT1luak9RcmN5cUJsZUNPSUx4a3YwTG8?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "TVT News"
+      },
+      {
+        "titulo": "Lula promete ônibus de graça nos fins de semana no Brasil inteiro",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUHlSTWxPaHF6UXp3SWZDcVFudGo2bWlLS2xkcDBwRjhXUTBfbWFFVEp4VXlHYkFiS0pmNUtwMG43V0ZvUUJYMEctaHczVHZaSHJYTEhhS0pVV096ZVgxcUtGeF85M1h0akxCZmNxMkg0dGZZOHN0Mk1uNVBiSE9Hdk5veFFjWndWdkZ1VFJHejBFS0hnSm1GRTg1Wm1XaTg?oc=5",
+        "data": "2026-10-15",
+        "veiculo": "Home - Paulo Figueiredo"
+      },
+      {
+        "titulo": "Transporte coletivo: Lula diz que vai enviar ao Congresso PEC para garantir tarifa zero aos finais de semana com dinheiro de emendas",
+        "url": "https://news.google.com/rss/articles/CBMipwJBVV95cUxOazJjLXQ2a1Y5YUs5ZGl4OUdERVFESy1FQkVVcDRnTVZ5SlI4UTF1SFB6aFY1ZDBtYk1kZmFTQWc4VWxuMWdMX082eDVvTUY1UGN3NmZEUzJ1VkZfZDgwWVAtc09DNDZsVEJZSW41ZW1Qc29WQ1RjTTFscTdKLVI4Y1RoQ2Z6R1M5NVF0dVRGSEx3RExmTFVoVnl4R0pWZl8yYV85Y19ZWExjdlZqTVBQaURTcWtSckZDdFRMWlF2Z1Z5Z1g4QWFnUVlGRFJHN2hRUVFsZkt0bG5uMFBGRUdRUk9HRHR5Mkkxa24zTVNwV3NfS283b2xDdHF3N3RSSzRfUmxNVGZlQzVFc3oxMEJzMWdVY0pMOXBPYkVKMUdEaWRVZE1OMHhN0gG2AkFVX3lxTE5pcEpUcHk0cWx5ampxMjA4Sm1oRjJvWHo4akEtWVA3dlQ2VUJ4UzMyM19XaWxJR2w4bkJQbFRkVmRMaE1XSkRzWFFCTG5nVUVESVJWZFhFVlFiTU1nMUFscUJxeC1ZYmxUX1B2SnBBWkdXV2RKVWNZbWRvQ3d5SzJISDhSMml2S2lFZllIZjJoUFdfZDNoZXljNVNmYlRueWlhdlFCMjNlN1JJNzlCdzF0R1F0Z2xTM016NjdTcWZGTGJjVmhjc016amYxSVdjd0xuUG5MWjNkOXg3el9jSHhMYmhoWl9Bc2xCZHp5TFJXZVlNTS01dWhzRU5xWTA1MnZmUDljRE5zOEVMZHZNWEZFdGg1NGxCSUtuQ1ZOVWZRRGVIdGxMZjVQeWFqQVNaMkF1VHd5T3c?oc=5",
+        "data": "2026-10-15",
+        "veiculo": "G1"
+      },
+      {
+        "titulo": "Após aprovação do fim da 6x1, Lula promete passe livre nos finais de semana",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSC15UVNSdEw2S01IV0lXaktJY3Y0UnBhWVVkcjNQTERCdDRJSG92YWhGVUpjbHJJYnJFQUNnQXJuOTlPak5yM2pVYlNjQXBsclZ4aTgtcUtaa294djhzRnlGejFSYldvQnd0YzBLY05NYTB2ZHlPd256WmNicjRrYzdGeTFLR3VMUjgtaDlxbW5ERDNMSkFBSzBWVmJEZTFDTHg4Zy1nVXAxWXBGRHp1b0x6Tlp4LUNuVjhzU3hZSlpoLXI5eVE?oc=5",
+        "data": "2026-10-15",
+        "veiculo": "UOL Notícias"
+      },
+      {
+        "titulo": "Lula promete ônibus grátis aos fins de semana e perdão a dívida de MEI",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOeElYOTBiSzRNbV9XV1VzczNKQVJMemhFS2ZoYm5BSFM3UEdZUEt4OWRsbW9ySDNydHlvTnBTaUR0UEZ5S0lobXk1Z3cxLXdzdjBmeHBoRXU4TjZvVGxlZHNJVk5oQUc3TVlPQVZIV1ZQdXNMdERvVjk1aGQwazFSZzViZ0NMVkZueVRCeG9SR2dUNzlUSEVIekNteDRLbHZRWThrbW5GZnU5SXlTazhrcU1RSHZ3ZGNVQ0g5dQ?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "TV Sim Brasil"
+      },
+      {
+        "titulo": "Mais uma! Lula promete ônibus de graça aos fins de semana",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQT1Jjb3lRT2VabkN4QVRDelFHTWh2QzE1ajFwQVpuV2ZpcXEwQ1BiN21fMTR1Ukp0bTBJN1BlS1JtdWFJa1JBdkttRGJUNEU0b0hVS295cmpTVEtVbEFSdEZCWm5ic1Z0LTZlNWFEaFdWMmJYck5sak1POEtqZXhrOWNOUnMzSFRTcmxISllZY2RQNzhSdVlEZzlIRnRvR3dMdzBF0gGrAUFVX3lxTE94YVdISUtSTGZfX2hIdHRYMnhya1N4YzdDNU92dUhtbVhWWHhWNG5SZ3BtSHAwYlZaR3hmWmxUbF9vTHRXdGwxeVBNSVFYZW9NX2UzbmEtbG1kaW1GZ2NVRnpCUkN6U1hMaTdtMVprdFdLRnhxR1ZfWVlHQmpfUnN5Nm1wOW5mQlBzR19jVnZCeXgzcUdYUUVMc0RDYXlsalphcURBczdfM0RTUQ?oc=5",
+        "data": "2026-10-15",
+        "veiculo": "Pleno.News"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "encerrar-operacao-apostas-esportivas-online-bets",
+    "titulo": "Encerrar a operação de apostas esportivas online (bets)",
+    "categoria": "Economia e contas públicas",
+    "contexto": "discurso",
+    "o_que_disse": "Lula anunciou o fim das apostas esportivas online (bets) no Brasil, afirmando que a medida causará insatisfação na Globo.",
+    "palavras_chave": [
+      "apostas esportivas",
+      "apostas esportivas online",
+      "apostas online",
+      "bets",
+      "cartão de crédito",
+      "endividamento",
+      "fim das bets",
+      "indenização",
+      "limitação de pix",
+      "proibir bets"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula anuncia fim das bets e diz que 'a Globo vai ficar chateada' com a decisão",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5yN3U5UUxhX2hGVUphdjF4WXFDRjRvdExXb0k3UlpSVHV6eVl5X1h4SlQ3RWV5V2poLTc2aVlHLWlqVkRaVE9PRURWTjF3RlYxb2piaWpERk1TVFAyUmRyYW1Yb0YtZnlDRGtFYWd4SzBiTWR6b21pazUyN1lpQms?oc=5",
+        "data": "2026-10-02",
+        "veiculo": "BPMoney"
+      },
+      {
+        "titulo": "Lula classifica apostas online como “doença” e promete decisão drástica sobre as bets em breve",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRV93YnVDdHlVUGZSRVJ4RnZoaFFaMTZHbld4WWNuVF9DTGN4ZXlIX29GcVFxdUE3bnNWRV9lc2hFR0NrRlFnU0NselJaNjAwVEtzd0lVbk1xYTFKVFBQbHFVcmxYYnNfaVE1OEFvTFg0dDBwOHdxU2tTRXFfWmFWOWRLWGJ3M2FpdVlIZ0dRZlhKZzhndTBPUVRlT3d5cDJ1YUVzRzVka01GTFhoeXBucDZ1dHFaSEtEZ0Ew?oc=5",
+        "data": "2026-09-15",
+        "veiculo": "CircuitoMT"
+      },
+      {
+        "titulo": "Em Florianópolis, Lula promete acabar com bets e provoca empresários do agronegócio",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWGhxYXVRamg1dFYzNFdKQmdZc2FSaHZ5ZmlnSmJXRlVvcWgwbWF4dktObjVJcG9PZXlqTWJVelE2c09IbVBKSFFhTmZvY0RJbHVvZDNNZVhjaTc5bVpnVlJ3VUFyd0VNRGN4aE50VlZLWGg2RFJSVUlXYzM0RE5iMHg1a0RCOTdOT3J3VDVyT3JVTjl2NmQ2R3NJaDlYalpkajgxb3kwNDR6LU5fd00wVl8teUg?oc=5",
+        "data": "2026-09-19",
+        "veiculo": "Portal Upiara"
+      },
+      {
+        "titulo": "DESENROLA 3 : Lula anuncia hoje e diz que vai fazer a compra de dívidas só depois da eleição",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQUHZFTTNkMU1jaHRQVnBCY1p3ZEZzbnc2bS02Qy1Eay1TV2pqZW4yNWh0NEt2ak1OYzRQQTJmSUE0TnlsZWxfUVVRMXc0bUJtNW04QmFqSS1ST0JXY1lQZXhRenRXWFhaVkRqWVpvTWZBcGNmdkRSaHBaTGtHbF8wbExQSzltSlZuUFJTSnNULWtKWHloUFkxYU5YaEluVDBLZWRjeDd6aFdSa3ZfMVVBLXdSMTh6dlV3bnUw?oc=5",
+        "data": "2026-09-25",
+        "veiculo": "Blog do BG"
+      },
+      {
+        "titulo": "Lula vai proibir bets no País e quer que empresas indenizem quem se endividou com apostas online",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQWnRqNFg2WVhIMS1pRGt5R3hLQ3EzdWdfU3A1WE53djJFeXVqWmEtUXVsenF6RU1TQmtYZWc1OGwxWWgtSHAwSVZyN2lNTGJIQ0hVblFGNThXcXJPeTNudEFNbVc3b1pfREpsMFI5d0VHbnlvX0tONnlGaEtiMTlUaVE4bDZaX29UWlJXZ3JIUjFaNVlJZWRoSEhmV19mY2FScGdKZ3pJUXRra0ZTZVpPeThjeFdZekZpQi1UWGNiZHJTa2VpOHY3Y3o5bnNLZ9IB0wFBVV95cUxOUV9EeHl4TjFMcFA0dERrWjU0Q01BN2lYOGtaRkRYUzVPMkVJZXZfazN5el9vZFJITUp0MWdKQmw1ckNXbUxyTzdyU0d3MTFpMGRDeHFXTzg0VzZmSC16VHZfa0hKSFdpVlBjd0dPZjRoRDdBSDZ5cU9fdHBFa3hrOTdFdDJTb3RMcWVoYnRzWnR5TktTWTdrVHhDbkFtMXdWbkk5SklMRnlxN0JyWklDaExMcVlsOUtUbUhyMmFIR01yaUZZanVQUWRlRElXeDVOWTdj?oc=5",
+        "data": "2026-09-23",
+        "veiculo": "Estadão"
+      },
+      {
+        "titulo": "Lula diz que muita gente está endividada e que vai acabar com as bets",
+        "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNbXdNQzFWOVlQU1RHNTFTYTVBb3VCNElNQzBldXJVbUJVcGVnMEM5WVhZVDJfUy16YWRmYlgzTnNLZ3lBc1FNb2pfSlFDdUlFR2RmeHFmOWdyNllnV3BFN3FOWnI1M1Biam5NNk9kTjlvRG9OY0NTYkVsbzlqeWp5RHI4U2FNRXRNOGVtb3JUX0hvNU9DTHZRX0RYQWp2UW44aVp2Ri16dWU1eW0xZUsxLWhzUy1OMzg4VkJsbk1mM1J3b21TSzN6LWk1YVlSVzA0Ui10MzZucWnSAecBQVVfeXFMTk10bGo5Sk4taWRwVkFKWkVweVZ3R1dRMXV1d2NJZ01jZ251UUVhUXNiYS1NNVR5VXVpNHlfV1o3WFhIRHJPdjFHNllsdDYtV3ZtVG1XY1M4aDJneE94VnZ5Z0hINm91WG5TdDI0N0U3UFFzTVdBOUdrMUpSZXU2SFNkUVdNdGRyTlMtV2EyZF9BdlhUd2VrVHFNS1NuYVBWaGk1LVpPd3VkM0MtdURNU180djJPMXViWnpmbXJNOEFURElJNnBxX1NrZUtTSDRSYUJORkVHazVSek5kWlJhTkdNa1R5LWRZ?oc=5",
+        "data": "2026-09-25",
+        "veiculo": "Valor Econômico"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "prender-lideres-faccoes-criminosas",
+    "titulo": "Prender líderes de facções criminosas",
+    "categoria": "Segurança",
+    "contexto": "discurso",
+    "o_que_disse": "O candidato prometeu prender líderes de facções em ato de campanha.",
+    "palavras_chave": [
+      "combate ao crime",
+      "crime organizado",
+      "devolver território",
+      "efetivo",
+      "federalizar",
+      "fortalecer polícias",
+      "líderes de facções",
+      "plano de segurança",
+      "polícia federal",
+      "presídios de segurança máxima"
+    ],
+    "fontes": [
+      {
+        "titulo": "Em 1º ato de campanha, Lula promete prender líderes de facções e defende soberania; Janja canta jingle",
+        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNdE45bmVUTTAxM3BpRjd0OUdJelhOU1lnWHFhSXgxcmpJeTVKTTZOODJjQmJxUDlLUHNJaHo3OWNSeGpqQ1pXNWZ6azZtMUdWbFZuTkxVaWxTcVlDbmV3T2MzTFFkd01tTW1vaWs0OVpqcE9tWjBPdGY3anNxMXlsdml2SlJCazBGMlpoUWN0MldKVjZEOU9mRjJB0gGoAUFVX3lxTE84cWFMbENYcU5RQnpybHVCWkQ2Q0U0Y1BEb1NLTEU4LThCYVd6Q3V3YUM1TG8zRElDQzR5WTRYNDFuQWlqbVpVSEdZUFBVSk9ydXlySmdVS1VxdE9maUdNdXdwaW82MzYtank1MXJJcnlVQVFZUjkwOU1UcXdqUlZqb0p2ZDVRUXdFOVR4YXNfN0NKMm02VHZNMy0xbHVJejBSdkxWY0NIaw?oc=5",
+        "data": "2026-08-16",
+        "veiculo": "G1"
+      },
+      {
+        "titulo": "Lula diz que vai ‘devolver território’ ao povo do Rio em ato com candidato do PSD",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPQzFRSnN6UXMzUTVMTnhDT0xnUDFCeHlBTjFMcW94bGprSmhneERFRzB1czBFa05wYUVDZnA2ZnhTYmRiTjhHNTZXaGpzTTlHTjM2X0NwWEdKU29QLTM0V3hVcXZob09nRG1aUXZQLVBwT2xwT25jMVBadjNGekhXQTc5NnlTWjdpVVJFNWpNLWp4YlJTVm5aUEJrMmhybjVaZWpDeEFwdWlDR3V1OWdrV1RrUDRuQXJMVE1fd3NBXzFmOEg40gHKAUFVX3lxTFBUclplVEJWRnFzdXI2cGpQem9UandJTTdRbXJnMUNsRzRDU01RTDdoS291Y0F1Z1Vlajk2ZHlmYXdTekgtQXIxYWVUQlQtbTZ1SktiUlZwYi1sOXFhQ0lDYXVBckpSM0wxMGc5QnFRTmh1NnhldTMtZHNvTEY5aFVJUlRxUFYweHA0N0hkNUdyaktLVDN5Si1mT2Z1akF3M0VKQmVyaWhQcVNFVkpUYVBPdE5WX2FWcDJpU3FRYXlPcFgySXNBSlpQNmc?oc=5",
+        "data": "2026-08-22",
+        "veiculo": "Estadão"
+      },
+      {
+        "titulo": "Lula promete ampliar presídios de segurança máxima",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNdE1VdXNVdDJDaVUyWHdKMlUtX0ZHcndRUVdNTS1CT0ZVcEFOX2dXTGs2ZExuVmRTMWFwWWRCbUdBR05ZdnljbUl3dFVQalFudC00ekFzWEdMT3R2Znc3UjlHajB5Q0FwSGpDOFJfSXZwaXBTcVB4c2p4UHhpTmJIbVdVM0JCWEFFZFVZNA?oc=5",
+        "data": "2026-09-18",
+        "veiculo": "Brasil 247"
+      },
+      {
+        "titulo": "Lula promete federalizar presídios de segurança máxima",
+        "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPTjEybEhINmRrZ0Yzd3ZfYmlaQzRIaTBacjdVUmhQS0Rrd0lWdU9BNUZEVFVWakY3bDFuZ1Z1dXhmcTZjZUd5WkhLOVc0Mm1fV1lEMmFQdi1RZTIzTU1aTllnNFRjd1kweXlreTJKOTVNc0tPVHN2YzJzdjBHZVF4RmwxWnZTakY3OVB4X2lWZ1VBTmxiSkgyNnQ1MkVndFFFWUlzbGpOMnZkNGNh?oc=5",
+        "data": "2026-10-08",
+        "veiculo": "SBT News"
+      },
+      {
+        "titulo": "No Rio, Lula propõe fortalecer polícias para \"devolver território ao povo\"",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPcnc0MWkyODJxVmZaU01XWUxPWUs4ckw2d2tJcmVCZnJDb05aVFU3aVRORkRyNkJLSmNPTzRTQ25IZURLaUhGMnlUZ2UyRm80VjJPZ2pYbXc0eDlkemQtRXF2SGd0YlU4WHlmeGNuVEVvcktmRnlLd1hkdFdPSVJwWFJvcEtrYVo4bk83NFF1OVVfTlAyeHczYXppZ013d2QzdlRDR0lvTWFuY1daVFdR?oc=5",
+        "data": "2026-08-22",
+        "veiculo": "CNN Brasil"
+      },
+      {
+        "titulo": "Lula anuncia plano de segurança no Rio e promete dobrar efetivo da Polícia Federal",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOOUxCLXNmWGVNUmprNmItSVowVkhqc3ZXVzFTTGxybFYtYzFaRnVqVnZQQ2hKR1JsX2p6Nk5vT3NDNElqNlZzOFZqdC1fNjNJLWxBeVdZZGZrSm42ZHJKd2tZdWtMTFJWUTBhamoxdmpVOEptZVphYWJWZ1l1cjZSMkxSTFVNVkpwUk0xWjlGNVIxWkRuNnZURDJlQlY2SEFjSkZlVUU1WUJuWWlDM01Wc0VMTF9rcWdodjJpVHRtQ0ZfMWR2VFY4Uw?oc=5",
+        "data": "2026-09-15",
+        "veiculo": "Rádio Itatiaia"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "criar-medidas-alivio-fiscal-bares-restaurantes",
+    "titulo": "Criar medidas de alívio fiscal para bares e restaurantes impactados pelo fim da escala 6x1",
+    "categoria": "Custo de vida e impostos",
+    "contexto": "outro",
+    "o_que_disse": "O governo prometeu criar medidas de alívio para o setor de bares e restaurantes, que serão impactados pela mudança na jornada de trabalho.",
+    "palavras_chave": [
+      "alívio fiscal",
+      "alívio setorial",
+      "apoio setorial",
+      "bares e restaurantes",
+      "crédito tributário",
+      "dívidas de bares",
+      "fim da escala 6x1",
+      "fim da jornada 6x1",
+      "jornada 6x1",
+      "jornada de trabalho"
+    ],
+    "fontes": [
+      {
+        "titulo": "Governo Lula promete alívio a bares e restaurantes impactados pelo fim da 6 x 1 em reação a Flávio",
+        "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOSGxySklpM3VZZU1WWTMwc0dDUEhGNVhFY292TFZuNDlZMmNacThpYnYxNVNmLTFXdFdRY1RLeUljLU5wcEVaRjhNZUlvSDlaRklfUFpPLXNFUWdOcDJ5SjNrckdERUxwbHQtTVF5QW9nRC1LNlN6ZDFzQjJEQnJSWUZ4RGY1czBzblVTSDlOclo3OWZYa3c4RDd5YmVMQzlyT3paTkNueWtjdXdhLWkycW53eG02Vlc1YkRuWlh0amtlWHFEXzgxNks4cU5ScjlMWlBwaDRMOVhJTlJrcjlrTTNNamctT0JDREE?oc=5",
+        "data": "2026-10-22",
+        "veiculo": "Jornal do Tocantins"
+      },
+      {
+        "titulo": "Governo Lula promete alívio a bares e restaurantes impactados pelo fim da 6 x 1",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQNVlwR2R1UHotUllFbTdyeWxVQkp0WmNFUkJEa0RTbXcyXzJsVEJxaUVrTzNySzJtR0NfUHFHaUw0VW1Bd09qTE50QVo5R3Bsc0pQZkI5bkRVTVA3aGJtTzhpazVfUVZNZk1EUHdBVDFibVZVZ1VUNzFfQ29TektmcXlKdUlwNEFUaUQwU2lmZGJCS3BuZk9QNUF3MGNWbDdRSXVuYXk4bE1hLVRld1lVdl9IZkxKVm5FM3VKdEpFbjcxMGZ1UDRqaXZxSXk?oc=5",
+        "data": "2026-10-23",
+        "veiculo": "Notícias ao Minuto Brasil"
+      },
+      {
+        "titulo": "Governo Lula promete alívio a bares e restaurantes impactados pelo fim da jornada de trabalho 6×1",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQTW5faVhhYlMwWkp1ZXJvUzVCcXJuek1vQzAwczVlaW5TSU43VVRwMEdzemVTLWhzX2FZRmlONkQ0a3FpRU55c0QyNFBIWGJxUHpNbVBRdlRlZ09FaGxENFhTaFRPSTNjX2JGbnlHTjV1b010YTV3Q3BscnZ0ZjVEajlGcDhLdUV1M00ycDdXNk9ZWEJ6Nlgyc19QUF9oTGNrUzFNT3phSmNlaFlueldmeXBZc2hNYW8zNVBDQ0NSV1NEUTdz0gHEAUFVX3lxTFBNbl9pWGFiUzBaSnVlcm9TNUJxcm56TW9DMDBzNWVpblNJTjdVVHAwR3N6ZVMtaHNfYVlGaU42RDRrcWlFTnlzRDI0UEhYYnFQek1tUFF2VGVnT0VobEQ0WFNoVE9JM2NfYkZueUdONXVvTXRhNXdDcGxydnRmNURqOUZwOEt1RXUzTTJwN1c2T1lYQno2WDJzX1BQX2hMY2tTMU1PemFKY2VoWW56V2Z5cFlzaE1hbzM1UENDQ1JXU0RRN3M?oc=5",
+        "data": "2026-10-25",
+        "veiculo": "Jornal O Sul"
+      },
+      {
+        "titulo": "Governo promete perdoar R$ 15 bi de dívida de bares e eventos",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPUWpjNDB4QjBNaEpsX016OGdwSEhKem91TDVSVW1lYXVteGhQcG1oNXJMdE92UzdnSWJ1UHdlaDduM3FSRU9LYWZDd2RISHBKbDlGazFPN1h6ZFRUQXlBZGtwVDgzX3VYeXItcDhmdmtxT0tfckFRLTRodkdaWEZERmRn?oc=5",
+        "data": "2026-10-23",
+        "veiculo": "Blog do Esmael"
+      },
+      {
+        "titulo": "Lula promete manter aumento real do salário mínimo e anuncia medidas para reduzir dívidas",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPM2hoMFRfUVl2aTJQb001QzhZTTVtTDNXTFp3c29WZ0xvSk81UjdnSWdkUjV6M1dJRkt0dmNUWmNEYnBkVkMxTkxYZ1hIZ0pyejNfNnd3NV92VEJrOG1IYVJEMGEtRzFyLVAwS0RMUEhBWS1hNmNMZlpya1M3UFV2TG1JdjlETVpoUFR2NHZIdC1BRVl0enZuamR4aktYaDdpWUJFeUZ3MmhFLWdjYlAwOE5ZWHRIUk52dGRrSlZrLTg?oc=5",
+        "data": "2026-10-16",
+        "veiculo": "082noticias.com"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "criar-linha-credito-via-pix-ate",
+    "titulo": "Criar linha de crédito via Pix de até R$ 5 mil para MEIs",
+    "categoria": "Trabalho e renda",
+    "contexto": "discurso",
+    "o_que_disse": "Lula propôs o 'Pix MEI', uma transferência de até R$ 5 mil para microempreendedores individuais, estimando um gasto de R$ 5 bilhões em 4 anos.",
+    "palavras_chave": [
+      "auxílio a devedores",
+      "auxílio financeiro",
+      "compra de dívidas",
+      "crédito",
+      "dívidas de meis",
+      "dívidas do mei",
+      "mei",
+      "microempreendedor individual",
+      "microempreendedores individuais",
+      "perdão de dívidas"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete Pix de até R$ 5 mil para MEIs e anuncia Pé-de-Meia para universitários | #SBTBrasil",
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1JS3RULWF2ZGh1U1ZiRXphRy1ZMExnamdCQXBnai1uUWg3WmJ5NnpoOFFtMUhpSElCWUcxd2tTVHByUmVyU0ZiZDFSbmhOc3pMaDNlWkRaNE4?oc=5",
+        "data": "2026-10-14",
+        "veiculo": "SBT News"
+      },
+      {
+        "titulo": "Em pacote para MEIs, Lula propõe perdão de dívida, ‘Pix’ de R$ 5 mil e novo Desenrola",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaVJUbzhzakdiMjJlTVpCVHhkbWY3Z1g4ajduWFhsdkdPVnFnbEtnNnhvWlBiTTRYNWpUVHhRYmFrSERrN2NkbEtEV2Z4STEtY0JPLUVUU1pETlNrLUpsdXJ4S3FyU3JvVmkxZWZsVU1OdkIxRC1QWVp3RTJ0WlRkQmxTUldsc3RXcW9QTQ?oc=5",
+        "data": "2026-10-13",
+        "veiculo": "VEJA"
+      },
+      {
+        "titulo": "MP das bets será anunciada nesta sexta; Lula promete \"Se preparem\" enquanto ministros dizem que tema segue em avaliação",
+        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPR3dqZ1piR0hZdktzOENyT3YzZk9oc0prTzRyOGtFTjZEOW5tTkc0U1QtYzNWS2ZMc1pmbFczUjVESm40WHIzSnBueGprWndvSGxta3E0QlMzdFc1TGoydE1NOEVXRWsyUTlVNmdjRm9uc0lTZFkyX2NPUERSZk5nanlDeDZJQkpMWlFmRF8tejE3WmU3cEh4akJwUUdfbExGQlJrVmVxODFfUmRQdlQwcFN6ZEU3TGVFSzVsUHJ4bncwa3hQcEhaSGNNd3NTQTFXUXE5OG9lSQ?oc=5",
+        "data": "2026-09-25",
+        "veiculo": "BNLData"
+      },
+      {
+        "titulo": "Lula promete leilão da dívida do MEI e Pix de R$ 5 mil no RS",
+        "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQMy1qcGZ0bElGVW1LLTNtRWhES2U3dFJxbjRDbHZOMk5TemcybWxRcmpPV0dIbDdPVGptejhQSl9jVTFzalZnQnJXbk43R0xJQkYzVEtEcG1DdWMzeUJOdXBRS1dYUlVySGFPdzJuNXp5Z3FsYTA4WjE2MXlHenlKbzVjUTh3VkNoQ09fenpyaVVYcVlOMTdtWUppX2RKcVd0LV9UMzdlQ1UxMWZNM29UX0VR?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "TV Sim Brasil"
+      },
+      {
+        "titulo": "Lula promete compra de dívidas e Pix de R$ 5 mil para ajudar devedores",
+        "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNNE9tN0MzWFJLX1JDZm9SZnl5UVVvS0FqZWR0T24zRlJvZERTMzlZVHNDeEx2Yzg4OTd4TjBEektXQ2wwOWo0SktDVXZHTlN0eVJHbkZKLUI4UTBZeDNzR2NiaDN5cWM3NHJLbzlsa3VleXN1R1FDSjNnbk1WSjVjeEdKR2ZEaVdMRzZYNzA3N01rZFgxZVNMMDdGakMyQWxuSjhGVm9jWF9KUmJlclFFN3FwYlNFeURMcEhBUEVCQVM0NHVSVXlmY2UwRG8?oc=5",
+        "data": "2026-10-19",
+        "veiculo": "Tribuna do Sertão"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "promover-reforma-judiciario-alterar-criterios-mandatos",
+    "titulo": "Promover reforma no Judiciário e alterar critérios e mandatos no STF",
+    "categoria": "Instituições",
+    "contexto": "entrevista",
+    "o_que_disse": "Lula sugeriu que a indicação de ministros do STF não seja feita exclusivamente pelo presidente da República, propondo a criação de um conselho para tomar essa decisão.",
+    "palavras_chave": [
+      "conselho de indicação",
+      "indicação de ministros",
+      "leis",
+      "limite de mandato",
+      "mandatos",
+      "ministros do stf",
+      "poder judiciário",
+      "reforma do judiciário",
+      "reforma no judiciário",
+      "stf"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete reforma no Judiciário, com mudanças no critério de escolha e nos mandatos dos ministros do STF",
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxONlhydzBEX0hDLUpFaTVTQzRRMXRiNE9ZNUlYWmlxNDVfZHltTC1qcXFQMTFxMUhMQ0RxWVp6RmRfUkt3c09UNDlaWkZTVm1QcGFsQlJjVmFHelI5T3k3c3hRSlljTEs2bzBFS1E3N3F0WDA5UUliOEN5azc5Vk1qeXk0dndjUFpCWkFIdFF5YnM3NFl1S1ZBWnJXRVR6V21xeVRkTW5PNkVMT0l2bGdNRUtIZF9NaEZVUkdFZmVyQVJKaTVCUHRCckw4UnZjWTdGcU9NV3BUSlVyQ01Pb3dSZEc4MGg?oc=5",
+        "data": "2026-09-15",
+        "veiculo": "Brasil de Fato"
+      },
+      {
+        "titulo": "Lula promete reformar Judiciário em 2027 e diz que decisão das urnas é soberana",
+        "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNeFF1c0dLZDNmWkQ3ams0b3JSbmtlSm9uZjBHSlNHR3FwU2pMVkh0RzlCcm1tZmxiTDBna21ZNXQ4YWt6WG04UUROeVp3OU1MX3BOV0NlMk1GaGdkdHFyaVFMcmhPUlNkcXhOb01qVGQzOWRwMTRiN1d4eXJoQWlMN2E0VUp0OUNDUnY0MHppR0E5QmRRam1ZcnFqaHRtUWZkX3hwa0pDQTUtNGVEc0hid0pmVC1aNmRTa2JvcHpOS09DTnRITWhIVkpMXzZveDRienE5Vw?oc=5",
+        "data": "2026-10-04",
+        "veiculo": "Tribuna do Sertão"
+      },
+      {
+        "titulo": "Lula propõe discutir mandato no STF: ‘Ninguém pode ficar 40 anos no mesmo cargo’",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNcThiREJSRFJTS3JCUll1U21fS3F4M294c01SaEkwVDE5X211bXljVXE5c0pqejZ3TlBMbVBMMm92NDhMclVEUFRnQTJlREY1dTZ6VmZhZTZscmQzR1c3dzIzcHdSS0VBZEJIX3JINjJXdldTWmdKZ0ljREE2b0RNQlhuZFdGeXhfV1REb3lNWEpmWXp2SHZrQTQ5VknSAaQBQVVfeXFMUHdlUW1HRmNQOHEwX1pqSmFOLTdnd29HcXMybWRaUWFlWDRiRF9nV21FNFZmVWdlY0NEVUI0MzgtY256RWlLQ3lYWHdIOF9Fam1aLWNMOS1IWkJrdUpkekxMWVdXQ25pZWZCQmQyS2xLVnhLaVNPbVZMdzhWS2ZPMVZfWXlBMmp5VXBDa2FPbnd5bFYzdDdyR3MtOTRwZVlrZVhyby0?oc=5",
+        "data": "2026-09-10",
+        "veiculo": "Partido dos Trabalhadores"
+      },
+      {
+        "titulo": "Lula propõe que indicação para ministro do STF não seja feita só pelo presidente e sugere que conselho tome decisão",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNRHRlclRwLWlua0hYNWktaUZudjNMUGcyempNT0xqWEJjZWg0QUJIOUd1eTVLSXA4QzNzVHh1b29sS0Z1QjkwaldXenBMbVQzTExUMUpLMUdPUzRsMXB2UVB0ZXpSdElVWjJDcVdBZjBkcUxGYi1fZ3ltQWZCMTBmNlFRS1EwdEdHUmx1aTJOdWhfV28tVFHSAaQBQVVfeXFMT1prczRxSWxTWUJ0Q1l1M2lxY0VVb1ZETGEyTnBHaHhNdVhOQWt2SG1LazhZUDNnUFBBdUZPUEZlRjczdHFWUEZaSzVPQ1M1bVpDMW14VTZCZGg5RUNDTDdONXdsZUpkNV9OQ3BBbDJvMm1EOUozdVdqN2lsbmU2dGZUSmtGX2pGd1FkQmxXbjlSZU1uYTdVcW9FR1l5RnkxeTBMWGQ?oc=5",
+        "data": "2026-09-27",
+        "veiculo": "G1"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "distribuir-canetas-emagrecedoras-sus",
+    "titulo": "Distribuir canetas emagrecedoras no SUS",
+    "categoria": "Saúde",
+    "contexto": "discurso",
+    "o_que_disse": "O candidato prometeu a disponibilização de canetas emagrecedoras pelo Sistema Único de Saúde de forma responsável.",
+    "palavras_chave": [
+      "caneta emagrecedora",
+      "canetas emagrecedoras",
+      "distribuição gratuita",
+      "medicamentos",
+      "obesidade",
+      "sistema único de saúde",
+      "sus"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete canetas emagrecedoras no SUS; 'vamos fazer de forma responsável', diz Padilha",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQS3ZYUFZrcC1FbFN1VERGZTJXb0ZtRl9PbU1KeUJOaE9hc3o3Mm1oV1RYdFUxQ0h6LWUyQzhuVFJqRS1IeGthdFJsRFczbEVaNl9LOURpakRSeHhVSkNiUmxaM19NZEljRHpDandEVWNQbHFoRW03YmMzdjJVOURKSmVGRk1acXpvOGJLOXVXYXFFTlZHelRWR1FpcEdBb2tBdzlmX3NXS21GZ0tKZE1zbjh6TVM?oc=5",
+        "data": "2026-09-18",
+        "veiculo": "JOTA Info"
+      },
+      {
+        "titulo": "Palanque Digital: Lula promete canetas emagrecedoras no SUS e Flávio critica; será viável?",
+        "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOSFpTNU9fc2M1bnFVQTRmdXJRZUdqeUdZdnhSRU5fdjdmTW5HY2hGcG1jYUZGWkhaT3d4NDExOXI4THdnMmd5aFM5NWJ3RU9uU3dlZWVEczRBdkVoMXpkTVN3MmQ2UVdHb25idTMxaTl0d1MyOHBCc1VkTDdIVlRydFQ0NXJwMHcxejJNYnNqRm9sMk55N1dUYlUwNTNjVWlldUpyRGVNaURQYXFPUVJsRU5aSkEzdmV6ZWZMOFl3SUEtQmhPYmk2VDNUTFo1TnNUNDNvdkNsSXM2NjRZTEFxWTJIU29jdnZvRGVUOQ?oc=5",
+        "data": "2026-09-24",
+        "veiculo": "GZH"
+      },
+      {
+        "titulo": "VÍDEO: Lula promete “canetinha” gratuita no SUS para pacientes com obesidade",
+        "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQZnZNZkdJdk1pandOWDNTYS05dDd6NlFoTGJEYU1BaVdrUWtfdlg1VGhyaGhoZlJsX1I2SzVFYTVyNGVHd2pPdGJfOWktVVhPTEZKT1A4djdwSDlxMmR4cEpMZzlIOTl4aWhYQUNmZkY0Q1N2aVRVd0x4T09fZUJPMk1XNERpVGhDeDdYNzVPVUQ1TGFfSmlBcFdkUmJMenJVbDRqeDI4VXV3NnA4TjdjRFdrQTJmZw?oc=5",
+        "data": "2026-09-17",
+        "veiculo": "Diário do Centro do Mundo"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "garantir-recursos-conclusao-submarino-nuclear",
+    "titulo": "Garantir recursos para a conclusão do submarino nuclear",
+    "categoria": "Infraestrutura",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu arrumar recursos para concluir o primeiro submarino nuclear do Brasil durante visita à Marinha.",
+    "palavras_chave": [
+      "aramar",
+      "defesa",
+      "defesa nacional",
+      "marinha",
+      "marinha do brasil",
+      "projetos estratégicos",
+      "recursos",
+      "soberania",
+      "submarino nuclear"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete recursos para concluir submarino nuclear: “é importante para a nossa soberania”",
+        "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPblpvRmp0OU9SY1locFVxRXJ4VTdUR0QwM1pjZC1XQUJBZEFZMFdPTjRVbUp6RnZnanJKWW9LcHZ1UXVPX3RrcUFVTVBLSzlEZ1FLOW8zdkdhVURNaXc0Q2lxcnJrZmt0bFhUbVVOaTFkT2tpTjl6d0V0d19kbzJyUXBGdV9lWFljU0FvMFAwSTk1UEY4aDhFamNtY2xVNjllWHBKakNRRU4tSC1VanliMzd2NnFoQ0s4eXo5cHNDWWc?oc=5",
+        "data": "2026-08-19",
+        "veiculo": "Brasil 247"
+      },
+      {
+        "titulo": "Lula visita coração nuclear da Marinha, promete “arrumar recursos” para concluir primeiro submarino nuclear do Brasil e diz que país precisa ter força para defender sua soberania diante de ameaças externas",
+        "url": "https://news.google.com/rss/articles/CBMi5gJBVV95cUxPZ1NZdTNjVWRpTHhNTmVSb2kyTm1xWDY2ZmVlWnJxdGtyNHg2S2Y1TlMtSVB1a19wTnM0Y0lFMUhFX2ZuRWNVYW9nWHFMSGppNFNwR3FoUzdOR2dObnV3QzZyMk9FM09RdGJuWEY1OWNRT2M2RURjNU1yenhVMjN3YTluZEhLQ0pZLV9uS3B3MnA4Q2JVREFZZjhzMlBIa3hTS2ZHeko0U2FXLXlpWWlPbkt1dlpuVnZySzYzb3lfdHRsT1hPVGRZb2hkdDE1RzhURnNaR0IxOThMa3BvNk9ycUhCclppTU15al9BSVFNUlJZZjU4U2prUmZpZmlfdkpwS1hxdWY2cFRSejBjdUwzZVZGNXhTbUFhYjNNWXZXTGo5SjdNU3o2aDRwNjB3c182b2RSTGpPX2lLZU4xNnBYeDd3NEtGTmx2b3dOVi11MEVxTld3elgzVmpSQlkwOFdYZnFZT3dR?oc=5",
+        "data": "2026-08-20",
+        "veiculo": "Revista Sociedade Militar"
+      },
+      {
+        "titulo": "Após cortes na Defesa, Lula diz que vai terminar submarino nuclear",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNSUlXR2NfemFjakxEcEF3Nno5bXpOY3Vhc3dvbzI4cklOLTlDZEVSRE9tYUk1THFnRDIwRndiNGFuM3BIUmhERDZrdUhMNnJDSVFNdWZ4cHBRRnVldWU4Q2JrTUpNRFQtMWluRUdkcU45c09fTzZsSjNjaEZvOFdPQlJwdS1BVVh0N2N4Zjhpb3Q1THdFcGp1VXZrM2hXUQ?oc=5",
+        "data": "2026-08-19",
+        "veiculo": "UOL Notícias"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "reajustar-aposentadorias-pensoes-acima-inflacao",
+    "titulo": "Reajustar aposentadorias e pensões acima da inflação",
+    "categoria": "Previdência",
+    "contexto": "debate",
+    "o_que_disse": "Lula prometeu que o reajuste das aposentadorias e pensões do INSS será superior à inflação, garantindo ganho real aos beneficiários.",
+    "palavras_chave": [
+      "acima da inflação",
+      "aposentados",
+      "aumento real",
+      "descontos ilegais",
+      "ganho real benefício",
+      "inss",
+      "reajuste",
+      "reajuste aposentadorias",
+      "ressarcimento"
+    ],
+    "fontes": [
+      {
+        "titulo": "Flávio acena para governadores aliados no Sul e Lula promete reajuste de aposentadorias acima da inflação",
+        "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPOHdtdl9rZ1pxZEwyZEFqTkVHREpCRVNCYVU0bGtMSkd6X2FkUWhpSEZXQktyLWlLQ3d0Q3hnWnI3cEd0emdsV3N6NGg1MW1ONGgwb0hxa1FZYTZKUlB4dVRhVEZVMVl2U1docmxxQl9UWGl6THdaelZXNUdzSDFQMXl6MXF6Q2FXMjlyMDlYYWs5Z3FGVFROVXhEVUw5dGlkalh3eno4bGpEbWIxODhJZ1QwSlRvYzhHcVBudUMxbDZWcndWaHpudFhGN1lqMk5oRnZB?oc=5",
+        "data": "2026-10-24",
+        "veiculo": "ND Mais"
+      },
+      {
+        "titulo": "Comigo não haverá arrocho de aposentados. Eles terão aumentos acima da inflação, garante Lula",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPQWhrQWgwVkNGNGJWREFUbHJUbjNObHF2NWhPQjM3OEJMcnhCSFUyeHNCWWYyNExNcXBYU2ZBNVlkbHhuUktuQmJ4RFppdEh3MW5lRlpQdFlaeEp5bUpFa2t4N1Q3VjdqOTFsRjF4enc3MGstSU5DUHZTTjNRRWZub1h6cERiM200MVNEdXJ5WEdGOXVYNWZhUEJjeWVmQ0VOTnltZlJqSjA3UlN0dlVsLU15TVlJbmt2ZXc?oc=5",
+        "data": "2026-09-25",
+        "veiculo": "Hora do Povo"
+      },
+      {
+        "titulo": "Lula diz que filho não terá proteção e promete ressarcir aposentados vítimas de descontos ilegais",
+        "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQdjNKSml2MWZKRFFqV3dPdEZWWVEyWVpKRXBaeklsaUZNbmxZVkttUk12aks0bTJCRmdOVVQ4U2xjQTlTeEtscklyUWtOQnhHeDBFNlItdTgtUUJoWGs2MmRScVF5MXVHV09wVEZlV0xWaGVKZ0IwcjhsczBCWEtzZElvZ25UUEdLd0FLLXlROVRBUHQxcGtQUzBoWExVM3ZiQWwxMGpkSW8xNDROZ0JrbTZLWlpsRlMyeUVHalRFZFhzSlV4aVV5OE51ZkstcGd1UlFieVU1TU1Qdlk?oc=5",
+        "data": "2026-08-27",
+        "veiculo": "VG Notícias"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "ampliar-teto-faturamento-mei-r-140",
+    "titulo": "Ampliar o teto de faturamento do MEI para R$ 140 mil",
+    "categoria": "Trabalho e renda",
+    "contexto": "outro",
+    "o_que_disse": "Lula propôs ampliar o limite de faturamento anual do Microempreendedor Individual (MEI) para R$ 140 mil.",
+    "palavras_chave": [
+      "faturamento mei",
+      "mei",
+      "microempreendedor individual",
+      "r$ 140 mil",
+      "segundo funcionário",
+      "teto de faturamento",
+      "teto do mei"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula propõe ampliar teto de faturamento do MEI para R$ 140 mil",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOa3pNbkJ0TVo2LVQ2UVV5TzR4cFp6aUhHYl9aemFIbXhUdVBDZ1VYSnRZZlgtZGh3Q1hzczhjS2k1TlRvMFZJRmoyRDJ1QldfdGliWXVUTFYwN2g4bGVVUktuUmQ1WmM2emV3di05QmJfSElNZUdpUDVfQkk2QzJIaG1kVTVCOTJOTk9PeURZM0NVWXBUWkpDZ3UyS09PbjJfTVdwaU9B?oc=5",
+        "data": "2026-06-29",
+        "veiculo": "Acorda Cidade"
+      },
+      {
+        "titulo": "Lula promete ampliar teto do MEI para R$ 140 mil e permitir segundo funcionário",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONW44eUYzM05BOWhyVTZqN0Jid2Roa0lCNmE1TXBLc1hZRC1Wd3NlRGJqSGx6SzBwYzNNNTE2SkZjOU5GQU5mVWd1TWoybWI1ZEVwR29VTTd5azdlNzVWR1cxZVpTTTZhRnAxdU16c3E5b01NT01nZ3dBM1JPRTZDV2lHY200ODNnYnZZcmQ4U05zNEQyVEw1dGs5N0JYQjFqZVJ0aW5vdVdHREhZNk1zMkdvT2M4RE0zUWNWV0ZScy1zVUJGZXl0TkdrUGpUa3My?oc=5",
+        "data": "2026-10-02",
+        "veiculo": "noveen.com.br"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "instalar-unidade-embrapa-ceara",
+    "titulo": "Instalar unidade da Embrapa no Ceará",
+    "categoria": "Agronegócio",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu às empresas do Ceará a instalação de uma unidade da Embrapa no estado.",
+    "palavras_chave": [
+      "ceará",
+      "embrapa",
+      "unidade embrapa"
+    ],
+    "fontes": [
+      {
+        "titulo": "Painel S.A.: Lula promete a empresas do Ceará unidade da Embrapa no estado",
+        "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOdnhPaEJ4cFdlSDNpV3ZJZFM4aWdwTW4yTE9PQV9MZmU3T2pSclpTTl92T3dra053R3J4akdzWVZjZ3FIaEFuNTRVcmZHZThxb0M3djYxeU92UVJ2WFk5T1BFWTRFV0lhbkFZcUd0RDJTYU9nQmlaUXFJNWxWU1hoZUpJVnBWU3pwUlpnU1FqcVNsSm9OdGw4TUZFbmV6UW9MbkFOVko5SGpFM0hsTTB3c0FRU2hjTmlsQnlSLU04Y0NteUJTRW1YcDM3OA?oc=5",
+        "data": "2026-07-08",
+        "veiculo": "Folha de S.Paulo"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "fortalecer-mercosul",
+    "titulo": "Fortalecer o Mercosul",
+    "categoria": "Relações exteriores",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu fortalecer o Mercosul durante visita ao Paraguai.",
+    "palavras_chave": [
+      "bloco econômico",
+      "integração regional",
+      "mercosul",
+      "parceria comercial"
+    ],
+    "fontes": [
+      {
+        "titulo": "No Paraguai, Lula fala em reeleição e promete fortalecer o Mercosul",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVjBkNUtwa3RON2duVnBuMTd6VHRBQUNFc3p4UldlZTRsbTlGdWQwSk9EWjdITWpVRGhUR0xYVGxDV2dzamh3NnpIaEhlam9qaXNvVjBMenhyZUszeUtxVmdHVEx2WG40YzhnUmg0eEFkNXdBN1RJbmVxZTZnS194R2NTTkZCcTROS3hncmF5SzhtVlhxaV96aGpOZ2lFVk9sY0hVMUdCRQ?oc=5",
+        "data": "2026-06-30",
+        "veiculo": "Rádio Itatiaia"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "garantir-fornecimento-petroleo-brasileiro-mercado-internacional",
+    "titulo": "Garantir o fornecimento de petróleo brasileiro para o mercado internacional",
+    "categoria": "Energia",
+    "contexto": "entrevista",
+    "o_que_disse": "O candidato afirmou que o petróleo brasileiro estará aberto para o mundo todo em caso de crise internacional de abastecimento.",
+    "palavras_chave": [
+      "exportação de petróleo",
+      "mercado internacional",
+      "petróleo brasileiro"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete petróleo brasileiro ‘aberto para o mundo todo’ se Trump fechar Estreito de Ormuz",
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMnd1RW5KUnoxOEJYTjVDbUZ3eEtyQ01UTkIxQUlhRWJWcjhkNXBBSEFrZUpUR0tzbG1wbjNockhkRWx6Z2U5S0gtY002QTFnVDJkNUxCeXBhYXJUSE8xSmFfazBLYVZ6d1JFSm1TR1VLdHBpaTlLTHU2dnd3NTNjZTBTRUFySE9ZWGtsUGJMZGY1YVF1eEdSZ1hsQ0xyZ2tGOTUxNVI5Y1h6R05oMmMzd3VtTXhrRVBqVFBhYkhMRmw5SFRzeGZzSQ?oc=5",
+        "data": "2026-08-18",
+        "veiculo": "Opera Mundi"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "anunciar-fim-fila-inss",
+    "titulo": "Anunciar o fim da fila do INSS",
+    "categoria": "Previdência",
+    "contexto": "discurso",
+    "o_que_disse": "O candidato prometeu anunciar o fim da fila de atendimento do INSS.",
+    "palavras_chave": [
+      "atendimento previdenciário",
+      "benefícios",
+      "fila do inss"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete anunciar fim da fila do INSS na próxima semana",
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNVQ3TE9XNXhOenVxeHVXbmhzZDl3dXdTOFVYQVdEWlRVekgtYjZnaDgteExHTFNyV0REX29CWTdSZFUyRy1hd1BwaDQzdEdOWmdZM0MzRl83LXV6al9YdmM0eDFGaGt3cDNxRGpSRnlleXBUT01KMFJxSnBVTU1mQnhGX0JtQlpOUFVZWUFSUFk4enZpUE44V2Y4Ty1EN2hqaERVXw?oc=5",
+        "data": "2026-08-28",
+        "veiculo": "R7"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "construir-terceira-ponte-natal",
+    "titulo": "Construir a terceira ponte de Natal",
+    "categoria": "Infraestrutura",
+    "contexto": "discurso",
+    "o_que_disse": "Lula assumiu o compromisso e prometeu construir a terceira ponte de Natal após pedido do candidato Cadu.",
+    "palavras_chave": [
+      "infraestrutura",
+      "obras públicas",
+      "rio grande do norte",
+      "terceira ponte de natal"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete terceira ponte de Natal após pedido de Cadu: “Compromisso assumido”",
+        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOa2ZyN1QzWHRNV05hamRTVm1QMUtVNEsxeTVlSWVTcFJfMWZrZEtsdndZMDF3U010TnhZX3VkYlBKSmlfQlZpMTliTFlBNHR0Uzh6ejVoWmFHcVJqNG4tSXNYMzBqbnpfSTN1TkF3bEp5UDEtTlFOdEFyLWhrMlhianJzaWdyS25JdHlONUttVmE0QzhKNmdBSE5xWm1sWkZIb0hkVVJHUQ?oc=5",
+        "data": "2026-10-10",
+        "veiculo": "Portal Diário do RN"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "abrir-sigilo-bancario-telefonico-proprio",
+    "titulo": "Abrir sigilo bancário e telefônico próprio",
+    "categoria": "Instituições",
+    "contexto": "debate",
+    "o_que_disse": "Lula prometeu abrir seu próprio sigilo bancário e telefônico.",
+    "palavras_chave": [
+      "sigilo bancário",
+      "sigilo telefônico",
+      "transparência pessoal"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete abrir sigilos bancário e telefônico e desafia Flávio Bolsonaro a fazer o mesmo",
+        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQeWl3UklWMUFOTXJXOXRNcWRNTTVESU5XR19mS2RXbUV6U0M4aWd4VkFkdkFZRUhMMDFLcVh3UHpwVnRzM3JfZUJsUlU3VE5GMFg5TUFFWnpRUTJPT2tDUnVMX2lLOS1BSXg0eDVWaV9rMmlQNUNsY0RKTjlDYWdVWDZ4aWxoWGw5c3VhMkQ4WXF2N1VsTnZwMDMxczEzMXUxbC1DSWw1bl9KN2ZIVHZlTjZBWG14ckRGMmc?oc=5",
+        "data": "2026-10-20",
+        "veiculo": "Vitória News"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "aumentar-teor-etanol-gasolina-trinta-dois",
+    "titulo": "Aumentar o teor de etanol na gasolina para trinta e dois por cento",
+    "categoria": "Energia",
+    "contexto": "outro",
+    "o_que_disse": "O governo propôs aumentar para 32% o percentual de etanol anidro misturado à gasolina.",
+    "palavras_chave": [
+      "combustíveis",
+      "etanol anidro",
+      "etanol na gasolina",
+      "mistura de etanol"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula propõe resgate do verde e amarelo pela esquerda e critica apropriação bolsonarista",
+        "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOTFRQYUFNQUQ5ZmVZRVA0ZGx6dVlmYVFkYms2T0dwbVhMeGc2V2lhd3ZxVDI2WmVUWnhUbGhzazE1QjhOTzRXTFVBOHNGQ0VKcjh3bFMwYnpVN2ZnNm9kVkxpQ3dMZWlsVUFmUjJ0OVdzaDQxUmxLUGU2WVdyZGgyTzBiS3BSOEt5NV9tZGI1bjBJemFzam5teEdRNjNVeDNGTU9OenhPUnNJbVpOZ2hBa0hDaFVISkotUGFQRldIRUVwRmJaaVBQYjYzZjBkMS04U2wyZ0RZMmpKcENqRHRmU3RJVExYS05tVjRqclhoVFpPSFJzd3BPSnNJa3liQWxFZTdIdXZuT1lYUkZt?oc=5",
+        "data": "2026-06-01",
+        "veiculo": "Diário Gaúcho"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "promover-encontro-trilateral-putin-xi-jinping",
+    "titulo": "Promover encontro trilateral com Putin e Xi Jinping",
+    "categoria": "Relações exteriores",
+    "contexto": "entrevista",
+    "o_que_disse": "Lula revelou conversa com Trump e propôs a realização de um encontro diplomático com os presidentes da Rússia e da China.",
+    "palavras_chave": [
+      "encontro trilateral",
+      "vladimir putin",
+      "xi jinping"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula revela conversa com Trump e propõe encontro com Putin e Xi Jinping",
+        "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOVV9IWTZoTWVmTDJRUUtvemJGZmdYUF9mUUpvYUVaRWpVbUljRmhXQVpZUVlmc3VhS2NSb2ZaSnhGa1drcW5LY2xRcFFBMEJCM0lmOGpuYTJTMGNGWVFyNEJZTk5xY3Q3Nm9mbVZINHkyZE5keEM4aTdDUWduMjJ3OXhwUzg0UXVqeWpXVENITGp2TGVZWjNrNFJuYko3d3NjNnA1LUFnWXUxeDM0THluMGw4S1RlMmszem9tVExpRUIxb1pxaDRfZXBfSmd6R3dUanlQSUtnaFk4OG45VEQyejF4Y1VudjY0ZkJKUzAxdw?oc=5",
+        "data": "2026-08-22",
+        "veiculo": "Terra"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "criar-programa-desenrola-clubes-futebol",
+    "titulo": "Criar programa Desenrola para clubes de futebol",
+    "categoria": "Economia e contas públicas",
+    "contexto": "entrevista",
+    "o_que_disse": "Lula propôs a criação de um programa de renegociação de dívidas, similar ao Desenrola, voltado especificamente para clubes de futebol.",
+    "palavras_chave": [
+      "desenrola clubes",
+      "futebol brasileiro",
+      "renegociação de dívidas"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula propõe Desenrola para clubes e critica domínio das bets no futebol",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOT0g0SzU4cFZ2WUJORjE1WHJvbWpyWlNwUVRXSXNfS2VybXZPTVRXRld1TGd6LTVyWXdsSUVpcllndFlYZ3ZnMzQ5VExvc1BwNi1aNEczN3pkTmc3TUc2cFg5aDk5a0YzWWdDYzJfTlhhdWRXUHhfTTM0blR2UmhmTUxDTkhvTUZ4VzlxSV9BQzQxeV9HYmZUSE5wUlF4bmQ5bXlIekhfZmFkQQ?oc=5",
+        "data": "2026-08-26",
+        "veiculo": "Diário Causa Operária"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "inscrever-politica-cultural-constituicao-federal",
+    "titulo": "Inscrever a política cultural na Constituição Federal",
+    "categoria": "Esporte e cultura",
+    "contexto": "entrevista",
+    "o_que_disse": "Lula propôs a emenda constitucional para inscrever a política cultural na Constituição, tornando o financiamento público da cultura permanente.",
+    "palavras_chave": [
+      "constituição federal",
+      "financiamento permanente",
+      "política cultural"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula propõe inscrever política cultural na Constituição para tornar o financiamento permanente",
+        "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPeXpiVlRRX3dHUl96bTZtNWZmNVJtZTNzN01NeGdrVHA1WVVMdDJCMFdEVmtQaFhPZzI1OHBUc1J1SW9vRmRoZXd2cEF4UEJvWlJ2SXBVWkRWQ1dJcFp4cFQzRTlISGVWODNtdVpJU29RS2NrY3BGZER4NWxIS1VfU0ZPWUhJUFRhWVlXaF9uMkktVHNnbzZFOGw5eGZFaUw0dDh1TWtlaGxhQWJlV1FMQWlBZ0VBQlhzOWIxODlQYm1kRHo2M29WaGo2SlVNb1ViYlkyMA?oc=5",
+        "data": "2026-09-23",
+        "veiculo": "Brasil de Fato"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "concluir-pavimentacao-obras-rodovia-br-163",
+    "titulo": "Concluir a pavimentação e obras da rodovia BR-163",
+    "categoria": "Infraestrutura",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu concluir as obras da BR-163.",
+    "palavras_chave": [
+      "br-163",
+      "obras de infraestrutura",
+      "rodovia",
+      "transportes"
+    ],
+    "fontes": [
+      {
+        "titulo": "Em Belém, Lula diz que não haverá dragagem no Tapajós e promete concluir BR-163",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPcFI4Q3huaGljdTR2RUhnVWFFNi01MUZFc3QzWXVIYVdEWWh1QzMyV3lRQUFYVkFKaW5GQlVUNlAzYl95ZW9OX0daSFRxRnFhNEItYTdXSWJYM2xpZGQtLWF4TWE5U1VsY1U5c1ZISWY5bEpka2xMem1xSi0tRXlMNkFQNDRKUnNKcldteUxfZGx4T0I1OGYwanJEdU9SUkNnSUhqTkJ0T252TE9LaDJSMlItSkM4R2VQN05mN3pfdw?oc=5",
+        "data": "2026-09-28",
+        "veiculo": "O Liberal"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "lancar-programa-desenrola-3-0-quitacao",
+    "titulo": "Lançar o programa Desenrola 3.0 para quitação de dívidas",
+    "categoria": "Economia e contas públicas",
+    "contexto": "outro",
+    "o_que_disse": "O candidato anunciou o programa Desenrola 3.0 com a promessa de quitar dívidas da população.",
+    "palavras_chave": [
+      "desenrola 3.0",
+      "inadimplência",
+      "programa",
+      "quitar dívidas"
+    ],
+    "fontes": [
+      {
+        "titulo": "Flávio Bolsonaro diz que 'Nordeste é a solução do Brasil' e promete manter Bolsa Família",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTUJOYk93S3U1alhmZGYwWEs2NnE1Y1VSSV9WMWx1YjdldTFLMFBGVkR1bnpwUWFyU2pKZmwxbWM4U3VSZUlvUUs4Q011Z0NFRE9jMmRPZkhjRkhCMHVHcDZvSVNxWHY2VjduMGlHTldVQ054WjJkclVNSHhmc21EdEZMN3hDYWNMTGExZUE0RHdjWEV5Uy0tV3R5WkJzMlZad3JhOU8tbG5jcGdfTk1PTElMc2FFdjNqRE90UNIBwgFBVV95cUxNV3NXaVFlYm56Um5IVldrUzk5b1NicF9qTVJOeFdJVko4cWU5LTQxQ3lUTjBaYmljNFRQMkM3T08tZHN6OFdrSmQ4ZXlITUNvNU56bk9VVW9EVFJGbVY3MTZPbHVUMHhfVXpsQ1NRdGtKWWNhOUE0cG5ycmNGWjBmMTFjd0JMZHl0Q0xCSVNTalY2bTc3YmJwZFpneHRlNjJLcGc1dUdkbzYyMFdZT1B2WWtiUVg1Q18wSkpHUjhxUmlPQQ?oc=5",
+        "data": "2026-08-03",
+        "veiculo": "Jamildo"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "ampliar-credito-seguro-rural",
+    "titulo": "Ampliar o crédito e o seguro rural",
+    "categoria": "Agronegócio",
+    "contexto": "discurso",
+    "o_que_disse": "O candidato prometeu ampliar o crédito e o seguro rural no próximo mandato.",
+    "palavras_chave": [
+      "crédito rural",
+      "financiamento agrícola",
+      "seguro rural"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete ampliar crédito e seguro rural em novo mandato; veja o plano para o agro",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPcDkzbEtjTzVnbWh1bF8ySy1XenUwMXc0eE9PclFwVUtINF92U2Jpdmo4RnNpZllKVExrX2xWSnVfNkFId2loLTRVWW5PckxfaGJaMi1HN2ZDdmdfcEtvU3h4M2ZlV0N3a0hWeTE1em9GYm5NX0NxT2RTcmNaTmEtR3BXdVhrQWxGR2VHMjlkV0ZFVWhBU293MWdJSWd0QmRFcTRnbVlkYmJYdTFUalRScUpQcw?oc=5",
+        "data": "2026-09-29",
+        "veiculo": "CompreRural"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "oferecer-credito-ate-r-5-mil",
+    "titulo": "Oferecer crédito de até R$ 5 mil para empreendedorismo feminino",
+    "categoria": "Mulheres",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu conceder crédito de até R$ 5 mil para incentivar o empreendedorismo feminino.",
+    "palavras_chave": [
+      "crédito",
+      "empreendedorismo feminino",
+      "financiamento",
+      "mulheres"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula assina parecer que garante afastamento remunerado a mulheres vítimas de violência",
+        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HM3V6RGxKaWpORWlvLU1xTHpTalQ0TnNLaEJuaVZhUUdLdmcyVVh0LVV5cUxCWGlNT0tJUGttNm1KaGI3YmFUUEM4M3oyMk0wLTFxWlVtSm9pOXo5VTZ2YWZ6QVNKWjFBQTJBMVoxdzBPSjluY1pBMDdR?oc=5",
+        "data": "2026-10-01",
+        "veiculo": "ncnews.com.br"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "criar-bolsa-universitaria-auxilio-estudantes",
+    "titulo": "Criar bolsa universitária e auxílio para estudantes",
+    "categoria": "Educação",
+    "contexto": "discurso",
+    "o_que_disse": "Lula prometeu criar uma bolsa universitária de até R$ 10 mil, na forma de um Pé-de-Meia para universitários com auxílio mensal.",
+    "palavras_chave": [
+      "auxílio mensal",
+      "bolsa universitária",
+      "estudantes universitários",
+      "pé-de-meia"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula promete bolsa universitária de até R$ 10 mil em nova proposta",
+        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQUFFOWklYRHd5YzQ3WUpyMDdibnI1VDZJbG4zUGlXS012QUoxUWdPRTRoZzYzZ1pSdFF6QXEyTUs2cGk4dldSNC1GODFURmhHemlVNU5BbDJ1Z1hnOFdZQ09CTjhIZUNfRk9Xdkt1VzN4enNSNUpaS2pWMm5LVXRNSVQzYl9ub3NuVGZOTDBCVWVKYjhmUVFNazRPOHNRRkJVZGNpVzQ5b0g?oc=5",
+        "data": "2026-10-14",
+        "veiculo": "Agora Litoral"
+      }
+    ],
+    "status": "pendente"
+  },
+  {
+    "id": "encerrar-taxacao-compras-internacionais-pequeno-valor",
+    "titulo": "Encerrar a taxação de compras internacionais de pequeno valor",
+    "categoria": "Custo de vida e impostos",
+    "contexto": "entrevista",
+    "o_que_disse": "O candidato prometeu o fim da taxa incidente sobre compras internacionais de pequeno valor.",
+    "palavras_chave": [
+      "compras internacionais",
+      "imposto de importação",
+      "pequeno valor",
+      "taxa das blusinhas"
+    ],
+    "fontes": [
+      {
+        "titulo": "Lula culpa 'novos hábitos' por alta no custo de vida e promete fim da 'taxa das blusinhas'",
+        "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPV3o4N3hBeVh2YlpzX2FGanFUaDJTVmdXMThoZ2ZzYWpTbmFfVHNEVkdPY0xsM2JRLXB3UmFnWGo4TXhuTmJjTkQzVGJhX1MzZTcza3h1dVFXZ3ZIeXBrRExuY1JYckZ0MGtiOExKMURzLVdrOFh3ckU2Mm1ha3hjOElUbEFqY2pOYWNpTXRHa3lkWnRmMTNudmJGYUdPdHdTMGlkSXNSdXVaNUU5TWV1YVh1T2t3N0JYbEtDWlF2X3FIRFZ6QmVMRVoyVGhWUQ?oc=5",
+        "data": "2026-08-23",
+        "veiculo": "Rádio Itatiaia"
+      }
+    ],
+    "status": "pendente"
+  }
+]

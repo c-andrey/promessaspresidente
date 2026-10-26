@@ -13,6 +13,7 @@ Duas frentes, rodadas todo dia pelo sync (agendador) e também à mão:
   python -m motor.campanha referencias [--todas]    # referências (--todas: período inteiro)
   python -m motor.campanha listar                   # candidatas pendentes, mais citadas primeiro
   python -m motor.campanha resolver-links           # links do Google Notícias → URL real da matéria
+  python -m motor.campanha reconsolidar             # junta candidatas que são a mesma promessa
   python -m motor.campanha aprovar ID [ID...]
   python -m motor.campanha rejeitar ID [ID...]
 
@@ -153,10 +154,24 @@ SCHEMA_REF = {
 }
 
 
+def _chave_titulo(r: dict) -> str:
+    return " ".join(r.get("titulo", "").lower().split())
+
+
 def juntar_referencias(lista: list[dict], novas: list[dict], maximo: int) -> int:
-    """Acrescenta sem repetir URL; mantém as mais recentes. Devolve quantas entraram."""
-    urls = {r["url"] for r in lista}
-    entrou = [r for r in novas if r["url"] not in urls]
+    """Acrescenta sem repetir matéria (mesma URL ou mesmo título: o link do Google Notícias e a
+    URL real são a mesma reportagem); mantém as mais recentes. Devolve quantas entraram."""
+    vistas = {r["url"] for r in lista} | {_chave_titulo(r) for r in lista if r.get("titulo")}
+    entrou = []
+    for r in novas:
+        if r["url"] in vistas or (r.get("titulo") and _chave_titulo(r) in vistas):
+            # mesma matéria: se a nova traz a URL real, ela substitui o link do Google Notícias
+            antiga = next((x for x in lista if x.get("titulo") and _chave_titulo(x) == _chave_titulo(r)), None)
+            if antiga and "news.google.com" in antiga["url"] and "news.google.com" not in r["url"]:
+                antiga.update(r)
+            continue
+        vistas |= {r["url"], _chave_titulo(r)}
+        entrou.append(r)
     lista.extend(entrou)
     lista.sort(key=lambda r: r["data"] or "", reverse=True)
     del lista[maximo:]
@@ -370,6 +385,11 @@ def buscar_declaracoes(cadeia, cfg, presidente, plano, periodo, amplo=False) -> 
         }
         novas_candidatas += 1
 
+    armazem.gravar_json(CANDIDATAS, list(candidatas.values()))
+    if novas_candidatas:
+        reconsolidar(cadeia, sorted({p["categoria"] for p in plano}))
+        candidatas = {c["id"]: c for c in armazem.ler_json(CANDIDATAS, [])}
+
     # Aprovação automática: N veículos diferentes E apuração com citação literal no texto da matéria.
     minimo = cfg["aprovacao_automatica_min_veiculos"]
     automaticas = []
@@ -397,6 +417,29 @@ def buscar_declaracoes(cadeia, cfg, presidente, plano, periodo, amplo=False) -> 
               "pendentes": len(candidatas)}
     log.info("Declarações: %s", resumo)
     return resumo
+
+
+def reconsolidar(cadeia, categorias: list[str]) -> int:
+    """Junta candidatas pendentes que são a mesma promessa (vindas de buscas/lotes diferentes)."""
+    candidatas = armazem.ler_json(CANDIDATAS, [])
+    if len(candidatas) < 2:
+        return 0
+    membros = [{"titulo": c["titulo"], "o_que_disse": c["o_que_disse"], "categoria": c["categoria"], "cand": c}
+               for c in candidatas]
+    juntadas, resultado = 0, []
+    for g in consolidar(cadeia, membros, {}, categorias):
+        grupo = sorted((m["cand"] for m in g["membros"]), key=lambda c: -veiculos_distintos(c["fontes"]))
+        base = grupo[0]
+        for outra in grupo[1:]:
+            urls = {f["url"] for f in base["fontes"]}
+            base["fontes"] += [f for f in outra["fontes"] if f["url"] not in urls]
+            base["palavras_chave"] = sorted(set(base["palavras_chave"]) | set(outra["palavras_chave"]))[:10]
+            base.pop("apuracao", None)  # mais fontes: vale apurar de novo
+            juntadas += 1
+        resultado.append(base)
+    armazem.gravar_json(CANDIDATAS, sorted(resultado, key=lambda c: -veiculos_distintos(c["fontes"])))
+    log.info("Reconsolidação: %d candidatas juntadas a outras; %d pendentes", juntadas, len(resultado))
+    return juntadas
 
 
 # --- links reais ---------------------------------------------------------------------------
@@ -558,6 +601,7 @@ def main():
     r.add_argument("--todas", action="store_true", help="todas as promessas, período de campanha inteiro")
     sub.add_parser("listar")
     sub.add_parser("resolver-links", help="troca links do Google Notícias pela URL real da matéria")
+    sub.add_parser("reconsolidar", help="junta candidatas pendentes que são a mesma promessa")
     for nome in ("aprovar", "rejeitar"):
         sub.add_parser(nome).add_argument("ids", nargs="+")
     args = ap.parse_args()
@@ -581,6 +625,11 @@ def main():
             armazem.gravar_json(ESTADO, estado)
         base.uso.salvar()
         aplicar_no_volume()
+    elif args.cmd == "reconsolidar":
+        promessas = armazem.ler_json(armazem.PROMESSAS, None) or armazem.ler_json(armazem.SEMENTE, [])
+        base = Cadeia.da_config()
+        reconsolidar(base, sorted({p["categoria"] for p in promessas}))
+        base.uso.salvar()
     elif args.cmd == "resolver-links":
         resolver_links_pendentes()
         aplicar_no_volume()

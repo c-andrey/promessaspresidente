@@ -126,3 +126,10 @@ def test_juntar_referencias_sem_repetir_e_com_teto():
     entrou = campanha.juntar_referencias(lista, [{"url": "a", "data": "x"}, {"url": "b", "data": "2026-10-05"},
                                                  {"url": "c", "data": "2026-10-03"}], 2)
     assert entrou == 2 and [r["url"] for r in lista] == ["b", "c"]
+
+
+def test_mesma_materia_com_link_do_google_e_link_real_nao_duplica():
+    lista = [{"url": "https://news.google.com/rss/articles/x", "titulo": "Lula promete PEC", "data": "2026-10-01"}]
+    entrou = campanha.juntar_referencias(lista, [{"url": "https://g1.globo.com/a", "titulo": "Lula  promete PEC",
+                                                  "data": "2026-10-01"}], 8)
+    assert entrou == 0 and len(lista) == 1 and lista[0]["url"] == "https://g1.globo.com/a"
