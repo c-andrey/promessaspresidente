@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Cumpriu? · promessas de {{ presidente.nome }}</title>
+  <link>{{ site_url }}/</link>
+  <atom:link href="{{ site_url }}/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Mudanças de status das promessas de {{ presidente.nome }}, com a fonte de cada uma.</description>
+  <language>pt-BR</language>
+  {% for e in eventos %}
+  <item>
+    <title>{{ e.promessa.titulo }}: {{ rotulos[e.evento.de] }} → {{ rotulos[e.evento.para] }}</title>
+    <link>{{ site_url }}/promessa/{{ e.promessa.id }}.html</link>
+    <guid isPermaLink="false">{{ e.promessa.id }}:{{ e.evento.data }}:{{ e.evento.para }}</guid>
+    <pubDate>{{ e.evento.data|rfc822 }}</pubDate>
+    <description>{{ e.evento.justificativa }} Fonte: {{ e.evento.documento.fonte }}, {{ e.evento.documento.titulo }} ({{ e.evento.documento.url }}).</description>
+  </item>
+  {% endfor %}
+</channel>
+</rss>

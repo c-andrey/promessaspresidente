@@ -1,11 +1,13 @@
 # Promessas do presidente — stack completa (VPS: /srv/promessaspresidente). Deploy só pelo Actions.
 #   sync: roda o pipeline todo dia em HORA_SYNC e gera o site no volume "site"
+#   painel: revisão pelo navegador em /revisar/ (senha REVISAO_SENHA), atrás do nginx
 #   web:  nginx servindo o volume "site" (127.0.0.1:3200; público pelo edge-proxy)
 #
 #   docker compose up -d --build
 #   docker compose logs -f sync
 #   docker compose exec sync python -m motor.agendador --agora   # sync na hora
-#   docker compose exec sync python -m motor.revisar             # fila de revisão
+#   docker compose exec sync python -m motor.revisar             # fila de revisão (ou o painel em /revisar/)
+#   docker compose exec sync python -m motor.saude               # o último sync deu certo?
 name: promessaspresidente
 
 services:
@@ -21,6 +23,20 @@ services:
     volumes:
       - dados:/dados        # promessas, histórico, fila, estado — fazer backup (backup.yml)
       - site:/site
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  painel:
+    build: .
+    restart: unless-stopped
+    command: ["python", "-m", "motor.painel"]
+    env_file:
+      - path: .env          # REVISAO_SENHA, SITE_URL
+        required: false
+    volumes:
+      - dados:/dados        # grava sob a mesma trava do sync (motor/trava.py)
+      - site:/site          # regera o site depois de cada decisão
     logging:
       driver: json-file
       options: { max-size: "10m", max-file: "3" }

@@ -9,6 +9,7 @@ import argparse
 import sys
 
 from . import armazem, regras
+from .trava import trava
 
 REJEITADOS = armazem.ESTADO / "rejeitados.json"
 
@@ -27,6 +28,27 @@ def listar(fila):
         print(f"    por quê: {i['justificativa']}\n")
 
 
+def decidir(item_id: str, aprovar: bool, status: str | None = None, nota: str | None = None) -> str:
+    """Aprova (aplica o status, ou outro escolhido) ou rejeita um item da fila. Quem chama segura a trava."""
+    fila = armazem.ler_json(armazem.FILA, [])
+    item = next((i for i in fila if i["id"] == item_id), None)
+    if not item:
+        raise KeyError(f"Item {item_id} não está na fila.")
+    fila.remove(item)
+    if aprovar:
+        promessas = armazem.ler_json(armazem.PROMESSAS, [])
+        p = next(p for p in promessas if p["id"] == item["promessa_id"])
+        regras.aplicar_status(p, status or item["status_sugerido"], item["documento"], item,
+                              item["provedor"], "revisao", nota or None)
+        armazem.gravar_json(armazem.PROMESSAS, promessas)
+        msg = f"{p['id']} agora está como {p['status']}."
+    else:
+        armazem.gravar_json(REJEITADOS, armazem.ler_json(REJEITADOS, []) + [item | {"rejeitado_em": armazem.hoje()}])
+        msg = "Rejeitado."
+    armazem.gravar_json(armazem.FILA, fila)
+    return msg
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("acao", nargs="?", choices=["listar", "aprovar", "rejeitar"], default="listar")
@@ -40,22 +62,11 @@ def main():
         listar(fila)
         return
 
-    item = next((i for i in fila if i["id"] == args.id), None)
-    if not item:
-        sys.exit(f"Item {args.id} não está na fila.")
-    fila.remove(item)
-
-    if args.acao == "aprovar":
-        promessas = armazem.ler_json(armazem.PROMESSAS, [])
-        p = next(p for p in promessas if p["id"] == item["promessa_id"])
-        regras.aplicar_status(p, args.status or item["status_sugerido"], item["documento"], item,
-                              item["provedor"], "revisao", args.nota)
-        armazem.gravar_json(armazem.PROMESSAS, promessas)
-        print(f"{p['id']} agora está como {p['status']}.")
-    else:
-        armazem.gravar_json(REJEITADOS, armazem.ler_json(REJEITADOS, []) + [item])
-        print("Rejeitado.")
-    armazem.gravar_json(armazem.FILA, fila)
+    try:
+        with trava():
+            print(decidir(args.id, args.acao == "aprovar", args.status, args.nota))
+    except KeyError as e:
+        sys.exit(e.args[0])
 
 
 if __name__ == "__main__":

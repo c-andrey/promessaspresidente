@@ -53,6 +53,7 @@ Recebe UMA promessa e reportagens numeradas (título, veículo, data, resumo). P
 - indica: o que a reportagem mostra sobre o GOVERNO FEDERAL em relação à promessa:
   nada | em_andamento (passo concreto) | parcial (parte em vigor) | cumprida (em vigor) | abandonada (desistiu/vetou/fez o contrário).
   Declaração ou intenção não é passo concreto: use nada. Atos anteriores a {regras.inicio_acompanhamento(presidente)} não contam: use nada.
+  Antes da posse ({presidente['mandato_inicio']}), anúncio da transição ou plano para o próximo mandato também é nada; ato publicado conta.
 - confianca: 0 a 1. resumo: uma frase neutra sobre o que a reportagem diz da promessa."""
 
 

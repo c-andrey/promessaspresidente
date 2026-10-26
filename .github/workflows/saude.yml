@@ -1,0 +1,43 @@
+name: Saúde do sync
+
+# Confere se o sync diário rodou e deu certo (motor/saude.py) e se o site responde.
+# Falhou → o GitHub manda e-mail de "workflow failed"; o sync também avisa por Telegram/ntfy quando configurado.
+
+on:
+  schedule:
+    - cron: "0 13 * * *"    # 10:00 em Brasília: o sync das 07:00 já terminou
+    - cron: "0 1 * * *"     # 22:00: o site continua no ar?
+  workflow_dispatch:
+
+concurrency:
+  group: saude-promessas
+  cancel-in-progress: true
+
+jobs:
+  saude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: ./.github/actions/ssh-vps
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          user: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || '22' }}
+
+      - name: Último sync
+        run: |
+          ssh vps "cd /srv/promessaspresidente && docker compose ps --status running --services </dev/null | sort | tr '\n' ' ' && echo &&
+                   docker compose exec -T sync python -m motor.saude </dev/null"
+
+      - name: Site no ar
+        run: |
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://${{ secrets.VPS_HOST }}:8081/" || true)
+            echo "tentativa $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 10
+          done
+          echo "::error::site fora do ar (porta 8081)"
+          exit 1

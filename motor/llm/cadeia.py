@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 
 import jsonschema
 
-from .. import armazem
+from .. import armazem, saude
 from .anthropic_claude import ProvedorAnthropic
 from .erros import (CotaEsgotada, ErroAutenticacao, ErroTemporario, LimiteTemporario,
                     RespostaInvalida, SemProvedorDisponivel, Sobrecarga)
@@ -198,6 +198,7 @@ class Cadeia:
                 break
             log.info("Todos os provedores disponíveis estão em pausa: aguardando %.0f s", min(pausados))
             self.dormir(min(pausados) + 1)
+        saude.registrar("sem_ia", "o que sobrou fica para o próximo sync")
         raise SemProvedorDisponivel("nenhum provedor conseguiu responder")
 
     def _tentar(self, p, sistema, usuario, schema, validar, estimativa) -> Resultado | None:
@@ -238,6 +239,7 @@ class Cadeia:
                 return None
             except ErroAutenticacao as e:
                 log.error("[%s] chave recusada (%s) → ignorado nesta execução", p.nome, e)
+                saude.registrar("chave_recusada", p.nome)
                 self._fora.add(p.nome)
                 return None
             except ErroTemporario as e:

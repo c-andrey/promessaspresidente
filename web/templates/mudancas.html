@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}O que mudou · Cumpriu?{% endblock %}
+{% block descricao %}Mudanças de status das promessas de {{ presidente.nome }}, semana a semana, com a fonte de cada uma.{% endblock %}
+{% block conteudo %}
+<section class="capa">
+  <h1>O que mudou</h1>
+  <p class="lead">Mudanças de status das últimas 12 semanas, das mais recentes para as mais antigas. Para receber automaticamente, assine o <a href="feed.xml">RSS</a>.</p>
+</section>
+{% if semanas %}
+{% for s in semanas %}
+<section class="semana">
+  <h2>Semana de {{ s.inicio|data_br }} a {{ s.fim|data_br }}</h2>
+  <ol class="linha-tempo">
+    {% for e in s.eventos %}
+    <li>
+      <time>{{ e.evento.data|data_br }}</time>{% if e.evento.documento.data and e.evento.documento.data < posse %} <span class="tag-transicao" title="Ato anterior à posse do mandato que começa em {{ posse|data_br }}">antes da posse</span>{% endif %}
+      <p><a href="promessa/{{ e.promessa.id }}.html">{{ e.promessa.titulo }}</a></p>
+      <p><span class="selo st-{{ e.evento.de }}">{{ rotulos[e.evento.de] }}</span> → <span class="selo st-{{ e.evento.para }}">{{ rotulos[e.evento.para] }}</span></p>
+      <p>{{ e.evento.justificativa }}</p>
+      <p class="fonte">{{ e.evento.documento.fonte }} · <a href="{{ e.evento.documento.url }}" rel="noopener">{{ e.evento.documento.titulo }}</a>
+        · {{ "revisado por pessoa" if e.evento.origem == "revisao" else "classificação automática" }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endfor %}
+{% else %}
+<p class="vazio">Nenhuma promessa mudou de status nas últimas 12 semanas.</p>
+{% endif %}
+{% endblock %}

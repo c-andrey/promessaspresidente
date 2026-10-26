@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block titulo %}{{ p.titulo }} · Cumpriu?{% endblock %}
+{% block og_tipo %}article{% endblock %}
+{% block descricao %}{{ rotulos[p.status] }} · {{ "Plano de governo registrado no TSE" if p.origem != "declaracao" else "Declaração de campanha" }}: “{{ p.fonte.trecho|truncate(180) }}”{% endblock %}
 {% block conteudo %}
 <p class="voltar"><a href="../index.html">← Todas as promessas</a></p>
 <article class="promessa">
@@ -12,7 +14,7 @@
     {% if p.origem == "declaracao" %}
     <p class="origem origem-declaracao">Declaração de campanha · não consta no plano de governo registrado no TSE</p>
     <blockquote>{{ p.fonte.trecho }}</blockquote>
-    <p class="fonte">Dito em {{ contextos.get(p.fonte.contexto, "declaração pública") }} · {{ p.fonte.veiculo }} ·
+    <p class="fonte">Dito em {{ contextos.get(p.fonte.contexto, "declaração pública") }} · {{ p.fonte.veiculo }}{% if p.fonte.url is partidaria %} <span class="tag-partido">site do partido</span>{% endif %} ·
       <a href="{{ p.fonte.url }}" rel="noopener">{{ p.fonte.titulo }}</a> ({{ p.fonte.data|data_br }})</p>
     {% if p.fonte.veiculos %}
     <p class="fonte">Confirmada por {{ p.fonte.veiculos }} veículo{{ "s" if p.fonte.veiculos > 1 }} de imprensa ·
@@ -34,7 +36,7 @@
       {% for r in p.referencias %}
       <li>
         <p>{{ r.o_que_disse }}</p>
-        <p class="fonte">{{ r.veiculo }} · <a href="{{ r.url }}" rel="noopener">{{ r.titulo }}</a> · {{ r.data|data_br }}</p>
+        <p class="fonte">{{ r.veiculo }}{% if r.url is partidaria %} <span class="tag-partido" title="Site de partido: não é veículo de imprensa">site do partido</span>{% endif %} · <a href="{{ r.url }}" rel="noopener">{{ r.titulo }}</a> · {{ r.data|data_br }}</p>
       </li>
       {% endfor %}
     </ul>
@@ -47,7 +49,7 @@
     <ol class="linha-tempo">
       {% for h in p.historico|reverse %}
       <li>
-        <time>{{ h.data|data_br }}</time>
+        <time>{{ h.data|data_br }}</time>{% if h.documento.data and h.documento.data < posse %} <span class="tag-transicao" title="Ato anterior à posse do mandato que começa em {{ posse|data_br }}">antes da posse</span>{% endif %}
         <p><span class="selo st-{{ h.de }}">{{ rotulos[h.de] }}</span> → <span class="selo st-{{ h.para }}">{{ rotulos[h.para] }}</span></p>
         <p>{{ h.justificativa }}</p>
         {% if h.evidencia %}<blockquote class="pequeno">“{{ h.evidencia }}”</blockquote>{% endif %}
@@ -70,7 +72,7 @@
       {% for n in p.imprensa %}
       <li>
         <p><a href="{{ n.url }}" rel="noopener">{{ n.titulo }}</a></p>
-        <p class="fonte">{{ n.fonte }} · {{ n.data|data_br }}</p>
+        <p class="fonte">{{ n.fonte }}{% if n.url is partidaria %} <span class="tag-partido">site do partido</span>{% endif %} · {{ n.data|data_br }}</p>
       </li>
       {% endfor %}
     </ul>

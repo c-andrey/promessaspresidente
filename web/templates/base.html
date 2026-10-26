@@ -4,8 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block titulo %}Cumpriu?{% endblock %}</title>
-  <meta name="description" content="Acompanhamento diário das promessas do plano de governo de {{ presidente.nome }}, com fonte oficial para cada mudança.">
+  <meta name="description" content="{% block descricao %}Acompanhamento diário das promessas de {{ presidente.nome }}, com fonte oficial para cada mudança.{% endblock %}">
+  <meta property="og:site_name" content="Cumpriu?">
+  <meta property="og:type" content="{% block og_tipo %}website{% endblock %}">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="{{ self.titulo()|trim }}">
+  <meta property="og:description" content="{{ self.descricao()|trim }}">
+  <meta property="og:url" content="{{ site_url }}/{{ pagina if pagina != 'index.html' }}">
+  <meta property="og:image" content="{{ site_url }}/static/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/rss+xml" title="Cumpriu? · mudanças de status" href="{{ raiz }}feed.xml">
+  <link rel="icon" href="{{ raiz }}static/icone.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{{ raiz }}static/estilo.css">
+  {% block cabeca %}{% endblock %}
 </head>
 <body>
   {% if not presidente.resultado_confirmado %}
@@ -16,6 +29,7 @@
       <a class="marca" href="{{ raiz }}index.html">Cumpriu<span>?</span></a>
       <nav>
         <a href="{{ raiz }}index.html">Promessas</a>
+        <a href="{{ raiz }}mudancas.html">O que mudou</a>
         <a href="{{ raiz }}metodologia.html">Metodologia</a>
       </nav>
     </div>
@@ -24,7 +38,7 @@
     {% block conteudo %}{% endblock %}
   </main>
   <footer class="largura rodape">
-    Atualizado em {{ atualizado }} · Fontes: plano de governo registrado no TSE, declarações de campanha na imprensa, legislação federal, Câmara dos Deputados e Planalto
+    Atualizado em {{ atualizado }} · <a href="{{ raiz }}feed.xml">RSS</a> · Fontes: plano de governo registrado no TSE, declarações de campanha na imprensa, legislação federal, Câmara dos Deputados e Planalto
   </footer>
 </body>
 </html>

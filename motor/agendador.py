@@ -15,8 +15,9 @@ from datetime import date, datetime, timedelta
 
 from web import build
 
-from . import armazem, campanha, execucao
+from . import armazem, aviso, campanha, execucao, saude
 from . import main as pipeline
+from .trava import trava
 
 log = logging.getLogger("agendador")
 
@@ -94,20 +95,54 @@ def horario_de_hoje() -> datetime:
 
 
 def sincronizar() -> None:
-    try:
-        stats = pipeline.executar(argparse.Namespace(desde=None, ate=None, sem_ia=False, dry_run=False))
-        log.info("Sync concluído: %s", stats)
-    except Exception:  # noqa: BLE001 — o serviço não pode morrer por um dia ruim
-        log.exception("Sync falhou; tenta de novo no próximo horário")
-    try:  # cumprimento de cada promessa nas notícias (rodízio), com apuração
-        log.info("Acompanhamento por notícias: %s", execucao.sincronizar())
-    except Exception:  # noqa: BLE001
-        log.exception("Acompanhamento por notícias falhou; tenta de novo no próximo horário")
-    try:  # depois: referências e declarações usam o que sobrou da cota
-        log.info("Campanha: %s", campanha.sincronizar())
-    except Exception:  # noqa: BLE001
-        log.exception("Campanha falhou; tenta de novo no próximo horário")
-    build.main()
+    """Sync completo sob a trava (o painel de revisão espera), depois registra a saúde e avisa."""
+    inicio, etapas = armazem.agora(), {}
+    with trava():
+        try:
+            stats = pipeline.executar(argparse.Namespace(desde=None, ate=None, sem_ia=False, dry_run=False))
+            log.info("Sync concluído: %s", stats)
+            etapas["coleta"] = "ok"
+            for nome, r in stats["coleta"].items():
+                if not isinstance(r, int):
+                    saude.registrar("coletor", f"{nome} ({str(r)[:120]})")
+        except Exception:  # noqa: BLE001 — o serviço não pode morrer por um dia ruim
+            log.exception("Sync falhou; tenta de novo no próximo horário")
+            etapas["coleta"] = "falhou"
+        for nome, funcao in (("notícias", execucao.sincronizar),   # cumprimento de cada promessa (rodízio)
+                             ("campanha", campanha.sincronizar)):  # depois: usa o que sobrou da cota
+            try:
+                log.info("%s: %s", nome, funcao())
+                etapas[nome] = "ok"
+            except Exception:  # noqa: BLE001
+                log.exception("%s falhou; tenta de novo no próximo horário", nome)
+                etapas[nome] = "falhou"
+        try:
+            build.main()
+            etapas["site"] = "ok"
+        except Exception:  # noqa: BLE001
+            log.exception("Geração do site falhou")
+            etapas["site"] = "falhou"
+        estado = saude.gravar(inicio, etapas)
+    avisar_resultado(estado)
+
+
+def avisar_resultado(estado: dict) -> None:
+    """Uma mensagem por sync, só quando há o que dizer: problema, mudança de status ou revisão pendente."""
+    graves, avisos = saude.problemas(estado, datetime.now().astimezone(), INTERVALO_DIAS)
+    promessas = armazem.ler_json(armazem.PROMESSAS, [])
+    hoje = armazem.hoje()
+    mudaram = [p["titulo"] for p in promessas if any(h["data"] == hoje for h in p["historico"])]
+    fila, candidatas = len(armazem.ler_json(armazem.FILA, [])), len(armazem.ler_json(campanha.CANDIDATAS, []))
+    linhas = [f"⚠ {g}" for g in graves] + avisos
+    if mudaram:
+        linhas.append(f"{len(mudaram)} promessa(s) mudaram de status hoje: " + "; ".join(mudaram[:5]))
+    if fila or candidatas:
+        linhas.append(f"Esperando revisão: {fila} mudança(s) de status e {candidatas} declaração(ões) de campanha.")
+    if linhas:
+        try:
+            aviso.avisar(f"Cumpriu? · sync de {build.data_br(hoje)}", "\n".join(linhas), f"{build.site_url()}/revisar/")
+        except Exception:  # noqa: BLE001
+            log.exception("Aviso falhou")
 
 
 def main():
@@ -117,15 +152,17 @@ def main():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
 
-    trocar_presidente_se_preciso()
-    semear()
-    campanha.mesclar_semente()
-    campanha.aplicar_no_volume()
+    with trava():
+        trocar_presidente_se_preciso()
+        semear()
+        campanha.mesclar_semente()
+        campanha.aplicar_no_volume()
+        if not args.agora:
+            build.main()
     if args.agora:
         sincronizar()
         return
 
-    build.main()
     if not sync_em_dia() and datetime.now() >= horario_de_hoje():
         sincronizar()
     while True:

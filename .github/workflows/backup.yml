@@ -1,8 +1,8 @@
 name: Backup dos dados (fora da VPS)
 
 # Todo dia: tar do volume "dados" (promessas, histórico, fila, estado) → artifact do GitHub por 90 dias.
-# Restaurar: docker compose stop sync && docker run --rm -v promessaspresidente_dados:/dados -v "$PWD":/b \
-#   alpine sh -c 'rm -rf /dados/* && tar xzf /b/dados-AAAA-MM-DD.tgz -C /dados' && docker compose start sync
+# Restaurar: docker compose stop sync painel && docker run --rm -v promessaspresidente_dados:/dados -v "$PWD":/b \
+#   alpine sh -c 'rm -rf /dados/* && tar xzf /b/dados-AAAA-MM-DD.tgz -C /dados' && docker compose start sync painel
 
 on:
   schedule:

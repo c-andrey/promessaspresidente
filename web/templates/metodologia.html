@@ -29,11 +29,20 @@
 
   <h2>Quem decide o status</h2>
   <ul>
-    <li><strong>Em andamento</strong> pode ser aplicado automaticamente, mas só com documento oficial, depois da posse, e quando a IA tem alta confiança.</li>
+    <li><strong>Em andamento</strong> pode ser aplicado automaticamente, mas só com documento oficial datado a partir de {{ (presidente.acompanhar_desde or presidente.mandato_inicio)|data_br }}, quando a IA tem alta confiança e um segundo modelo, de outra empresa, concorda.</li>
     <li><strong>Parcialmente cumprida</strong>, <strong>Cumprida</strong> e <strong>Abandonada</strong> sempre passam por revisão humana antes de aparecer aqui.</li>
   </ul>
   <p>Cada mudança fica registrada com a data, o documento oficial, o trecho usado como evidência e a informação sobre quem decidiu (automático ou revisão humana).
     Todo o histórico fica versionado num repositório público.</p>
+
+  <h2>Antes da posse</h2>
+  <p>Só contam atos a partir de {{ (presidente.acompanhar_desde or presidente.mandato_inicio)|data_br }}, o dia seguinte à eleição. Antes da posse, em {{ posse|data_br }},
+    anúncio da equipe de transição ou plano para o próximo mandato não conta como passo concreto. Já um ato publicado (decreto, projeto enviado, medida provisória) conta.
+    Essas mudanças aparecem com o selo <span class="tag-transicao">antes da posse</span>.</p>
+
+  <h2>Sites de partido</h2>
+  <p>Reportagens do site de um partido continuam listadas como referência, com o selo <span class="tag-partido">site do partido</span>.
+    Elas não são imprensa independente, por isso não entram na contagem de veículos que confirmam uma declaração.</p>
 
   <h2>O que significa cada status</h2>
   <dl>

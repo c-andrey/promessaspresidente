@@ -33,9 +33,10 @@
     {% for r in recentes %}
     <li><time>{{ r.evento.data|data_br }}</time>
       <a href="promessa/{{ r.promessa.id }}.html">{{ r.promessa.titulo }}</a>
-      <span class="selo st-{{ r.evento.para }}">{{ rotulos[r.evento.para] }}</span></li>
+      <span class="selo st-{{ r.evento.para }}">{{ rotulos[r.evento.para] }}</span>{% if r.evento.documento.data and r.evento.documento.data < posse %} <span class="tag-transicao">antes da posse</span>{% endif %}</li>
     {% endfor %}
   </ol>
+  <p class="nota-legenda"><a href="mudancas.html">Todas as mudanças, semana a semana</a> · <a href="feed.xml">RSS</a></p>
 </section>
 {% endif %}
 

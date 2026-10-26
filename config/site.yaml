@@ -1,0 +1,27 @@
+# Endereço público do site: links dos avisos, RSS e cartões de compartilhamento (Open Graph).
+# A variável de ambiente SITE_URL tem prioridade (o deploy escreve a partir da variable do GitHub).
+url: http://187.77.254.161:8081
+
+# Sites de partido: continuam aparecendo como referência, com o selo "site do partido",
+# mas não contam como veículo de imprensa (nem para publicar declaração sozinha).
+fontes_partidarias:
+  - pt.org.br
+  - pl.org.br
+  - plnacional.org.br
+  - psol50.org.br
+  - pcdob.org.br
+  - psb40.org.br
+  - pdt.org.br
+  - mdb.org.br
+  - psdb.org.br
+  - uniaobrasil.org.br
+  - novo.org.br
+  - republicanos10.org.br
+  - progressistas.org.br
+  - psd.org.br
+  - redesustentabilidade.org.br
+  - podemos.org.br
+  - avante70.org.br
+  - solidariedade.org.br
+  - cidadania23.org.br
+  - pv.org.br

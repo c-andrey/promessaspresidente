@@ -5,7 +5,8 @@ name: Deploy
 # Secrets da VPS (mesmos nomes dos outros projetos): VPS_HOST, VPS_USER, VPS_SSH_KEY, VPS_PORT (opcional).
 # Secrets de IA (todos opcionais): NVIDIA_API_KEY, GEMINI_API_KEY, GROQ_API_KEY, MISTRAL_API_KEY,
 #   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, OPENROUTER_API_KEY, ANTHROPIC_API_KEY.
-# Variable opcional: HORA_SYNC (padrão 07:00, horário de Brasília).
+# Painel e avisos (opcionais): REVISAO_SENHA, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NTFY_TOPICO.
+# Variables opcionais: HORA_SYNC (padrão 07:00, horário de Brasília), INTERVALO_SYNC_DIAS, SITE_URL.
 
 on:
   push:
@@ -41,6 +42,11 @@ jobs:
           pagina=$(curl -fsS http://127.0.0.1:3200/index.html | grep -o 'promessa/[a-z0-9-]*\.html' | awk 'NR==1')
           echo "página testada: $pagina"
           curl -fsS -o /dev/null "http://127.0.0.1:3200/$pagina"
+          curl -fsS -o /dev/null http://127.0.0.1:3200/mudancas.html
+          curl -fsS http://127.0.0.1:3200/feed.xml | grep -q '<rss'
+          # sem REVISAO_SENHA no CI o painel responde 503 (desligado), nunca 200 sem senha
+          for i in $(seq 1 15); do code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3200/revisar/); [ "$code" != "502" ] && break; sleep 2; done
+          echo "painel: HTTP $code"; [ "$code" = "503" ]
           docker compose logs sync | tail -20
           docker compose down -v
 
@@ -68,13 +74,19 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REVISAO_SENHA: ${{ secrets.REVISAO_SENHA }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPICO: ${{ secrets.NTFY_TOPICO }}
+          SITE_URL: ${{ vars.SITE_URL }}
           HORA_SYNC: ${{ vars.HORA_SYNC || '07:00' }}
           INTERVALO_SYNC_DIAS: ${{ vars.INTERVALO_SYNC_DIAS || '1' }}
         run: |
           umask 077
           : > .env
           for k in NVIDIA_API_KEY GEMINI_API_KEY GROQ_API_KEY MISTRAL_API_KEY CLOUDFLARE_ACCOUNT_ID \
-                   CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY HORA_SYNC INTERVALO_SYNC_DIAS; do
+                   CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY REVISAO_SENHA TELEGRAM_BOT_TOKEN \
+                   TELEGRAM_CHAT_ID NTFY_TOPICO SITE_URL HORA_SYNC INTERVALO_SYNC_DIAS; do
             v="${!k}"
             [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env && echo "  $k definido"
           done
@@ -109,6 +121,8 @@ jobs:
           docker compose ps </dev/null
           curl -fsS http://127.0.0.1:3200/saude
           curl -fsS -o /dev/null -w "index.html → %{http_code}\n" http://127.0.0.1:3200/index.html
+          for i in $(seq 1 15); do code=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:3200/revisar/); [ "$code" != "502" ] && break; sleep 2; done
+          echo "painel /revisar/ → $code (401 = pede senha; 503 = REVISAO_SENHA não configurada)"
           docker compose logs --tail 15 sync </dev/null
           docker image prune -f >/dev/null
           EOF

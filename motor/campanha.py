@@ -22,18 +22,20 @@ Estado em DADOS_DIR (volume); os arquivos de mesmo nome em data/ do repositório
 """
 import argparse
 import copy
+import functools
 import logging
 import re
 import time
 import unicodedata
 from datetime import date, timedelta
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urlsplit
 
 from . import apuracao, armazem
 from .coletores.http import cliente
 from .coletores.noticias import _itens
 from .llm import Cadeia, SemProvedorDisponivel
 from .llm.erros import RespostaInvalida
+from .trava import trava
 
 log = logging.getLogger("campanha")
 
@@ -71,8 +73,19 @@ def slug(texto: str) -> str:
     return "-".join([w for w in re.split(r"[^a-z0-9]+", t) if w and w not in PALAVRAS_VAZIAS][:6])
 
 
+@functools.cache
+def _dominios_partidarios() -> tuple[str, ...]:
+    return tuple(armazem.ler_yaml("site.yaml").get("fontes_partidarias", []))
+
+
+def partidaria(url: str | None) -> bool:
+    """Site de partido: aparece como referência, mas não é imprensa (não conta como veículo)."""
+    host = urlsplit(url or "").hostname or ""
+    return any(host == d or host.endswith("." + d) for d in _dominios_partidarios())
+
+
 def veiculos_distintos(fontes: list[dict]) -> int:
-    return len({f["veiculo"].strip().lower() for f in fontes})
+    return len({f["veiculo"].strip().lower() for f in fontes if not partidaria(f.get("url"))})
 
 
 # --- busca ------------------------------------------------------------------------
@@ -572,6 +585,14 @@ def sincronizar() -> dict:
 
 # --- linha de comando -------------------------------------------------------------------
 
+def aprovar(ids) -> None:
+    _mover(ids, APROVADAS, "aprovada")
+
+
+def rejeitar(ids) -> None:
+    _mover(ids, REJEITADAS, "rejeitada")
+
+
 def _mover(ids, destino, status):
     candidatas = armazem.ler_json(CANDIDATAS, [])
     alvo = armazem.ler_json(destino, [])
@@ -641,9 +662,11 @@ def main():
             print(f"    {c['o_que_disse']}")
             print(f"    {f['veiculo']} {f['data']}: {f['titulo'][:90]}\n")
     elif args.cmd == "aprovar":
-        _mover(args.ids, APROVADAS, "aprovada")
+        with trava():
+            aprovar(args.ids)
     else:
-        _mover(args.ids, REJEITADAS, "rejeitada")
+        with trava():
+            rejeitar(args.ids)
 
 
 if __name__ == "__main__":

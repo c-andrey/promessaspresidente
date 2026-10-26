@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block titulo %}Revisão · Cumpriu?{% endblock %}
+{% block cabeca %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+{% block conteudo %}
+<section class="capa">
+  <h1>Revisão</h1>
+  <p class="lead">{{ fila|length }} mudança{{ "s" if fila|length != 1 }} de status e {{ candidatas|length }} declaraç{{ "ões" if candidatas|length != 1 else "ão" }} de campanha esperando decisão.</p>
+</section>
+
+{% if msg %}<p class="painel-msg" role="status">{{ msg }}</p>{% endif %}
+
+<section class="painel-saude {{ 'ruim' if graves else ('atencao' if avisos else 'bom') }}">
+  <h2>Último sync</h2>
+  {% if saude %}
+  <p>{{ saude.inicio|data_hora_br }} → {{ saude.fim|data_hora_br }} ·
+    {% for nome, r in saude.etapas.items() %}{{ nome }}: <strong>{{ r }}</strong>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  {% endif %}
+  {% for g in graves %}<p class="problema">⚠ {{ g }}</p>{% endfor %}
+  {% for a in avisos %}<p>{{ a }}</p>{% endfor %}
+  {% if not graves and not avisos %}<p>Tudo certo.</p>{% endif %}
+</section>
+
+<section id="fila">
+  <h2>Mudanças de status</h2>
+  <p class="fonte">A IA viu algo num documento ou notícia e sugeriu mudar o status. Nada muda no site até você aprovar.</p>
+  {% for i in fila %}
+  <article class="painel-item">
+    <p><a href="../promessa/{{ i.promessa_id }}.html">{{ i.promessa }}</a></p>
+    <p><span class="selo st-{{ i.status_atual }}">{{ rotulos[i.status_atual] }}</span> →
+       <span class="selo st-{{ i.status_sugerido }}">{{ rotulos[i.status_sugerido] }}</span>
+       <span class="fonte">· confiança {{ "%.0f"|format(i.confianca * 100) }}% · {{ i.provedor }} · {{ i.criado_em|data_br }}</span></p>
+    <p class="fonte">{{ i.documento.fonte }}{% if i.documento.oficial %} (oficial){% endif %} ·
+      <a href="{{ i.documento.url }}" rel="noopener" target="_blank">{{ i.documento.titulo }}</a> ({{ i.documento.data|data_br }})</p>
+    {% if i.evidencia %}<blockquote class="pequeno">“{{ i.evidencia }}”</blockquote>{% endif %}
+    <p>{{ i.justificativa }}</p>
+    {% if i.apuracao %}
+    <p class="fonte">Apuração: <strong>{{ i.apuracao.status|replace("_", " ") }}</strong>
+      {% if i.apuracao.lidas is defined %}· {{ i.apuracao.lidas }} matéria(s) lida(s){% endif %}</p>
+    {% for t in i.apuracao.trechos or [] %}<blockquote class="pequeno">{{ t.veiculo }}: “{{ t.trecho }}”</blockquote>{% endfor %}
+    {% endif %}
+    {% if i.segunda_opiniao %}
+    <p class="fonte">Segunda opinião ({{ i.segunda_opiniao.provedor or "nenhum provedor" }}):
+      {{ "concorda" if i.segunda_opiniao.concorda else "não concorda" }}{% if i.segunda_opiniao.status %}, diz {{ i.segunda_opiniao.status }}{% endif %}</p>
+    {% endif %}
+    <form method="post" action="decidir" class="painel-form">
+      <input type="hidden" name="token" value="{{ token }}">
+      <input type="hidden" name="tipo" value="fila">
+      <input type="hidden" name="id" value="{{ i.id }}">
+      <label>Status <select name="status">
+        {% for s in status_opcoes %}<option value="{{ s }}"{% if s == i.status_sugerido %} selected{% endif %}>{{ rotulos[s] }}</option>{% endfor %}
+      </select></label>
+      <label class="largo">Nota pública (opcional) <input name="nota" maxlength="500" placeholder="ex.: só parte dos estados aderiu"></label>
+      <button name="acao" value="aprovar" class="aprovar">Aprovar</button>
+      <button name="acao" value="rejeitar" class="rejeitar">Rejeitar</button>
+    </form>
+  </article>
+  {% else %}
+  <p class="vazio">Nada na fila.</p>
+  {% endfor %}
+</section>
+
+<section id="candidata">
+  <h2>Declarações de campanha</h2>
+  <p class="fonte">Promessas ditas em entrevistas, debates e discursos que não estão no plano do TSE. Aprovar publica como promessa.
+    Com 3 ou mais veículos e citação conferida, o sync já publica sozinho.</p>
+  {% for c in candidatas %}
+  <article class="painel-item">
+    <p><strong>{{ c.titulo }}</strong></p>
+    <p class="fonte">{{ c.categoria }} · {{ contextos.get(c.contexto, "declaração pública") }} · {{ veiculos(c.fontes) }} veículo(s) de imprensa</p>
+    <blockquote class="pequeno">{{ c.o_que_disse }}</blockquote>
+    <ul class="referencias">
+      {% for f in c.fontes %}
+      <li class="fonte">{{ f.veiculo }}{% if f.url is partidaria %} <span class="tag-partido">site do partido</span>{% endif %} ·
+        <a href="{{ f.url }}" rel="noopener" target="_blank">{{ f.titulo }}</a> · {{ f.data|data_br }}</li>
+      {% endfor %}
+    </ul>
+    {% if c.apuracao %}<p class="fonte">Apuração: <strong>{{ c.apuracao.status|replace("_", " ") }}</strong></p>{% endif %}
+    <form method="post" action="decidir" class="painel-form">
+      <input type="hidden" name="token" value="{{ token }}">
+      <input type="hidden" name="tipo" value="candidata">
+      <input type="hidden" name="id" value="{{ c.id }}">
+      <button name="acao" value="aprovar" class="aprovar">Publicar</button>
+      <button name="acao" value="rejeitar" class="rejeitar">Rejeitar</button>
+    </form>
+  </article>
+  {% else %}
+  <p class="vazio">Nenhuma declaração pendente.</p>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -132,3 +132,31 @@ blockquote.pequeno { font-size: 15px; padding: 10px 14px; }
 .origem { display: inline-block; margin: 8px 0 0; font-size: 12px; font-weight: 600; letter-spacing: .2px; }
 .origem-plano_tse { color: var(--suave); }
 .origem-declaracao { color: var(--parcial); }
+
+/* selos de contexto: site de partido, ato anterior à posse */
+.tag-partido, .tag-transicao {
+  display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px;
+  border: 1px solid var(--borda); color: var(--suave); background: var(--superficie); white-space: nowrap; vertical-align: 1px;
+}
+.tag-transicao { border-style: dashed; }
+.semana { margin-top: 28px; }
+.semana h2 { font-size: 17px; }
+@media (max-width: 520px) {
+  .topo nav a { margin-left: 14px; font-size: 14px; }
+  .topo nav a:first-child { display: none; } /* a marca já leva ao início */
+}
+
+/* painel de revisão */
+.painel-msg { background: var(--superficie); border: 1px solid var(--destaque); border-radius: var(--raio); padding: 12px 16px; }
+.painel-saude { border: 1px solid var(--borda); border-left: 4px solid var(--cumprida); border-radius: var(--raio); padding: 4px 16px; margin: 16px 0; background: var(--superficie); }
+.painel-saude.atencao { border-left-color: var(--parcial); }
+.painel-saude.ruim { border-left-color: var(--abandonada); }
+.painel-saude h2 { font-size: 16px; }
+.problema { color: var(--abandonada); font-weight: 600; }
+.painel-item { background: var(--superficie); border: 1px solid var(--borda); border-radius: var(--raio); padding: 4px 16px 14px; margin: 12px 0; overflow-wrap: anywhere; }
+.painel-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: end; margin-top: 10px; }
+.painel-form label { display: flex; flex-direction: column; font-size: 13px; color: var(--suave); gap: 4px; }
+.painel-form .largo { flex: 1 1 220px; }
+.painel-form select, .painel-form input { font: inherit; padding: 6px 8px; border: 1px solid var(--borda); border-radius: 6px; background: var(--fundo); color: var(--texto); }
+.painel-form button { font: inherit; font-weight: 600; padding: 7px 16px; border-radius: 6px; border: 1px solid var(--borda); cursor: pointer; background: var(--fundo); color: var(--texto); }
+.painel-form .aprovar { background: var(--cumprida); border-color: var(--cumprida); color: #fff; }

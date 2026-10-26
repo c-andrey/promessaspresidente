@@ -55,6 +55,7 @@ Para cada promessa, decida se o documento mostra uma AÇÃO DO GOVERNO FEDERAL q
 
 Regras:
 - Documento datado antes de {inicio_acompanhamento(presidente)} não conta para as promessas: use sem_mudanca.
+- Antes da posse ({presidente['mandato_inicio']}), anúncio de equipe de transição, promessa repetida ou plano para o próximo mandato NÃO é passo concreto: use sem_mudanca. Ato publicado (decreto, projeto enviado, MP) conta normalmente.
 - Notícia oficial é indício, não prova: confiança máxima 0.6 para notícias.
 - "evidencia" deve ser um trecho LITERAL do documento (até 300 caracteres). Se não houver trecho que sustente, use relevante=false.
 - "confianca" vai de 0 a 1.
