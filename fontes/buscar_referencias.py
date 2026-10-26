@@ -9,7 +9,7 @@ Promessas ditas em público que NÃO estão no plano: fontes/declaracoes.py.
 Busca no Google Notícias (RSS) no período de campanha e usa a cadeia de IAs
 (config/provedores.yaml) para separar o que é o candidato prometendo do que é só
 cobertura do tema. Resultados:
-  data/referencias_campanha.json  → entra em promessas.json pelo gerar_promessas_flavio.py
+  data/referencias_campanha.json  → entra em promessas.json pelo gerar_promessas.py
 """
 import logging
 import sys
@@ -28,7 +28,7 @@ from motor.llm.erros import RespostaInvalida  # noqa: E402
 
 log = logging.getLogger("referencias")
 
-CANDIDATO = "Flávio Bolsonaro"
+CANDIDATO = armazem.ler_yaml("presidente.yaml")["nome_busca"]
 PERIODO = ("2026-06-01", "2026-10-25")  # pré-campanha, campanha e 2º turno
 REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
 URL = "https://news.google.com/rss/search?q={q}&hl=pt-BR&gl=BR&ceid=BR:pt-419"

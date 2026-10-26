@@ -1,23 +1,9 @@
-"""Gera data/promessas.json a partir do plano de governo registrado no TSE.
+"""Promessas do plano de governo de Flávio Bolsonaro (PL), eleições 2026 — ARQUIVO.
 
-Cada promessa carrega a página e um trecho literal do PDF. Ao rodar, o script
-confere se todo trecho existe de fato no texto extraído e aborta se não existir.
-
-Uso: python fontes/gerar_promessas_flavio.py
+Usado enquanto o site acompanhava o Flávio como se fosse o eleito (antes do resultado).
+Os dados de campanha da época estão em dados/. Para reativar, aponte
+config/presidente.yaml → plano_de_governo.pasta para fontes/flavio-bolsonaro.
 """
-import json
-import re
-import sys
-import unicodedata
-from pathlib import Path
-
-RAIZ = Path(__file__).resolve().parent.parent
-TEXTO = RAIZ / "fontes" / "plano-flavio-bolsonaro-2026.txt"
-SAIDA = RAIZ / "data" / "promessas.json"
-# Reportagens da campanha confirmadas por fontes/buscar_referencias.py (opcional)
-REFERENCIAS = RAIZ / "data" / "referencias_campanha.json"
-# Promessas ditas em entrevistas/debates e aprovadas em fontes/declaracoes.py (fora do plano)
-DECLARACOES = RAIZ / "data" / "promessas_declaracoes.json"
 URL_TSE = "https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726"
 
 # (id, categoria, título, página, trecho literal, prazo, palavras-chave)
@@ -386,81 +372,3 @@ P = [
      "Vamos mudar a governança do consignado para que a fraude não se repita", None,
      ["consignado", "crédito consignado", "empréstimo consignado"]),
 ]
-
-
-def normalizar(t: str) -> str:
-    t = unicodedata.normalize("NFKC", t)
-    t = t.replace("\t", " ").replace(" ", " ")
-    return re.sub(r"\s+", " ", t).strip()
-
-
-def main():
-    texto = normalizar(TEXTO.read_text(encoding="utf-8"))
-    # O PDF tem quebras de página no meio de frases: tira os marcadores para a checagem.
-    texto = re.sub(r"=== PAGINA \d+ === \d+ ", "", texto)
-    texto = re.sub(r"=== PAGINA \d+ === ", "", texto)
-
-    ids, faltando, promessas = set(), [], []
-    for (pid, cat, titulo, pag, trecho, prazo, kws) in P:
-        assert pid not in ids, f"id duplicado: {pid}"
-        ids.add(pid)
-        if normalizar(trecho) not in texto:
-            faltando.append(pid)
-        promessas.append({
-            "id": pid,
-            "origem": "plano_tse",
-            "titulo": titulo,
-            "categoria": cat,
-            "prazo": prazo,
-            "fonte": {"tipo": "plano_de_governo_tse", "url": URL_TSE, "pagina": pag, "trecho": trecho},
-            "palavras_chave": sorted(set(k.lower() for k in kws)),
-            "status": "nao_iniciada",
-            "atualizado_em": None,
-            "referencias": [],
-            "historico": [],
-        })
-    if faltando:
-        print("Trechos não encontrados no PDF:", *faltando, sep="\n  ")
-        sys.exit(1)
-
-    for d in json.loads(DECLARACOES.read_text(encoding="utf-8")) if DECLARACOES.exists() else []:
-        assert d["id"] not in ids, f"id de declaração repete o plano: {d['id']}"
-        principal, *outras = d["fontes"]
-        promessas.append({
-            "id": d["id"],
-            "origem": "declaracao",
-            "titulo": d["titulo"],
-            "categoria": d["categoria"],
-            "prazo": None,
-            "fonte": {"tipo": "declaracao", "contexto": d["contexto"], "url": principal["url"],
-                      "veiculo": principal["veiculo"], "titulo": principal["titulo"],
-                      "data": principal["data"], "trecho": d["o_que_disse"]},
-            "palavras_chave": d["palavras_chave"],
-            "status": "nao_iniciada",
-            "atualizado_em": None,
-            "referencias": [f | {"o_que_disse": d["o_que_disse"]} for f in outras],
-            "historico": [],
-        })
-
-    # Preserva status/histórico já registrados se o arquivo existir.
-    if SAIDA.exists():
-        antigos = {p["id"]: p for p in json.loads(SAIDA.read_text(encoding="utf-8"))}
-        for p in promessas:
-            if p["id"] in antigos:
-                for campo in ("status", "atualizado_em", "historico", "imprensa"):
-                    if campo in antigos[p["id"]]:
-                        p[campo] = antigos[p["id"]][campo]
-
-    referencias = json.loads(REFERENCIAS.read_text(encoding="utf-8")) if REFERENCIAS.exists() else {}
-    for p in promessas:
-        if p["origem"] == "plano_tse":
-            p["referencias"] = referencias.get(p["id"], [])
-
-    SAIDA.write_text(json.dumps(promessas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    plano = sum(1 for p in promessas if p["origem"] == "plano_tse")
-    print(f"{len(promessas)} promessas gravadas em {SAIDA.relative_to(RAIZ)}: "
-          f"{plano} do plano (trechos conferidos no PDF) + {len(promessas) - plano} declarações aprovadas")
-
-
-if __name__ == "__main__":
-    main()

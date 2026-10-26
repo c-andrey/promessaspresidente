@@ -19,15 +19,15 @@ def test_promessas_tem_campos_basicos():
         assert p["palavras_chave"] and p["fonte"]["trecho"] and p["status"] in armazem.STATUS
 
 
-def test_filtro_acha_maioridade_penal_ignorando_acento():
-    c = candidatas(doc("PEC 1/2027", "Altera o art. 228 da Constituicao para reduzir a MAIORIDADE PENAL"), PROMESSAS)
-    assert c[0]["id"] == "maioridade-penal-16"
+def test_filtro_acha_promessa_ignorando_acento_e_caixa():
+    c = candidatas(doc("PEC 8/2025", "Altera a Constituicao para o fim da ESCALA 6X1 e jornada de 40 horas"), PROMESSAS)
+    assert c[0]["id"] == "fim-escala-6x1"
 
 
 def test_filtro_respeita_limite_de_palavra():
-    # "tea" não pode casar com "teatro"
-    c = candidatas(doc("Lei de incentivo ao teatro"), PROMESSAS)
-    assert "centros-tea" not in [x["id"] for x in c]
+    # "ita" (ITA no Ceará) não pode casar com "Itaipu" nem "capital"
+    c = candidatas(doc("Lei sobre a Itaipu Binacional e o capital social"), PROMESSAS)
+    assert "ita-ceara" not in [x["id"] for x in c]
 
 
 def test_filtro_sem_relacao():
@@ -48,6 +48,12 @@ def test_regras_auto_so_no_caso_seguro():
     assert decidir(av(), P, doc("x", data="2026-11-10"), REGRAS, PRESIDENTE) == FILA
     assert decidir(av("cumprida", 0.99), P, doc("x"), REGRAS, PRESIDENTE) == FILA
     assert decidir(av("abandonada", 0.99), P, doc("x"), REGRAS, PRESIDENTE) == FILA
+
+
+def test_reeleito_conta_atos_desde_acompanhar_desde():
+    reeleito = {"mandato_inicio": date(2027, 1, 1), "acompanhar_desde": date(2026, 10, 26)}
+    assert decidir(av(), P, doc("x", data="2026-11-10"), REGRAS, reeleito) == AUTO
+    assert decidir(av(), P, doc("x", data="2026-10-20"), REGRAS, reeleito) == FILA
 
 
 def test_regras_descartes():

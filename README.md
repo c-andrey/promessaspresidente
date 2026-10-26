@@ -1,25 +1,34 @@
 # Cumpriu?
 
-Acompanhamento diário das promessas do plano de governo do presidente, com um documento oficial como prova de cada mudança de status.
+Acompanhamento diário das promessas do presidente eleito em 2026, **Lula (PT)**, com um documento oficial como prova de cada mudança de status.
 
 - **Promessas**, com duas origens sempre separadas:
-  - **Plano oficial (TSE)**: 114 compromissos do plano registrado no TSE, com página e trecho literal conferidos no PDF.
+  - **Plano oficial (TSE)**: 132 compromissos para o mandato 2027-2030 tirados do plano registrado no TSE (só o que é compromisso futuro; o balanço do mandato atual ficou de fora), com página e trecho literal conferidos no PDF.
   - **Declarações de campanha**: promessas feitas em entrevistas, debates, sabatinas e discursos que não estão no plano. Só entram depois de aprovação humana.
   - Cada promessa do plano também lista reportagens em que o candidato falou dela ("Na campanha").
 - **Tudo em docker compose** na VPS (`/srv/promessaspresidente`): o serviço `sync` roda o pipeline todo dia às 07:00 (coleta → filtro → IA com fallback → regras) e gera o site; o `web` (nginx) serve o site. Público em **http://187.77.254.161:8081** via edge-proxy.
 - **Auditoria**: cada promessa guarda o próprio histórico (data, documento oficial, trecho, quem decidiu), publicado no site. Os dados brutos ficam só no volume da VPS (uso interno). O volume de dados tem backup diário no GitHub (`backup.yml`).
 
+## Trocar de presidente
+
+1. Crie `fontes/<nome>/` com `plano.pdf`, `plano.txt` (texto extraído) e `promessas.py` (lista `P` e `URL_TSE`).
+2. Em `config/presidente.yaml`, mude `nome`, `nome_busca`, `partido`, as datas e `plano_de_governo.pasta`.
+   Reeleito? `acompanhar_desde` = dia seguinte à eleição (atos do governo dele já contam); senão, a data da posse.
+3. Arquive `data/referencias_campanha.json`, `promessas_candidatas.json`, `promessas_declaracoes.json` e
+   `declaracoes_rejeitadas.json` na pasta do anterior e rode `fontes/gerar_promessas.py`.
+4. Push. Na VPS o `sync` percebe o nome novo, move os dados do anterior para `arquivo/` dentro do volume e recomeça.
+
 ## Promessas: plano oficial × declarações
 
 | Comando | O que faz |
 |---|---|
-| `python fontes/gerar_promessas_flavio.py` | monta `data/promessas.json`: plano do TSE (trechos conferidos no PDF) + declarações aprovadas + referências |
+| `python fontes/gerar_promessas.py` | monta `data/promessas.json`: plano do TSE (trechos conferidos no PDF) + declarações aprovadas + referências |
 | `python fontes/buscar_referencias.py` | para cada promessa do plano, acha reportagens da campanha em que ele falou dela → `data/referencias_campanha.json` |
 | `python fontes/declaracoes.py buscar` | Google Notícias (debates, sabatinas, entrevistas, "promete"…) → IA extrai promessas ditas por ele → consolida repetidas → `data/promessas_candidatas.json` |
 | `python fontes/declaracoes.py listar` | candidatas pendentes, mais citadas primeiro |
 | `python fontes/declaracoes.py aprovar ID…` / `rejeitar ID…` | revisão humana; aprovadas vão para `data/promessas_declaracoes.json` |
 
-Depois de aprovar, rode o `gerar_promessas_flavio.py` e faça push: o `sync` da VPS copia as promessas novas para o volume, mantendo status e histórico das existentes. Esses scripts rodam sob demanda (usam a cota das IAs) e não fazem parte do sync diário.
+Depois de aprovar, rode o `gerar_promessas.py` e faça push: o `sync` da VPS copia as promessas novas para o volume, mantendo status e histórico das existentes. Esses scripts rodam sob demanda (usam a cota das IAs) e não fazem parte do sync diário.
 
 ## Como funciona
 
@@ -130,7 +139,9 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 config/        provedores.yaml (cadeia de IA), coleta.yaml (fontes e regras), presidente.yaml
 data/          promessas.json (semente; em produção o estado vive no volume "dados"), referências, declarações
-fontes/        PDF do plano + scripts: gerar_promessas_flavio, buscar_referencias, declaracoes
+fontes/        scripts gerar_promessas, buscar_referencias, declaracoes
+  lula/        plano.pdf, plano.txt e promessas.py do presidente atual
+  flavio-bolsonaro/  arquivo: o site acompanhou o Flávio antes do resultado do 2º turno
 motor/         coletores/, llm/ (cadeia + provedores), filtro, classificador, regras, main, revisar, agendador
 web/           build.py + templates + CSS do site estático
 deploy/nginx/  config do nginx

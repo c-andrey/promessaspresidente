@@ -23,6 +23,8 @@ VISTOS = ESTADO / "vistos.json"
 PENDENTES = ESTADO / "pendentes.json"
 USO_LLM = ESTADO / "uso_llm.json"
 EXECUCAO = ESTADO / "ultima_execucao.json"
+PRESIDENTE_ATUAL = ESTADO / "presidente.json"
+ARQUIVO = DADOS / "arquivo"
 
 STATUS = ["nao_iniciada", "em_andamento", "parcial", "cumprida", "abandonada"]
 

@@ -7,6 +7,7 @@ import json
 
 from .llm import Cadeia, Resultado
 from .llm.erros import RespostaInvalida
+from .regras import inicio_acompanhamento
 
 STATUS_SUGERIDOS = ["sem_mudanca", "em_andamento", "parcial", "cumprida", "abandonada"]
 
@@ -37,8 +38,11 @@ SCHEMA = {
 
 
 def montar_sistema(presidente: dict) -> str:
+    reeleito = (" (foi reeleito: o governo atual já é dele, e as promessas são as do novo plano)"
+                if str(presidente.get("acompanhar_desde", "")) < str(presidente["mandato_inicio"]) else "")
     return f"""Você é um verificador apartidário de promessas de campanha.
-O presidente acompanhado é {presidente['nome']} ({presidente['partido']}), mandato de {presidente['mandato_inicio']} a {presidente['mandato_fim']}.
+O presidente acompanhado é {presidente.get('nome_completo', presidente['nome'])} ({presidente['partido']}), mandato de {presidente['mandato_inicio']} a {presidente['mandato_fim']}.
+Atos do governo federal a partir de {inicio_acompanhamento(presidente)} contam como ações dele{reeleito}.
 
 Você recebe UM documento oficial (proposição legislativa, ato do Diário Oficial ou notícia do governo) e uma lista de promessas candidatas, escolhidas por palavra-chave. Muitas candidatas serão falsos positivos: na dúvida, marque relevante=false.
 
@@ -50,7 +54,7 @@ Para cada promessa, decida se o documento mostra uma AÇÃO DO GOVERNO FEDERAL q
 - abandonada: o governo desistiu explicitamente, vetou, retirou o projeto ou agiu no sentido contrário.
 
 Regras:
-- Documento datado antes do início do mandato não é ação deste presidente: use sem_mudanca, a menos que seja ato da equipe de transição dele.
+- Documento datado antes de {inicio_acompanhamento(presidente)} não conta para as promessas: use sem_mudanca.
 - Notícia oficial é indício, não prova: confiança máxima 0.6 para notícias.
 - "evidencia" deve ser um trecho LITERAL do documento (até 300 caracteres). Se não houver trecho que sustente, use relevante=false.
 - "confianca" vai de 0 a 1.

@@ -11,6 +11,11 @@ from . import armazem
 AUTO, FILA, DESCARTE = "automatico", "fila", "descartada"
 
 
+def inicio_acompanhamento(presidente: dict) -> str:
+    """Desde quando atos do governo contam: acompanhar_desde (reeleito) ou a posse."""
+    return str(presidente.get("acompanhar_desde") or presidente["mandato_inicio"])
+
+
 def decidir(av: dict, promessa: dict, doc: dict, regras: dict, presidente: dict) -> str:
     sugerido = av["status_sugerido"]
     if not av["relevante"] or sugerido == "sem_mudanca" or sugerido == promessa["status"]:
@@ -22,7 +27,7 @@ def decidir(av: dict, promessa: dict, doc: dict, regras: dict, presidente: dict)
         and promessa["status"] == "nao_iniciada"
         and doc.get("oficial")
         and av["confianca"] >= regras["confianca_auto"]
-        and doc["data"] >= str(presidente["mandato_inicio"])
+        and doc["data"] >= inicio_acompanhamento(presidente)
     )
     return AUTO if pode_auto else FILA
 

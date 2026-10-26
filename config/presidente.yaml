@@ -1,16 +1,23 @@
-# Quem o site acompanha. Trocar de presidente = trocar este arquivo + data/promessas.json.
-nome: Flávio Bolsonaro
-partido: PL
+# Quem o site acompanha. Trocar de presidente = editar este arquivo + rodar fontes/gerar_promessas.py.
+# Na VPS, o serviço sync percebe a troca (campo nome), arquiva os dados do anterior no volume e recomeça.
+nome: Lula
+nome_completo: Luiz Inácio Lula da Silva
+partido: PT
+nome_busca: Lula                    # como aparece nas buscas de notícias (fontes/buscar_referencias.py, declaracoes.py)
 mandato_inicio: 2027-01-01
 mandato_fim: 2030-12-31
+
+# Presidente reeleito: atos do governo dele a partir desta data já contam para as promessas do novo plano.
+# (Para quem não é reeleito, use a data da posse.)
+acompanhar_desde: 2026-10-26
 
 # Enquanto o TSE não proclamar o resultado, o site mostra um aviso no topo.
 resultado_confirmado: false
 
 plano_de_governo:
-  titulo: "Diretrizes do Plano de Governo Flávio Bolsonaro 2027-2030"
-  url_tse: https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017104726
-  arquivo_local: fontes/plano-flavio-bolsonaro-2026.pdf
-  # Cópia obtida de espelho (planodegoverno2026.com.br): o TSE bloqueia acesso de fora do Brasil.
-  # Confira baixando do TSE: sha256sum deve bater com o valor abaixo.
-  sha256: 7d1d95075e11e3c4113e8dcd502438049a34f5147a84cb0f746bf59046e477a4
+  titulo: "Diretrizes para o Programa de Transformação do Brasil (2027-2030)"
+  pasta: fontes/lula                # plano.pdf, plano.txt e promessas.py
+  url_tse: https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/doc/280017016005
+  # Cópia obtida de espelho (planodegoverno2026.com.br): o TSE bloqueia acesso de fora do Brasil
+  # (inclusive a VPS). Confira baixando do TSE: sha256sum deve bater com o valor abaixo.
+  sha256: e1c162c20c81dafadf69b10bab230b5a6dc48f6b6c27c2cfce853b131a8bcc36

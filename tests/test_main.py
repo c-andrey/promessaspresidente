@@ -19,15 +19,15 @@ class ProvedorFalso:
         doc_titulo = json.loads(usuario.split("DOCUMENTO:\n")[1].split("\n\nPROMESSAS")[0])["titulo"]
         status = "em_andamento" if doc_titulo.startswith("PEC") else "cumprida"
         return json.dumps({"avaliacoes": [{
-            "promessa_id": "maioridade-penal-16", "relevante": True, "status_sugerido": status,
-            "confianca": 0.95, "evidencia": "reduzir a maioridade penal", "justificativa": "teste"}]})
+            "promessa_id": "fim-escala-6x1", "relevante": True, "status_sugerido": status,
+            "confianca": 0.95, "evidencia": "acaba com a escala 6x1", "justificativa": "teste"}]})
 
 
 DOCS = [
     {"id": "camara:1", "fonte": "Câmara dos Deputados", "oficial": True, "tipo": "PEC",
-     "titulo": "PEC 1/2027", "resumo": "Reduz a maioridade penal para dezesseis anos.", "url": "u1", "data": "2027-02-01"},
+     "titulo": "PEC 1/2027", "resumo": "Acaba com a escala 6x1 e reduz a jornada para 40 horas.", "url": "u1", "data": "2027-02-01"},
     {"id": "camara:2", "fonte": "Câmara dos Deputados", "oficial": True, "tipo": "MSC",
-     "titulo": "MSC 2/2027", "resumo": "Comunica a sanção da emenda sobre maioridade penal.", "url": "u2", "data": "2027-02-02"},
+     "titulo": "MSC 2/2027", "resumo": "Comunica a promulgação da emenda que acaba com a escala 6x1.", "url": "u2", "data": "2027-02-02"},
     {"id": "camara:3", "fonte": "Câmara dos Deputados", "oficial": True, "tipo": "MPV",
      "titulo": "MPV 3/2027", "resumo": "Abre crédito extraordinário.", "url": "u3", "data": "2027-02-02"},
 ]
@@ -58,7 +58,7 @@ def test_fluxo_completo(dados_tmp):
     assert stats["novos"] == 3 and stats["para_ia"] == 2  # MPV de crédito não tem candidata
     assert stats["automatico"] == 1 and stats["fila"] == 1
 
-    promessa = next(p for p in armazem.ler_json(armazem.PROMESSAS, []) if p["id"] == "maioridade-penal-16")
+    promessa = next(p for p in armazem.ler_json(armazem.PROMESSAS, []) if p["id"] == "fim-escala-6x1")
     assert promessa["status"] == "em_andamento"
     assert promessa["historico"][0]["documento"]["url"] == "u1"
 

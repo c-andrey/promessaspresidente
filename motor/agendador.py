@@ -25,6 +25,28 @@ HORA_SYNC = os.environ.get("HORA_SYNC", "07:00")
 CAMPOS_DO_PLANO = ("origem", "titulo", "categoria", "prazo", "fonte", "palavras_chave", "referencias")
 
 
+def trocar_presidente_se_preciso() -> None:
+    """Se o presidente configurado mudou, arquiva os dados do anterior no volume e recomeça.
+
+    Vai para data/arquivo/<nome>-<data>/: promessas, fila e o estado do pipeline (vistos,
+    pendentes, execução). O uso diário das IAs fica, para não estourar a cota do dia.
+    """
+    nome = armazem.ler_yaml("presidente.yaml")["nome"]
+    registrado = armazem.ler_json(armazem.PRESIDENTE_ATUAL, {}).get("nome")
+    if registrado == nome:
+        return
+    if armazem.PROMESSAS.exists() and armazem.SEMENTE.resolve() != armazem.PROMESSAS.resolve():
+        destino = armazem.ARQUIVO / f"{(registrado or 'anterior').lower().replace(' ', '-')}-{armazem.hoje()}"
+        destino.mkdir(parents=True, exist_ok=True)
+        for caminho in (armazem.PROMESSAS, armazem.FILA, armazem.VISTOS, armazem.PENDENTES,
+                        armazem.EXECUCAO, armazem.ESTADO / "rejeitados.json"):
+            if caminho.exists():
+                caminho.rename(destino / caminho.name)
+        log.warning("Presidente mudou (%s → %s): dados anteriores arquivados em %s",
+                    registrado or "?", nome, destino)
+    armazem.gravar_json(armazem.PRESIDENTE_ATUAL, {"nome": nome, "desde": armazem.hoje()})
+
+
 def semear() -> None:
     """Copia promessas novas do repositório para o volume e atualiza os textos das existentes."""
     semente = armazem.ler_json(armazem.SEMENTE, [])
@@ -80,6 +102,7 @@ def main():
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     logging.getLogger("httpx").setLevel(logging.WARNING)
 
+    trocar_presidente_se_preciso()
     semear()
     if args.agora:
         sincronizar()

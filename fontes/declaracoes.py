@@ -4,7 +4,7 @@
   python fontes/declaracoes.py listar              # candidatas pendentes, mais citadas primeiro
   python fontes/declaracoes.py aprovar ID [ID...]  # vira promessa (origem "declaracao")
   python fontes/declaracoes.py rejeitar ID [ID...]
-  python fontes/gerar_promessas_flavio.py          # depois de aprovar: regenera data/promessas.json
+  python fontes/gerar_promessas.py          # depois de aprovar: regenera data/promessas.json
 
 Etapas do "buscar":
   1. buscas direcionadas no Google Notícias no período de campanha (debates por emissora,
