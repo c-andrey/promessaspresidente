@@ -37,7 +37,10 @@ jobs:
           for i in $(seq 1 45); do curl -fsS http://127.0.0.1:3200/index.html 2>/dev/null | grep -q 'class="cartao"' && break; sleep 2; done
           curl -fsS http://127.0.0.1:3200/saude
           curl -fsS -o /dev/null http://127.0.0.1:3200/index.html
-          curl -fsS -o /dev/null http://127.0.0.1:3200/promessa/fim-reeleicao.html
+          # primeira promessa listada no índice (não depende de qual presidente está configurado)
+          pagina=$(curl -fsS http://127.0.0.1:3200/index.html | grep -o 'promessa/[a-z0-9-]*\.html' | awk 'NR==1')
+          echo "página testada: $pagina"
+          curl -fsS -o /dev/null "http://127.0.0.1:3200/$pagina"
           docker compose logs sync | tail -20
           docker compose down -v
 
