@@ -61,12 +61,12 @@ provedores:
   # (GitHub Models foi desativado pelo GitHub em 30/07/2026: models.github.ai só responde "OK".)
 
   # NVIDIA NIM: grátis com a conta de desenvolvedor (build.nvidia.com, chave "nvapi-…"),
-  # ~40 req/min por modelo e sem teto diário publicado. Nome do modelo a confirmar no 1º teste.
+  # Grátis sem cartão: ~40 req/min (por modelo), sem teto diário publicado; uso de protótipo/pesquisa.
   - nome: nvidia
     tipo: openai
     ativo: true
     base_url: https://integrate.api.nvidia.com/v1
-    modelo: meta/llama-3.3-70b-instruct
+    modelo: deepseek-ai/deepseek-v4.1-flash   # llama-3.3-70b saiu do catálogo (conferido em 25/10/2026)
     chave_env: NVIDIA_API_KEY
     rpm: 30
     limite_diario: 1000
@@ -105,7 +105,7 @@ provedores:
     tipo: openai
     ativo: true
     base_url: https://openrouter.ai/api/v1
-    modelo: meta-llama/llama-3.3-70b-instruct:free
+    modelo: google/gemma-4-31b-it:free   # llama-3.3 deixou de ser :free; lista muda: openrouter.ai/api/v1/models
     chave_env: OPENROUTER_API_KEY
     rpm: 15
     limite_diario: 45
