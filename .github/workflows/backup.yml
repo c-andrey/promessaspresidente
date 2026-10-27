@@ -32,7 +32,9 @@ jobs:
           STAMP=$(date -u +%Y-%m-%d)
           echo "STAMP=$STAMP" >> "$GITHUB_ENV"
           ssh vps "docker run --rm -v promessaspresidente_dados:/dados:ro alpine tar czf - -C /dados ." > "dados-$STAMP.tgz"
-          tar tzf "dados-$STAMP.tgz" | grep -q '^./promessas.json$'
+          # lista inteira antes do grep: com pipefail, grep -q fecha o pipe e o tar morre com SIGPIPE
+          tar tzf "dados-$STAMP.tgz" > lista.txt
+          grep -qx './promessas.json' lista.txt
           tar xzf "dados-$STAMP.tgz" ./promessas.json -O | python3 -c "import json,sys; p=json.load(sys.stdin); assert len(p) > 0; print(len(p), 'promessas no backup')"
 
       - uses: actions/upload-artifact@v4

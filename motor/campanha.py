@@ -219,14 +219,19 @@ def atualizar_referencias(cadeia, cfg, presidente, promessas, estado, quantas: i
                 except SemProvedorDisponivel as e:
                     log.warning("Referências: parei em %d/%d (%s)", n - 1, len(fila), e)
                     break
-                achadas = []
+                achadas, esgotou = [], False
                 for x in r.dados["confirmadas"]:
                     d = docs[x["indice"]]
                     ref = {"veiculo": d["fonte"], "titulo": d["titulo"], "url": d["url"], "data": d["data"],
                            "o_que_disse": x["o_que_disse"]}
-                    ref["apuracao"] = apuracao.apurar(
-                        cadeia, c, f"{nome} prometeu, defendeu ou detalhou esta proposta: {p['titulo']}",
-                        [ref], p["palavras_chave"] + [nome], evitar=(r.provedor,), max_leituras=1)
+                    try:
+                        ref["apuracao"] = apuracao.apurar(
+                            cadeia, c, f"{nome} prometeu, defendeu ou detalhou esta proposta: {p['titulo']}",
+                            [ref], p["palavras_chave"] + [nome], evitar=(r.provedor,), max_leituras=1)
+                    except SemProvedorDisponivel as e:  # teto do dia no meio da apuração: guarda o que já foi apurado
+                        log.warning("Referências: parei em %d/%d, na apuração (%s)", n - 1, len(fila), e)
+                        esgotou = True
+                        break
                     if ref["apuracao"]["status"] in ("nao_confirmada", "contradita"):
                         continue  # a reportagem inteira não sustenta: fora
                     if ref["apuracao"]["trechos"]:
@@ -235,6 +240,9 @@ def atualizar_referencias(cadeia, cfg, presidente, promessas, estado, quantas: i
                         ref["url"] = apuracao.resolver_url(c, ref["url"])
                     achadas.append(ref)
                 novas += juntar_referencias(refs.setdefault(p["id"], []), achadas, cfg["max_referencias_por_promessa"])
+                if esgotou:  # promessa não marcada como verificada: volta no próximo sync
+                    armazem.gravar_json(REFERENCIAS, refs)
+                    break
             verificadas[p["id"]] = hoje
             feitas += 1
             armazem.gravar_json(REFERENCIAS, refs)  # salva a cada passo: dá para interromper

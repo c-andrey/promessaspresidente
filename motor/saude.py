@@ -13,6 +13,7 @@ OCORRENCIAS: list[dict] = []
 # chave recusada é grave (precisa de ação); IA esgotada só atrasa o trabalho para o dia seguinte
 GRAVES = {"chave_recusada", "coletor"}
 FOLGA_HORAS = 6
+DIAS_COLETOR_FORA = 3  # fonte fora por mais tempo que isso vira problema grave
 
 
 def caminho():
@@ -44,7 +45,7 @@ def problemas(estado: dict | None, agora: datetime, intervalo_dias: int) -> tupl
     if falhas:
         graves.append("etapas com erro: " + ", ".join(falhas))
     for o in estado["ocorrencias"]:
-        frase = {"chave_recusada": "chave de IA recusada", "coletor": "fonte fora do ar",
+        frase = {"chave_recusada": "chave de IA recusada", "coletor": "fonte fora do ar", "coletor_instavel": "fonte instável hoje",
                  "sem_ia": "todas as IAs esgotaram"}.get(o["tipo"], o["tipo"])
         (graves if o["tipo"] in GRAVES else avisos).append(f"{frase}: {o['detalhe']}")
     return graves, avisos

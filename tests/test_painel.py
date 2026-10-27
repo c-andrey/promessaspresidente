@@ -136,3 +136,11 @@ def test_saude_aponta_atraso_e_chave_recusada():
     graves, _ = saude.problemas(atrasado, agora, 1)
     assert len(graves) == 3 and "chave de IA recusada: groq-qwen" in graves
     assert saude.problemas(atrasado | {"etapas": {}, "ocorrencias": []}, agora, 2) == ([], [])
+
+
+def test_fonte_fora_um_dia_e_so_aviso():
+    agora = datetime(2027, 1, 3, 12, tzinfo=timezone.utc)
+    estado = {"inicio": "2027-01-03T10:00:00+00:00", "fim": "2027-01-03T10:30:00+00:00", "etapas": {},
+              "ocorrencias": [{"tipo": "coletor_instavel", "detalhe": "camara, sem coletar há 1 dia(s)"}]}
+    graves, avisos = saude.problemas(estado, agora, 1)
+    assert graves == [] and avisos == ["fonte instável hoje: camara, sem coletar há 1 dia(s)"]

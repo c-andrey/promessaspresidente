@@ -133,3 +133,22 @@ def test_mesma_materia_com_link_do_google_e_link_real_nao_duplica():
     entrou = campanha.juntar_referencias(lista, [{"url": "https://g1.globo.com/a", "titulo": "Lula  promete PEC",
                                                   "data": "2026-10-01"}], 8)
     assert entrou == 0 and len(lista) == 1 and lista[0]["url"] == "https://g1.globo.com/a"
+
+
+def test_teto_no_meio_da_apuracao_nao_derruba_a_etapa(volume, monkeypatch):
+    """Bug de 26/10/2026: o teto diário estourava dentro de apurar() e a etapa campanha inteira falhava."""
+    class Resp:
+        provedor, dados = "falsa", {"confirmadas": [{"indice": 0, "o_que_disse": "Disse que vai acabar com a 6x1."}]}
+
+    class Cadeia1:
+        def completar_json(self, *a, **k):
+            return Resp()
+
+    def sem_teto(*a, **k):
+        raise SemProvedorDisponivel("teto diário da campanha (60 chamadas)")
+
+    monkeypatch.setattr(campanha, "buscar", lambda c, q, p: [doc("Lula promete fim da 6x1", "G1", "u1")])
+    monkeypatch.setattr(campanha.apuracao, "apurar", sem_teto)
+    estado = {}
+    assert campanha.atualizar_referencias(Cadeia1(), CFG, PRESIDENTE, PLANO, estado, 5) == 0
+    assert "fim-escala-6x1" not in estado["referencias_verificadas"]  # volta no próximo sync

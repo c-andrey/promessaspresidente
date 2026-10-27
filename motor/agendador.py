@@ -102,9 +102,13 @@ def sincronizar() -> None:
             stats = pipeline.executar(argparse.Namespace(desde=None, ate=None, sem_ia=False, dry_run=False))
             log.info("Sync concluído: %s", stats)
             etapas["coleta"] = "ok"
+            ultimas = armazem.ler_json(armazem.EXECUCAO, {}).get("coletores", {})
             for nome, r in stats["coleta"].items():
                 if not isinstance(r, int):
-                    saude.registrar("coletor", f"{nome} ({str(r)[:120]})")
+                    # um dia fora (504 da Câmara etc.) é só aviso: o coletor recupera o período depois
+                    dias = (date.today() - date.fromisoformat(ultimas[nome])).days if nome in ultimas else 99
+                    saude.registrar("coletor" if dias > saude.DIAS_COLETOR_FORA else "coletor_instavel",
+                                    f"{nome}, sem coletar há {dias} dia(s) ({str(r).splitlines()[0][:100]})")
         except Exception:  # noqa: BLE001 — o serviço não pode morrer por um dia ruim
             log.exception("Sync falhou; tenta de novo no próximo horário")
             etapas["coleta"] = "falhou"
