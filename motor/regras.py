@@ -108,14 +108,19 @@ def sem_repetir(lista: list[dict], excluir: set[str] = frozenset()) -> list[dict
     return saida
 
 
+def mais_recentes(lista: list[dict]) -> list[dict]:
+    """Da matéria mais nova para a mais antiga (sem data vai para o fim)."""
+    return sorted(lista, key=lambda n: n.get("data") or "", reverse=True)
+
+
 def limpar_noticias(promessa: dict) -> None:
     """Sem matéria repetida dentro de cada seção, nem em "Na imprensa" o que já está nas referências."""
     fonte = promessa.get("fonte") or {}
     principal = chaves(fonte) if fonte.get("titulo") else set()  # declaração: a matéria em que foi dita
-    promessa["referencias"] = sem_repetir(promessa.get("referencias") or [], principal)
+    promessa["referencias"] = mais_recentes(sem_repetir(promessa.get("referencias") or [], principal))
     if promessa.get("imprensa"):
         ja = principal.union(*map(chaves, promessa["referencias"]))
-        promessa["imprensa"] = sem_repetir(promessa["imprensa"], ja)
+        promessa["imprensa"] = mais_recentes(sem_repetir(promessa["imprensa"], ja))
 
 
 def registrar_imprensa(promessa: dict, doc: dict, av: dict) -> None:
@@ -126,7 +131,7 @@ def registrar_imprensa(promessa: dict, doc: dict, av: dict) -> None:
     if chaves(nova) & ja:
         return
     lista.append(nova)
-    lista.sort(key=lambda n: n["data"] or "", reverse=True)
+    lista[:] = mais_recentes(lista)
     del lista[MAX_IMPRENSA:]
 
 

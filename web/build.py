@@ -14,7 +14,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ))
-from motor import armazem  # noqa: E402
+from motor import armazem, regras  # noqa: E402
 from motor.campanha import partidaria  # noqa: E402
 
 SITE = RAIZ / "web"
@@ -125,6 +125,7 @@ def main():
     gravar("mudancas.html", "mudancas.html", semanas=semanas(todos), raiz="")
     gravar("feed.xml", "feed.xml", eventos=todos[:50], raiz="")
     for p in promessas:
+        regras.limpar_noticias(p)  # ordem por data e sem repetição também no que acabou de entrar
         gravar(f"promessa/{p['id']}.html", "promessa.html", p=p, raiz="../")
     print(f"Site gerado em {DIST}/ ({len(promessas)} promessas)")
 

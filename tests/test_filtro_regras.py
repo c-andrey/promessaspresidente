@@ -89,3 +89,15 @@ def test_declaracao_nao_copia_o_mesmo_resumo_nas_outras_fontes():
                     {"veiculo": "G1", "titulo": "A", "url": "https://g1.globo.com/a/", "data": "2026-10-01"}]}
     refs = campanha.promessa_de_declaracao(d)["referencias"]
     assert [r["titulo"] for r in refs] == ["B"] and "o_que_disse" not in refs[0]
+
+
+def test_noticias_da_mais_nova_para_a_mais_antiga():
+    from motor import regras
+    p = {"fonte": {}, "referencias": [{"titulo": "a", "url": "https://x/a", "data": "2026-10-15"},
+                                      {"titulo": "b", "url": "https://x/b", "data": "2026-10-21"},
+                                      {"titulo": "c", "url": "https://x/c", "data": None}],
+         "imprensa": [{"titulo": "d", "url": "https://x/d", "data": "2026-10-26"},
+                      {"titulo": "e", "url": "https://x/e", "data": "2026-10-28"}]}
+    regras.limpar_noticias(p)
+    assert [r["titulo"] for r in p["referencias"]] == ["b", "a", "c"]
+    assert [n["titulo"] for n in p["imprensa"]] == ["e", "d"]
