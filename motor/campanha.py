@@ -30,7 +30,7 @@ import unicodedata
 from datetime import date, timedelta
 from urllib.parse import quote_plus, urlsplit
 
-from . import apuracao, armazem
+from . import apuracao, armazem, regras
 from .coletores.http import cliente
 from .coletores.noticias import _itens
 from .llm import Cadeia, SemProvedorDisponivel
@@ -167,28 +167,14 @@ SCHEMA_REF = {
 }
 
 
-def _chave_titulo(r: dict) -> str:
-    return " ".join(r.get("titulo", "").lower().split())
-
-
 def juntar_referencias(lista: list[dict], novas: list[dict], maximo: int) -> int:
-    """Acrescenta sem repetir matéria (mesma URL ou mesmo título: o link do Google Notícias e a
-    URL real são a mesma reportagem); mantém as mais recentes. Devolve quantas entraram."""
-    vistas = {r["url"] for r in lista} | {_chave_titulo(r) for r in lista if r.get("titulo")}
-    entrou = []
-    for r in novas:
-        if r["url"] in vistas or (r.get("titulo") and _chave_titulo(r) in vistas):
-            # mesma matéria: se a nova traz a URL real, ela substitui o link do Google Notícias
-            antiga = next((x for x in lista if x.get("titulo") and _chave_titulo(x) == _chave_titulo(r)), None)
-            if antiga and "news.google.com" in antiga["url"] and "news.google.com" not in r["url"]:
-                antiga.update(r)
-            continue
-        vistas |= {r["url"], _chave_titulo(r)}
-        entrou.append(r)
-    lista.extend(entrou)
-    lista.sort(key=lambda r: r["data"] or "", reverse=True)
-    del lista[maximo:]
-    return len(entrou)
+    """Acrescenta sem repetir matéria (mesma URL normalizada ou mesmo título: o link do Google
+    Notícias e a URL real são a mesma reportagem); mantém as mais recentes. Devolve quantas entraram."""
+    antes = {id(r) for r in lista}
+    juntas = regras.sem_repetir(lista + novas)
+    entrou = [r for r in juntas if id(r) not in antes]
+    lista[:] = sorted(juntas, key=lambda r: r["data"] or "", reverse=True)[:maximo]
+    return len([r for r in entrou if any(r is x for x in lista)])
 
 
 def atualizar_referencias(cadeia, cfg, presidente, promessas, estado, quantas: int | None,
@@ -517,7 +503,7 @@ def promessa_de_declaracao(d: dict) -> dict:
         "palavras_chave": d["palavras_chave"],
         "status": "nao_iniciada",
         "atualizado_em": None,
-        "referencias": [f | {"o_que_disse": d["o_que_disse"]} for f in outras],
+        "referencias": regras.sem_repetir([dict(f) for f in outras], regras.chaves(principal)),
         "historico": [],
     }
 
@@ -530,6 +516,7 @@ def aplicar_no_volume() -> None:
     por_id = {p["id"]: p for p in promessas}
     refs = armazem.ler_json(REFERENCIAS, {})
     for pid, lista in refs.items():
+        lista[:] = regras.sem_repetir(lista)
         if pid in por_id and por_id[pid].get("origem", "plano_tse") == "plano_tse":
             por_id[pid]["referencias"] = lista
     for d in armazem.ler_json(APROVADAS, []):
@@ -538,6 +525,9 @@ def aplicar_no_volume() -> None:
             por_id[d["id"]].update({k: nova[k] for k in ("titulo", "categoria", "fonte", "palavras_chave", "referencias")})
         else:
             promessas.append(nova)
+    for p in promessas:
+        regras.limpar_noticias(p)
+    armazem.gravar_json(REFERENCIAS, refs)
     armazem.gravar_json(armazem.PROMESSAS, promessas)
 
 

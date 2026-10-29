@@ -5,6 +5,9 @@ Princípio: a IA sugere, as regras decidem. Só o passo mais seguro
 sozinho. Cumprida, parcial e abandonada sempre passam por revisão humana.
 """
 import hashlib
+import re
+import unicodedata
+from urllib.parse import parse_qsl, urlencode, urlsplit
 
 from . import armazem
 
@@ -58,12 +61,71 @@ def aplicar_status(promessa: dict, novo: str, doc: dict, av: dict, provedor: str
 MAX_IMPRENSA = 15
 
 
+def chave_url(url: str | None) -> str:
+    """Mesma matéria com URL diferente: www., versão AMP, parâmetros de rastreio, barra no fim."""
+    u = urlsplit(url or "")
+    host = (u.hostname or "").removeprefix("www.").removeprefix("amp.")
+    caminho = re.sub(r"(/amp|\.amp|/amp\.html)$", "", u.path.rstrip("/")).rstrip("/")
+    # ?id=123 identifica matéria em muitos sites; só os parâmetros de rastreio saem
+    query = urlencode(sorted((k, v) for k, v in parse_qsl(u.query)
+                             if not re.match(r"utm_|fbclid|gclid|amp$|outputType|ref$", k)))
+    return f"{host}{caminho}".lower() + (f"?{query}" if query else "")
+
+
+def chave_titulo(titulo: str | None) -> str:
+    """Título sem acento, pontuação, caixa e o " - Veículo" que alguns agregadores põem no fim."""
+    t = unicodedata.normalize("NFKD", (titulo or "").lower())
+    t = "".join(ch for ch in t if not unicodedata.combining(ch))
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", t).split())
+
+
+def chaves(n: dict) -> set[str]:
+    return {k for k in ("u:" + chave_url(n.get("url")), "t:" + chave_titulo(n.get("titulo"))) if len(k) > 2}
+
+
+def _google(n: dict) -> bool:
+    return "news.google.com" in (n.get("url") or "")
+
+
+def sem_repetir(lista: list[dict], excluir: set[str] = frozenset()) -> list[dict]:
+    """Uma entrada por matéria (mesma URL normalizada ou mesmo título), na ordem original.
+    Se a repetida tem a URL real e a guardada só o link do Google Notícias, fica a real.
+    `excluir`: chaves de matérias que já aparecem em outra seção da promessa."""
+    saida, dono = [], {}
+    for n in lista:
+        ks = chaves(n)
+        if ks & excluir:
+            continue
+        anterior = next((dono[k] for k in ks if k in dono), None)
+        if anterior is None:
+            saida.append(n)
+            for k in ks:
+                dono[k] = n
+        elif _google(anterior) and not _google(n):
+            anterior.update({k: v for k, v in n.items() if v})
+            for k in chaves(anterior):
+                dono[k] = anterior
+    return saida
+
+
+def limpar_noticias(promessa: dict) -> None:
+    """Sem matéria repetida dentro de cada seção, nem em "Na imprensa" o que já está nas referências."""
+    fonte = promessa.get("fonte") or {}
+    principal = chaves(fonte) if fonte.get("titulo") else set()  # declaração: a matéria em que foi dita
+    promessa["referencias"] = sem_repetir(promessa.get("referencias") or [], principal)
+    if promessa.get("imprensa"):
+        ja = principal.union(*map(chaves, promessa["referencias"]))
+        promessa["imprensa"] = sem_repetir(promessa["imprensa"], ja)
+
+
 def registrar_imprensa(promessa: dict, doc: dict, av: dict) -> None:
     """Notícia relacionada vira referência "Na imprensa" (mais recentes primeiro, sem repetir)."""
     lista = promessa.setdefault("imprensa", [])
-    if any(n["url"] == doc["url"] for n in lista):
+    nova = {k: doc.get(k) for k in ("fonte", "titulo", "url", "data")} | {"resumo": av["justificativa"]}
+    ja = set().union(*map(chaves, lista + (promessa.get("referencias") or []))) if lista or promessa.get("referencias") else set()
+    if chaves(nova) & ja:
         return
-    lista.append({k: doc.get(k) for k in ("fonte", "titulo", "url", "data")} | {"resumo": av["justificativa"]})
+    lista.append(nova)
     lista.sort(key=lambda n: n["data"] or "", reverse=True)
     del lista[MAX_IMPRENSA:]
 

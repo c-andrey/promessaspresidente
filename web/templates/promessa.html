@@ -35,8 +35,9 @@
     <ul class="referencias">
       {% for r in p.referencias %}
       <li>
-        <p>{{ r.o_que_disse }}</p>
-        <p class="fonte">{{ r.veiculo }}{% if r.url is partidaria %} <span class="tag-partido" title="Site de partido: não é veículo de imprensa">site do partido</span>{% endif %} · <a href="{{ r.url }}" rel="noopener">{{ r.titulo }}</a> · {{ r.data|data_br }}</p>
+        <p><a href="{{ r.url }}" rel="noopener">{{ r.titulo }}</a></p>
+        {% if r.o_que_disse and r.o_que_disse != p.fonte.trecho %}<p class="resumo">{{ r.o_que_disse }}</p>{% endif %}
+        <p class="fonte">{{ r.veiculo }}{% if r.url is partidaria %} <span class="tag-partido" title="Site de partido: não é veículo de imprensa">site do partido</span>{% endif %} · {{ r.data|data_br }}</p>
       </li>
       {% endfor %}
     </ul>
