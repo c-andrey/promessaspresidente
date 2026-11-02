@@ -77,6 +77,15 @@ def ambiente(presidente: dict | None = None) -> Environment:
     return env
 
 
+def ultima_atualizacao(p: dict) -> str | None:
+    """Data da novidade mais recente da promessa: mudança de status, fonte ou notícia (nunca no futuro)."""
+    hoje = date.today().isoformat()
+    datas = [h.get("data") for h in p.get("historico") or []] + [p.get("atualizado_em")]
+    datas += [n.get("data") for n in (p.get("referencias") or []) + (p.get("imprensa") or [])]
+    datas = [str(d)[:10] for d in datas if d and str(d)[:10] <= hoje]
+    return max(datas, default=None)
+
+
 def eventos(promessas: list[dict]) -> list[dict]:
     """Todas as mudanças de status, mais recentes primeiro."""
     return sorted(({"promessa": p, "evento": h} for p in promessas for h in p["historico"]),
@@ -106,6 +115,8 @@ def main():
     categorias = sorted({p["categoria"] for p in promessas})
     n_plano = sum(1 for p in promessas if p.get("origem", "plano_tse") == "plano_tse")
     todos = eventos(promessas)
+    for p in promessas:
+        p["ultima"] = ultima_atualizacao(p)
     env = ambiente(presidente)
 
     # Esvazia em vez de apagar a pasta: em produção ela é um volume montado.

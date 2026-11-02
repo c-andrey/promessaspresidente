@@ -51,16 +51,21 @@
       <option value="">Todas as origens</option>
       {% for k, v in origens.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}
     </select>
+    <select id="visto" aria-label="Filtrar por visualização">
+      <option value="">Vistas e não vistas</option>
+      <option value="novas">Não visualizadas</option>
+    </select>
   </div>
-  <p id="contador" class="contador"></p>
+  <p class="contador"><span id="contador"></span> <button type="button" id="marcar-vistas" class="link-botao" hidden>Marcar todas como vistas</button></p>
   <ul class="cartoes">
     {% for p in promessas %}
-    <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-origem="{{ p.origem or 'plano_tse' }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}">
+    <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-origem="{{ p.origem or 'plano_tse' }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}" data-id="{{ p.id }}" data-ultima="{{ p.ultima or '' }}">
       <a href="promessa/{{ p.id }}.html">
-        <span class="selo st-{{ p.status }}">{{ rotulos[p.status] }}</span>
+        <span class="selo st-{{ p.status }}">{{ rotulos[p.status] }}</span><span class="tag-novo" hidden>novo</span>
         <h3>{{ p.titulo }}</h3>
         <p class="meta">{{ p.categoria }}{% if p.prazo %} · prazo {{ p.prazo|data_br }}{% endif %}</p>
         <p class="origem origem-{{ p.origem or 'plano_tse' }}">{{ origens[p.origem or 'plano_tse'] }}</p>
+        {% if p.ultima %}<p class="atualizacao">Última atualização: <time datetime="{{ p.ultima }}">{{ p.ultima|data_br }}</time></p>{% endif %}
       </a>
     </li>
     {% endfor %}
@@ -75,7 +80,19 @@
   const origem = document.getElementById('origem');
   const botoes = [...document.querySelectorAll('.filtro-status')];
   const contador = document.getElementById('contador');
+  const visto = document.getElementById('visto');
+  const marcar = document.getElementById('marcar-vistas');
   let status = '';
+  // Visualizadas ficam só neste navegador: {id da promessa: data da atualização que a pessoa viu}.
+  const lerVistos = () => { try { return JSON.parse(localStorage.getItem('cumpriu:vistos')) || {}; } catch { return {}; } };
+  let vistos = lerVistos();
+  const nova = c => c.dataset.ultima ? (vistos[c.dataset.id] || '') < c.dataset.ultima : !(c.dataset.id in vistos);
+  function marcarNovas() {
+    let n = 0;
+    for (const c of cartoes) { const e = nova(c); c.querySelector('.tag-novo').hidden = !e; c.classList.toggle('nova', e); if (e) n++; }
+    visto.options[1].textContent = `Não visualizadas (${n})`;
+    marcar.hidden = n === 0;
+  }
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   function filtrar() {
     const q = norm(busca.value.trim());
@@ -84,6 +101,7 @@
       const ok = (!status || c.dataset.status === status)
         && (!categoria.value || c.dataset.categoria === categoria.value)
         && (!origem.value || c.dataset.origem === origem.value)
+        && (!visto.value || nova(c))
         && (!q || norm(c.dataset.texto).includes(q));
       c.hidden = !ok;
       if (ok) n++;
@@ -98,6 +116,15 @@
   busca.addEventListener('input', filtrar);
   categoria.addEventListener('change', filtrar);
   origem.addEventListener('change', filtrar);
+  visto.addEventListener('change', filtrar);
+  marcar.addEventListener('click', () => {
+    for (const c of cartoes) vistos[c.dataset.id] = c.dataset.ultima;
+    try { localStorage.setItem('cumpriu:vistos', JSON.stringify(vistos)); } catch {}
+    marcarNovas(); filtrar();
+  });
+  // Ao voltar de uma promessa pelo botão "voltar", a página vem do cache: relê o que foi visto.
+  addEventListener('pageshow', () => { vistos = lerVistos(); marcarNovas(); filtrar(); });
+  marcarNovas();
   filtrar();
 })();
 </script>

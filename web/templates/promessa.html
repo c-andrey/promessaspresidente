@@ -80,4 +80,11 @@
   </section>
   {% endif %}
 </article>
+<script>
+try {
+  const v = JSON.parse(localStorage.getItem('cumpriu:vistos')) || {};
+  v[{{ p.id|tojson }}] = {{ (p.ultima or '')|tojson }};
+  localStorage.setItem('cumpriu:vistos', JSON.stringify(v));
+} catch {}
+</script>
 {% endblock %}

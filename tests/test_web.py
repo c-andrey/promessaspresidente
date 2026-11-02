@@ -54,3 +54,22 @@ def test_feed_mudancas_selos_e_compartilhamento(tmp_path, monkeypatch):
     assert 'og:image" content="https://cumpriu.exemplo/static/og.png"' in pagina
     assert "site do partido" in pagina and "antes da posse" in pagina
     assert (site / "static" / "og.png").exists()
+
+
+def test_cartao_mostra_ultima_atualizacao_e_marca_vista(tmp_path, monkeypatch):
+    com_noticia = PLANO | {"imprensa": [{"fonte": "G1", "titulo": "a", "url": "https://g/1", "data": "2026-11-01", "resumo": ""},
+                                        {"fonte": "G1", "titulo": "futuro", "url": "https://g/2", "data": "2099-01-01", "resumo": ""}],
+                           "referencias": [{"veiculo": "UOL", "titulo": "b", "url": "https://u/1", "data": "2026-10-05"}]}
+    armazem.gravar_json(tmp_path / "promessas.json", [com_noticia, DECLARACAO | {"historico": [], "referencias": []}])
+    monkeypatch.setattr(armazem, "PROMESSAS", tmp_path / "promessas.json")
+    monkeypatch.setattr(armazem, "EXECUCAO", tmp_path / "exec.json")
+    monkeypatch.setattr(build, "DIST", tmp_path / "site")
+    monkeypatch.setattr(build, "date", type("D", (build.date,), {"today": staticmethod(lambda: build.date(2026, 11, 2))}))
+    build.main()
+
+    index = (tmp_path / "site" / "index.html").read_text()
+    assert 'data-id="p1" data-ultima="2026-11-01"' in index
+    assert "Última atualização: <time datetime=\"2026-11-01\">01/11/2026</time>" in index
+    assert 'data-id="d1" data-ultima=""' in index and 'value="novas">Não visualizadas' in index
+    pagina = (tmp_path / "site" / "promessa" / "p1.html").read_text()
+    assert 'v["p1"] = "2026-11-01"' in pagina
