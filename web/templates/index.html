@@ -55,8 +55,18 @@
       <option value="">Vistas e não vistas</option>
       <option value="novas">Não visualizadas</option>
     </select>
+    <select id="ordem" aria-label="Ordenar">
+      <option value="">Ordem padrão</option>
+      <option value="recentes">Atualizadas recentemente</option>
+    </select>
   </div>
-  <p class="contador"><span id="contador"></span> <button type="button" id="marcar-vistas" class="link-botao" hidden>Marcar todas como vistas</button></p>
+  <div class="barra-lista">
+    <p id="contador" class="contador"></p>
+    <button type="button" id="marcar-vistas" class="botao-vistas" hidden>
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span></span>
+    </button>
+  </div>
   <ul class="cartoes">
     {% for p in promessas %}
     <li class="cartao" data-status="{{ p.status }}" data-categoria="{{ p.categoria }}" data-origem="{{ p.origem or 'plano_tse' }}" data-texto="{{ (p.titulo ~ ' ' ~ p.categoria)|lower }}" data-id="{{ p.id }}" data-ultima="{{ p.ultima or '' }}">
@@ -82,6 +92,8 @@
   const contador = document.getElementById('contador');
   const visto = document.getElementById('visto');
   const marcar = document.getElementById('marcar-vistas');
+  const ordem = document.getElementById('ordem');
+  const lista = document.querySelector('.cartoes');
   let status = '';
   // Visualizadas ficam só neste navegador: {id da promessa: data da atualização que a pessoa viu}.
   const lerVistos = () => { try { return JSON.parse(localStorage.getItem('cumpriu:vistos')) || {}; } catch { return {}; } };
@@ -91,7 +103,22 @@
     let n = 0;
     for (const c of cartoes) { const e = nova(c); c.querySelector('.tag-novo').hidden = !e; c.classList.toggle('nova', e); if (e) n++; }
     visto.options[1].textContent = `Não visualizadas (${n})`;
-    marcar.hidden = n === 0;
+  }
+  // O botão age sobre o que está na tela: com filtro, marca só as promessas filtradas.
+  function atualizarBotao() {
+    const novas = cartoes.filter(c => !c.hidden && nova(c)).length;
+    const filtrado = cartoes.some(c => c.hidden);
+    marcar.hidden = novas === 0;
+    marcar.querySelector('span').textContent = filtrado
+      ? `Marcar ${novas === 1 ? 'esta 1' : `estas ${novas}`} como vista${novas === 1 ? '' : 's'}`
+      : `Marcar todas como vistas (${novas})`;
+  }
+  function ordenar() {
+    const ordenados = ordem.value === 'recentes'
+      ? [...cartoes].sort((a, b) => (b.dataset.ultima || '').localeCompare(a.dataset.ultima || ''))
+      : cartoes;
+    lista.append(...ordenados);
+    try { localStorage.setItem('cumpriu:ordem', ordem.value); } catch {}
   }
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   function filtrar() {
@@ -107,6 +134,7 @@
       if (ok) n++;
     }
     contador.textContent = n === cartoes.length ? `${n} promessas` : `${n} de ${cartoes.length} promessas`;
+    atualizarBotao();
   }
   botoes.forEach(b => b.addEventListener('click', () => {
     status = status === b.dataset.status ? '' : b.dataset.status;
@@ -117,8 +145,11 @@
   categoria.addEventListener('change', filtrar);
   origem.addEventListener('change', filtrar);
   visto.addEventListener('change', filtrar);
+  ordem.addEventListener('change', ordenar);
+  try { if (localStorage.getItem('cumpriu:ordem') === 'recentes') ordem.value = 'recentes'; } catch {}
+  ordenar();
   marcar.addEventListener('click', () => {
-    for (const c of cartoes) vistos[c.dataset.id] = c.dataset.ultima;
+    for (const c of cartoes) if (!c.hidden) vistos[c.dataset.id] = c.dataset.ultima;
     try { localStorage.setItem('cumpriu:vistos', JSON.stringify(vistos)); } catch {}
     marcarNovas(); filtrar();
   });

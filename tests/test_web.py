@@ -71,5 +71,6 @@ def test_cartao_mostra_ultima_atualizacao_e_marca_vista(tmp_path, monkeypatch):
     assert 'data-id="p1" data-ultima="2026-11-01"' in index
     assert "Última atualização: <time datetime=\"2026-11-01\">01/11/2026</time>" in index
     assert 'data-id="d1" data-ultima=""' in index and 'value="novas">Não visualizadas' in index
+    assert 'value="recentes">Atualizadas recentemente' in index and 'id="marcar-vistas" class="botao-vistas"' in index
     pagina = (tmp_path / "site" / "promessa" / "p1.html").read_text()
     assert 'v["p1"] = "2026-11-01"' in pagina

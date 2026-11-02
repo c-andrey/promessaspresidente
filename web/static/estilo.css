@@ -96,7 +96,16 @@ h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin: 8px 0 12px; l
 .cartao.nova a { border-color: var(--destaque); }
 .tag-novo { margin-left: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px;
   color: var(--destaque); border: 1px solid var(--destaque); padding: 1px 7px; border-radius: 999px; vertical-align: 1px; }
-.link-botao { font: inherit; font-size: 14px; background: none; border: 0; padding: 0; color: var(--destaque); text-decoration: underline; cursor: pointer; }
+.barra-lista { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+.barra-lista .contador { margin: 0; }
+.botao-vistas {
+  display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 14px; font-weight: 600;
+  padding: 7px 14px; border-radius: 999px; border: 1px solid var(--destaque); background: transparent;
+  color: var(--destaque); cursor: pointer; transition: background .15s, color .15s;
+}
+.botao-vistas:hover { background: var(--destaque); color: var(--superficie); }
+.botao-vistas:focus-visible { outline: 2px solid var(--destaque); outline-offset: 2px; }
+.botao-vistas[hidden] { display: none; }
 
 .voltar { margin: 24px 0 0; }
 .promessa { max-width: 760px; padding-bottom: 40px; }
