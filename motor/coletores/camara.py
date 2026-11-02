@@ -5,10 +5,13 @@ das mensagens (MSC), que incluem comunicações de sanção e de veto.
 
 O filtro por autor deixa a API lenta de vez em quando (a mesma consulta leva
 0,1 s ou estoura em 504 no gateway). Cada página tem algumas tentativas com
-espera crescente antes de o coletor falhar.
+espera crescente antes de o coletor falhar, e o período é consultado um dia por
+vez: janelas de vários dias davam 504 em todas as tentativas, um dia só responde
+em fração de segundo.
 """
 import logging
 import time
+from datetime import date, timedelta
 
 import httpx
 
@@ -37,28 +40,37 @@ def _pagina(c: httpx.Client, url: str, params: dict | None, dormir=time.sleep) -
         dormir(15 * (tentativa + 1))
 
 
+def _dias(desde: str, ate: str):
+    d, fim = date.fromisoformat(desde), date.fromisoformat(ate)
+    while d <= fim:
+        yield d.isoformat()
+        d += timedelta(days=1)
+
+
 def coletar(desde: str, ate: str, cfg: dict) -> list[dict]:
-    params = {
-        "autor": cfg.get("autor", "Poder Executivo"),
-        "dataApresentacaoInicio": desde,
-        "dataApresentacaoFim": ate,
-        "itens": 100,
-        "ordem": "ASC",
-        "ordenarPor": "id",
-    }
-    docs, url = [], API
+    docs = []
     with cliente(timeout=90) as c:
-        while url:
-            corpo = _pagina(c, url, params if url == API else None)
-            for p in corpo.get("dados", []):
-                docs.append({
-                    "id": f"camara:{p['id']}",
-                    "fonte": "Câmara dos Deputados",
-                    "tipo": p["siglaTipo"],
-                    "titulo": f"{p['siglaTipo']} {p['numero']}/{p['ano']}",
-                    "resumo": p.get("ementa") or "",
-                    "url": FICHA.format(id=p["id"]),
-                    "data": (p.get("dataApresentacao") or desde)[:10],
-                })
-            url = next((l["href"] for l in corpo.get("links", []) if l["rel"] == "next"), None)
+        for dia in _dias(desde, ate):
+            params = {
+                "autor": cfg.get("autor", "Poder Executivo"),
+                "dataApresentacaoInicio": dia,
+                "dataApresentacaoFim": dia,
+                "itens": 100,
+                "ordem": "ASC",
+                "ordenarPor": "id",
+            }
+            url = API
+            while url:
+                corpo = _pagina(c, url, params if url == API else None)
+                for p in corpo.get("dados", []):
+                    docs.append({
+                        "id": f"camara:{p['id']}",
+                        "fonte": "Câmara dos Deputados",
+                        "tipo": p["siglaTipo"],
+                        "titulo": f"{p['siglaTipo']} {p['numero']}/{p['ano']}",
+                        "resumo": p.get("ementa") or "",
+                        "url": FICHA.format(id=p["id"]),
+                        "data": (p.get("dataApresentacao") or dia)[:10],
+                    })
+                url = next((l["href"] for l in corpo.get("links", []) if l["rel"] == "next"), None)
     return docs

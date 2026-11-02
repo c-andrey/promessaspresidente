@@ -35,3 +35,16 @@ def test_erro_do_pedido_nao_repete():
     c = _cliente([httpx.Response(400)])
     with pytest.raises(httpx.HTTPStatusError):
         camara._pagina(c, camara.API, {}, dormir=lambda s: None)
+
+
+def test_consulta_um_dia_por_vez(monkeypatch):
+    pedidos = []
+
+    def responder(req):
+        pedidos.append((req.url.params["dataApresentacaoInicio"], req.url.params["dataApresentacaoFim"]))
+        dados = [PROPOSICAO] if req.url.params["dataApresentacaoInicio"] == "2026-10-28" else []
+        return httpx.Response(200, json={"dados": dados, "links": []})
+    monkeypatch.setattr(camara, "cliente", lambda **kw: httpx.Client(transport=httpx.MockTransport(responder)))
+    docs = camara.coletar("2026-10-27", "2026-10-29", {})
+    assert pedidos == [("2026-10-27",) * 2, ("2026-10-28",) * 2, ("2026-10-29",) * 2]
+    assert [d["titulo"] for d in docs] == ["MSC 817/2026"]
