@@ -2,7 +2,7 @@
 {% block titulo %}Cumpriu? · Promessas de {{ presidente.nome }}{% endblock %}
 {% block conteudo %}
 <section class="capa">
-  <p class="sobretitulo">Mandato {{ presidente.mandato_inicio.year }}–{{ presidente.mandato_fim.year }}</p>
+  <p class="sobretitulo">Mandato {{ presidente.mandato_inicio.year }}–{{ presidente.mandato_fim.year - 1 if presidente.mandato_fim.month == 1 else presidente.mandato_fim.year }}</p>
   <h1>O que {{ presidente.nome }} prometeu, e o que já fez</h1>
   <p class="lead">{{ total }} compromissos: {{ n_plano }} do plano de governo registrado no TSE{% if n_declaracoes %} e {{ n_declaracoes }} feitos em entrevistas, debates e discursos{% endif %}. Cada mudança de status tem um documento oficial como prova.</p>
 </section>
