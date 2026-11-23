@@ -22,14 +22,18 @@
   <ul>
     <li>proposições enviadas pelo Poder Executivo à Câmara dos Deputados (projetos, PECs, medidas provisórias, sanções e vetos);</li>
     <li>leis, decretos, medidas provisórias e emendas constitucionais já publicados (base de legislação federal do Senado);</li>
-    <li>notícias oficiais do Palácio do Planalto e reportagens de jornais (Google Notícias, G1, Agência Brasil, Poder360). Elas servem só como pista e contexto, aparecem em "Na imprensa" e nunca mudam um status sozinhas.</li>
+    <li>reportagens de jornais (Google Notícias, com o Bing Notícias de reserva, e os feeds de G1, Agência Brasil, Poder360, Folha e Estadão). Elas aparecem em "Na imprensa" e servem de pista; para valer como evidência, o texto inteiro da matéria precisa ser lido e conferido (veja abaixo).</li>
   </ul>
   <p>Um filtro por palavras-chave cruza cada documento com as promessas. Os possíveis casos vão para modelos de inteligência artificial,
     que sugerem se o documento muda o andamento de alguma promessa e apontam o trecho que justifica isso.</p>
 
   <h2>Quem decide o status</h2>
   <ul>
-    <li><strong>Em andamento</strong> pode ser aplicado automaticamente, mas só com documento oficial datado a partir de {{ (presidente.acompanhar_desde or presidente.mandato_inicio)|data_br }}, quando a IA tem alta confiança e um segundo modelo, de outra empresa, concorda.</li>
+    <li><strong>Em andamento</strong> pode ser aplicado automaticamente em dois casos, sempre com fato datado a partir de {{ (presidente.acompanhar_desde or presidente.mandato_inicio)|data_br }}:
+      <ul>
+        <li>documento oficial, quando a IA tem alta confiança e um segundo modelo, de outra empresa, concorda;</li>
+        <li>reportagens de pelo menos dois veículos diferentes (sites de partido não contam) cujo texto foi lido por uma IA verificadora, com o trecho que prova o passo conferido palavra por palavra no texto. Se uma agência de checagem de fatos tiver classificado a notícia como falsa ou enganosa, não há mudança automática.</li>
+      </ul></li>
     <li><strong>Parcialmente cumprida</strong>, <strong>Cumprida</strong> e <strong>Abandonada</strong> sempre passam por revisão humana antes de aparecer aqui.</li>
   </ul>
   <p>Cada mudança fica registrada com a data, o documento oficial, o trecho usado como evidência e a informação sobre quem decidiu (automático ou revisão humana).

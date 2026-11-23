@@ -55,7 +55,7 @@
         <p>{{ h.justificativa }}</p>
         {% if h.evidencia %}<blockquote class="pequeno">“{{ h.evidencia }}”</blockquote>{% endif %}
         <p class="fonte">{{ h.documento.fonte }} · <a href="{{ h.documento.url }}" rel="noopener">{{ h.documento.titulo }}</a> ({{ h.documento.data|data_br }})
-          · {{ "revisado por pessoa" if h.origem == "revisao" else "classificação automática" }}</p>
+          · {{ h|quem_decidiu }}</p>
         {% if h.nota %}<p class="nota">Nota da revisão: {{ h.nota }}</p>{% endif %}
       </li>
       {% endfor %}

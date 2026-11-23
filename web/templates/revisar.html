@@ -29,15 +29,21 @@
     <p><span class="selo st-{{ i.status_atual }}">{{ rotulos[i.status_atual] }}</span> →
        <span class="selo st-{{ i.status_sugerido }}">{{ rotulos[i.status_sugerido] }}</span>
        <span class="fonte">· confiança {{ "%.0f"|format(i.confianca * 100) }}% · {{ i.provedor }} · {{ i.criado_em|data_br }}</span></p>
-    <p class="fonte">{{ i.documento.fonte }}{% if i.documento.oficial %} (oficial){% endif %} ·
-      <a href="{{ i.documento.url }}" rel="noopener" target="_blank">{{ i.documento.titulo }}</a> ({{ i.documento.data|data_br }})</p>
-    {% if i.evidencia %}<blockquote class="pequeno">“{{ i.evidencia }}”</blockquote>{% endif %}
     <p>{{ i.justificativa }}</p>
-    {% if i.apuracao %}
-    <p class="fonte">Apuração: <strong>{{ i.apuracao.status|replace("_", " ") }}</strong>
-      {% if i.apuracao.lidas is defined %}· {{ i.apuracao.lidas }} matéria(s) lida(s){% endif %}</p>
-    {% for t in i.apuracao.trechos or [] %}<blockquote class="pequeno">{{ t.veiculo }}: “{{ t.trecho }}”</blockquote>{% endfor %}
-    {% endif %}
+    {% set evs = i.evidencias or [i] %}
+    <p class="fonte">{{ evs|length }} evidência{{ "s" if evs|length != 1 }}{% if i.atualizado_em %} · última em {{ i.atualizado_em|data_br }}{% endif %}</p>
+    <ul class="referencias">
+      {% for e in evs %}
+      <li>
+        <p class="fonte">{{ e.documento.fonte }}{% if e.documento.oficial %} (oficial){% endif %}{% if e.documento.url is partidaria %} <span class="tag-partido">site do partido</span>{% endif %} ·
+          <a href="{{ e.documento.url }}" rel="noopener" target="_blank">{{ e.documento.titulo }}</a> ({{ e.documento.data|data_br }})
+          {% if e.apuracao %}· apuração: <strong>{{ e.apuracao.status|replace("_", " ") }}</strong>{% endif %}</p>
+        {% for t in (e.apuracao or {}).trechos or [] %}<blockquote class="pequeno">{{ t.veiculo }}: “{{ t.trecho }}”</blockquote>
+        {% else %}{% if e.evidencia %}<blockquote class="pequeno">“{{ e.evidencia }}”</blockquote>{% endif %}{% endfor %}
+        {% for ch in e.checagem or [] %}<p class="problema">⚠ Checagem ({{ ch.agencia }}): <a href="{{ ch.url }}" rel="noopener" target="_blank">{{ ch.avaliacao }}</a> · “{{ ch.afirmacao }}”</p>{% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
     {% if i.segunda_opiniao %}
     <p class="fonte">Segunda opinião ({{ i.segunda_opiniao.provedor or "nenhum provedor" }}):
       {{ "concorda" if i.segunda_opiniao.concorda else "não concorda" }}{% if i.segunda_opiniao.status %}, diz {{ i.segunda_opiniao.status }}{% endif %}</p>

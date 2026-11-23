@@ -15,7 +15,7 @@ from datetime import date, datetime, timedelta
 
 from web import build
 
-from . import armazem, aviso, campanha, execucao, saude
+from . import armazem, aviso, campanha, execucao, fila, saude
 from . import main as pipeline
 from .trava import trava
 
@@ -113,7 +113,8 @@ def sincronizar() -> None:
             log.exception("Sync falhou; tenta de novo no próximo horário")
             etapas["coleta"] = "falhou"
         for nome, funcao in (("notícias", execucao.sincronizar),   # cumprimento de cada promessa (rodízio)
-                             ("campanha", campanha.sincronizar)):  # depois: usa o que sobrou da cota
+                             ("campanha", campanha.sincronizar),   # depois: usa o que sobrou da cota
+                             ("fila", fila.sincronizar)):          # junta, aplica o confirmado, tira o vencido
             try:
                 log.info("%s: %s", nome, funcao())
                 etapas[nome] = "ok"

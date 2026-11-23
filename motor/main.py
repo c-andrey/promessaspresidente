@@ -10,6 +10,7 @@ import logging
 from datetime import date, timedelta
 
 from . import armazem, regras
+from . import fila as fila_mod
 from .classificador import classificar
 from .coletores import coletar_tudo
 from .filtro import candidatas
@@ -47,7 +48,7 @@ def executar(args) -> dict:
     promessas = armazem.ler_json(armazem.PROMESSAS, [])
     por_id = {p["id"]: p for p in promessas}
     fila = armazem.ler_json(armazem.FILA, [])
-    na_fila = {i["id"] for i in fila}
+    a_apurar = []
     vistos = set(armazem.ler_json(armazem.VISTOS, []))
     pendentes = armazem.ler_json(armazem.PENDENTES, [])
 
@@ -118,12 +119,14 @@ def executar(args) -> dict:
                 if decisao == regras.AUTO:
                     regras.aplicar_status(p, av["status_sugerido"], doc, av, res.provedor, regras.AUTO)
                     log.info("AUTO  %s → %s (%s)", p["id"], av["status_sugerido"], doc["titulo"])
+                elif decisao == regras.FILA and doc.get("oficial"):
+                    fila_mod.adicionar(fila, regras.item_fila(av, p, doc, res.provedor))
+                    log.info("FILA  %s → %s? (%s)", p["id"], av["status_sugerido"], doc["titulo"])
                 elif decisao == regras.FILA:
-                    novo_item = regras.item_fila(av, p, doc, res.provedor)
-                    if novo_item["id"] not in na_fila:
-                        fila.append(novo_item)
-                        na_fila.add(novo_item["id"])
-                        log.info("FILA  %s → %s? (%s)", p["id"], av["status_sugerido"], doc["titulo"])
+                    # notícia sem apuração não vai à fila: a promessa passa à frente no acompanhamento,
+                    # que lê o texto das matérias e confere a citação antes de sugerir
+                    a_apurar.append(p["id"])
+                    log.info("APURAR %s → %s? (%s)", p["id"], av["status_sugerido"], doc["titulo"])
         restantes = trabalho[feitos:]
         if not args.dry_run:
             cadeia.uso.salvar()
@@ -131,6 +134,8 @@ def executar(args) -> dict:
     if not args.dry_run:
         armazem.gravar_json(armazem.PROMESSAS, promessas)
         armazem.gravar_json(armazem.FILA, fila)
+        if a_apurar:
+            fila_mod.priorizar(a_apurar)
         armazem.gravar_json(armazem.VISTOS, sorted(vistos))
         armazem.gravar_json(armazem.PENDENTES, restantes)
         armazem.gravar_json(armazem.EXECUCAO, {"executado_em": armazem.agora(), "coletores": coletores_ok,

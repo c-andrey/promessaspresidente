@@ -59,6 +59,16 @@ def rfc822(iso):
     return format_datetime(datetime.combine(date.fromisoformat(str(iso)[:10]), datetime.min.time(), timezone.utc))
 
 
+def quem_decidiu(evento: dict) -> str:
+    """Como a mudança de status foi decidida, para o histórico público."""
+    if evento.get("origem") == "revisao":
+        return "revisado por pessoa"
+    if evento.get("origem") == "noticias_confirmadas":
+        n = len({t["url"].split("/")[2] for t in (evento.get("apuracao") or {}).get("trechos", []) if "//" in t.get("url", "")})
+        return f"confirmado no texto de {n} veículos de imprensa" if n > 1 else "confirmado por veículos de imprensa"
+    return "classificação automática"
+
+
 def site_url() -> str:
     return (os.environ.get("SITE_URL") or armazem.ler_yaml("site.yaml").get("url", "")).rstrip("/")
 
@@ -69,7 +79,7 @@ def ambiente(presidente: dict | None = None) -> Environment:
     execucao = armazem.ler_json(armazem.EXECUCAO, {})
     env = Environment(loader=FileSystemLoader(SITE / "templates"),
                       autoescape=select_autoescape(["html", "xml"]))
-    env.filters.update(data_br=data_br, data_hora_br=data_hora_br, rfc822=rfc822)
+    env.filters.update(data_br=data_br, data_hora_br=data_hora_br, rfc822=rfc822, quem_decidiu=quem_decidiu)
     env.tests["partidaria"] = partidaria
     env.globals.update(rotulos=ROTULOS, descricoes=DESCRICOES, origens=ORIGENS, contextos=CONTEXTOS, presidente=presidente,
                        posse=str(presidente["mandato_inicio"]), site_url=site_url(),

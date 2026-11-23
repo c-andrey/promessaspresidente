@@ -38,17 +38,8 @@ provedores:
     tpm: 7000
     limite_diario: 900
 
-  # Gemini: cota por modelo. O Flash estourou com ~16 chamadas/dia no teste; o Lite aguenta bem mais.
+  # Gemini: cota por modelo. O Flash estourou com ~16 chamadas/dia no teste.
   # (gemini-2.5-flash já não aceita contas novas; testado em 25/10/2026)
-  - nome: gemini-lite
-    tipo: openai
-    ativo: true
-    base_url: https://generativelanguage.googleapis.com/v1beta/openai
-    modelo: gemini-flash-lite-latest
-    chave_env: GEMINI_API_KEY        # aistudio.google.com
-    rpm: 12
-    limite_diario: 450
-
   - nome: gemini
     tipo: openai
     ativo: true
@@ -99,6 +90,17 @@ provedores:
     rpm: 20
     limite_diario: 100
     modo_json: false
+
+  # Gemini Lite: cota boa, mas devolveu 503 (sobrecarga) em quase todo sync de novembro/2026;
+  # fica no fim da fila para não gastar uma tentativa e uma pausa por documento.
+  - nome: gemini-lite
+    tipo: openai
+    ativo: true
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    modelo: gemini-flash-lite-latest
+    chave_env: GEMINI_API_KEY        # aistudio.google.com
+    rpm: 12
+    limite_diario: 450
 
   # OpenRouter :free: 20 req/min e 50 req/dia (1000/dia depois de comprar US$ 10 em créditos).
   - nome: openrouter

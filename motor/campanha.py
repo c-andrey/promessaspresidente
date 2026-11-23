@@ -28,11 +28,11 @@ import re
 import time
 import unicodedata
 from datetime import date, timedelta
-from urllib.parse import quote_plus, urlsplit
+from urllib.parse import urlsplit
 
 from . import apuracao, armazem, regras
 from .coletores.http import cliente
-from .coletores.noticias import _itens
+from .coletores import busca
 from .llm import Cadeia, SemProvedorDisponivel
 from .llm.erros import RespostaInvalida
 from .trava import trava
@@ -46,7 +46,6 @@ REJEITADAS = armazem.DADOS / "declaracoes_rejeitadas.json"
 ESTADO = armazem.ESTADO / "campanha.json"
 ARQUIVOS = (REFERENCIAS, CANDIDATAS, APROVADAS, REJEITADAS)
 
-URL = "https://news.google.com/rss/search?q={q}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
 LOTE_EXTRACAO = 20
 LOTE_CONSOLIDACAO = 50
 REFS_POR_BUSCA = 12
@@ -91,15 +90,13 @@ def veiculos_distintos(fontes: list[dict]) -> int:
 # --- busca ------------------------------------------------------------------------
 
 def buscar(c, consulta: str, periodo) -> list[dict]:
-    """Google Notícias (RSS). Volta no máximo ~100 itens por busca: períodos curtos trazem mais."""
+    """Google Notícias (RSS; Bing se o Google bloquear). Volta no máximo ~100 itens por busca: períodos curtos trazem mais."""
     q = f"{consulta} after:{periodo[0]} before:{periodo[1]}"
     try:
-        docs = _itens(c, URL.format(q=quote_plus(q)), "Google Notícias", str(periodo[0]), str(periodo[1]))
+        return busca.buscar(c, q, str(periodo[0]), str(periodo[1]))  # ritmo e reserva no Bing ficam lá
     except Exception as e:  # noqa: BLE001
         log.warning("busca falhou (%s): %s", consulta, e)
         return []
-    time.sleep(1)  # educação com o Google Notícias
-    return docs
 
 
 def lista_numerada(docs: list[dict]) -> str:

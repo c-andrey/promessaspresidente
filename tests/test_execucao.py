@@ -51,3 +51,17 @@ def test_noticia_antes_de_acompanhar_desde_so_vira_link(monkeypatch):
     p, fila = promessa(), []
     execucao.acompanhar(Cadeia([IA()], RegistroUso(caminho=None)), PRESIDENTE, CFG, [p], fila, {}, None)
     assert len(p["imprensa"]) == 1 and fila == []
+
+
+def test_prioridade_passa_a_frente_e_nao_confirmada_fica_fora(monkeypatch):
+    docs = [{"titulo": "Governo envia PEC do fim da 6x1", "fonte": "G1", "url": "u1", "data": "2026-11-03", "resumo": ""},
+            {"titulo": "Outra coisa", "fonte": "UOL", "url": "u2", "data": "2026-11-03", "resumo": ""}]
+    buscas = []
+    monkeypatch.setattr(execucao, "buscar", lambda c, q, p: buscas.append(q) or docs)
+    monkeypatch.setattr(execucao.apuracao, "resolver_url", lambda c, u: u)
+    monkeypatch.setattr(execucao.apuracao, "apurar", lambda *a, **k: {"status": "nao_confirmada", "trechos": []})
+    outra = promessa() | {"id": "outra", "palavras_chave": ["outra"]}
+    estado = {"verificadas": {"fim-escala-6x1": "2026-11-20", "outra": "2026-11-01"}, "prioridade": ["fim-escala-6x1"]}
+    fila = []
+    execucao.acompanhar(Cadeia([IA()], RegistroUso(caminho=None)), PRESIDENTE, CFG, [outra, promessa()], fila, estado, 1)
+    assert '"escala 6x1"' in buscas[0] and estado["prioridade"] == [] and fila == []

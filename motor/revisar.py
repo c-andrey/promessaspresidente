@@ -4,6 +4,7 @@
     python -m motor.revisar aprovar ID              # aplica o status sugerido
     python -m motor.revisar aprovar ID --status parcial --nota "só 6 ministérios"
     python -m motor.revisar rejeitar ID
+    python -m motor.revisar desfazer PROMESSA_ID    # volta a última mudança de status da promessa
 """
 import argparse
 import sys
@@ -49,9 +50,24 @@ def decidir(item_id: str, aprovar: bool, status: str | None = None, nota: str | 
     return msg
 
 
+def desfazer(promessa_id: str) -> str:
+    """Tira a última mudança de status (ex.: uma aplicada automaticamente que estava errada). Quem chama segura a trava."""
+    promessas = armazem.ler_json(armazem.PROMESSAS, [])
+    p = next((p for p in promessas if p["id"] == promessa_id), None)
+    if p is None or not p["historico"]:
+        raise KeyError(f"{promessa_id}: promessa sem mudança de status para desfazer.")
+    ultimo = p["historico"].pop()
+    p["status"] = ultimo["de"]
+    p["atualizado_em"] = p["historico"][-1]["data"] if p["historico"] else None
+    armazem.gravar_json(armazem.PROMESSAS, promessas)
+    armazem.gravar_json(REJEITADOS, armazem.ler_json(REJEITADOS, []) + [ultimo | {"promessa_id": promessa_id,
+                                                                                  "desfeito_em": armazem.hoje()}])
+    return f"{promessa_id} voltou para {p['status']}."
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("acao", nargs="?", choices=["listar", "aprovar", "rejeitar"], default="listar")
+    ap.add_argument("acao", nargs="?", choices=["listar", "aprovar", "rejeitar", "desfazer"], default="listar")
     ap.add_argument("id", nargs="?")
     ap.add_argument("--status", choices=armazem.STATUS, help="sobrescreve o status sugerido")
     ap.add_argument("--nota", help="observação do revisor, publicada no histórico")
@@ -64,7 +80,10 @@ def main():
 
     try:
         with trava():
-            print(decidir(args.id, args.acao == "aprovar", args.status, args.nota))
+            if args.acao == "desfazer":
+                print(desfazer(args.id))
+            else:
+                print(decidir(args.id, args.acao == "aprovar", args.status, args.nota))
     except KeyError as e:
         sys.exit(e.args[0])
 

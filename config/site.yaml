@@ -6,6 +6,8 @@ url: http://187.77.254.161:8081
 # mas não contam como veículo de imprensa (nem para publicar declaração sozinha).
 fontes_partidarias:
   - pt.org.br
+  - ptnosenado.org.br
+  - ptnacamara.org.br
   - pl.org.br
   - plnacional.org.br
   - psol50.org.br

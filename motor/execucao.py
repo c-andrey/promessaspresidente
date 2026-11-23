@@ -5,8 +5,13 @@ Rodízio diário (as promessas verificadas há mais tempo primeiro). Para cada p
      desde a última verificação (na primeira vez, desde o início da campanha);
   2. a IA marca as matérias relacionadas → viram links "Na imprensa" (URL real da matéria);
   3. se alguma matéria indica mudança de status, entra a APURAÇÃO (texto inteiro, citação
-     literal conferida por código, segunda opinião de outro provedor) e a sugestão vai
-     para a fila de revisão já com o resultado. Notícia nunca muda status sozinha.
+     literal conferida por código, segunda opinião de outro provedor) e, se houver checagem
+     de fatos configurada, a consulta às agências. Só o que foi apurado entra na fila
+     (motor/fila.py junta tudo num item por promessa e aplica "em andamento" quando
+     veículos independentes confirmam). Parcial, cumprida e abandonada: sempre revisão humana.
+
+Promessas em estado["prioridade"] (notícia do sync sugeriu mudança, ainda sem apuração)
+passam à frente no rodízio.
 
   python -m motor.execucao [--todas]     # --todas: passa por todas as promessas agora
 """
@@ -14,7 +19,8 @@ import argparse
 import logging
 from datetime import date
 
-from . import apuracao, armazem, regras
+from . import apuracao, armazem, checagem, regras
+from . import fila as fila_mod
 from .campanha import CadeiaComTeto, buscar, lista_numerada
 from .coletores.http import cliente
 from .llm import Cadeia, SemProvedorDisponivel
@@ -60,10 +66,10 @@ Recebe UMA promessa e reportagens numeradas (título, veículo, data, resumo). P
 def acompanhar(cadeia, presidente, cfg, promessas, fila, estado, quantas: int | None) -> dict:
     nome = presidente["nome_busca"]
     verificadas = estado.setdefault("verificadas", {})
-    na_fila = {i["id"] for i in fila}
+    prioridade = estado.setdefault("prioridade", [])
     hoje = armazem.hoje()
     inicio_padrao = cfg.get("buscar_desde", "2026-06-01")
-    ordem = sorted(promessas, key=lambda p: verificadas.get(p["id"], ""))[:quantas]
+    ordem = sorted(promessas, key=lambda p: (p["id"] not in prioridade, verificadas.get(p["id"], "")))[:quantas]
     stats = {"verificadas": 0, "links": 0, "sugestoes": 0}
     with cliente() as c:
         for p in ordem:
@@ -106,12 +112,18 @@ def acompanhar(cadeia, presidente, cfg, promessas, fila, estado, quantas: int | 
                           "justificativa": m["resumo"]}
                     item = regras.item_fila(av, p, {**d, "oficial": False, "id": d.get("id") or d["url"]}, r.provedor) | {
                         "origem": "noticias", "apuracao": apurado}
-                    if item["id"] not in na_fila and apurado["status"] != "contradita":
-                        fila.append(item)
-                        na_fila.add(item["id"])
-                        stats["sugestoes"] += 1
-                        log.info("FILA (notícias, apuração: %s) %s → %s?", apurado["status"], p["id"], status)
+                    if not fila_mod.admitir(item):
+                        log.info("sem confirmação no texto (%s): %s → %s fica de fora", apurado["status"], p["id"], status)
+                        continue
+                    desmentiu = checagem.desmentidos(c, d["titulo"])
+                    if desmentiu:
+                        item["checagem"] = desmentiu
+                    fila_mod.adicionar(fila, item)
+                    stats["sugestoes"] += 1
+                    log.info("FILA (notícias, apurada) %s → %s?", p["id"], status)
             verificadas[p["id"]] = hoje
+            if p["id"] in prioridade:
+                prioridade.remove(p["id"])
             stats["verificadas"] += 1
     return stats
 

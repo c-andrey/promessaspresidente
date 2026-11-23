@@ -18,7 +18,7 @@
       <p><span class="selo st-{{ e.evento.de }}">{{ rotulos[e.evento.de] }}</span> → <span class="selo st-{{ e.evento.para }}">{{ rotulos[e.evento.para] }}</span></p>
       <p>{{ e.evento.justificativa }}</p>
       <p class="fonte">{{ e.evento.documento.fonte }} · <a href="{{ e.evento.documento.url }}" rel="noopener">{{ e.evento.documento.titulo }}</a>
-        · {{ "revisado por pessoa" if e.evento.origem == "revisao" else "classificação automática" }}</p>
+        · {{ e.evento|quem_decidiu }}</p>
     </li>
     {% endfor %}
   </ol>

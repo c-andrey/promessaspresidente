@@ -6,6 +6,7 @@ name: Deploy
 # Secrets de IA (todos opcionais): NVIDIA_API_KEY, GEMINI_API_KEY, GROQ_API_KEY, MISTRAL_API_KEY,
 #   CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, OPENROUTER_API_KEY, ANTHROPIC_API_KEY.
 # Painel e avisos (opcionais): REVISAO_SENHA, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NTFY_TOPICO.
+# Checagem de fatos (opcional): FACTCHECK_API_KEY (Google Fact Check Tools API, gratuita).
 # Variables opcionais: HORA_SYNC (padrão 07:00, horário de Brasília), INTERVALO_SYNC_DIAS, SITE_URL.
 
 on:
@@ -78,6 +79,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPICO: ${{ secrets.NTFY_TOPICO }}
+          FACTCHECK_API_KEY: ${{ secrets.FACTCHECK_API_KEY }}
           SITE_URL: ${{ vars.SITE_URL }}
           HORA_SYNC: ${{ vars.HORA_SYNC || '07:00' }}
           INTERVALO_SYNC_DIAS: ${{ vars.INTERVALO_SYNC_DIAS || '1' }}
@@ -86,7 +88,7 @@ jobs:
           : > .env
           for k in NVIDIA_API_KEY GEMINI_API_KEY GROQ_API_KEY MISTRAL_API_KEY CLOUDFLARE_ACCOUNT_ID \
                    CLOUDFLARE_API_TOKEN OPENROUTER_API_KEY ANTHROPIC_API_KEY REVISAO_SENHA TELEGRAM_BOT_TOKEN \
-                   TELEGRAM_CHAT_ID NTFY_TOPICO SITE_URL HORA_SYNC INTERVALO_SYNC_DIAS; do
+                   TELEGRAM_CHAT_ID NTFY_TOPICO FACTCHECK_API_KEY SITE_URL HORA_SYNC INTERVALO_SYNC_DIAS; do
             v="${!k}"
             [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env && echo "  $k definido"
           done
