@@ -67,7 +67,7 @@ regras:
   confianca_fila: 0.5
   # Notícia: nao_iniciada → em_andamento sem revisão quando esse número de veículos (sem contar
   # sites de partido) teve o texto lido e a citação conferida, e nenhuma checagem de fatos desmente.
-  veiculos_para_auto: 2
+  veiculos_para_auto: 3
   # Sugestão sem evidência nova há tantos dias sai da fila (fica em estado/fila_arquivada.json).
   dias_validade_fila: 30
 
